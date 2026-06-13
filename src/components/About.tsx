@@ -1,0 +1,109 @@
+import { motion } from 'framer-motion';
+import { Plus, Gem, TrendingUp, ChevronRight } from 'lucide-react';
+import SectionHead from './SectionHead';
+import CountUp from './CountUp';
+import Eyebrow from './Eyebrow';
+import { scaleIn, gridStagger, cardHover } from '../lib/variants';
+import { WRAP } from '../lib/data';
+
+export default function About() {
+  return (
+    <section id="about" className="border-b border-[var(--line)]" style={{ padding: 'clamp(64px,9vw,120px) 0' }}>
+      <div className={WRAP}>
+        <SectionHead title={<>Small Studio,<br />Big Output</>} tag="[ 01 — IDENTITY ]" />
+
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[var(--gap)]"
+          style={{ gridAutoRows: 'minmax(150px,auto)' }}
+          variants={gridStagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+        >
+          {/* Lead card */}
+          <motion.div
+            variants={scaleIn}
+            className="md:col-span-2 lg:col-span-2 lg:row-span-2 flex flex-col justify-between rounded p-[28px] border border-[var(--line)]"
+            style={{ background: 'var(--surface-2)' }}
+            whileHover={cardHover}
+          >
+            <div>
+              <h3 className="text-cream leading-[1.5] mb-[16px]" style={{ fontSize: 'clamp(13px,1.5vw,17px)' }}>
+                We're a tight crew of designers, writers and engineers who treat every brand like a high score to beat.
+              </h3>
+              <p className="text-muted text-[13px] leading-[1.9] max-w-[42ch]">
+                From first sketch to launch day, we run lean and ship sharp. No bloated retainers, no design-by-committee — just senior hands on the controls and work that earns its place.
+              </p>
+            </div>
+            <Eyebrow className="mt-6">Founded in 2019</Eyebrow>
+          </motion.div>
+
+          {/* Stat: 47 projects */}
+          <motion.div
+            variants={scaleIn}
+            className="rounded p-[28px] border border-[var(--line)] relative"
+            style={{ background: 'var(--surface)' }}
+            whileHover={cardHover}
+          >
+            <Plus size={16} className="absolute top-[18px] right-[18px] text-orange opacity-80" />
+            <div className="text-cream font-semibold leading-none tracking-normal" style={{ fontSize: 'clamp(28px,4vw,48px)' }}>
+              <CountUp target={47} />
+            </div>
+            <div className="text-[11px] tracking-[0.16em] uppercase text-muted mt-[14px]">Projects Shipped</div>
+          </motion.div>
+
+          {/* Stat: 12 countries */}
+          <motion.div
+            variants={scaleIn}
+            className="rounded p-[28px] border border-[var(--line)] relative"
+            style={{ background: 'var(--surface)' }}
+            whileHover={cardHover}
+          >
+            <Gem size={14} className="absolute top-[18px] right-[18px] text-orange opacity-80" />
+            <div className="text-cream font-semibold leading-none tracking-normal" style={{ fontSize: 'clamp(28px,4vw,48px)' }}>
+              <CountUp target={12} />
+            </div>
+            <div className="text-[11px] tracking-[0.16em] uppercase text-muted mt-[14px]">Countries Served</div>
+          </motion.div>
+
+          {/* Team row */}
+          <motion.div
+            variants={scaleIn}
+            className="md:col-span-2 lg:col-span-2 flex items-center justify-between gap-4 rounded p-[28px] border border-[var(--line)]"
+            style={{ background: 'var(--surface)' }}
+            whileHover={cardHover}
+          >
+            <div className="flex">
+              {['A', 'R', 'K', '+9'].map((init, i) => (
+                <span
+                  key={i}
+                  className="w-[36px] h-[36px] rounded-full border border-cream flex items-center justify-center text-[10px] text-cream shrink-0"
+                  style={{ background: 'var(--surface-2)', marginLeft: i === 0 ? 0 : '-10px' }}
+                >
+                  {init}
+                </span>
+              ))}
+            </div>
+            <a href="#contact" className="text-[12px] tracking-[0.12em] uppercase text-cream flex items-center gap-2 hover:text-orange transition-colors">
+              Our Team <ChevronRight size={14} />
+            </a>
+          </motion.div>
+
+          {/* Stat: 98% retention */}
+          <motion.div
+            variants={scaleIn}
+            className="md:col-span-2 lg:col-span-2 rounded p-[28px] border border-[var(--line)] relative"
+            style={{ background: 'var(--surface)' }}
+            whileHover={cardHover}
+          >
+            <TrendingUp size={15} className="absolute top-[18px] right-[18px] text-orange opacity-80" />
+            <div className="text-cream font-semibold leading-none tracking-normal" style={{ fontSize: 'clamp(28px,4vw,48px)' }}>
+              <CountUp target={98} suffix="%" />
+            </div>
+            <div className="text-[11px] tracking-[0.16em] uppercase text-muted mt-[14px]">Client Retention Rate</div>
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
