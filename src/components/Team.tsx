@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
 import Nav from './Nav';
 import Footer from './Footer';
 import CountUp from './CountUp';
@@ -10,7 +9,7 @@ import {
   gridStagger, tightStagger, headerStagger, cardHover,
 } from '../lib/variants';
 import {
-  WRAP, FOUNDERS, PLAYERS, CULTURE_VALUES, TEAM_STATS, OPEN_ROLES,
+  WRAP, FOUNDERS, PLAYERS, CULTURE_VALUES, TEAM_STATS,
   type TeamMember,
 } from '../lib/data';
 
@@ -262,89 +261,6 @@ export default function Team() {
               <div className="text-[11px] tracking-[0.18em] uppercase text-muted mt-4">{label}</div>
             </motion.div>
           ))}
-        </motion.div>
-      </section>
-
-      {/* ── OPEN ROLES / CTA ───────────────────────────────────────────── */}
-      <section
-        id="join"
-        className="relative text-center border-b border-[var(--line)] overflow-hidden"
-        style={{ background: 'var(--bg-deep)', padding: 'clamp(64px,9vw,116px) 0' }}
-      >
-        <div className="absolute inset-0 scanline" style={{ opacity: 0.7 }} />
-
-        <motion.div
-          className={`relative z-[2] ${WRAP}`}
-          variants={gridStagger}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-80px' }}
-        >
-          <motion.div variants={fadeUp} className="mb-[24px]">
-            <Eyebrow>Now Recruiting</Eyebrow>
-          </motion.div>
-
-          <motion.h2
-            className="font-pixel text-cream mx-auto leading-[1.5] max-w-[20ch] mb-[34px]"
-            style={{ fontSize: 'clamp(18px,4.4vw,44px)', textShadow: '3px 3px 0 rgba(0,0,0,0.4)' }}
-            variants={scaleIn}
-          >
-            Want To Join{' '}
-            <span className="text-orange">Player 13?</span>
-          </motion.h2>
-
-          {/* Role rows */}
-          <motion.div
-            className="flex flex-col gap-3 max-w-[760px] mx-auto text-left mb-[34px]"
-            variants={gridStagger}
-          >
-            {OPEN_ROLES.map(({ title, meta }) => (
-              <motion.a
-                key={title}
-                href="/#contact"
-                className="flex items-center justify-between gap-4 border border-[var(--line)] rounded p-[18px_22px] transition-colors duration-200 hover:border-orange"
-                style={{ background: 'var(--surface)' }}
-                variants={fadeUp}
-                whileHover={{ x: 3, boxShadow: '-3px 3px 0 #FF6B35', borderColor: '#FF6B35', transition: { duration: 0.2 } }}
-              >
-                <div>
-                  <div className="text-[12px] text-cream tracking-[0.04em]">{title}</div>
-                  <div className="text-[10px] text-muted tracking-[0.12em] uppercase mt-[6px]">{meta}</div>
-                </div>
-                <span className="text-[11px] text-orange tracking-[0.12em] uppercase whitespace-nowrap">
-                  Apply →
-                </span>
-              </motion.a>
-            ))}
-          </motion.div>
-
-          <motion.p
-            className="text-[13px] text-muted max-w-[48ch] mx-auto leading-[1.9] mb-[34px]"
-            variants={fadeUp}
-          >
-            Don't see your role? We're always happy to meet good people. Send a hello and show us what you're proud of.
-          </motion.p>
-
-          <motion.div className="flex flex-wrap gap-4 justify-center" variants={fadeUp}>
-            <a
-              href="/#contact"
-              className="inline-flex items-center gap-[10px] px-[26px] py-4 rounded text-[12px] tracking-[0.14em] uppercase border group transition-all duration-200 hover:-translate-y-0.5"
-              style={{ background: 'var(--orange)', borderColor: 'var(--orange)', color: '#161616' }}
-              onMouseEnter={(e) => (e.currentTarget.style.boxShadow = '3px 3px 0 #E8E8C6')}
-              onMouseLeave={(e) => (e.currentTarget.style.boxShadow = 'none')}
-            >
-              Drop Us A Line
-              <span className="transition-transform duration-200 group-hover:translate-x-[5px]">
-                <ArrowRight size={13} />
-              </span>
-            </a>
-            <a
-              href="/#work"
-              className="inline-flex items-center gap-[10px] px-[26px] py-4 rounded text-[12px] tracking-[0.14em] uppercase border border-cream text-cream transition-all duration-200 hover:border-orange hover:text-orange hover:-translate-y-0.5"
-            >
-              See The Work
-            </a>
-          </motion.div>
         </motion.div>
       </section>
 
