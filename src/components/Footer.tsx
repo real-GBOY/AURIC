@@ -43,12 +43,13 @@ export default function Footer() {
           </a>
         </div>
 
-        <div className="flex flex-col items-end gap-1">
-          <div className="text-[11px] text-muted tracking-[0.1em]">© 2025 3-300</div>
-          <div className="text-[10px] tracking-[0.14em] uppercase text-muted">
-            Developed by <span className="text-orange">JINX</span>
-          </div>
-        </div>
+        <div className="text-[11px] text-muted tracking-[0.1em]">© 2025 3-300</div>
+      </div>
+
+      <div className={`${WRAP} border-t border-[var(--line)] mt-6 pt-4 text-center`}>
+        <span className="text-[10px] tracking-[0.18em] uppercase text-muted">
+          Developed by <span className="text-orange">JINX</span>
+        </span>
       </div>
     </motion.footer>
   );
