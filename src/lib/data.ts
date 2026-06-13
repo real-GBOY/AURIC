@@ -46,3 +46,47 @@ export const STATS_BAR = [
   { target: 98, suffix: '%', label: 'Retention' },
   { target: 6,  suffix: '',  label: 'Yrs In The Game' },
 ];
+
+// ─── Team page ───────────────────────────────────────────────────────────────
+
+export interface TeamMember {
+  id: string; name: string; role: string; lvl: string; bio: string;
+  links: { label: string; href: string }[];
+}
+
+export const FOUNDERS: TeamMember[] = [
+  { id: 'm-ari',  name: 'Ari Nakamura', role: 'Founder / Creative Dir.',  lvl: 'LVL 99', bio: 'Started 3-300 in a garage with a CRT and a dream. Leads brand vision.',        links: [{ label: 'Email', href: '#' }, { label: 'LinkedIn', href: '#' }] },
+  { id: 'm-rae',  name: 'Rae Okafor',   role: 'Partner / Strategy Lead',  lvl: 'LVL 98', bio: 'Turns fuzzy ambitions into sharp plans. Keeps the work honest and on-target.',  links: [{ label: 'Email', href: '#' }, { label: 'LinkedIn', href: '#' }] },
+  { id: 'm-kit',  name: 'Kit Vasquez',  role: 'Partner / Tech Lead',      lvl: 'LVL 97', bio: 'Builds the things that ship. Believes fast sites are a feature, not a luxury.', links: [{ label: 'Email', href: '#' }, { label: 'GitHub',   href: '#' }] },
+  { id: 'm-juno', name: 'Juno Park',    role: 'Partner / Ops & Producer', lvl: 'LVL 96', bio: 'Makes the trains run. The reason deadlines feel calm instead of cursed.',        links: [{ label: 'Email', href: '#' }, { label: 'LinkedIn', href: '#' }] },
+];
+
+export const PLAYERS: TeamMember[] = [
+  { id: 'm-sol',   name: 'Sol Bergström',  role: 'Brand Designer',     lvl: 'P-05', bio: 'Logos, marks & type. Collects vintage arcade flyers.',           links: [{ label: 'Dribbble',  href: '#' }] },
+  { id: 'm-mira',  name: 'Mira Haddad',    role: 'Motion Designer',    lvl: 'P-06', bio: 'Makes pixels move. Former game studio animator.',                links: [{ label: 'Reel',      href: '#' }] },
+  { id: 'm-theo',  name: 'Theo Lindqvist', role: 'Front-End Engineer', lvl: 'P-07', bio: 'Ships clean code & obsesses over load times.',                   links: [{ label: 'GitHub',    href: '#' }] },
+  { id: 'm-nadia', name: 'Nadia Cruz',     role: 'Copywriter',         lvl: 'P-08', bio: 'Words that punch. Reformed journalist, current pun dealer.',     links: [{ label: 'Portfolio', href: '#' }] },
+  { id: 'm-bo',    name: 'Bo Tanaka',      role: 'Art Director',       lvl: 'P-09', bio: 'Sets the visual bar. Always one reference deeper.',              links: [{ label: 'Behance',   href: '#' }] },
+  { id: 'm-lena',  name: 'Lena Moreau',    role: 'UX Designer',        lvl: 'P-10', bio: 'Flows & systems. Sketches wireframes on diner napkins.',         links: [{ label: 'Dribbble',  href: '#' }] },
+  { id: 'm-omar',  name: 'Omar Reyes',     role: 'Growth Strategist',  lvl: 'P-11', bio: 'Channels & experiments. Lives in the analytics dashboard.',      links: [{ label: 'LinkedIn',  href: '#' }] },
+  { id: 'm-yuki',  name: 'Yuki Sato',      role: 'Producer',           lvl: 'P-12', bio: 'Keeps projects on-rails. Owns the studio playlist.',            links: [{ label: 'Email',     href: '#' }] },
+];
+
+export const CULTURE_VALUES = [
+  { glyph: '◈', title: 'Senior By Default', body: 'No work gets passed to a junior to figure out. The people you meet are the people who build it.' },
+  { glyph: '►', title: 'Ship, Then Polish',  body: "We'd rather show you something rough on Friday than something perfect that's three weeks late." },
+  { glyph: '✦', title: 'Play More',          body: 'Game nights, side projects, and a budget for the weird ideas. Curiosity keeps the work sharp.' },
+];
+
+export const TEAM_STATS = [
+  { target: 12, symbol: null, label: 'Crew Members' },
+  { target: 4,  symbol: null, label: 'Time Zones' },
+  { target: 6,  symbol: null, label: 'Yrs Together' },
+  { target: 0,  symbol: '∞',  label: 'Coffee Consumed' },
+];
+
+export const OPEN_ROLES = [
+  { title: 'Senior Brand Designer',      meta: 'Full-time · Remote / Hybrid' },
+  { title: 'Front-End Engineer',         meta: 'Full-time · Remote' },
+  { title: 'Motion Designer (Contract)', meta: '3-month · Remote' },
+];

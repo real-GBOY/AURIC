@@ -2,7 +2,13 @@ import { motion } from 'framer-motion';
 import { Instagram, Dribbble } from 'lucide-react';
 import { WRAP } from '../lib/data';
 
-const NAV_LINKS = ['About', 'Work', 'Services', 'Contact'];
+const NAV_LINKS = [
+  { label: 'About',    href: '/#about'    },
+  { label: 'Work',     href: '/#work'     },
+  { label: 'Services', href: '/#services' },
+  { label: 'Team',     href: '/team'      },
+  { label: 'Contact',  href: '/#contact'  },
+];
 
 export default function Footer() {
   return (
@@ -20,13 +26,13 @@ export default function Footer() {
         </a>
 
         <div className="flex items-center gap-[26px] flex-wrap">
-          {NAV_LINKS.map((l) => (
+          {NAV_LINKS.map(({ label, href }) => (
             <a
-              key={l}
-              href={`#${l.toLowerCase()}`}
+              key={label}
+              href={href}
               className="text-[11px] tracking-[0.12em] uppercase text-muted transition-colors hover:text-orange"
             >
-              {l}
+              {label}
             </a>
           ))}
           <a href="#" aria-label="Instagram" className="text-muted hover:text-orange transition-colors">

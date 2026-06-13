@@ -10,12 +10,13 @@ import StatsBar from './components/StatsBar';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
 import NotFound from './components/NotFound';
+import Team from './components/Team';
 
-// Any path other than "/" is a 404 (Vercel rewrites all paths to this app)
-const isRoot = window.location.pathname === '/';
+const path = window.location.pathname;
 
 export default function App() {
-  if (!isRoot) return <NotFound />;
+  if (path === '/team') return <Team />;
+  if (path !== '/') return <NotFound />;
 
   return (
     <div className="min-h-screen">
