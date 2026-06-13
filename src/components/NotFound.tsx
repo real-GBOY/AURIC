@@ -26,7 +26,7 @@ export default function NotFound() {
   }, []);
 
   return (
-    <div className="min-h-screen overflow-x-hidden">
+    <div className="min-h-screen">
       <Nav />
 
       {/* Stage */}

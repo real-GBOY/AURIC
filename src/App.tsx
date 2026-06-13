@@ -18,7 +18,7 @@ export default function App() {
   if (!isRoot) return <NotFound />;
 
   return (
-    <div className="min-h-screen overflow-x-hidden">
+    <div className="min-h-screen">
       <Nav />
       <Hero />
       <Marquee />
