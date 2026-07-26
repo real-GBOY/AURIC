@@ -53,6 +53,15 @@ export default function Work() {
             );
           })}
         </motion.div>
+
+        <div className="flex justify-center" style={{ marginTop: 'clamp(32px,5vw,52px)' }}>
+          <a
+            href="/work"
+            className="inline-flex items-center gap-2 px-[22px] py-[13px] rounded text-[12px] font-semibold tracking-[0.14em] uppercase border border-gold text-cream transition-all duration-200 hover:-translate-y-0.5 hover:bg-gold hover:text-[#161616]"
+          >
+            View All Projects
+          </a>
+        </div>
       </div>
     </section>
   );

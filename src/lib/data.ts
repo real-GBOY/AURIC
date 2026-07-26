@@ -28,6 +28,13 @@ export const WORKS = [
   { title: 'Build Art',          cat: 'Interior Design & Fit-Out Marketing Site', tag: 'Web', year: "'25", bg: 'linear-gradient(135deg,#b7913f 0%,#2b210d 100%)', span: 'col-span-1 sm:col-span-2', href: '/work/build-art', image: '/work/build-art/hero.png' },
 ];
 
+// ─── All projects (full portfolio listing page) ───────────────────────────────
+
+export const ALL_WORKS = [
+  ...WORKS,
+  { title: 'OptiCare', cat: 'Clinic Management System for Ophthalmology Practices', tag: 'Web', year: "'26", bg: 'linear-gradient(135deg,#2f7db7 0%,#0d1e30 100%)', span: 'col-span-1 sm:col-span-2', href: '/work/opticare', image: '/work/opticare/dashboard-overview.jpg' },
+];
+
 // ─── Case study projects ───────────────────────────────────────────────────────
 
 export interface CaseStudyProject {
@@ -300,6 +307,58 @@ export const BUILD_ART_PROJECT: CaseStudyProject = {
     { src: '/work/build-art/design-philosophy.png',  alt: 'Build Art design philosophy accordion section' },
     { src: '/work/build-art/process-steps.png',      alt: 'Build Art three-step process section' },
     { src: '/work/build-art/testimonials.png',       alt: 'Build Art client testimonials carousel' },
+  ],
+  mobileImages: [],
+};
+
+export const OPTICARE_PROJECT: CaseStudyProject = {
+  title: 'OptiCare',
+  category: 'Clinic Management System for Ophthalmology Practices',
+  tagline: 'An integrated clinic management system and public landing page built for modern eye clinics — digitizing patient intake, daily queueing, clinical diagnoses, eye measurements, prescriptions and medical file storage into one high-speed dashboard.',
+  year: '2026',
+  link: 'https://eye-clinics-system.vercel.app/',
+  overview: [
+    "OptiCare modernizes and streamlines the day-to-day operations of an eye clinic by replacing paper records with a fast, secure, digital workflow. It handles everything from patient intake and queue management to clinical diagnoses, specialized eye measurements, prescription generation and medical file storage, giving ophthalmologists, clinic assistants and secretaries a single source of truth for every patient.",
+    "The system tracks the complete lifecycle of a patient's visit: a secretary adds a patient to the daily queue, and the doctor subsequently pulls up their medical history, records new eye measurements, attaches X-rays and lab results, and prints a professional prescription — all within a unified interface. It also acts as a protective layer over highly sensitive medical data, using a soft-delete 'Trash & Recovery' mechanism that holds deleted records for 7 days before an automated permanent cleanup, rather than allowing accidental permanent loss.",
+  ],
+  modules: [
+    { title: 'Patient Management', desc: 'Comprehensive CRUD for patient demographic records and medical history.' },
+    { title: "Queue (Today's List)", desc: "Real-time management of the daily patient schedule, tracking 'waiting' and 'completed' statuses." },
+    { title: 'Visits', desc: "The core medical module logging diagnoses and doctor's notes, linking all clinical data to a specific appointment." },
+    { title: 'Eye Measurements', desc: 'Specialized recording of Sphere, Cylinder and Axis metrics for both left and right eyes.' },
+    { title: 'Smart Prescriptions', desc: 'Prescription drafting linked to a medication catalog, capturing dosages and instructions.' },
+    { title: 'Medications & Diseases Catalog', desc: 'Standardized drug and condition lists used to keep prescriptions and visit tags consistent.' },
+    { title: 'Attachments', desc: 'File management for uploading and linking X-rays, lab results and documents to patient profiles.' },
+    { title: 'Trash & Backup', desc: 'A recovery system that intercepts deletions and manages a 7-day soft-delete retention lifecycle.' },
+    { title: 'Announcements & Patient Notes', desc: 'Internal staff broadcasts plus a quick-access notepad for patient-specific alerts like drug allergies.' },
+  ],
+  features: [
+    'JWT-based email/password authentication via Supabase',
+    'Postgres Row Level Security (RLS) enforcing authenticated access',
+    'Highly optimized Arabic text search using PostgreSQL pg_trgm trigram indexes',
+    'Custom database trigger normalizing Arabic characters (أ, إ, آ → ا) for typo-tolerant search',
+    'Atomic "Full Visit" creation via a single PostgreSQL RPC transaction',
+    'Cascading soft-deletes: deleting a patient soft-deletes their visits, prescriptions and attachments',
+    '7-day soft-delete retention with automated permanent cleanup',
+    'Client-side image/PDF compression before upload to cloud storage',
+    'Daily queue tracker with a waiting/completed status state machine',
+    'Dashboard-wide announcement banners for clinic staff',
+    'Timezone-aware date handling locked to Cairo time',
+    'Responsive Tailwind CSS interface across mobile, tablet and desktop',
+  ],
+  techGroups: [
+    { label: 'Frontend',  items: ['Next.js 16 (App Router)', 'React 19', 'JavaScript', 'Tailwind CSS v4', 'Framer Motion', 'Lucide React'] },
+    { label: 'Data & Utilities', items: ['@supabase/ssr', '@supabase/supabase-js', 'date-fns', 'date-fns-tz', 'uuid', 'react-hot-toast', 'csv-parse', 'browser-image-compression'] },
+    { label: 'Backend & Infra', items: ['Supabase (Postgres, Auth, Storage)', 'PostgreSQL RPCs & Triggers', 'Vercel'] },
+  ],
+  architecture: "OptiCare pairs a feature-based frontend architecture with a 'thick-database' backend. Routes live under src/app (Next.js App Router), while src/components is grouped by business feature — patients, prescriptions, queue, trash — rather than by technical type. Instead of a traditional REST middleware layer, the frontend talks directly to PostgreSQL through the Supabase SDK, and heavy data manipulation is pushed down into PostgreSQL functions (RPCs) and triggers. The create_full_visit RPC is the clearest example: rather than six separate API calls to create a visit, link diseases, generate a prescription, save eye measurements, attach files and update the queue, the frontend sends one JSON payload and Postgres handles every insertion inside a single atomic transaction — guaranteeing data integrity and cutting network waterfalls. A cascade_patient_soft_delete trigger mirrors that discipline for deletions: soft-deleting a patient instantly hides their visits and attachments from the UI while preserving them in the database, and restoring the patient recursively restores every child record exactly as it was.",
+  impact: "OptiCare demonstrates how much can be pushed into the database layer when the domain demands it — atomic multi-table transactions, cascading soft-delete/recovery, and a custom Arabic text-normalization pipeline for hyper-accurate patient search. For a specialized healthcare niche where data integrity and accidental data loss are real risks, that 'thick database' approach turns PostgreSQL itself into the safety net, while the Next.js frontend stays focused on delivering a fast, unified workflow for doctors and clinic staff.",
+  dashboardImages: [
+    { src: '/work/opticare/dashboard-overview.jpg', alt: 'OptiCare main dashboard overview with daily stats and announcements' },
+    { src: '/work/opticare/dashboard-queue.jpg',     alt: "OptiCare today's queue with waiting patients" },
+    { src: '/work/opticare/dashboard-visits.jpg',    alt: 'OptiCare daily visit reports and patient search' },
+    { src: '/work/opticare/dashboard-backup.jpg',    alt: 'OptiCare backup and restore panel' },
+    { src: '/work/opticare/dashboard-trash.jpg',     alt: 'OptiCare trash and recovery bin' },
   ],
   mobileImages: [],
 };
