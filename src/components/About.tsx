@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Plus, Gem, TrendingUp, ChevronRight } from 'lucide-react';
+import { Plus, Gem, TrendingUp, ChevronRight, Sparkles } from 'lucide-react';
 import SectionHead from './SectionHead';
 import CountUp from './CountUp';
 import Eyebrow from './Eyebrow';
@@ -35,7 +35,7 @@ export default function About() {
                 Every solution is built from the ground up around your business — not from templates or one-size-fits-all approaches. Technology is never the end goal. Business growth is.
               </p>
             </div>
-            <Eyebrow className="mt-6">Founded in 2019</Eyebrow>
+            <Eyebrow className="mt-6">Founded in 2025</Eyebrow>
           </motion.div>
 
           {/* Stat: 47 projects */}
@@ -47,7 +47,7 @@ export default function About() {
           >
             <Plus size={16} className="absolute top-[18px] right-[18px] text-gold opacity-80" />
             <div className="text-cream font-semibold leading-none tracking-normal" style={{ fontSize: 'clamp(28px,4vw,48px)' }}>
-              <CountUp target={47} />
+              <CountUp target={10} />
             </div>
             <div className="text-[11px] tracking-[0.16em] uppercase text-muted mt-[14px]">Products Delivered</div>
           </motion.div>
@@ -61,31 +61,29 @@ export default function About() {
           >
             <Gem size={14} className="absolute top-[18px] right-[18px] text-gold opacity-80" />
             <div className="text-cream font-semibold leading-none tracking-normal" style={{ fontSize: 'clamp(28px,4vw,48px)' }}>
-              <CountUp target={12} />
+              <CountUp target={8} />
             </div>
             <div className="text-[11px] tracking-[0.16em] uppercase text-muted mt-[14px]">Industries Served</div>
           </motion.div>
 
-          {/* Team row */}
+          {/* Work teaser */}
           <motion.div
             variants={scaleIn}
             className="md:col-span-2 lg:col-span-2 flex items-center justify-between gap-4 rounded p-[28px] border border-[var(--line)]"
             style={{ background: 'var(--surface)' }}
             whileHover={cardHover}
           >
-            <div className="flex">
-              {['A', 'R', 'K', '+9'].map((init, i) => (
-                <span
-                  key={i}
-                  className="w-[36px] h-[36px] rounded-full border border-cream flex items-center justify-center text-[10px] text-cream shrink-0"
-                  style={{ background: 'var(--surface-2)', marginLeft: i === 0 ? 0 : '-10px' }}
-                >
-                  {init}
-                </span>
-              ))}
+            <div className="flex items-center gap-[14px]">
+              <span
+                className="w-[42px] h-[42px] rounded-full border border-[var(--line)] flex items-center justify-center text-gold shrink-0"
+                style={{ background: 'var(--surface-2)' }}
+              >
+                <Sparkles size={17} strokeWidth={1.5} />
+              </span>
+              <span className="text-[12px] text-cream leading-[1.6]">Real products, live in production</span>
             </div>
-            <a href="/team" className="text-[12px] tracking-[0.12em] uppercase text-cream flex items-center gap-2 hover:text-gold transition-colors">
-              Our Team <ChevronRight size={14} />
+            <a href="/#work" className="text-[12px] tracking-[0.12em] uppercase text-cream flex items-center gap-2 hover:text-gold transition-colors shrink-0">
+              See Our Work <ChevronRight size={14} />
             </a>
           </motion.div>
 

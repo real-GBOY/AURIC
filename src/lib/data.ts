@@ -317,8 +317,8 @@ export const QUOTES = [
 ];
 
 export const STATS_BAR = [
-  { target: 47, suffix: '',  label: 'Products Delivered' },
-  { target: 58, suffix: '',  label: 'Businesses Partnered' },
+  { target: 8,  suffix: '',  label: 'Products Delivered' },
+  { target: 3,  suffix: '',  label: 'Businesses Partnered' },
   { target: 98, suffix: '%', label: 'Client Retention' },
   { target: 6,  suffix: '',  label: 'Years Building Advantage' },
 ];
