@@ -320,7 +320,7 @@ export const STATS_BAR = [
   { target: 8,  suffix: '',  label: 'Products Delivered' },
   { target: 3,  suffix: '',  label: 'Businesses Partnered' },
   { target: 98, suffix: '%', label: 'Client Retention' },
-  { target: 6,  suffix: '',  label: 'Years Building Advantage' },
+  { target: 100, suffix: '%', label: 'On-Time Delivery' },
 ];
 
 // ─── Team page ───────────────────────────────────────────────────────────────
