@@ -99,7 +99,7 @@ export default function CaseStudy({ project: p }: { project: CaseStudyProject })
       {p.dashboardImages.length > 0 && (
         <section className="border-b border-[var(--line)]" style={{ padding: 'clamp(64px,9vw,116px) 0', background: 'var(--bg-deep)' }}>
           <div className={WRAP}>
-            <SectionHead title="The Dashboard" tag={`[ ${next()} — WEB APP ]`} />
+            <SectionHead title={p.dashboardLabel ?? 'The Dashboard'} tag={`[ ${next()} — WEB APP ]`} />
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -134,7 +134,7 @@ export default function CaseStudy({ project: p }: { project: CaseStudyProject })
       {/* ── CORE MODULES ───────────────────────────────────────────────── */}
       <section className="border-b border-[var(--line)]" style={{ padding: 'clamp(64px,9vw,116px) 0', background: 'var(--bg-deep)' }}>
         <div className={WRAP}>
-          <SectionHead title="Core Modules" tag={`[ ${next()} — MODULES ]`} />
+          <SectionHead title={p.modulesLabel ?? 'Core Modules'} tag={`[ ${next()} — MODULES ]`} />
           <motion.div
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[var(--gap)]"
             variants={gridStagger}
@@ -187,7 +187,7 @@ export default function CaseStudy({ project: p }: { project: CaseStudyProject })
         <div className={WRAP}>
           <SectionHead title="Technologies" tag={`[ ${next()} — STACK ]`} />
           <motion.div
-            className={`grid grid-cols-1 ${p.techGroups.length >= 3 ? 'sm:grid-cols-2 lg:grid-cols-3' : 'sm:grid-cols-2'} gap-[var(--gap)]`}
+            className={`grid grid-cols-1 ${p.techGroups.length >= 3 ? 'sm:grid-cols-2 lg:grid-cols-3' : p.techGroups.length === 2 ? 'sm:grid-cols-2' : ''} gap-[var(--gap)]`}
             variants={gridStagger}
             initial="hidden"
             whileInView="visible"

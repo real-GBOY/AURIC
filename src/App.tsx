@@ -12,7 +12,7 @@ import Footer from './components/Footer';
 import NotFound from './components/NotFound';
 import Team from './components/Team';
 import CaseStudy from './components/CaseStudy';
-import { NOVA_PROJECT, AJWADI_PROJECT, ENACTIX_PROJECT } from './lib/data';
+import { NOVA_PROJECT, AJWADI_PROJECT, ENACTIX_PROJECT, WEAVOLUTION_PROJECT, BUILD_ART_PROJECT } from './lib/data';
 
 const path = window.location.pathname;
 
@@ -21,6 +21,8 @@ export default function App() {
   if (path === '/work/nova') return <CaseStudy project={NOVA_PROJECT} />;
   if (path === '/work/ajwadi') return <CaseStudy project={AJWADI_PROJECT} />;
   if (path === '/work/enactix') return <CaseStudy project={ENACTIX_PROJECT} />;
+  if (path === '/work/weavolution') return <CaseStudy project={WEAVOLUTION_PROJECT} />;
+  if (path === '/work/build-art') return <CaseStudy project={BUILD_ART_PROJECT} />;
   if (path !== '/') return <NotFound />;
 
   return (

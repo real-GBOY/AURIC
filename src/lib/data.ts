@@ -24,8 +24,8 @@ export const WORKS = [
   { title: 'Nova',               cat: 'Enterprise ERP + CRM Platform',  tag: 'Web + Mobile', year: "'25", bg: 'linear-gradient(135deg,#C6A455 0%,#241d0f 100%)', span: 'col-span-1 sm:col-span-3', href: '/work/nova', image: '/work/nova/dashboard-overview.jpg' },
   { title: 'Ajwadi',             cat: 'Collaboration & Project Management Platform', tag: 'Web + Mobile', year: "'25", bg: 'linear-gradient(135deg,#2f6e6a 0%,#101f1e 100%)', span: 'col-span-1 sm:col-span-3', href: '/work/ajwadi', image: '/work/ajwadi/dashboard-overview.png' },
   { title: 'Enactix',            cat: 'Student Org Management Platform', tag: 'Web + Mobile', year: "'25", bg: 'linear-gradient(135deg,#6a4a8f 0%,#1c1228 100%)', span: 'col-span-1 sm:col-span-2', href: '/work/enactix', image: '/work/enactix/dashboard-overview.jpg' },
-  { title: 'Nimbus Ops',         cat: 'Internal Business System',       tag: 'Automation',  year: "'24", bg: 'linear-gradient(135deg,#3f5fb7 0%,#0d1530 100%)', span: 'col-span-1 sm:col-span-2' },
-  { title: 'Orbit Commerce',     cat: 'API Integration / E-Commerce',   tag: 'Integration', year: "'23", bg: 'linear-gradient(135deg,#b7913f 0%,#2b210d 100%)', span: 'col-span-1 sm:col-span-2' },
+  { title: 'Weavolution',        cat: 'Sustainability & Circular Economy Platform', tag: 'Web', year: "'25", bg: 'linear-gradient(135deg,#3f5fb7 0%,#0d1530 100%)', span: 'col-span-1 sm:col-span-2', href: '/work/weavolution', image: '/work/weavolution/home-hero.png' },
+  { title: 'Build Art',          cat: 'Interior Design & Fit-Out Marketing Site', tag: 'Web', year: "'25", bg: 'linear-gradient(135deg,#b7913f 0%,#2b210d 100%)', span: 'col-span-1 sm:col-span-2', href: '/work/build-art', image: '/work/build-art/hero.png' },
 ];
 
 // ─── Case study projects ───────────────────────────────────────────────────────
@@ -38,11 +38,13 @@ export interface CaseStudyProject {
   link: string;
   overview: string[];
   modules: { title: string; desc: string }[];
+  modulesLabel?: string;
   features: string[];
   techGroups: { label: string; items: string[] }[];
   architecture?: string;
   impact: string;
   dashboardImages: { src: string; alt: string }[];
+  dashboardLabel?: string;
   mobileImages: { src: string; alt: string }[];
 }
 
@@ -207,6 +209,99 @@ export const ENACTIX_PROJECT: CaseStudyProject = {
     { src: '/work/enactix/mobile-chats.jpg',              alt: 'Enactix mobile chats screen' },
     { src: '/work/enactix/mobile-groups.jpg',              alt: 'Enactix mobile group messages screen' },
   ],
+};
+
+export const WEAVOLUTION_PROJECT: CaseStudyProject = {
+  title: 'Weavolution',
+  category: 'Sustainability & Circular Economy Platform',
+  tagline: 'A modern marketing website for an Enactus sustainability initiative that transforms textile waste into high-value recycled products — showcasing mission, products, impact and partnership opportunities.',
+  year: '2025',
+  link: 'https://wevo-project-mu.vercel.app/',
+  overview: [
+    "Developed Weavolution, a modern marketing website for an Enactus sustainability initiative focused on transforming textile waste into high-value recycled products. The platform serves as the organization's digital presence, showcasing its mission, product portfolio, environmental impact, and partnership opportunities while helping raise awareness and attract potential collaborators, customers, and supporters.",
+    "Designed with a responsive, component-based architecture, the website provides an engaging user experience through smooth animations, interactive product exploration, and impact-driven storytelling, allowing visitors to discover the initiative's recycled products and understand its social and environmental contributions.",
+  ],
+  modulesLabel: 'Core Sections',
+  modules: [
+    { title: 'Landing Page', desc: 'Landing page with mission and impact overview.' },
+    { title: 'Product Catalog', desc: 'Product catalog with category filtering.' },
+    { title: 'Product Showcase', desc: 'Individual product showcase pages.' },
+    { title: 'Impact Section', desc: 'Environmental & social impact section.' },
+    { title: 'Partnerships', desc: 'Partnership information and inquiry page.' },
+    { title: 'Our Story', desc: "Organization story and mission." },
+    { title: 'Contact & FAQs', desc: 'Contact page with FAQs and communication channels.' },
+  ],
+  features: [
+    'Responsive multi-page experience built with React Router',
+    'Interactive product catalog with client-side category filtering',
+    'Dynamic product detail pages',
+    'Animated impact statistics and performance counters',
+    'Scroll-triggered animations using Framer Motion',
+    'Responsive navigation with mobile menu',
+    'SEO-friendly metadata and social sharing support',
+    'Partnership and contact inquiry forms',
+    'Reusable component-based UI architecture',
+    'Optimized asset loading and code splitting for improved performance',
+  ],
+  techGroups: [
+    { label: 'Stack', items: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'React Router', 'Framer Motion', 'Lucide React'] },
+  ],
+  architecture: "The application follows a modular frontend architecture built around reusable layout and section components. Routing is handled with React Router, while shared UI elements such as the navigation bar, footer, hero section, impact section, and product showcase are composed into a cohesive user experience. Performance is optimized through Vite's code splitting and lightweight client-side rendering, making the website fast, maintainable, and easy to extend as the initiative grows.",
+  impact: "Weavolution demonstrates our team's ability to build modern, responsive marketing platforms that effectively communicate a product's vision and impact through clean design and intuitive user experiences. The project strengthened our skills in component-driven frontend development, responsive design, animation, SEO optimization, and creating digital experiences that support real-world initiatives by increasing visibility, credibility, and engagement.",
+  dashboardLabel: 'The Website',
+  dashboardImages: [
+    { src: '/work/weavolution/home-hero.png',            alt: 'Weavolution homepage hero section' },
+    { src: '/work/weavolution/impact-overview.png',       alt: 'Weavolution impact overview and textile waste crisis' },
+    { src: '/work/weavolution/environmental-impact.png',  alt: 'Weavolution environmental impact statistics' },
+    { src: '/work/weavolution/product-detail.png',        alt: 'Weavolution product detail page for 3D printing filament' },
+  ],
+  mobileImages: [],
+};
+
+export const BUILD_ART_PROJECT: CaseStudyProject = {
+  title: 'Build Art',
+  category: 'Interior Design & Fit-Out Marketing Website',
+  tagline: 'A modern marketing and lead-generation website for an interior design and fit-out company — showcasing services, process and client testimonials, and converting visitors into project inquiries.',
+  year: '2025',
+  link: 'https://build-art-kohl.vercel.app/',
+  overview: [
+    "Build Art is a marketing website for an interior design and fit-out company, designed to present the studio's services, design philosophy, process and social proof to prospective clients and funnel them toward a project inquiry. The target audience — new homeowners, villa owners, real estate investors, and clinic, office or retail owners — expects a polished, trustworthy first impression, so the site leans on smooth animation and clean visual storytelling to build that credibility from the first scroll.",
+    "The experience is built around two routes: a rich single-page home experience covering services, process, design philosophy and testimonials, and a dedicated project-inquiry page for visitors ready to start a conversation.",
+  ],
+  modulesLabel: 'Core Sections',
+  modules: [
+    { title: 'Hero', desc: 'Headline, animated statistics counter and layered hero imagery.' },
+    { title: 'Services', desc: 'Overview of interior design and fit-out service offerings.' },
+    { title: 'Process', desc: 'A step-by-step explainer of how a project comes together.' },
+    { title: 'Design Philosophy', desc: 'Accordion-style section covering the studio’s approach and FAQs.' },
+    { title: 'Testimonials', desc: 'Client testimonials in a sliding carousel.' },
+    { title: 'Project Inquiry', desc: 'A dedicated "Start Your Project" form plus newsletter signup.' },
+  ],
+  features: [
+    'Two-route experience (home + dedicated project-inquiry page) with hash-anchor scroll navigation',
+    'Fully responsive, mobile-first layout with fluid typography',
+    'Animated mobile navigation menu with scroll lock',
+    'Scroll-triggered section animations powered by a centralized Framer Motion variant system',
+    'Animated statistics counter on the hero section',
+    'Custom accordion component for design philosophy and FAQs',
+    'Hand-built infinite-loop testimonial carousel with responsive card counts',
+    'Project inquiry and newsletter signup forms',
+    'Custom hand-authored SVG icon set alongside Lucide icons',
+    'Performance-tuned asset loading and dependency bundling',
+  ],
+  techGroups: [
+    { label: 'Stack', items: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'React Router', 'Framer Motion', 'Lucide React'] },
+  ],
+  architecture: "Build Art follows a simple page-composition architecture: two routes — Home and a dedicated project-inquiry page — each assemble a stack of self-contained section components (Navbar, Hero, Services, Process, Testimonials, CTA, Newsletter and Footer). A centralized Framer Motion variant system (fadeInUp, staggerContainer, slideInLeft/Right, scaleIn) is shared across every section, giving the site a coherent motion language without duplicating animation logic in each component. The architecture is intentionally lightweight for a static marketing site, and built to extend cleanly if the project-inquiry and newsletter forms are wired to a backend down the line.",
+  impact: "Build Art showcases our team's craft in front-end animation and interaction design — from a hand-built infinite-loop testimonial carousel to a centralized motion system that gives every section a coherent, professional feel. The project reinforced our approach to building fast, polished marketing sites that turn visitor attention into qualified leads.",
+  dashboardLabel: 'The Website',
+  dashboardImages: [
+    { src: '/work/build-art/hero.png',               alt: 'Build Art homepage hero section' },
+    { src: '/work/build-art/design-philosophy.png',  alt: 'Build Art design philosophy accordion section' },
+    { src: '/work/build-art/process-steps.png',      alt: 'Build Art three-step process section' },
+    { src: '/work/build-art/testimonials.png',       alt: 'Build Art client testimonials carousel' },
+  ],
+  mobileImages: [],
 };
 
 export const STEPS = [
