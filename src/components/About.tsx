@@ -10,7 +10,7 @@ export default function About() {
   return (
     <section id="about" className="border-b border-[var(--line)]" style={{ padding: 'clamp(64px,9vw,120px) 0' }}>
       <div className={WRAP}>
-        <SectionHead title={<>Small Studio,<br />Big Output</>} tag="[ 01 — IDENTITY ]" />
+        <SectionHead title={<>We Build<br />Competitive Advantage</>} tag="[ 01 — ABOUT ]" />
 
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[var(--gap)]"
@@ -29,10 +29,10 @@ export default function About() {
           >
             <div>
               <h3 className="text-cream leading-[1.5] mb-[16px]" style={{ fontSize: 'clamp(13px,1.5vw,17px)' }}>
-                We're a tight crew of designers, writers and engineers who treat every brand like a high score to beat.
+                We partner with ambitious businesses to design, build and optimize digital products that drive measurable outcomes.
               </h3>
               <p className="text-muted text-[13px] leading-[1.9] max-w-[42ch]">
-                From first sketch to launch day, we run lean and ship sharp. No bloated retainers, no design-by-committee — just senior hands on the controls and work that earns its place.
+                Every solution is built from the ground up around your business — not from templates or one-size-fits-all approaches. Technology is never the end goal. Business growth is.
               </p>
             </div>
             <Eyebrow className="mt-6">Founded in 2019</Eyebrow>
@@ -45,11 +45,11 @@ export default function About() {
             style={{ background: 'var(--surface)' }}
             whileHover={cardHover}
           >
-            <Plus size={16} className="absolute top-[18px] right-[18px] text-orange opacity-80" />
+            <Plus size={16} className="absolute top-[18px] right-[18px] text-gold opacity-80" />
             <div className="text-cream font-semibold leading-none tracking-normal" style={{ fontSize: 'clamp(28px,4vw,48px)' }}>
               <CountUp target={47} />
             </div>
-            <div className="text-[11px] tracking-[0.16em] uppercase text-muted mt-[14px]">Projects Shipped</div>
+            <div className="text-[11px] tracking-[0.16em] uppercase text-muted mt-[14px]">Products Delivered</div>
           </motion.div>
 
           {/* Stat: 12 countries */}
@@ -59,11 +59,11 @@ export default function About() {
             style={{ background: 'var(--surface)' }}
             whileHover={cardHover}
           >
-            <Gem size={14} className="absolute top-[18px] right-[18px] text-orange opacity-80" />
+            <Gem size={14} className="absolute top-[18px] right-[18px] text-gold opacity-80" />
             <div className="text-cream font-semibold leading-none tracking-normal" style={{ fontSize: 'clamp(28px,4vw,48px)' }}>
               <CountUp target={12} />
             </div>
-            <div className="text-[11px] tracking-[0.16em] uppercase text-muted mt-[14px]">Countries Served</div>
+            <div className="text-[11px] tracking-[0.16em] uppercase text-muted mt-[14px]">Industries Served</div>
           </motion.div>
 
           {/* Team row */}
@@ -84,7 +84,7 @@ export default function About() {
                 </span>
               ))}
             </div>
-            <a href="#contact" className="text-[12px] tracking-[0.12em] uppercase text-cream flex items-center gap-2 hover:text-orange transition-colors">
+            <a href="/team" className="text-[12px] tracking-[0.12em] uppercase text-cream flex items-center gap-2 hover:text-gold transition-colors">
               Our Team <ChevronRight size={14} />
             </a>
           </motion.div>
@@ -96,7 +96,7 @@ export default function About() {
             style={{ background: 'var(--surface)' }}
             whileHover={cardHover}
           >
-            <TrendingUp size={15} className="absolute top-[18px] right-[18px] text-orange opacity-80" />
+            <TrendingUp size={15} className="absolute top-[18px] right-[18px] text-gold opacity-80" />
             <div className="text-cream font-semibold leading-none tracking-normal" style={{ fontSize: 'clamp(28px,4vw,48px)' }}>
               <CountUp target={98} suffix="%" />
             </div>

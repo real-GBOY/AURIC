@@ -5,7 +5,7 @@ import CountUp from './CountUp';
 import SectionHead from './SectionHead';
 import Eyebrow from './Eyebrow';
 import {
-  fadeUp, fadeLeft, fadeRight, scaleIn,
+  fadeUp, fadeLeft, scaleIn,
   gridStagger, tightStagger, headerStagger, cardHover,
 } from '../lib/variants';
 import {
@@ -22,7 +22,7 @@ function PhotoSlot({ name }: { name: string }) {
       className="w-full h-full flex flex-col items-center justify-center gap-3"
       style={{
         background: 'var(--surface-2)',
-        backgroundImage: 'repeating-linear-gradient(45deg, rgba(232,232,198,0.03) 0, rgba(232,232,198,0.03) 1px, transparent 0, transparent 50%)',
+        backgroundImage: 'repeating-linear-gradient(45deg, rgba(244,241,232,0.03) 0, rgba(244,241,232,0.03) 1px, transparent 0, transparent 50%)',
         backgroundSize: '10px 10px',
       }}
     >
@@ -47,19 +47,17 @@ function MemberCard({ member }: { member: TeamMember }) {
       variants={scaleIn}
       className="border border-[var(--line)] rounded overflow-hidden flex flex-col group"
       style={{ background: 'var(--surface)' }}
-      whileHover={{ borderColor: '#FF6B35', y: -3, boxShadow: '4px 4px 0 #FF6B35', transition: { duration: 0.2 } }}
+      whileHover={cardHover}
     >
       {/* Photo */}
       <div className="relative aspect-square overflow-hidden border-b border-[var(--line)]">
         <div className="w-full h-full grayscale contrast-[1.05] transition-[filter] duration-300 group-hover:grayscale-0 group-hover:contrast-100">
           <PhotoSlot name={member.name} />
         </div>
-        {/* Scanline overlay */}
-        <div className="absolute inset-0 panel-scan pointer-events-none" />
-        {/* LVL badge */}
+        {/* Badge */}
         <span
           className="absolute top-[10px] right-[10px] z-[2] text-[9px] tracking-[0.12em] uppercase text-cream border border-[var(--line)] px-2 py-1 rounded-[3px]"
-          style={{ background: 'rgba(22,22,22,0.78)' }}
+          style={{ background: 'rgba(10,10,11,0.78)' }}
         >
           {member.lvl}
         </span>
@@ -67,15 +65,15 @@ function MemberCard({ member }: { member: TeamMember }) {
 
       {/* Info */}
       <div className="p-[18px_20px_22px] flex flex-col gap-2 flex-1">
-        <div className="text-[12px] text-cream leading-[1.5]">{member.name}</div>
-        <div className="text-[11px] text-orange tracking-[0.12em] uppercase">{member.role}</div>
+        <div className="text-[13px] text-cream leading-[1.5]">{member.name}</div>
+        <div className="text-[11px] text-gold tracking-[0.12em] uppercase">{member.role}</div>
         <p className="text-[12px] text-muted leading-[1.8] mt-1 flex-1">{member.bio}</p>
         <div className="mt-auto pt-[14px] flex gap-2 flex-wrap">
           {member.links.map(({ label, href }) => (
             <a
               key={label}
               href={href}
-              className="text-[9px] tracking-[0.1em] uppercase text-muted border border-[var(--line)] rounded-[3px] px-[9px] py-[5px] transition-colors duration-200 hover:border-orange hover:text-orange"
+              className="text-[9px] tracking-[0.1em] uppercase text-muted border border-[var(--line)] rounded-[3px] px-[9px] py-[5px] transition-colors duration-200 hover:border-gold hover:text-gold"
             >
               {label}
             </a>
@@ -104,7 +102,7 @@ function TeamGrid({ members }: { members: TeamMember[] }) {
 
 // ─── Team page ────────────────────────────────────────────────────────────────
 
-const MARQUEE_ROLES = ['Designers', 'Engineers', 'Writers', 'Strategists', 'Motion Artists', 'Players One Through Twelve'];
+const MARQUEE_ROLES = ['Designers', 'Engineers', 'Strategists', 'Product Leads', 'Researchers', 'Delivery Managers'];
 
 export default function Team() {
   return (
@@ -116,31 +114,22 @@ export default function Team() {
         className="relative overflow-hidden border-b border-[var(--line)]"
         style={{ padding: 'clamp(120px,16vh,168px) 0 clamp(54px,8vw,90px)' }}
       >
-        <div
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: 'linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px)',
-            backgroundSize: '64px 64px',
-            WebkitMaskImage: 'radial-gradient(circle at 30% 30%,#000 0%,transparent 70%)',
-            maskImage: 'radial-gradient(circle at 30% 30%,#000 0%,transparent 70%)',
-          }}
-        />
-        <div className="absolute inset-0 scanline z-[3]" />
+        <div className="absolute inset-0 hero-grid-bg" />
 
         <div className={`relative z-[4] ${WRAP}`}>
           <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr] gap-[clamp(24px,4vw,48px)] items-end">
 
             <motion.div variants={headerStagger} initial="hidden" animate="visible">
               <motion.div variants={fadeLeft} className="mb-[26px]">
-                <Eyebrow>Player Select</Eyebrow>
+                <Eyebrow>Our Team</Eyebrow>
               </motion.div>
               <motion.h1
                 className="font-pixel text-cream leading-[1.28]"
                 style={{ fontSize: 'clamp(30px,7vw,72px)', textShadow: '4px 4px 0 rgba(0,0,0,0.4)' }}
                 variants={fadeLeft}
               >
-                MEET THE{' '}
-                <span className="text-orange">CREW</span>
+                The People Behind{' '}
+                <span className="text-gold">Auric</span>
               </motion.h1>
             </motion.div>
 
@@ -151,7 +140,7 @@ export default function Team() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.65, ease: 'circOut', delay: 0.25 }}
             >
-              Twelve humans across four time zones, one shared high score. Senior hands on every project — no juniors hidden behind the curtain, no work shipped that we wouldn't put our names on.
+              A senior team of designers, engineers and strategists across four time zones, united by one goal: building digital products that create lasting competitive advantage for the businesses we partner with.
             </motion.p>
 
           </div>
@@ -177,7 +166,7 @@ export default function Team() {
               {MARQUEE_ROLES.map((r, j) => (
                 <span key={j} className="inline-flex items-center gap-6">
                   {r}
-                  <span className="text-orange">·</span>
+                  <span className="text-gold">·</span>
                 </span>
               ))}
             </span>
@@ -193,21 +182,21 @@ export default function Team() {
         </div>
       </section>
 
-      {/* ── THE PLAYERS ────────────────────────────────────────────────── */}
+      {/* ── THE TEAM ───────────────────────────────────────────────────── */}
       <section className="border-b border-[var(--line)]" style={{ padding: 'clamp(64px,9vw,116px) 0' }}>
         <div className={WRAP}>
-          <SectionHead title="The Players" tag="[ 02 — THE CREW ]" />
+          <SectionHead title="The Team" tag="[ 02 — TEAM ]" />
           <TeamGrid members={PLAYERS} />
         </div>
       </section>
 
-      {/* ── HOW WE ROLL ────────────────────────────────────────────────── */}
+      {/* ── CORE VALUES ────────────────────────────────────────────────── */}
       <section className="border-b border-[var(--line)]" style={{ padding: 'clamp(64px,9vw,116px) 0', background: 'var(--bg-deep)' }}>
         <div className={WRAP}>
-          <SectionHead title="How We Roll" tag="[ 03 — CULTURE ]" />
+          <SectionHead title="Our Core Values" tag="[ 03 — VALUES ]" />
 
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-3 gap-[var(--gap)]"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[var(--gap)]"
             variants={gridStagger}
             initial="hidden"
             whileInView="visible"
@@ -221,7 +210,7 @@ export default function Team() {
                 style={{ background: 'var(--surface)' }}
                 whileHover={cardHover}
               >
-                <div className="w-[46px] h-[46px] border border-[var(--line)] rounded grid place-items-center text-[18px] text-orange mb-[22px] transition-all duration-200 group-hover:border-orange group-hover:bg-[rgba(255,107,53,0.08)]">
+                <div className="w-[46px] h-[46px] border border-[var(--line)] rounded grid place-items-center text-[18px] text-gold mb-[22px] transition-all duration-200 group-hover:border-gold group-hover:bg-[rgba(198,164,85,0.08)]">
                   {glyph}
                 </div>
                 <h3 className="font-pixel text-[11px] text-cream leading-[1.6] mb-[14px]">{title}</h3>

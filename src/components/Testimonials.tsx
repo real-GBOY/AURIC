@@ -8,7 +8,7 @@ export default function Testimonials() {
   return (
     <section id="clients" className="border-b border-[var(--line)]" style={{ padding: 'clamp(64px,9vw,120px) 0' }}>
       <div className={WRAP}>
-        <SectionHead title="What Clients Say" tag="[ 05 — PROOF ]" />
+        <SectionHead title="What Clients Say" tag="[ 05 — RESULTS ]" />
 
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 gap-[var(--gap)]"
@@ -26,7 +26,7 @@ export default function Testimonials() {
               whileHover={cardHover}
             >
               <div>
-                <Quote size={22} className="text-orange mb-[18px]" strokeWidth={1.5} />
+                <Quote size={22} className="text-gold mb-[18px]" strokeWidth={1.5} />
                 <p className="italic text-[15px] text-cream leading-[1.9]">{q.q}</p>
               </div>
               <div className="flex items-center gap-[14px]">

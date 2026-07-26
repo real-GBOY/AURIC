@@ -17,12 +17,12 @@ export default function Marquee() {
             key={i}
             className="text-[13px] tracking-[0.2em] uppercase text-cream px-[10px] inline-flex items-center gap-6"
           >
-            Branding <span className="text-orange">·</span>
-            Web Design <span className="text-orange">·</span>
-            Motion <span className="text-orange">·</span>
-            Strategy <span className="text-orange">·</span>
-            Identity <span className="text-orange">·</span>
-            Campaigns <span className="text-orange">·</span>
+            Web Applications <span className="text-gold">·</span>
+            AI Solutions <span className="text-gold">·</span>
+            Automation <span className="text-gold">·</span>
+            Dashboards <span className="text-gold">·</span>
+            API Integrations <span className="text-gold">·</span>
+            Digital Strategy <span className="text-gold">·</span>
             &nbsp;&nbsp;&nbsp;&nbsp;
           </span>
         ))}

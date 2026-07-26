@@ -1,12 +1,11 @@
 import { motion } from 'framer-motion';
-import { Instagram, Dribbble } from 'lucide-react';
+import { Linkedin, Twitter } from 'lucide-react';
 import { WRAP } from '../lib/data';
 
 const NAV_LINKS = [
   { label: 'About',    href: '/#about'    },
   { label: 'Work',     href: '/#work'     },
   { label: 'Services', href: '/#services' },
-  { label: 'Team',     href: '/team'      },
   { label: 'Contact',  href: '/#contact'  },
 ];
 
@@ -21,8 +20,8 @@ export default function Footer() {
     >
       <div className={`${WRAP} flex items-center justify-between gap-5 flex-wrap`}>
         <a href="#top" className="font-pixel text-[14px] text-cream flex items-center gap-[10px] shrink-0">
-          <span className="w-[11px] h-[11px] bg-orange inline-block" />
-          3-300
+          <span className="w-[11px] h-[11px] bg-gold inline-block rounded-full" />
+          Auric
         </a>
 
         <div className="flex items-center gap-[26px] flex-wrap">
@@ -30,26 +29,20 @@ export default function Footer() {
             <a
               key={label}
               href={href}
-              className="text-[11px] tracking-[0.12em] uppercase text-muted transition-colors hover:text-orange"
+              className="text-[11px] tracking-[0.12em] uppercase text-muted transition-colors hover:text-gold"
             >
               {label}
             </a>
           ))}
-          <a href="#" aria-label="Instagram" className="text-muted hover:text-orange transition-colors">
-            <Instagram size={16} strokeWidth={1.5} />
+          <a href="#" aria-label="LinkedIn" className="text-muted hover:text-gold transition-colors">
+            <Linkedin size={16} strokeWidth={1.5} />
           </a>
-          <a href="#" aria-label="Dribbble" className="text-muted hover:text-orange transition-colors">
-            <Dribbble size={16} strokeWidth={1.5} />
+          <a href="#" aria-label="Twitter" className="text-muted hover:text-gold transition-colors">
+            <Twitter size={16} strokeWidth={1.5} />
           </a>
         </div>
 
-        <div className="text-[11px] text-muted tracking-[0.1em]">© 2025 3-300</div>
-      </div>
-
-      <div className={`${WRAP} border-t border-[var(--line)] mt-6 pt-4 text-center`}>
-        <span className="text-[10px] tracking-[0.18em] uppercase text-muted">
-          Developed by <span className="text-orange">JINX</span>
-        </span>
+        <div className="text-[11px] text-muted tracking-[0.1em]">© 2026 Auric</div>
       </div>
     </motion.footer>
   );

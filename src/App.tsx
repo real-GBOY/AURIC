@@ -11,11 +11,16 @@ import CTA from './components/CTA';
 import Footer from './components/Footer';
 import NotFound from './components/NotFound';
 import Team from './components/Team';
+import CaseStudy from './components/CaseStudy';
+import { NOVA_PROJECT, AJWADI_PROJECT, ENACTIX_PROJECT } from './lib/data';
 
 const path = window.location.pathname;
 
 export default function App() {
   if (path === '/team') return <Team />;
+  if (path === '/work/nova') return <CaseStudy project={NOVA_PROJECT} />;
+  if (path === '/work/ajwadi') return <CaseStudy project={AJWADI_PROJECT} />;
+  if (path === '/work/enactix') return <CaseStudy project={ENACTIX_PROJECT} />;
   if (path !== '/') return <NotFound />;
 
   return (

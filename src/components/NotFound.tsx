@@ -3,8 +3,8 @@ import Nav from './Nav';
 import { WRAP } from '../lib/data';
 
 const MARQUEE_ITEMS = [
-  'Page Not Found', 'Signal Lost', 'Error 404', 'Respawn At Base',
-  'Page Not Found', 'Signal Lost', 'Error 404', 'Respawn At Base',
+  'Page Not Found', 'Broken Link', 'Error 404', 'Return Home',
+  'Page Not Found', 'Broken Link', 'Error 404', 'Return Home',
 ];
 
 export default function NotFound() {
@@ -32,20 +32,19 @@ export default function NotFound() {
       {/* Stage */}
       <main className="relative min-h-screen flex items-center overflow-hidden" style={{ padding: '120px 0 80px' }}>
         <div className="absolute inset-0 grid-bg-404" />
-        <div className="absolute inset-0 scanline z-[3]" />
 
         <div className={`relative z-[4] w-full text-center flex flex-col items-center ${WRAP}`}>
 
           {/* Eyebrow */}
           <span className="text-[11px] tracking-[0.28em] uppercase text-muted inline-flex items-center gap-[10px] mb-[34px]">
-            <span className="w-[22px] h-px bg-orange inline-block shrink-0" />
-            Error · Signal Lost
+            <span className="w-[22px] h-px bg-gold inline-block shrink-0" />
+            Error · Page Not Found
           </span>
 
-          {/* Glitch 404 */}
+          {/* 404 */}
           <div
-            className="glitch-404 font-pixel leading-none"
-            style={{ fontSize: 'clamp(70px,19vw,200px)' }}
+            className="font-pixel leading-none text-cream"
+            style={{ fontSize: 'clamp(70px,19vw,200px)', textShadow: '5px 5px 0 rgba(0,0,0,0.45)' }}
           >
             404
           </div>
@@ -55,13 +54,13 @@ export default function NotFound() {
             className="font-pixel text-cream mt-[26px]"
             style={{ fontSize: 'clamp(16px,3.4vw,30px)', textShadow: '3px 3px 0 rgba(0,0,0,0.4)' }}
           >
-            This Level Doesn't{' '}
-            <span className="text-orange">Exist</span>
+            This Page Doesn't{' '}
+            <span className="text-gold">Exist</span>
           </h1>
 
           {/* Sub copy */}
           <p className="mt-[26px] max-w-[52ch] text-muted leading-[1.95]" style={{ fontSize: 'clamp(12px,1.3vw,15px)' }}>
-            You wandered off the map. The page you're looking for got unplugged, renamed, or never spawned in the first place. No worries — hit continue and we'll respawn you at base.
+            The page you're looking for may have been moved, renamed, or never existed. Let's get you back on track.
           </p>
 
           {/* Console card */}
@@ -74,10 +73,10 @@ export default function NotFound() {
               className="flex items-center gap-2 px-4 py-3 border-b border-[var(--line)]"
               style={{ background: 'var(--surface-2)' }}
             >
-              <span className="w-[10px] h-[10px] rounded-full bg-orange border border-orange" />
+              <span className="w-[10px] h-[10px] rounded-full bg-gold border border-gold" />
               <span className="w-[10px] h-[10px] rounded-full border border-[var(--line)]" />
               <span className="w-[10px] h-[10px] rounded-full border border-[var(--line)]" />
-              <span className="ml-2 text-[10px] tracking-[0.16em] uppercase text-muted">system.log</span>
+              <span className="ml-2 text-[10px] tracking-[0.16em] uppercase text-muted">route.log</span>
             </div>
 
             {/* Log rows */}
@@ -89,7 +88,7 @@ export default function NotFound() {
               ].map(({ k, v, err }) => (
                 <div key={k} className="flex gap-[10px]">
                   <span className="text-muted whitespace-nowrap">{k}</span>
-                  <span className={err ? 'text-orange' : 'text-cream'}>{v}</span>
+                  <span className={err ? 'text-gold' : 'text-cream'}>{v}</span>
                 </div>
               ))}
               <div className="flex gap-[10px]">
@@ -98,13 +97,13 @@ export default function NotFound() {
                   press{' '}
                   <a
                     href="/"
-                    className="text-orange underline underline-offset-2 decoration-dotted hover:decoration-solid transition-all duration-150"
+                    className="text-gold underline underline-offset-2 decoration-dotted hover:decoration-solid transition-all duration-150"
                   >
                     [ continue ]
                   </a>
-                  {' '}to respawn
+                  {' '}to return home
                   <span
-                    className="inline-block w-2 h-[15px] bg-orange align-[-2px] ml-1 animate-blink"
+                    className="inline-block w-2 h-[15px] bg-gold align-[-2px] ml-1 animate-blink"
                   />
                 </span>
               </div>
@@ -116,16 +115,16 @@ export default function NotFound() {
             <a
               href="/"
               className="inline-flex items-center gap-[10px] px-[26px] py-4 rounded text-[12px] tracking-[0.14em] uppercase border transition-all duration-200 hover:-translate-y-0.5 group"
-              style={{ background: 'var(--orange)', borderColor: 'var(--orange)', color: '#161616' }}
-              onMouseEnter={(e) => (e.currentTarget.style.boxShadow = '3px 3px 0 var(--cream)')}
+              style={{ background: 'var(--gold)', borderColor: 'var(--gold)', color: '#161616' }}
+              onMouseEnter={(e) => (e.currentTarget.style.boxShadow = '0 10px 24px rgba(198,164,85,0.3)')}
               onMouseLeave={(e) => (e.currentTarget.style.boxShadow = 'none')}
             >
-              Continue
+              Return Home
               <span className="transition-transform duration-200 group-hover:translate-x-[5px]">→</span>
             </a>
             <a
               href="/#work"
-              className="inline-flex items-center gap-[10px] px-[26px] py-4 rounded text-[12px] tracking-[0.14em] uppercase border border-cream text-cream transition-all duration-200 hover:border-orange hover:text-orange hover:-translate-y-0.5"
+              className="inline-flex items-center gap-[10px] px-[26px] py-4 rounded text-[12px] tracking-[0.14em] uppercase border border-cream text-cream transition-all duration-200 hover:border-gold hover:text-gold hover:-translate-y-0.5"
             >
               Browse Work
             </a>
@@ -143,7 +142,7 @@ export default function NotFound() {
               <a
                 key={label}
                 href={href}
-                className="px-[14px] py-[6px] border border-[var(--line)] rounded mx-[6px] text-cream transition-all duration-200 hover:border-orange hover:text-orange hover:-translate-y-0.5"
+                className="px-[14px] py-[6px] border border-[var(--line)] rounded mx-[6px] text-cream transition-all duration-200 hover:border-gold hover:text-gold hover:-translate-y-0.5"
               >
                 {label}
               </a>
@@ -166,7 +165,7 @@ export default function NotFound() {
                 {MARQUEE_ITEMS.map((item, j) => (
                   <span key={j} className="inline-flex items-center gap-6">
                     {item}
-                    {j < MARQUEE_ITEMS.length - 1 && <span className="text-orange">·</span>}
+                    {j < MARQUEE_ITEMS.length - 1 && <span className="text-gold">·</span>}
                   </span>
                 ))}
               </span>

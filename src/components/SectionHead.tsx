@@ -23,7 +23,7 @@ export default function SectionHead({ title, tag }: Props) {
       >
         {title}
       </motion.h2>
-      <motion.span className="text-[11px] text-muted tracking-[0.2em]" variants={fadeRight}>
+      <motion.span className="text-[11px] text-muted tracking-[0.2em] font-mono" variants={fadeRight}>
         {tag}
       </motion.span>
     </motion.div>

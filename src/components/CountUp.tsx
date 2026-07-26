@@ -23,7 +23,7 @@ export default function CountUp({ target, suffix = '' }: Props) {
   return (
     <>
       <span ref={ref}>0</span>
-      {suffix && <span className="text-orange">{suffix}</span>}
+      {suffix && <span className="text-gold">{suffix}</span>}
     </>
   );
 }

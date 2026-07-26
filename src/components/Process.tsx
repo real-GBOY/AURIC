@@ -25,7 +25,7 @@ export default function Process() {
               whileHover={cardHover}
             >
               <motion.div
-                className="text-orange font-semibold leading-none tracking-normal"
+                className="text-gold font-semibold leading-none tracking-normal"
                 style={{ fontSize: 'clamp(30px,3.4vw,44px)' }}
                 variants={clipUp}
               >
