@@ -1,3 +1,10 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/" }]
+  "rewrites": [{ "source": "/(.*)", "destination": "/" }],
+  "build": {
+    "env": {
+      "VITE_EMAILJS_SERVICE_ID": "service_6mwpp1t",
+      "VITE_EMAILJS_TEMPLATE_ID": "template_k7979fk",
+      "VITE_EMAILJS_PUBLIC_KEY": "Zjtwn9WAKaooJW7Fz"
+    }
+  }
 }

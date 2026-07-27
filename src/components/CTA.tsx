@@ -33,7 +33,8 @@ export default function CTA() {
       );
       setNote('✓ Got it — check your inbox for the call link.');
       setEmail('');
-    } catch {
+    } catch (err) {
+      console.error('EmailJS send failed:', err);
       setNote('✗ Something went wrong — please try again.');
     } finally {
       setSending(false);
