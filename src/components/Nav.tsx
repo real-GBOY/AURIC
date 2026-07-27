@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { WRAP } from '../lib/data';
+import Logo from './Logo';
 
 // href is absolute so links work from any page (/404, etc.)
 const NAV_LINKS = [
@@ -31,9 +32,8 @@ export default function Nav() {
       transition={{ duration: 0.6, ease: 'circOut', delay: 0.1 }}
     >
       <div className={`${WRAP} flex items-center justify-between h-[74px]`}>
-        <a href="/" className="font-pixel text-[14px] text-cream flex items-center gap-[10px] shrink-0">
-          <span className="w-[11px] h-[11px] bg-gold inline-block rounded-full" />
-          Auric
+        <a href="/" className="flex items-center shrink-0">
+          <Logo size={26} />
         </a>
 
         <div className="hidden md:flex items-center gap-[32px]">

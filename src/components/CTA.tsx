@@ -1,22 +1,43 @@
 import { useState, type FormEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 import Eyebrow from './Eyebrow';
 import { fadeUp, scaleIn, gridStagger } from '../lib/variants';
 import { WRAP } from '../lib/data';
 
-export default function CTA() {
-  const [email, setEmail] = useState('');
-  const [note,  setNote]  = useState('');
+const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-  const handleSubmit = (e: FormEvent) => {
+export default function CTA() {
+  const [email, setEmail]       = useState('');
+  const [note,  setNote]        = useState('');
+  const [sending, setSending]   = useState(false);
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
       setNote('✗ Enter a valid email to continue');
       return;
     }
-    setNote('✓ Got it — check your inbox for the call link.');
-    setEmail('');
+
+    setSending(true);
+    setNote('');
+    try {
+      await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        { email, reply_to: email },
+        { publicKey: PUBLIC_KEY }
+      );
+      setNote('✓ Got it — check your inbox for the call link.');
+      setEmail('');
+    } catch {
+      setNote('✗ Something went wrong — please try again.');
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -56,18 +77,20 @@ export default function CTA() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@company.com"
-            className="flex-1 min-w-[240px] border border-[var(--line)] rounded text-cream text-[13px] px-[18px] py-4 outline-none transition-colors duration-200 focus:border-gold"
+            disabled={sending}
+            className="flex-1 min-w-[240px] border border-[var(--line)] rounded text-cream text-[13px] px-[18px] py-4 outline-none transition-colors duration-200 focus:border-gold disabled:opacity-60"
             style={{ background: 'var(--surface)', fontFamily: '"IBM Plex Mono"', letterSpacing: '0.03em', color: 'var(--cream)' }}
             required
           />
           <motion.button
             type="submit"
-            className="inline-flex items-center gap-2 px-[28px] py-4 rounded text-[12px] tracking-[0.14em] uppercase"
+            disabled={sending}
+            className="inline-flex items-center gap-2 px-[28px] py-4 rounded text-[12px] tracking-[0.14em] uppercase disabled:opacity-60"
             style={{ background: 'var(--gold)', border: '1px solid var(--gold)', color: '#161616', fontFamily: '"IBM Plex Mono"' }}
-            whileHover={{ y: -2, boxShadow: '3px 3px 0 #E8E8C6' }}
+            whileHover={sending ? {} : { y: -2, boxShadow: '3px 3px 0 #E8E8C6' }}
             transition={{ duration: 0.2 }}
           >
-            Send It <ArrowRight size={14} />
+            {sending ? 'Sending…' : 'Send It'} {!sending && <ArrowRight size={14} />}
           </motion.button>
         </motion.form>
 

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import { Linkedin, Twitter } from 'lucide-react';
 import { WRAP } from '../lib/data';
+import Logo from './Logo';
 
 const NAV_LINKS = [
   { label: 'About',    href: '/#about'    },
@@ -19,9 +19,8 @@ export default function Footer() {
       viewport={{ once: true, margin: '-40px' }}
     >
       <div className={`${WRAP} flex items-center justify-between gap-5 flex-wrap`}>
-        <a href="#top" className="font-pixel text-[14px] text-cream flex items-center gap-[10px] shrink-0">
-          <span className="w-[11px] h-[11px] bg-gold inline-block rounded-full" />
-          Auric
+        <a href="#top" className="flex items-center shrink-0">
+          <Logo size={26} />
         </a>
 
         <div className="flex items-center gap-[26px] flex-wrap">
@@ -34,12 +33,6 @@ export default function Footer() {
               {label}
             </a>
           ))}
-          <a href="#" aria-label="LinkedIn" className="text-muted hover:text-gold transition-colors">
-            <Linkedin size={16} strokeWidth={1.5} />
-          </a>
-          <a href="#" aria-label="Twitter" className="text-muted hover:text-gold transition-colors">
-            <Twitter size={16} strokeWidth={1.5} />
-          </a>
         </div>
 
         <div className="text-[11px] text-muted tracking-[0.1em]">© 2026 Auric</div>
