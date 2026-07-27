@@ -61,7 +61,7 @@ export default function CTA() {
 
         <motion.h2
           className="font-pixel text-cream mx-auto mb-[30px] leading-[1.5] max-w-[20ch]"
-          style={{ fontSize: 'clamp(18px,4.4vw,48px)', textShadow: '3px 3px 0 rgba(198,164,85,0.3)', marginTop: '26px' }}
+          style={{ fontSize: 'clamp(18px,4.4vw,48px)', textShadow: '3px 3px 0 rgba(220,167,51,0.3)', marginTop: '26px' }}
           variants={scaleIn}
         >
           Ready To Build Your <span className="text-gold">Competitive Advantage</span>?

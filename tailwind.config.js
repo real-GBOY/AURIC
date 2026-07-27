@@ -9,7 +9,7 @@ export default {
         surface: '#19191B',
         'surface-2': '#202023',
         cream: '#F4F1E8',
-        gold: '#C6A455',
+        gold: '#DCA733',
         muted: '#96928A',
       },
       fontFamily: {

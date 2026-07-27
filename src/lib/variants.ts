@@ -42,7 +42,7 @@ export const tightStagger: Variants = {
 
 export const cardHover = {
   y: -4,
-  borderColor: '#C6A455',
-  boxShadow: '0 16px 32px rgba(198,164,85,0.14)',
+  borderColor: '#DCA733',
+  boxShadow: '0 16px 32px rgba(220,167,51,0.14)',
   transition: { duration: 0.2 },
 };

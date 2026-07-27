@@ -29,7 +29,7 @@ export default function Services() {
               whileHover={cardHover}
             >
               <motion.div
-                className="w-[48px] h-[48px] border border-[var(--line)] rounded flex items-center justify-center text-gold mb-[24px] shrink-0 transition-all duration-200 group-hover:border-gold group-hover:bg-[rgba(198,164,85,0.08)]"
+                className="w-[48px] h-[48px] border border-[var(--line)] rounded flex items-center justify-center text-gold mb-[24px] shrink-0 transition-all duration-200 group-hover:border-gold group-hover:bg-[rgba(220,167,51,0.08)]"
                 whileHover={{ rotate: 8, scale: 1.1, transition: { duration: 0.2 } }}
               >
                 <Icon size={20} strokeWidth={1.5} />

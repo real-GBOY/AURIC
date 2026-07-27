@@ -25,7 +25,7 @@ export default function Work() {
                 variants={fadeUp}
                 className={`${work.span} border border-[var(--line)] rounded overflow-hidden flex flex-col`}
                 style={{ background: 'var(--surface)' }}
-                whileHover={{ y: -4, borderColor: '#C6A455', boxShadow: '0 16px 32px rgba(198,164,85,0.14)', transition: { duration: 0.2 } }}
+                whileHover={{ y: -4, borderColor: '#DCA733', boxShadow: '0 16px 32px rgba(220,167,51,0.14)', transition: { duration: 0.2 } }}
               >
                 <div className="h-[200px] relative overflow-hidden" style={!work.image ? { background: work.bg } : undefined}>
                   {work.image && (

@@ -210,7 +210,7 @@ export default function Team() {
                 style={{ background: 'var(--surface)' }}
                 whileHover={cardHover}
               >
-                <div className="w-[46px] h-[46px] border border-[var(--line)] rounded grid place-items-center text-[18px] text-gold mb-[22px] transition-all duration-200 group-hover:border-gold group-hover:bg-[rgba(198,164,85,0.08)]">
+                <div className="w-[46px] h-[46px] border border-[var(--line)] rounded grid place-items-center text-[18px] text-gold mb-[22px] transition-all duration-200 group-hover:border-gold group-hover:bg-[rgba(220,167,51,0.08)]">
                   {glyph}
                 </div>
                 <h3 className="font-pixel text-[11px] text-cream leading-[1.6] mb-[14px]">{title}</h3>

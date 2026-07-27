@@ -116,7 +116,7 @@ export default function NotFound() {
               href="/"
               className="inline-flex items-center gap-[10px] px-[26px] py-4 rounded text-[12px] tracking-[0.14em] uppercase border transition-all duration-200 hover:-translate-y-0.5 group"
               style={{ background: 'var(--gold)', borderColor: 'var(--gold)', color: '#161616' }}
-              onMouseEnter={(e) => (e.currentTarget.style.boxShadow = '0 10px 24px rgba(198,164,85,0.3)')}
+              onMouseEnter={(e) => (e.currentTarget.style.boxShadow = '0 10px 24px rgba(220,167,51,0.3)')}
               onMouseLeave={(e) => (e.currentTarget.style.boxShadow = 'none')}
             >
               Return Home
