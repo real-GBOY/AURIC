@@ -31,7 +31,7 @@ export default function CTA() {
         { email, reply_to: email },
         { publicKey: PUBLIC_KEY }
       );
-      setNote('✓ Got it — check your inbox for the call link.');
+      setNote('✓ Got it — Message Sent.');
       setEmail('');
     } catch (err) {
       console.error('EmailJS send failed:', err);
