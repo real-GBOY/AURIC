@@ -31,7 +31,7 @@ export default function CTA() {
         { email, reply_to: email },
         { publicKey: PUBLIC_KEY }
       );
-      setNote('✓ Got it — Message Sent.');
+      setNote('✓ Got it — we’ll be in touch soon.');
       setEmail('');
     } catch (err) {
       console.error('EmailJS send failed:', err);
