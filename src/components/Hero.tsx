@@ -27,7 +27,7 @@ export default function Hero() {
             variants={fadeRight}
           >
             <span className="w-2 h-2 bg-gold inline-block animate-blink rounded-full" />
-            EST. 2025
+            EST. 2026
           </motion.span>
         </motion.div>
 

@@ -35,7 +35,7 @@ export default function About() {
                 Every solution is built from the ground up around your business — not from templates or one-size-fits-all approaches. Technology is never the end goal. Business growth is.
               </p>
             </div>
-            <Eyebrow className="mt-6">Founded in 2025</Eyebrow>
+            <Eyebrow className="mt-6">Founded in 2026</Eyebrow>
           </motion.div>
 
           {/* Stat: 47 projects */}
