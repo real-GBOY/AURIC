@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
 import SectionHead from './SectionHead';
 import { scaleIn, gridStagger, cardHover } from '../lib/variants';
 import { SERVICES, WRAP } from '../lib/data';
@@ -35,10 +34,7 @@ export default function Services() {
                 <Icon size={20} strokeWidth={1.5} />
               </motion.div>
               <h3 className="font-pixel text-[11px] text-cream leading-[1.6] mb-[14px]">{title}</h3>
-              <p className="text-[13px] text-muted leading-[1.85] mb-5 flex-1">{desc}</p>
-              <a href="#contact" className="text-[12px] tracking-[0.1em] uppercase text-cream inline-flex items-center gap-2 group-hover:text-gold transition-colors">
-                Explore <ArrowRight size={13} />
-              </a>
+              <p className="text-[13px] text-muted leading-[1.85] flex-1">{desc}</p>
             </motion.div>
           ))}
         </motion.div>
