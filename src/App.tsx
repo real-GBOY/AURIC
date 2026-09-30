@@ -13,7 +13,7 @@ import NotFound from './components/NotFound';
 import Team from './components/Team';
 import CaseStudy from './components/CaseStudy';
 import AllWork from './components/AllWork';
-import { NOVA_PROJECT, AJWADI_PROJECT, ENACTIX_PROJECT, WEAVOLUTION_PROJECT, BUILD_ART_PROJECT, OPTICARE_PROJECT } from './lib/data';
+import { NOVA_PROJECT, AJWADI_PROJECT, ENACTIX_PROJECT, WEAVOLUTION_PROJECT, BUILD_ART_PROJECT, OPTICARE_PROJECT, ATLAS_PROJECT, MIZAN_PROJECT, HOTEL_OS_PROJECT, CLINIC_OS_PROJECT } from './lib/data';
 
 const path = window.location.pathname;
 
@@ -26,6 +26,10 @@ export default function App() {
   if (path === '/work/weavolution') return <CaseStudy project={WEAVOLUTION_PROJECT} />;
   if (path === '/work/build-art') return <CaseStudy project={BUILD_ART_PROJECT} />;
   if (path === '/work/opticare') return <CaseStudy project={OPTICARE_PROJECT} />;
+  if (path === '/work/atlas') return <CaseStudy project={ATLAS_PROJECT} />;
+  if (path === '/work/mizan') return <CaseStudy project={MIZAN_PROJECT} />;
+  if (path === '/work/hotel-os') return <CaseStudy project={HOTEL_OS_PROJECT} />;
+  if (path === '/work/clinic-os') return <CaseStudy project={CLINIC_OS_PROJECT} />;
   if (path !== '/') return <NotFound />;
 
   return (

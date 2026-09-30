@@ -33,6 +33,10 @@ export const WORKS = [
 export const ALL_WORKS = [
   ...WORKS,
   { title: 'OptiCare', cat: 'Clinic Management System for Ophthalmology Practices', tag: 'Web', year: "'26", bg: 'linear-gradient(135deg,#2f7db7 0%,#0d1e30 100%)', span: 'col-span-1 sm:col-span-2', href: '/work/opticare', image: '/work/opticare/dashboard-overview.jpg' },
+  { title: 'Atlas', cat: 'Real-Estate Developer Operating System', tag: 'Web + AI', year: "'26", bg: 'linear-gradient(135deg,#3c8f6a 0%,#0e2219 100%)', span: 'col-span-1 sm:col-span-2', href: '/work/atlas', image: '/work/atlas/dashboard.png' },
+  { title: 'Mizan', cat: 'Bilingual Law-Firm Management System', tag: 'Web + Mobile', year: "'26", bg: 'linear-gradient(135deg,#8f4a4a 0%,#2a1212 100%)', span: 'col-span-1 sm:col-span-2', href: '/work/mizan', image: '/work/mizan/dashboard.png' },
+  { title: 'Hotel OS', cat: 'Hotel Operations Platform & Booking Website', tag: 'Web', year: "'26", bg: 'linear-gradient(135deg,#7a5fb7 0%,#1a1230 100%)', span: 'col-span-1 sm:col-span-2', href: '/work/hotel-os', image: '/work/hotel-os/dashboard.png' },
+  { title: 'Clinic OS', cat: 'Clinic Operating System on Odoo', tag: 'Web', year: "'26", bg: 'linear-gradient(135deg,#2f9fa7 0%,#0b2224 100%)', span: 'col-span-1 sm:col-span-2', href: '/work/clinic-os', image: '/work/clinic-os/reception-dashboard.png' },
 ];
 
 // ─── Case study projects ───────────────────────────────────────────────────────
@@ -363,6 +367,204 @@ export const OPTICARE_PROJECT: CaseStudyProject = {
   mobileImages: [],
 };
 
+export const ATLAS_PROJECT: CaseStudyProject = {
+  title: 'Atlas',
+  category: 'Real-Estate Developer Operating System',
+  tagline: 'An operating system for a property developer — CRM, inventory, sales, payment plans and finance in one workspace, with an embedded AI Copilot that answers questions and performs real operations.',
+  year: '2026',
+  link: 'https://atlas-web-eight-xi.vercel.app/',
+  overview: [
+    "Atlas is a real-estate developer operating system built for an Egyptian property developer's sales and operations teams. It covers the full lifecycle: a lead enters the pipeline, reserves a unit, signs a contract, moves onto a payment plan, and has its installments collected and rolled up into finance reports.",
+    "It is the second product built on the AURIC foundation — its own package, its own database and a completely different domain from our law-firm ERP — proving that the shared core (identity, tenancy, permissions, audit, files, events) carries over to a new business without rework.",
+  ],
+  modules: [
+    { title: 'CRM', desc: 'Leads, customers, a kanban pipeline, activities and follow-ups.' },
+    { title: 'Properties', desc: 'Projects, buildings, units, live availability and pricing.' },
+    { title: 'Sales', desc: 'Reservations, deals, contracts, payment plans and commissions.' },
+    { title: 'Finance', desc: 'Payments, installments, collections, outstanding balances and financial reports.' },
+    { title: 'Operations', desc: 'Tasks, workflows, approvals and documents.' },
+    { title: 'Analytics & AI Copilot', desc: 'Sales, leads, revenue and inventory analytics, plus an embedded assistant.' },
+  ],
+  features: [
+    'Executive dashboard with live sales, revenue and inventory KPIs',
+    'Drag-and-drop lead pipeline with follow-up tracking',
+    'Unit availability and pricing across projects and buildings',
+    'Payment plans with installment scheduling and collections tracking',
+    'AI Copilot with tool orchestration over the app’s own use cases — not RAG',
+    'Conversation intelligence that extracts buyer requirements and action items from chats',
+    'Server-side search ranked in SQL (exact, prefix, word, substring) with real query-param filters',
+    'KPI totals queried separately so numbers never shrink when a filter is applied',
+    'Role-based access with tenant isolation enforced by row-level security',
+    'Audit log across every administrative action',
+  ],
+  techGroups: [
+    { label: 'Web',     items: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS 4', 'TanStack Query'] },
+    { label: 'Backend', items: ['NestJS', 'Fastify', 'PostgreSQL', 'Prisma', 'Row-Level Security'] },
+  ],
+  architecture: "Atlas reaches the AURIC core only through contract interfaces — users, permissions, tenancy, file storage, audit and events — and never touches a core table directly. Its eight domain modules (CRM, properties, sales, finance, operations, admin, dashboard and assistant) sit on their own database. Money is stored as currency plus amount and is never summed across currencies, and the AI assistant calls the same use cases as the UI, re-checking the user’s permissions and tenant on every tool call.",
+  impact: "Atlas shows that a well-designed foundation can carry a second, structurally independent product in a different industry. It combines complex sales and payment workflows, honest analytics and a permission-aware AI assistant into one system a developer's team can run their day on.",
+  dashboardLabel: 'The Platform',
+  dashboardImages: [
+    { src: '/work/atlas/dashboard.png',    alt: 'Atlas executive dashboard' },
+    { src: '/work/atlas/pipeline.png',     alt: 'Atlas lead pipeline board' },
+    { src: '/work/atlas/units.png',        alt: 'Atlas property units inventory' },
+    { src: '/work/atlas/availability.png', alt: 'Atlas unit availability' },
+    { src: '/work/atlas/installments.png', alt: 'Atlas payment installments' },
+    { src: '/work/atlas/revenue.png',      alt: 'Atlas revenue analytics' },
+  ],
+  mobileImages: [],
+};
+
+export const MIZAN_PROJECT: CaseStudyProject = {
+  title: 'Mizan',
+  category: 'Law-Firm Management System (ERP)',
+  tagline: 'A bilingual, multi-tenant platform that runs a law firm’s matters, clients, hearings, deadlines, documents and billing — in English and fully right-to-left Arabic, on web and mobile.',
+  year: '2026',
+  link: 'https://mizan-web-seven.vercel.app/',
+  overview: [
+    "Mizan runs an Egyptian law firm in one workspace: matters, clients, hearings, filing deadlines, documents, time and billing. Every matter carries its client, court, practice area, lead lawyer, hearings, tasks and documents, so nothing lives in a spreadsheet or an inbox.",
+    "It is the first product built on the AURIC foundation. It ships in English and Arabic with full RTL layout, an AI copilot that respects permissions, and a native mobile app that talks to the same API.",
+  ],
+  modules: [
+    { title: 'Matters & Case Work', desc: 'Every matter with its client, court, practice area, lawyer, hearings and tasks.' },
+    { title: 'Calendar & Deadlines', desc: 'Hearings, filing deadlines and meetings in month, week and agenda views with 72-hour warnings.' },
+    { title: 'Clients', desc: 'Client records with their matters and outstanding balances.' },
+    { title: 'Documents', desc: 'Presigned-URL uploads filed by matter and tracked from draft to final, filed or signed.' },
+    { title: 'Billing', desc: 'Invoices from draft to paid, each kept in its own currency.' },
+    { title: 'Ask Mizan (AI)', desc: 'A copilot that answers questions about matters, hearings, tasks and billing.' },
+  ],
+  features: [
+    'Arabic and English with full right-to-left layout and Arabic number and date formats',
+    'Role-based access for partners, lawyers, paralegals and finance',
+    'Multi-tenant isolation proven by tests before each feature lands',
+    'Multi-currency invoicing with no exchange-rate conversion of totals',
+    'Deadline warnings on the dashboard for anything due within 72 hours',
+    'Direct-to-storage document uploads through presigned URLs',
+    'AI assistant that checks the user’s permissions on every tool call',
+    'Native mobile app (Expo) with a today view, cases, calendar and files',
+    'Full audit log of who did what',
+  ],
+  techGroups: [
+    { label: 'Web',     items: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS 4', 'TanStack Query'] },
+    { label: 'Mobile',  items: ['React Native (Expo)', 'TypeScript'] },
+    { label: 'Backend', items: ['NestJS', 'Fastify', 'PostgreSQL', 'Prisma', 'S3-compatible storage'] },
+  ],
+  architecture: "Mizan is a thin domain layer on top of the AURIC core. The law-firm domain — matters, hearings, tasks, documents, billing, clients, staff and calendar — depends on the core one way only, and the core never imports Mizan. Web and mobile clients are driven by the same permission-aware API, so each role sees exactly the screens and actions it is allowed to.",
+  impact: "Mizan turned a paper-and-spreadsheet practice into one connected system, and validated the foundation it was built on: identity, tenancy, permissions, storage and audit that the next products reuse instead of rebuilding.",
+  dashboardLabel: 'The Platform',
+  dashboardImages: [
+    { src: '/work/mizan/dashboard.png',        alt: 'Mizan firm dashboard' },
+    { src: '/work/mizan/dashboard-arabic.png', alt: 'Mizan dashboard in Arabic, right-to-left' },
+    { src: '/work/mizan/matters.png',          alt: 'Mizan matters list' },
+    { src: '/work/mizan/calendar.png',         alt: 'Mizan hearings and deadlines calendar' },
+    { src: '/work/mizan/clients.png',          alt: 'Mizan clients' },
+    { src: '/work/mizan/billing.png',          alt: 'Mizan billing and invoices' },
+  ],
+  mobileImages: [],
+};
+
+export const HOTEL_OS_PROJECT: CaseStudyProject = {
+  title: 'Hotel OS',
+  category: 'Hotel Operations Platform & Booking Website',
+  tagline: 'The operations platform behind a four-star Nile-side hotel — reservations, front desk, housekeeping, maintenance, finance and analytics — plus the public website where guests book.',
+  year: '2026',
+  link: 'https://hotel-nayel.vercel.app/',
+  overview: [
+    "Hotel OS runs Hotel Transylvania, a four-star hotel in Cairo, end to end. Reception, housekeeping, maintenance and finance each get their own workspace over a single source of truth, while guests book directly on a public website.",
+    "It is the third product on the AURIC foundation, built in eight vertical slices — each one passing the full test gate before the next began.",
+  ],
+  modules: [
+    { title: 'Reservations & Calendar', desc: 'Room-by-night availability with the full reservation lifecycle.' },
+    { title: 'Front Desk', desc: 'Arrivals, departures, in-house guests, check-in, check-out and folios.' },
+    { title: 'Housekeeping', desc: 'A cleaning board from pending through assigned, in progress, completed and inspected.' },
+    { title: 'Maintenance', desc: 'Tickets with assignment, cost and taking rooms out of sale.' },
+    { title: 'Finance', desc: 'A payments ledger, refunds, invoices and outstanding balances.' },
+    { title: 'Analytics', desc: 'Occupancy, ADR, RevPAR, revenue and booking channels.' },
+  ],
+  features: [
+    'No double booking — enforced by a PostgreSQL exclusion constraint over room-nights',
+    'Money as a ledger: balances derived from charges, payments and refunds, never a paid flag',
+    'Idempotency keys on payments, refunds and public bookings so retries can’t double-charge',
+    'Rate-limited public booking API with counters shared across server instances',
+    'Scheduled jobs that mark no-shows and release unconfirmed holds after 48 hours',
+    'Server-enforced state machines for reservations, housekeeping, maintenance and payments',
+    'Command palette to search guests, reservations, rooms, invoices and tickets',
+    'Readable audit feed of who did what',
+    'Role-specific workspaces for owner, manager, reception, accounting, housekeeping and maintenance',
+  ],
+  techGroups: [
+    { label: 'Staff App & Website', items: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS', 'Motion'] },
+    { label: 'Backend',             items: ['NestJS', 'Fastify', 'PostgreSQL', 'Background jobs'] },
+    { label: 'Quality',             items: ['Vitest', 'Playwright end-to-end suite', 'CI gate per slice'] },
+  ],
+  architecture: "Hotel OS has three packages on the AURIC core: a NestJS backend with its own database, a React staff application, and the public hotel website. Reservations and maintenance blocks share one allocation ledger so a room can never be sold while it is out of service, and every lifecycle is a state machine enforced on the server. The demo hotel is seeded by replaying 120 days of bookings through the real workflows, so every report has genuine data behind it.",
+  impact: "Hotel OS shows how far correctness can be pushed into the database: no double bookings under concurrency, idempotent payments, and race-tested workflows — the guarantees a hotel actually depends on — behind a fast interface each role can use without training.",
+  dashboardLabel: 'The Platform',
+  dashboardImages: [
+    { src: '/work/hotel-os/dashboard.png',       alt: 'Hotel OS manager dashboard' },
+    { src: '/work/hotel-os/front-desk.png',      alt: 'Hotel OS front desk arrivals and departures' },
+    { src: '/work/hotel-os/reservation.png',     alt: 'Hotel OS reservation and folio' },
+    { src: '/work/hotel-os/calendar.png',        alt: 'Hotel OS room availability calendar' },
+    { src: '/work/hotel-os/housekeeping.png',    alt: 'Hotel OS housekeeping board' },
+    { src: '/work/hotel-os/analytics.png',       alt: 'Hotel OS occupancy and revenue analytics' },
+    { src: '/work/hotel-os/website-booking.png', alt: 'Hotel Transylvania public booking website' },
+  ],
+  mobileImages: [],
+};
+
+export const CLINIC_OS_PROJECT: CaseStudyProject = {
+  title: 'Clinic OS',
+  category: 'Clinic Operating System on Odoo',
+  tagline: 'A purpose-built operating system for modern clinics — registration, scheduling, the live queue, consultations, prescriptions, laboratory, inventory, billing and a patient portal, with a dedicated workspace for every role.',
+  year: '2026',
+  link: 'https://github.com/real-GBOY/clinicOS',
+  overview: [
+    "Clinic OS runs a clinic group end to end on Odoo 19. Odoo supplies the engine — ORM, security, accounting, stock, mail and portal — while Clinic OS adds the clinical domain model and a full-screen web app for each role, so staff never see the generic back office.",
+    "Reception, doctors, nurses, laboratory, pharmacy, finance, managers, administrators and patients each land on their own workspace and see only what they are permitted to.",
+  ],
+  modulesLabel: 'Workspaces',
+  modules: [
+    { title: 'Reception', desc: 'Patient registration with duplicate detection, booking, check-in, the live queue, invoices and messages.' },
+    { title: 'Doctor', desc: 'Today’s patients, consultations, diagnoses, prescribing, lab orders and sign-off.' },
+    { title: 'Nurse & Laboratory', desc: 'Vitals capture and a collect → process → verify lab worklist with flagged abnormal results.' },
+    { title: 'Pharmacy & Inventory', desc: 'First-expiry-first-out dispensing, batch and expiry tracking, low-stock alerts.' },
+    { title: 'Finance & Analytics', desc: 'Billing, payments, refunds and operations, finance and patient analytics.' },
+    { title: 'Patient Portal', desc: 'Appointments, prescriptions, verified lab results, invoices and messaging for patients.' },
+  ],
+  features: [
+    'Patient 360: one page with history, labs, medications, billing, messages and a full timeline',
+    'Global command palette (Ctrl K) across patients, appointments, encounters and invoices',
+    'Live queue board from check-in through vitals, consultation and checkout',
+    'Server-side role-based access control with row-level record rules',
+    'Invoices, payments and refunds built on Odoo accounting — no parallel ledger',
+    'Stock with lots and expiry consumed first-expiry-first-out',
+    'Assistive AI for staff, enabled per organisation',
+    'Guided eight-step setup for new organisations',
+    'Mobile-friendly portal and queue views',
+    '196 automated tests running in CI',
+  ],
+  techGroups: [
+    { label: 'Platform', items: ['Odoo 19', 'Python', 'PostgreSQL'] },
+    { label: 'Frontend', items: ['OWL', 'JavaScript', 'Custom design system (CSS tokens)'] },
+    { label: 'Quality',  items: ['196 automated tests', 'GitHub Actions CI'] },
+  ],
+  architecture: "Clinic OS layers a service layer and a clinical domain model — patient, appointment, queue, encounter, diagnosis, prescription, lab order — over Odoo’s own objects wherever they fit: invoices are accounting moves, medicines are stock products with lots. Modules plug into each other through registries for screens, dashboards, Patient 360 tabs and queue actions, so a module adds its UI to another’s screen without the lower module knowing about it, and dependencies only point downward.",
+  impact: "Clinic OS replaces disconnected reception, records, lab and billing tools with one role-aware system. Every number on every screen is read from the database, and security is enforced on the server, not hidden in the interface.",
+  dashboardLabel: 'The Platform',
+  dashboardImages: [
+    { src: '/work/clinic-os/reception-dashboard.png', alt: 'Clinic OS reception dashboard' },
+    { src: '/work/clinic-os/queue-board.png',         alt: 'Clinic OS live queue board' },
+    { src: '/work/clinic-os/patient-360.png',         alt: 'Clinic OS Patient 360 overview' },
+    { src: '/work/clinic-os/doctor-workspace.png',    alt: 'Clinic OS doctor workspace' },
+    { src: '/work/clinic-os/lab-worklist.png',        alt: 'Clinic OS laboratory worklist' },
+    { src: '/work/clinic-os/manager-dashboard.png',   alt: 'Clinic OS manager dashboard' },
+    { src: '/work/clinic-os/portal-home.png',         alt: 'Clinic OS patient portal home' },
+  ],
+  mobileImages: [
+    { src: '/work/clinic-os/portal-mobile.png', alt: 'Clinic OS patient portal on mobile' },
+  ],
+};
+
 export const STEPS = [
   { n: '01', title: 'Discover', desc: 'We study your business, customers and operations to define measurable objectives.' },
   { n: '02', title: 'Design',   desc: 'We craft intuitive user experiences built around real goals, not templates.' },
@@ -376,7 +578,7 @@ export const QUOTES = [
 ];
 
 export const STATS_BAR = [
-  { target: 8,  suffix: '',  label: 'Products Delivered' },
+  { target: 10, suffix: '',  label: 'Products Delivered' },
   { target: 3,  suffix: '',  label: 'Businesses Partnered' },
   { target: 98, suffix: '%', label: 'Client Retention' },
   { target: 100, suffix: '%', label: 'On-Time Delivery' },
