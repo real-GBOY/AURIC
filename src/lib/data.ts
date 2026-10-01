@@ -20,14 +20,6 @@ export const HERO_ICONS = [
   { Icon: Plug,            label: 'API Integrations' },
 ];
 
-export const WORKS = [
-  { title: 'Nova',               cat: 'Enterprise ERP + CRM Platform',  tag: 'Web + Mobile', year: "'25", bg: 'linear-gradient(135deg,#DCA733 0%,#241d0f 100%)', span: 'col-span-1 sm:col-span-3', href: '/work/nova', image: '/work/nova/dashboard-overview.jpg' },
-  { title: 'Ajwadi',             cat: 'Collaboration & Project Management Platform', tag: 'Web + Mobile', year: "'25", bg: 'linear-gradient(135deg,#2f6e6a 0%,#101f1e 100%)', span: 'col-span-1 sm:col-span-3', href: '/work/ajwadi', image: '/work/ajwadi/dashboard-overview.png' },
-  { title: 'Enactix',            cat: 'Student Org Management Platform', tag: 'Web + Mobile', year: "'25", bg: 'linear-gradient(135deg,#6a4a8f 0%,#1c1228 100%)', span: 'col-span-1 sm:col-span-2', href: '/work/enactix', image: '/work/enactix/dashboard-overview.jpg' },
-  { title: 'Weavolution',        cat: 'Sustainability & Circular Economy Platform', tag: 'Web', year: "'25", bg: 'linear-gradient(135deg,#3f5fb7 0%,#0d1530 100%)', span: 'col-span-1 sm:col-span-2', href: '/work/weavolution', image: '/work/weavolution/home-hero.png' },
-  { title: 'Build Art',          cat: 'Interior Design & Fit-Out Marketing Site', tag: 'Web', year: "'25", bg: 'linear-gradient(135deg,#b7913f 0%,#2b210d 100%)', span: 'col-span-1 sm:col-span-2', href: '/work/build-art', image: '/work/build-art/hero.png' },
-];
-
 // ─── All projects (full portfolio listing page) ───────────────────────────────
 
 export const ALL_WORKS = [
@@ -42,6 +34,11 @@ export const ALL_WORKS = [
   { title: 'OptiCare', cat: 'Clinic Management System for Ophthalmology Practices', tag: 'Web', year: "'26", bg: 'linear-gradient(135deg,#2f7db7 0%,#0d1e30 100%)', span: 'col-span-1 sm:col-span-2', href: '/work/opticare', image: '/work/opticare/dashboard-overview.jpg' },
   { title: 'Hotel OS', cat: 'Hotel Operations Platform & Booking Website', tag: 'Web', year: "'26", bg: 'linear-gradient(135deg,#7a5fb7 0%,#1a1230 100%)', span: 'col-span-1 sm:col-span-2', href: '/work/hotel-os', image: '/work/hotel-os/dashboard.png' },
 ];
+
+// Home page "Selected Work": first five of ALL_WORKS, so the order always matches the work page.
+// The home grid is a 6-col layout (3+3 / 2+2+2), so spans are set here.
+const HOME_SPANS = ['col-span-1 sm:col-span-3', 'col-span-1 sm:col-span-3', 'col-span-1 sm:col-span-2', 'col-span-1 sm:col-span-2', 'col-span-1 sm:col-span-2'];
+export const WORKS = ALL_WORKS.slice(0, HOME_SPANS.length).map((work, i) => ({ ...work, span: HOME_SPANS[i] }));
 
 // ─── Case study projects ───────────────────────────────────────────────────────
 
