@@ -10,13 +10,35 @@ const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
 const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
 const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
+const PROJECT_TYPES = [
+  'High-Performance Website',
+  'Custom Web Application',
+  'Mobile App',
+  'AI-Powered Solution',
+  'Business Automation',
+  'Dashboard & Analytics',
+  'API Integration',
+  'Something Else',
+];
+
+const fieldClass =
+  'w-full border border-[var(--line)] rounded text-cream text-[13px] px-[18px] py-4 outline-none transition-colors duration-200 focus:border-gold disabled:opacity-60 placeholder:text-muted';
+const fieldStyle = { background: 'var(--surface)', fontFamily: '"IBM Plex Mono"', letterSpacing: '0.03em', color: 'var(--cream)' };
+
 export default function CTA() {
-  const [email, setEmail]       = useState('');
-  const [note,  setNote]        = useState('');
+  const [name,    setName]      = useState('');
+  const [email,   setEmail]     = useState('');
+  const [project, setProject]   = useState('');
+  const [message, setMessage]   = useState('');
+  const [note,    setNote]      = useState('');
   const [sending, setSending]   = useState(false);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    if (!name.trim()) {
+      setNote('✗ Tell us your name');
+      return;
+    }
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
       setNote('✗ Enter a valid email to continue');
       return;
@@ -25,14 +47,30 @@ export default function CTA() {
     setSending(true);
     setNote('');
     try {
+      // Variable names match the "Contact Us" EmailJS template:
+      // {{title}} in the subject, {{name}}, {{email}}, {{time}}, {{message}} in the body.
       await emailjs.send(
         SERVICE_ID,
         TEMPLATE_ID,
-        { email, reply_to: email },
+        {
+          name: name.trim(),
+          email,
+          reply_to: email,
+          title: project || 'New project inquiry',
+          time: new Date().toLocaleString(),
+          message: [
+            `Project type: ${project || 'Not specified'}`,
+            '',
+            message.trim() || '(No details provided)',
+          ].join('\n'),
+        },
         { publicKey: PUBLIC_KEY }
       );
       setNote('✓ Got it — we’ll be in touch soon.');
+      setName('');
       setEmail('');
+      setProject('');
+      setMessage('');
     } catch (err) {
       console.error('EmailJS send failed:', err);
       setNote('✗ Something went wrong — please try again.');
@@ -70,23 +108,60 @@ export default function CTA() {
 
         <motion.form
           onSubmit={handleSubmit}
-          className="flex gap-3 max-w-[540px] mx-auto flex-wrap justify-center"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-[640px] mx-auto text-left"
           variants={fadeUp}
+          noValidate
         >
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Your name"
+            aria-label="Your name"
+            autoComplete="name"
+            disabled={sending}
+            className={fieldClass}
+            style={fieldStyle}
+            required
+          />
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@company.com"
+            aria-label="Email"
+            autoComplete="email"
             disabled={sending}
-            className="flex-1 min-w-[240px] border border-[var(--line)] rounded text-cream text-[13px] px-[18px] py-4 outline-none transition-colors duration-200 focus:border-gold disabled:opacity-60"
-            style={{ background: 'var(--surface)', fontFamily: '"IBM Plex Mono"', letterSpacing: '0.03em', color: 'var(--cream)' }}
+            className={fieldClass}
+            style={fieldStyle}
             required
+          />
+          <select
+            value={project}
+            onChange={(e) => setProject(e.target.value)}
+            aria-label="What do you need?"
+            disabled={sending}
+            className={`${fieldClass} sm:col-span-2 cursor-pointer ${project ? '' : '!text-muted'}`}
+            style={fieldStyle}
+          >
+            <option value="">What do you need? (optional)</option>
+            {PROJECT_TYPES.map((t) => <option key={t} value={t}>{t}</option>)}
+          </select>
+          <textarea
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder="Tell us a bit about your project (optional)"
+            aria-label="Project details"
+            rows={4}
+            maxLength={2000}
+            disabled={sending}
+            className={`${fieldClass} sm:col-span-2 resize-y min-h-[110px]`}
+            style={fieldStyle}
           />
           <motion.button
             type="submit"
             disabled={sending}
-            className="inline-flex items-center gap-2 px-[28px] py-4 rounded text-[12px] tracking-[0.14em] uppercase disabled:opacity-60"
+            className="sm:col-span-2 justify-self-center inline-flex items-center gap-2 px-[28px] py-4 rounded text-[12px] tracking-[0.14em] uppercase disabled:opacity-60"
             style={{ background: 'var(--gold)', border: '1px solid var(--gold)', color: '#161616', fontFamily: '"IBM Plex Mono"' }}
             whileHover={sending ? {} : { y: -2, boxShadow: '3px 3px 0 #E8E8C6' }}
             transition={{ duration: 0.2 }}
@@ -113,7 +188,7 @@ export default function CTA() {
           className="text-[13px] text-muted max-w-[48ch] mx-auto mt-7 leading-[1.9]"
           variants={fadeUp}
         >
-          No pitch decks, no pressure. Drop your email and we'll send a 15-minute intro call link. Every business has the potential to lead — let's build what gets you there.
+          No pitch decks, no pressure. Tell us what you're building and we'll send a 15-minute intro call link. Every business has the potential to lead — let's build what gets you there.
         </motion.p>
       </motion.div>
     </section>

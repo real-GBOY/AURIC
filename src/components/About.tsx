@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Plus, Gem, TrendingUp, ChevronRight, Sparkles } from 'lucide-react';
+import { Plus, Gem, Smartphone, ChevronRight, Sparkles } from 'lucide-react';
 import SectionHead from './SectionHead';
 import CountUp from './CountUp';
 import Eyebrow from './Eyebrow';
@@ -38,7 +38,7 @@ export default function About() {
             <Eyebrow className="mt-6">Founded in 2026</Eyebrow>
           </motion.div>
 
-          {/* Stat: 47 projects */}
+          {/* Stat: products delivered */}
           <motion.div
             variants={scaleIn}
             className="rounded p-[28px] border border-[var(--line)] relative"
@@ -52,7 +52,7 @@ export default function About() {
             <div className="text-[11px] tracking-[0.16em] uppercase text-muted mt-[14px]">Products Delivered</div>
           </motion.div>
 
-          {/* Stat: 12 countries */}
+          {/* Stat: industries served */}
           <motion.div
             variants={scaleIn}
             className="rounded p-[28px] border border-[var(--line)] relative"
@@ -87,18 +87,18 @@ export default function About() {
             </a>
           </motion.div>
 
-          {/* Stat: 98% retention */}
+          {/* Stat: web + mobile platforms (Ajwadi, Nova, Enactix, Mizan) */}
           <motion.div
             variants={scaleIn}
             className="md:col-span-2 lg:col-span-2 rounded p-[28px] border border-[var(--line)] relative"
             style={{ background: 'var(--surface)' }}
             whileHover={cardHover}
           >
-            <TrendingUp size={15} className="absolute top-[18px] right-[18px] text-gold opacity-80" />
+            <Smartphone size={15} className="absolute top-[18px] right-[18px] text-gold opacity-80" />
             <div className="text-cream font-semibold leading-none tracking-normal" style={{ fontSize: 'clamp(28px,4vw,48px)' }}>
-              <CountUp target={98} suffix="%" />
+              <CountUp target={4} />
             </div>
-            <div className="text-[11px] tracking-[0.16em] uppercase text-muted mt-[14px]">Client Retention Rate</div>
+            <div className="text-[11px] tracking-[0.16em] uppercase text-muted mt-[14px]">Web + Mobile Platforms Shipped</div>
           </motion.div>
         </motion.div>
       </div>

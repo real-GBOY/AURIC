@@ -573,55 +573,10 @@ export const STEPS = [
   { n: '04', title: 'Optimize', desc: 'We continuously improve for performance, security and long-term success.' },
 ];
 
-export const QUOTES = [
-  { q: "Auric rebuilt our entire analytics stack in a way that finally matched how we actually work. Decisions that took a week now take an afternoon.", name: 'Mara Reyes',  co: 'CMO, Meridian Analytics', init: 'MR' },
-  { q: "Most vendors sell software. Auric sold us an outcome — and then engineered a system that delivered it, on time. Easiest technology partner we've had.", name: 'Devon Kane', co: 'Founder, Vantage Portal', init: 'DK' },
-];
-
+// Only figures that can be backed up by the portfolio above.
 export const STATS_BAR = [
-  { target: 10, suffix: '',  label: 'Products Delivered' },
-  { target: 3,  suffix: '',  label: 'Businesses Partnered' },
-  { target: 98, suffix: '%', label: 'Client Retention' },
-  { target: 100, suffix: '%', label: 'On-Time Delivery' },
-];
-
-// ─── Team page ───────────────────────────────────────────────────────────────
-
-export interface TeamMember {
-  id: string; name: string; role: string; lvl: string; bio: string;
-  links: { label: string; href: string }[];
-}
-
-export const FOUNDERS: TeamMember[] = [
-  { id: 'm-ari',  name: 'Ari Nakamura', role: 'Founder / CEO',              lvl: 'FOUNDER', bio: 'Started Auric to prove technology could be a genuine competitive advantage, not just an expense. Leads company vision.', links: [{ label: 'Email', href: '#' }, { label: 'LinkedIn', href: '#' }] },
-  { id: 'm-rae',  name: 'Rae Okafor',   role: 'Partner / Head of Product',  lvl: 'PARTNER', bio: 'Turns business goals into clear product strategy. Keeps every engagement outcome-driven.',                             links: [{ label: 'Email', href: '#' }, { label: 'LinkedIn', href: '#' }] },
-  { id: 'm-kit',  name: 'Kit Vasquez',  role: 'Partner / Head of Engineering', lvl: 'PARTNER', bio: 'Builds the systems that ship and scale. Believes fast, secure software is a feature, not a luxury.',                links: [{ label: 'Email', href: '#' }, { label: 'GitHub',   href: '#' }] },
-  { id: 'm-juno', name: 'Juno Park',    role: 'Partner / Head of Delivery', lvl: 'PARTNER', bio: 'Runs the engagements end to end. The reason deadlines feel calm instead of chaotic.',                                   links: [{ label: 'Email', href: '#' }, { label: 'LinkedIn', href: '#' }] },
-];
-
-export const PLAYERS: TeamMember[] = [
-  { id: 'm-sol',   name: 'Sol Bergström',  role: 'Product Designer',        lvl: 'DESIGN',      bio: 'Designs interfaces people trust on first use. Obsesses over the small details.',        links: [{ label: 'Dribbble',  href: '#' }] },
-  { id: 'm-mira',  name: 'Mira Haddad',    role: 'AI / ML Engineer',        lvl: 'AI',          bio: 'Builds the models and pipelines behind our AI-powered solutions.',                        links: [{ label: 'GitHub',    href: '#' }] },
-  { id: 'm-theo',  name: 'Theo Lindqvist', role: 'Front-End Engineer',      lvl: 'ENGINEERING', bio: 'Ships clean, fast interfaces and obsesses over load times.',                              links: [{ label: 'GitHub',    href: '#' }] },
-  { id: 'm-nadia', name: 'Nadia Cruz',     role: 'Backend Engineer',        lvl: 'ENGINEERING', bio: 'Designs the APIs and infrastructure that everything else depends on.',                    links: [{ label: 'GitHub',    href: '#' }] },
-  { id: 'm-bo',    name: 'Bo Tanaka',      role: 'UX Researcher',           lvl: 'PRODUCT',     bio: 'Grounds every decision in how customers actually use the product.',                       links: [{ label: 'LinkedIn',  href: '#' }] },
-  { id: 'm-lena',  name: 'Lena Moreau',    role: 'Solutions Architect',     lvl: 'ENGINEERING', bio: 'Designs the systems and integrations that let clients scale without rebuilding.',         links: [{ label: 'LinkedIn',  href: '#' }] },
-  { id: 'm-omar',  name: 'Omar Reyes',     role: 'Digital Strategist',      lvl: 'STRATEGY',    bio: 'Connects business goals to the right technology roadmap.',                                links: [{ label: 'LinkedIn',  href: '#' }] },
-  { id: 'm-yuki',  name: 'Yuki Sato',      role: 'Delivery Manager',        lvl: 'DELIVERY',    bio: 'Keeps every engagement on-track, on-budget and on-message.',                              links: [{ label: 'Email',     href: '#' }] },
-];
-
-export const CULTURE_VALUES = [
-  { glyph: '◈', title: 'Craftsmanship', body: 'Every detail matters. Quality is never accidental.' },
-  { glyph: '✦', title: 'Innovation',    body: 'We embrace emerging technologies to solve real business challenges.' },
-  { glyph: '◎', title: 'Partnership',   body: "Our clients' success defines our success." },
-  { glyph: '▣', title: 'Integrity',     body: 'Honest communication, transparency and accountability guide every project.' },
-  { glyph: '►', title: 'Excellence',    body: 'We hold ourselves to the highest standards in everything we create.' },
-  { glyph: '◆', title: 'Impact',        body: 'Every product should create measurable value.' },
-];
-
-export const TEAM_STATS = [
-  { target: 12, symbol: null, label: 'Team Members' },
-  { target: 4,  symbol: null, label: 'Time Zones' },
-  { target: 6,  symbol: null, label: 'Years Together' },
-  { target: 0,  symbol: '∞',  label: 'Cups Of Coffee' },
+  { target: 10, suffix: '', label: 'Products Delivered' },
+  { target: 8,  suffix: '', label: 'Industries Served' },
+  { target: 4,  suffix: '', label: 'Web + Mobile Platforms' },
+  { target: 3,  suffix: '', label: 'Businesses Partnered' },
 ];

@@ -35,12 +35,11 @@ detailed case study for every project we have shipped, the team page and a conta
 
 | Area | What visitors see |
 |---|---|
-| **Home** | Hero, services marquee, about, services, featured work, process, testimonials, stats and a contact call to action |
+| **Home** | Hero, services marquee, about, services, featured work, process, stats and a contact call to action |
 | **Services** | Six offers: high-performance websites, custom web applications, AI-powered solutions, business process automation, dashboards and analytics, API integrations |
 | **Work** (`/work`) | The full portfolio as a grid, newest flagship products first |
 | **Case studies** (`/work/<project>`) | Overview, modules, features, tech stack, architecture, impact and screenshots for each project, with a link to the live product |
 | **Process** | Discover, Design, Build, Optimize |
-| **Team** (`/team`) | Founders, the team and the studio's values |
 | **Contact** | A project-inquiry form that sends an email through EmailJS, with validation and inline feedback |
 
 Across the whole site:
@@ -98,7 +97,7 @@ are thin views over typed data.
 
 | Principle | How it shows up |
 |---|---|
-| **Content is data** | Services, work, case studies, steps, testimonials and team are typed objects in `src/lib/data.ts`. |
+| **Content is data** | Services, work, case studies, steps and stats are typed objects in `src/lib/data.ts`. |
 | **One case-study template** | Every `/work/<project>` page renders the same `CaseStudy` component from a `CaseStudyProject` object. |
 | **One motion language** | `src/lib/variants.ts` defines the fade, stagger and slide variants that every section reuses. |
 | **Theme as tokens** | The gold accent, spacing and gutters are CSS custom properties, consumed by Tailwind. |
@@ -152,9 +151,9 @@ src/
 ├── main.tsx          Entry point
 ├── index.css         Design tokens and global styles
 ├── components/       Nav, Hero, Marquee, About, Services, Work, AllWork, CaseStudy, Process,
-│                     Testimonials, StatsBar, CTA, Team, Footer, NotFound, ...
+│                     StatsBar, CTA, CountUp, Footer, NotFound, ...
 └── lib/
-    ├── data.ts       Services, portfolio, case studies, steps, testimonials, team
+    ├── data.ts       Services, portfolio, case studies, steps, stats
     └── variants.ts   Shared Framer Motion variants
 public/
 ├── work/<project>/   Screenshots for each case study
@@ -178,8 +177,7 @@ contact form to work in production.
 
 ## Known limitations
 
-- The team page, testimonials and the statistics bar use placeholder content and should be replaced with
-  real people, quotes and figures.
+- There are no testimonials or team page yet. Add them back only with real client quotes and real people.
 - The project screenshots are demo data, not client data.
 - Case studies are static: adding or changing a project means editing `src/lib/data.ts` and redeploying.
 - There is no router library, so navigation between pages is a full page load.
