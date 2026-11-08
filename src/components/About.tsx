@@ -47,7 +47,7 @@ export default function About() {
           >
             <Plus size={16} className="absolute top-[18px] right-[18px] text-gold opacity-80" />
             <div className="text-cream font-semibold leading-none tracking-normal" style={{ fontSize: 'clamp(28px,4vw,48px)' }}>
-              <CountUp target={10} />
+              <CountUp target={12} />
             </div>
             <div className="text-[11px] tracking-[0.16em] uppercase text-muted mt-[14px]">Products Delivered</div>
           </motion.div>
@@ -61,7 +61,7 @@ export default function About() {
           >
             <Gem size={14} className="absolute top-[18px] right-[18px] text-gold opacity-80" />
             <div className="text-cream font-semibold leading-none tracking-normal" style={{ fontSize: 'clamp(28px,4vw,48px)' }}>
-              <CountUp target={8} />
+              <CountUp target={10} />
             </div>
             <div className="text-[11px] tracking-[0.16em] uppercase text-muted mt-[14px]">Industries Served</div>
           </motion.div>

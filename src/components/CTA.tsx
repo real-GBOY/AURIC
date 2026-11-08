@@ -128,8 +128,8 @@ export default function CTA() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="you@company.com"
-            aria-label="Email"
+            placeholder="Your email"
+            aria-label="Your email"
             autoComplete="email"
             disabled={sending}
             className={fieldClass}

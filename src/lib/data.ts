@@ -28,6 +28,8 @@ export const ALL_WORKS = [
   { title: 'Ajwadi',             cat: 'Collaboration & Project Management Platform', tag: 'Web + Mobile', year: "'25", bg: 'linear-gradient(135deg,#2f6e6a 0%,#101f1e 100%)', span: 'col-span-1 sm:col-span-3', href: '/work/ajwadi', image: '/work/ajwadi/dashboard-overview.png' },
   { title: 'Nova',               cat: 'Enterprise ERP + CRM Platform',  tag: 'Web + Mobile', year: "'25", bg: 'linear-gradient(135deg,#DCA733 0%,#241d0f 100%)', span: 'col-span-1 sm:col-span-3', href: '/work/nova', image: '/work/nova/dashboard-overview.jpg' },
   { title: 'Clinic OS', cat: 'Clinic Operating System on Odoo', tag: 'Web', year: "'26", bg: 'linear-gradient(135deg,#2f9fa7 0%,#0b2224 100%)', span: 'col-span-1 sm:col-span-2', href: '/work/clinic-os', image: '/work/clinic-os/reception-dashboard.png' },
+  { title: 'Raqib', cat: 'Security Quality & Field Inspection Platform', tag: 'Web · Offline PWA', year: "'26", bg: 'linear-gradient(135deg,#3f6fb7 0%,#0d1830 100%)', span: 'col-span-1 sm:col-span-2', href: '/work/raqib', image: '/work/raqib/dashboard.png' },
+  { title: 'Admit', cat: 'Event Ticketing with Manual Payment Verification', tag: 'Web', year: "'26", bg: 'linear-gradient(135deg,#b7643f 0%,#2b160d 100%)', span: 'col-span-1 sm:col-span-2', href: '/work/admit', image: '/work/admit/dashboard.png' },
   { title: 'Enactix',            cat: 'Student Org Management Platform', tag: 'Web + Mobile', year: "'25", bg: 'linear-gradient(135deg,#6a4a8f 0%,#1c1228 100%)', span: 'col-span-1 sm:col-span-2', href: '/work/enactix', image: '/work/enactix/dashboard-overview.jpg' },
   { title: 'Weavolution',        cat: 'Sustainability & Circular Economy Platform', tag: 'Web', year: "'25", bg: 'linear-gradient(135deg,#3f5fb7 0%,#0d1530 100%)', span: 'col-span-1 sm:col-span-2', href: '/work/weavolution', image: '/work/weavolution/home-hero.png' },
   { title: 'Build Art',          cat: 'Interior Design & Fit-Out Marketing Site', tag: 'Web', year: "'25", bg: 'linear-gradient(135deg,#b7913f 0%,#2b210d 100%)', span: 'col-span-1 sm:col-span-2', href: '/work/build-art', image: '/work/build-art/hero.png' },
@@ -566,6 +568,103 @@ export const CLINIC_OS_PROJECT: CaseStudyProject = {
   ],
 };
 
+export const RAQIB_PROJECT: CaseStudyProject = {
+  title: 'Raqib',
+  category: 'Security Quality & Field Inspection Platform',
+  tagline: 'The quality function of a security-guarding company in one bilingual system — field inspections that work offline, review and approval, corrective actions, guard scoring and training, and compliance analytics.',
+  year: '2026',
+  link: 'https://raqib-web.vercel.app/',
+  overview: [
+    "Raqib runs quality for a security-guarding company. Inspectors visit sites and fill in a versioned checklist, quality staff review and approve every inspection, findings become corrective actions with owners and deadlines, guards are scored and trained, and managers read compliance straight off the results.",
+    "It is the fourth product on the AURIC foundation and the one that pushed it hardest: field work with no signal, personal data that must be encrypted at rest, and an approval trail nobody can rewrite. It was built from an approved design in Arabic and English with full right-to-left support, and extended in place through two rounds of client feedback.",
+  ],
+  modules: [
+    { title: 'Projects & Visits', desc: 'Projects, sites and areas, plus a visit schedule from planned to approved, with month view, export and print.' },
+    { title: 'Inspections', desc: 'Versioned checklists, several forms per visit, notes, photo and video evidence, and guard scoring — offline-capable.' },
+    { title: 'Review & Approval', desc: 'Flag, return, reject or forward, then approve. Approval freezes an immutable report with Arabic and English PDFs.' },
+    { title: 'Corrective Actions', desc: 'Owners, deadlines, closure evidence and full history, with escalation at 3, 6 and 9 days.' },
+    { title: 'Guards & Training', desc: 'Guard roster and scores, evaluations, and training requests with multi-step approval chains.' },
+    { title: 'Analytics & Confidential Area', desc: 'Compliance trends, weak sections and project ranking, plus a confidential reporting area no role can open by default.' },
+  ],
+  features: [
+    'Offline-first field inspections: answers, notes and photos queue on the device and sync in order on reconnect',
+    'Eight roles, from inspector to General Manager, with permission templates of 14 modules by 8 rights',
+    'Fail-closed authorization: a test fails the build if any of the 141 routes lacks a declared permission',
+    'Nobody reviews, approves or closes their own work',
+    'Published forms, inspection snapshots, issued reports and workflow history are immutable through database triggers',
+    'National IDs and two-step secrets encrypted with AES-256-GCM and a keyed blind index',
+    'Sign-in lockout, TOTP two-step verification with recovery codes, and session revocation',
+    'Uploads are content-checked, stripped of GPS metadata and optionally virus-scanned, stored on Cloudflare R2',
+    'Compliance analytics with CSV and native Excel export',
+    'Full Arabic and English interface (1,977 strings) with right-to-left layout',
+  ],
+  techGroups: [
+    { label: 'Web',     items: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS 4', 'Service Worker', 'IndexedDB'] },
+    { label: 'Backend', items: ['NestJS', 'Fastify', 'PostgreSQL', 'Row-Level Security', 'Cloudflare R2', 'ClamAV'] },
+    { label: 'Quality', items: ['373 backend tests', '58 web tests', '57 Playwright E2E tests'] },
+  ],
+  architecture: "Raqib sits on the AURIC core and reaches it only through published contracts for identity, tenancy, permissions, files, audit and events. Its own database holds 41 tenant tables, each with forced row-level security. Every lifecycle — visits, corrective actions, training requests, confidential reports — is a server-enforced state machine with an append-only history of who, what, when and why. The web app is layered, and a test enforces the layers: only the API layer touches the network, and every color and font comes from a single source.",
+  impact: "Raqib shows the foundation carrying a demanding, security-sensitive product in a fourth industry. It turns a paper-heavy quality process into a system inspectors can use with no signal, reviewers can trust, and managers can read at a glance — while keeping an approval trail that can't be rewritten.",
+  dashboardLabel: 'The Platform',
+  dashboardImages: [
+    { src: '/work/raqib/dashboard.png',         alt: 'Raqib quality overview dashboard' },
+    { src: '/work/raqib/inspection.png',        alt: 'Raqib inspection workspace with checklist and evidence' },
+    { src: '/work/raqib/review.png',            alt: 'Raqib inspection review and approval' },
+    { src: '/work/raqib/corrective-action.png', alt: 'Raqib corrective action with owner, deadline and history' },
+    { src: '/work/raqib/analytics.png',         alt: 'Raqib compliance analytics' },
+    { src: '/work/raqib/dashboard-arabic.png',  alt: 'Raqib dashboard in Arabic, right-to-left' },
+  ],
+  mobileImages: [],
+};
+
+export const ADMIT_PROJECT: CaseStudyProject = {
+  title: 'Admit',
+  category: 'Event Ticketing with Manual Payment Verification',
+  tagline: 'Ticketing for events where guests pay the organizer directly — InstaPay, wallets or bank transfer — with proof review, QR tickets by email, and exactly-once check-in at the door.',
+  year: '2026',
+  link: 'https://admit-web-lime.vercel.app/',
+  overview: [
+    "Admit sells tickets for events where people pay the organizer directly instead of going through a card processor. A guest books without an account, transfers the exact amount and uploads a screenshot as proof. A reviewer checks it against the organizer's account, and approval issues one QR ticket per seat and emails it. At the door, staff scan each ticket, which admits it exactly once.",
+    "It is the fifth product on the AURIC foundation, built from an approved design covering the customer site, the organizer dashboard, the door scanner and seven transactional emails.",
+  ],
+  modules: [
+    { title: 'Customer Site', desc: 'Upcoming events, ticket types with live availability, guest checkout and proof upload — no account needed.' },
+    { title: 'Payment Review', desc: 'The uploaded proof next to the expected amount, four checks, then approve or reject.' },
+    { title: 'Events & Tickets', desc: 'Drafts, publishing with a readiness checklist, issued tickets, check-in state and revocation.' },
+    { title: 'Door Check-In', desc: 'A phone scanner for door staff, gate numbers and a log of every scan attempt.' },
+    { title: 'Email Pipeline', desc: 'Seven templates sent by a Python worker from a transactional outbox, with delivery status and retry.' },
+    { title: 'Reports & Team', desc: 'Verified revenue, sales by event and ticket type, CSV export, team roles and an audit log.' },
+  ],
+  features: [
+    'Never oversells: seats are counted from live bookings under row locks — no counter to drift',
+    'Approve once: simultaneous reviewers produce one decision, one set of tickets and one email',
+    'Exactly-once check-in: eight simultaneous scans admit one ticket and explain the rest',
+    'QR tokens derived with HMAC and stored only as hashes; staff APIs never return them',
+    'Seats held for 24 hours while the guest pays; bookings in review never expire',
+    'Transactional outbox with a Python worker (SKIP LOCKED, leases and backoff) for reliable email',
+    'Five roles and 22 permissions, scoped to assigned events',
+    'Tenant isolation with forced row-level security on every table',
+    'Nightly backups copied off-server and verified, CI on every push',
+  ],
+  techGroups: [
+    { label: 'Web',     items: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS 4'] },
+    { label: 'Backend', items: ['NestJS', 'Fastify', 'PostgreSQL', 'Prisma', 'Row-Level Security', 'Cloudflare R2'] },
+    { label: 'Worker',  items: ['Python 3.12', 'psycopg', 'Jinja2', 'SMTP'] },
+  ],
+  architecture: "Each organizer is an organization on the AURIC core, and every Admit table enforces row-level security — public guest routes run inside the organizer's tenant context. The API writes each fully decided email into an outbox table in the same transaction as the change, so a ticket is never issued without its email being queued, and a failed email never invalidates a ticket. Core never imports Admit: the product needed only one generic change from the foundation.",
+  impact: "Admit brings safe, verifiable ticketing to organizers who rely on direct transfers, a common way to pay in Egypt that card-first platforms don't serve. It handles the hard parts — overselling, double approvals and double entry — with guarantees proven by concurrency tests, while staying simple enough for a small team to run an event on.",
+  dashboardLabel: 'The Platform',
+  dashboardImages: [
+    { src: '/work/admit/dashboard.png',      alt: 'Admit organizer overview dashboard' },
+    { src: '/work/admit/customer-home.png',  alt: 'Admit customer site with upcoming events' },
+    { src: '/work/admit/customer-event.png', alt: 'Admit event page with ticket types and availability' },
+    { src: '/work/admit/review.png',         alt: 'Admit payment proof review' },
+    { src: '/work/admit/checkin.png',        alt: 'Admit door check-in and scan log' },
+    { src: '/work/admit/reports.png',        alt: 'Admit verified revenue reports' },
+  ],
+  mobileImages: [],
+};
+
 export const STEPS = [
   { n: '01', title: 'Discover', desc: 'We study your business, customers and operations to define measurable objectives.' },
   { n: '02', title: 'Design',   desc: 'We craft intuitive user experiences built around real goals, not templates.' },
@@ -575,8 +674,8 @@ export const STEPS = [
 
 // Only figures that can be backed up by the portfolio above.
 export const STATS_BAR = [
-  { target: 10, suffix: '', label: 'Products Delivered' },
-  { target: 8,  suffix: '', label: 'Industries Served' },
+  { target: 12, suffix: '', label: 'Products Delivered' },
+  { target: 10, suffix: '', label: 'Industries Served' },
   { target: 4,  suffix: '', label: 'Web + Mobile Platforms' },
   { target: 3,  suffix: '', label: 'Businesses Partnered' },
 ];
