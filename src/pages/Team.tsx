@@ -101,7 +101,7 @@ export default function Team() {
       </section>
 
       {/* Core team */}
-      <section className="bg-bg py-20 md:py-[120px]">
+      <section data-stack className="bg-bg py-20 md:py-[120px]">
         <div className="wrap">
           <Reveal className="mb-10 flex flex-wrap items-end justify-between gap-6">
             <h2 className="h2">Core team</h2>

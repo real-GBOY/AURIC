@@ -11,12 +11,14 @@ type Props = {
   dark?: boolean;
   size?: string;
   children?: ReactNode;
+  /** Let the footer slide over this section (showpiece; used on Home). */
+  stack?: boolean;
 };
 
 /** The giant closing call to action used at the bottom of every page. */
-export default function BigCTA({ lines, text, secondary, dark = false, size = 'clamp(52px,10vw,150px)', children }: Props) {
+export default function BigCTA({ lines, text, secondary, dark = false, size = 'clamp(52px,10vw,150px)', children, stack = false }: Props) {
   return (
-    <section className={`relative overflow-hidden py-[88px] text-start md:py-[150px] md:text-center ${dark ? 'bg-bg' : ''}`}>
+    <section data-stack={stack ? '' : undefined} className={`relative overflow-hidden py-[88px] text-start md:py-[150px] md:text-center ${dark ? 'bg-bg' : ''}`}>
       <div className="wrap relative flex flex-col gap-7 md:items-center md:gap-8">
         {children}
         <div className="w-full" data-scrub-scale="0.82">

@@ -410,7 +410,7 @@ function SelectedWork() {
 /* ─── How we work ────────────────────────────────────────────────────────── */
 function HowWeWork() {
   return (
-    <section className="py-[72px] md:py-[120px]">
+    <section data-stack className="py-[72px] md:py-[120px]">
       <div className="wrap">
         <Reveal className="mb-6 flex flex-wrap items-end justify-between gap-6 md:mb-10">
           <h2 className="h2">
@@ -619,6 +619,7 @@ export default function Home() {
         ]}
         size="clamp(52px,11vw,170px)"
         secondary={{ label: C.explore, href: '/work' }}
+        stack
       >
         <SpinningBadge />
       </BigCTA>

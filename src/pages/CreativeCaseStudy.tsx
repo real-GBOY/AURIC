@@ -136,7 +136,7 @@ export default function CreativeCaseStudy() {
       </section>
 
       {/* V5 · Brand pieces slide in */}
-      <section className="overflow-hidden bg-bg py-20 md:py-[120px]">
+      <section data-stack className="overflow-hidden bg-bg py-20 md:py-[120px]">
         <div className="wrap">
           <Reveal className="mb-10 flex flex-wrap items-end justify-between gap-6">
             <h2 className="h2">The brand in use</h2>

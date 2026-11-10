@@ -122,7 +122,7 @@ function Hero() {
 /* 01 · Create — cream editorial with dropping collage (S2) */
 function Create() {
   return (
-    <section id="create" data-expand className="bg-cream py-[88px] text-[#141414] md:py-[120px]">
+    <section id="create" data-expand data-stack className="bg-cream py-[88px] text-[#141414] md:py-[120px]">
       <div className="wrap">
         <Chapter n="01" name="Create" line="Video, design, motion and voice from one directed team." cream />
         <motion.div
@@ -258,7 +258,7 @@ function Manage() {
     { t: 'Deliver', d: 'On time, supported after' },
   ];
   return (
-    <section id="manage" className="py-[88px] md:py-[120px]">
+    <section id="manage" data-stack className="py-[88px] md:py-[120px]">
       <div className="wrap">
         <Chapter n="04" name="Manage" line="One owner coordinating every specialist, deadline and review." outline />
         <div className="relative mb-16 pt-[30px]">

@@ -216,7 +216,7 @@ function DesignChapter() {
 /* Chapter 03 · Reels floating in phone frames (A5) */
 function ContentChapter() {
   return (
-    <section className="hidden py-[120px] md:block">
+    <section data-stack className="hidden py-[120px] md:block">
       <div className="wrap">
         <ChapterHead n="03" title="Content & social" right={<span className="lab">Reels · campaigns · content plans</span>} />
         <motion.div className="grid grid-cols-5 gap-3 lg:gap-4" initial="hidden" whileInView="visible" viewport={inView} variants={stagger(0.1)}>

@@ -133,7 +133,7 @@ export default function CaseStudy({ project: p }: { project: SoftwareProject }) 
       )}
 
       {/* Features */}
-      <section className="py-20 md:py-[120px]">
+      <section data-stack className="py-20 md:py-[120px]">
         <div className="wrap">
           <Reveal>
             <h2 className="h2 mb-10">What it does</h2>
