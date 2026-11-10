@@ -51,6 +51,7 @@ function useBrief() {
   const [status, setStatus] = useState<Status>('idle');
   const [note, setNote] = useState('');
   const openedAt = useRef(Date.now());
+  const [waText, setWaText] = useState(''); // the brief, ready to continue on WhatsApp
   const [token, setToken] = useState(''); // Cloudflare Turnstile result
   const [captchaRound, setCaptchaRound] = useState(0); // bump to get a fresh check
 
@@ -117,6 +118,8 @@ function useBrief() {
       } catch {
         /* ignore */
       }
+      setWaText(`Hi AURIC, I just sent a project brief from the website.
+${params.message}`);
       setStatus('sent');
     } catch (err) {
       console.error('Send failed:', err);
@@ -127,7 +130,7 @@ function useBrief() {
     }
   };
 
-  return { name, setName, company, setCompany, who, setWho, svc, toggle, goal, setGoal, budget, setBudget, time, setTime, email, setEmail, trap, setTrap, status, note, submit, setToken, captchaRound };
+  return { name, setName, company, setCompany, who, setWho, svc, toggle, goal, setGoal, budget, setBudget, time, setTime, email, setEmail, trap, setTrap, status, note, submit, setToken, captchaRound, waText };
 }
 
 type Brief = ReturnType<typeof useBrief>;
@@ -208,7 +211,10 @@ function Status({ b, big = false }: { b: Brief; big?: boolean }) {
     <AnimatePresence mode="wait">
       {b.status === 'sent' ? (
         <motion.span key="ok" role="status" className={`lab !text-gold ${big ? '!text-[13px]' : '!text-[12px]'}`} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
-          {t("✓ Got it — we'll be in touch soon.", '✓ وصلتنا رسالتك — سنتواصل معك قريبًا.')}
+          {t("✓ Got it — we'll be in touch soon.", '✓ وصلتنا رسالتك — سنتواصل معك قريبًا.')}{' '}
+          <a href={whatsappHref(b.waText || undefined)} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">
+            {t('Faster? Continue on WhatsApp ↗', 'تريد رداً أسرع؟ أكمل على واتساب ↗')}
+          </a>
         </motion.span>
       ) : b.note ? (
         <motion.span key="note" role="alert" className="lab !text-[#e8916f]" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
