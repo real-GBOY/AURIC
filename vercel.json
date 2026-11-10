@@ -1,10 +1,161 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/" }],
+  "rewrites": [
+    {
+      "source": "/services",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/work",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/case-studies",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/case-studies/creative",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/team",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/work/mizan",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/work/atlas",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/work/hotel-os",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/work/nova",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/work/ajwadi",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/work/raqib",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/work/admit",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/work/clinic-os",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/work/enactix",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/work/weavolution",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/work/build-art",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/work/opticare",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/ar",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/ar/services",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/ar/work",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/ar/case-studies",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/ar/case-studies/creative",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/ar/team",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/ar/contact",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/ar/work/mizan",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/ar/work/atlas",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/ar/work/hotel-os",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/ar/work/nova",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/ar/work/ajwadi",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/ar/work/raqib",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/ar/work/admit",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/ar/work/clinic-os",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/ar/work/enactix",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/ar/work/weavolution",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/ar/work/build-art",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/ar/work/opticare",
+      "destination": "/index.html"
+    }
+  ],
   "build": {
     "env": {
       "VITE_EMAILJS_SERVICE_ID": "service_a8oxz9r",
       "VITE_EMAILJS_TEMPLATE_ID": "template_5iwa87j",
       "VITE_EMAILJS_PUBLIC_KEY": "aDH40t3RISIAaGX6L"
     }
-  }
+  },
+  "cleanUrls": false,
+  "trailingSlash": false
 }

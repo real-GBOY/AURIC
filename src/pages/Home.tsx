@@ -12,7 +12,7 @@ import { HOME as C } from '../lib/home-copy';
 import { ARROW, href, isAr } from '../lib/i18n';
 import { CTA_HREF } from '../lib/site';
 import { EASE, inView, rise, stagger, useDragScroll } from '../lib/motion';
-import { gsap, MQ, ScrollTrigger, SplitText, useGSAP } from '../lib/gsap';
+import { gsap, MQ, ScrollTrigger, SplitText, useGSAP, whenFontsReady } from '../lib/gsap';
 import { usePinnedStrip } from '../lib/usePinnedStrip';
 
 const pad = (n: number) => String(n).padStart(2, '0');
@@ -92,7 +92,7 @@ function Hero() {
         });
 
         // Split after the fonts are in, so line and letter boxes are measured correctly.
-        document.fonts?.ready.then(build).catch(build) ?? build();
+        whenFontsReady(build);
         return () => {
           alive = false;
         };

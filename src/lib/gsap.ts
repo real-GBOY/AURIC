@@ -17,4 +17,10 @@ export const MQ = {
 export const prefersReducedMotion = () =>
   typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+/** Run once web fonts are ready (immediately if the browser can't tell us). */
+export function whenFontsReady(cb: () => void) {
+  if (document.fonts?.ready) document.fonts.ready.then(cb, cb);
+  else cb();
+}
+
 export { gsap, ScrollTrigger, SplitText, useGSAP };

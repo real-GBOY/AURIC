@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { gsap, ScrollTrigger, SplitText, MQ } from '../../lib/gsap';
+import { gsap, ScrollTrigger, SplitText, MQ, whenFontsReady } from '../../lib/gsap';
 
 /**
  * Site-wide creative scroll animations (they find their targets themselves):
@@ -115,7 +115,7 @@ export default function ScrollScenes() {
       };
 
       // Split text only once fonts are in, so letter boxes are measured right.
-      document.fonts?.ready.then(() => requestAnimationFrame(build)).catch(build) ?? build();
+      whenFontsReady(() => requestAnimationFrame(build));
 
       // 7 · 3D tilt on hover (fine pointers only)
       const fine = window.matchMedia(MQ.pointer).matches;

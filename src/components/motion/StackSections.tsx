@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { gsap, ScrollTrigger } from '../../lib/gsap';
+import { gsap, ScrollTrigger, whenFontsReady } from '../../lib/gsap';
 
 const STACK_MQ = '(min-width: 768px) and (prefers-reduced-motion: no-preference)';
 
@@ -79,7 +79,7 @@ export default function StackSections() {
 
       // Wait for fonts and the page's own pins (strips) so measurements are final.
       const run = () => requestAnimationFrame(() => requestAnimationFrame(build));
-      document.fonts?.ready.then(run).catch(run) ?? run();
+      whenFontsReady(run);
 
       return () => {
         alive = false;
