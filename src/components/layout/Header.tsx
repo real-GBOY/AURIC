@@ -6,7 +6,10 @@ import { CTA_HREF, NAV, PAGES, SOCIALS, whatsappHref } from '../../lib/site';
 import { EASE } from '../../lib/motion';
 
 const path = typeof window !== 'undefined' ? window.location.pathname : '/';
-const isActive = (href: string) => (href === '/' ? path === '/' : path === href || path.startsWith(href + '/'));
+const isActive = (href: string) =>
+  href === '/'
+    ? path === '/'
+    : path === href || path.startsWith(href + '/') || (href === '/work' && path.startsWith('/case-studies'));
 
 export default function Header() {
   const [open, setOpen] = useState(false);

@@ -1,8 +1,9 @@
 import Home from './pages/Home';
 import Services from './pages/Services';
+import Work from './pages/Work';
+import CaseStudies from './pages/CaseStudies';
 import NotFound from './components/NotFound';
 import CaseStudy from './components/CaseStudy';
-import AllWork from './components/AllWork';
 import { NOVA_PROJECT, AJWADI_PROJECT, ENACTIX_PROJECT, WEAVOLUTION_PROJECT, BUILD_ART_PROJECT, OPTICARE_PROJECT, ATLAS_PROJECT, MIZAN_PROJECT, HOTEL_OS_PROJECT, CLINIC_OS_PROJECT, RAQIB_PROJECT, ADMIT_PROJECT } from './lib/data';
 
 // Normalise the path: no trailing slash (except the root).
@@ -11,7 +12,8 @@ const path = window.location.pathname.replace(/\/+$/, '') || '/';
 export default function App() {
   if (path === '/') return <Home />;
   if (path === '/services') return <Services />;
-  if (path === '/work') return <AllWork />;
+  if (path === '/work') return <Work />;
+  if (path === '/case-studies') return <CaseStudies />;
   if (path === '/work/nova') return <CaseStudy project={NOVA_PROJECT} />;
   if (path === '/work/ajwadi') return <CaseStudy project={AJWADI_PROJECT} />;
   if (path === '/work/enactix') return <CaseStudy project={ENACTIX_PROJECT} />;
