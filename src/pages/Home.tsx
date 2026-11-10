@@ -619,7 +619,6 @@ export default function Home() {
         ]}
         size="clamp(52px,11vw,170px)"
         secondary={{ label: C.explore, href: '/work' }}
-        stack
       >
         <SpinningBadge />
       </BigCTA>
