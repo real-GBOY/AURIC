@@ -15,7 +15,7 @@ function Story({ label, children, first = false }: { label: string; children: Re
   return (
     <Reveal className={`grid gap-[14px] border-b border-[var(--line)] py-10 md:grid-cols-[200px_minmax(0,1fr)] md:gap-10 md:py-12 ${first ? 'border-t' : ''}`}>
       <span className="lab !text-gold">{label}</span>
-      <p className="big m-0">{children}</p>
+      <p className="big m-0" data-scrub-words>{children}</p>
     </Reveal>
   );
 }
@@ -82,7 +82,7 @@ export default function CreativeCaseStudy() {
       </section>
 
       {/* V3 · Moodboard pieces drop in */}
-      <section className="bg-cream py-20 text-[#141414] md:py-[120px]">
+      <section data-expand className="bg-cream py-20 text-[#141414] md:py-[120px]">
         <div className="wrap">
           <Reveal className="mb-10 flex flex-wrap items-end justify-between gap-6">
             <h2 className="h2">The concept</h2>

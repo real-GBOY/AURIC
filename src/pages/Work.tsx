@@ -118,7 +118,7 @@ function ProjectIndex() {
               );
             })}
           </div>
-          <div className="sticky top-24 flex flex-col gap-4">
+          <div className="sticky top-24 flex flex-col gap-4" data-tilt>
             <AnimatePresence mode="wait">
               <motion.div key={cur.name} initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.98 }} transition={{ duration: 0.3 }}>
                 <IndexPreview e={cur} />
@@ -174,7 +174,7 @@ function VideoChapter() {
 function DesignChapter() {
   const tile = { hidden: { opacity: 0, clipPath: 'inset(100% 0 0 0)' }, visible: { opacity: 1, clipPath: 'inset(0% 0 0 0)', transition: { duration: 0.8, ease: EASE } } };
   return (
-    <section className="hidden bg-cream py-[120px] text-[#141414] md:block">
+    <section data-expand className="hidden bg-cream py-[120px] text-[#141414] md:block">
       <div className="wrap">
         <ChapterHead n="02" title="Design & branding" cream right={<span className="lab !text-[#4a4740]">Brand identities · posters · social design</span>} />
         <motion.div

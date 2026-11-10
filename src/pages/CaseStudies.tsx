@@ -61,6 +61,7 @@ export default function CaseStudies() {
                   transition={{ duration: 0.8, ease: EASE }}
                 >
                   <div
+                    data-tilt
                     className="relative overflow-hidden rounded-xl border border-[rgba(244,241,232,.1)] bg-surface"
                     style={{ aspectRatio: full ? '21/9' : '4/3' }}
                   >

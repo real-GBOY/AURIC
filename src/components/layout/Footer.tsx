@@ -21,6 +21,7 @@ export default function Footer() {
           <a
             href={href(CTA_HREF)}
             data-parallax="0.18"
+            data-split
             className="font-display font-extrabold leading-[.95] tracking-[-0.05em] transition-colors hover:text-gold"
             style={{ fontSize: 'clamp(40px,5.4vw,80px)' }}
           >

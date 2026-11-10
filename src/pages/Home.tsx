@@ -455,7 +455,7 @@ function WhoWeWorkWith() {
     <section className="bg-bg py-[72px] md:py-[120px]">
       <div className="wrap">
         <span className="lab mb-5 block !text-gold md:mb-7">{C.whoLabel}</span>
-        <Reveal as="p" className="m-0">
+        <Reveal as="p" className="m-0"><span data-scrub-words>
           {AUDIENCES.map((a, i) => (
             <span key={a.label} className="inline">
               <a href={a.href} className={`${word} whitespace-nowrap transition-colors hover:text-gold`} style={{ fontSize: 'clamp(30px,4vw,60px)' }}>
@@ -467,7 +467,7 @@ function WhoWeWorkWith() {
           <a href={href(CTA_HREF)} className={`${word} text-gold`} style={{ fontSize: 'clamp(30px,4vw,60px)' }}>
             {C.you}
           </a>
-        </Reveal>
+        </span></Reveal>
       </div>
     </section>
   );
@@ -560,7 +560,7 @@ function ClientProof() {
             </motion.figure>
           ))}
         </motion.div>
-        <div className="mt-7 grid grid-cols-3 gap-[10px] md:mt-14 md:grid-cols-6 md:gap-[14px]">
+        <div className="mt-7 grid grid-cols-3 gap-[10px] md:mt-14 md:grid-cols-6 md:gap-[14px]" data-pop>
           {CLIENT_LOGOS.map((l, i) =>
             l.src ? (
               <img key={i} src={l.src} alt={l.name} className="h-16 w-full object-contain md:h-[84px]" />

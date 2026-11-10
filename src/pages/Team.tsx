@@ -132,7 +132,7 @@ export default function Team() {
             </div>
             <span className="lab">03</span>
           </Reveal>
-          <p className="m-0" data-scrub-x={isRtl() ? '6' : '-6'}>
+          <p className="m-0" data-scrub-x={isRtl() ? '6' : '-6'} data-scrub-words>
             {NETWORK.map((n, i) => (
               // Each name carries its own "/" so a separator never starts a line.
               <motion.span

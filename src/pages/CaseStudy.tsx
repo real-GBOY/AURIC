@@ -14,7 +14,7 @@ function Story({ label, children, first = false, muted = false }: { label: strin
   return (
     <Reveal className={`grid gap-[14px] border-b border-[var(--line)] py-10 md:grid-cols-[200px_minmax(0,1fr)] md:gap-10 md:py-12 ${first ? 'border-t' : ''}`}>
       <span className="lab !text-gold">{label}</span>
-      <div className={`font-display font-medium leading-[1.4] tracking-[-0.01em] ${muted ? 'text-copy' : ''}`} style={{ fontSize: 'clamp(18px,1.7vw,25px)' }}>
+      <div data-scrub-words className={`font-display font-medium leading-[1.4] tracking-[-0.01em] ${muted ? 'text-copy' : ''}`} style={{ fontSize: 'clamp(18px,1.7vw,25px)' }}>
         {children}
       </div>
     </Reveal>
@@ -148,7 +148,7 @@ export default function CaseStudy({ project: p }: { project: SoftwareProject }) 
           </motion.ol>
           <Reveal className="mt-10 flex flex-col gap-4 border-t border-[var(--line)] pt-8">
             <span className="lab !text-gold">Built with</span>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2" data-pop>
               {Array.from(new Set(d.techGroups.flatMap((g) => g.items))).map((t) => (
                 <span key={t} className="rounded-full border border-[var(--line-strong)] px-[14px] py-[6px] text-[14px] text-copy">
                   {t}

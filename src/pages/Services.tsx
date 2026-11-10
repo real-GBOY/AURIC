@@ -122,7 +122,7 @@ function Hero() {
 /* 01 · Create — cream editorial with dropping collage (S2) */
 function Create() {
   return (
-    <section id="create" className="bg-cream py-[88px] text-[#141414] md:py-[120px]">
+    <section id="create" data-expand className="bg-cream py-[88px] text-[#141414] md:py-[120px]">
       <div className="wrap">
         <Chapter n="01" name="Create" line="Video, design, motion and voice from one directed team." cream />
         <motion.div

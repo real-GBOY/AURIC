@@ -8,6 +8,7 @@ import { EASE, useScrolledPast } from '../../lib/motion';
 import { href, t } from '../../lib/i18n';
 import SmoothScroll from '../motion/SmoothScroll';
 import ScrollEffects from '../motion/ScrollEffects';
+import ScrollScenes from '../motion/ScrollScenes';
 import PageTransition from '../motion/PageTransition';
 import Cursor from '../motion/Cursor';
 
@@ -32,6 +33,7 @@ export default function Layout({ children, mobileCta = 'dock' }: Props) {
         </a>
         <SmoothScroll />
         <ScrollEffects />
+        <ScrollScenes />
         <PageTransition />
         <Cursor />
         <Header />
