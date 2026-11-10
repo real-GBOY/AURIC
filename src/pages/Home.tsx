@@ -40,7 +40,12 @@ function Hero() {
           );
           const copy = SplitText.create(q('.hero-copy'), { type: 'lines', mask: 'lines', aria: 'none' });
 
-          const tl = gsap.timeline({ delay: 0.3, defaults: { ease: 'expo.out' } });
+          const tl = gsap.timeline({
+            delay: 0.3,
+            defaults: { ease: 'expo.out' },
+            // The masks only exist for the reveal; afterwards they would clip dots, commas and overhangs.
+            onComplete: () => gsap.set([...splits.flatMap((sp) => sp.masks), ...copy.masks], { overflow: 'visible', clipPath: 'none' }),
+          });
           tl.set(root.current, { autoAlpha: 1 });
 
           // Labels decode like a terminal
