@@ -7,6 +7,59 @@ import {
   HOTEL_OS_PROJECT, MIZAN_PROJECT, NOVA_PROJECT, OPTICARE_PROJECT, RAQIB_PROJECT, WEAVOLUTION_PROJECT,
   type CaseStudyProject,
 } from './data';
+import { isAr } from './i18n';
+
+/** Arabic for the short display strings (project write-ups stay in English for now). */
+const AR: Record<string, string> = {
+  // types
+  'Client project': 'مشروع عميل', 'AURIC product': 'منتج أوريك', Showcase: 'عرض توضيحي', Project: 'مشروع',
+  'Your work': 'من أعمالك', 'Internal tool': 'أداة داخلية',
+  // categories
+  'Law firm': 'مكتب محاماة', 'Real estate': 'عقارات', Hospitality: 'الضيافة', 'Enterprise, UAE': 'شركات، الإمارات',
+  Collaboration: 'التعاون', 'Security & inspection': 'الأمن والتفتيش', Ticketing: 'التذاكر', Healthcare: 'الرعاية الصحية',
+  'Student organisations': 'المنظمات الطلابية', Sustainability: 'الاستدامة', 'Interior design': 'التصميم الداخلي',
+  Video: 'فيديو', Branding: 'هوية بصرية', Content: 'محتوى', Motion: 'موشن', Design: 'تصميم',
+  'Video + voiceover': 'فيديو وتعليق صوتي', 'Developer tool': 'أداة للمطورين',
+  // services
+  'Design · Web · Mobile · AI': 'تصميم · ويب · جوال · ذكاء اصطناعي', 'Platform · AI': 'منصة · ذكاء اصطناعي',
+  'Platform · Website': 'منصة · موقع', 'ERP · Mobile app': 'نظام ERP · تطبيق جوال', 'Web · Mobile': 'ويب · جوال',
+  'Platform · Offline app': 'منصة · تطبيق يعمل دون اتصال', Platform: 'منصة', 'Platform on Odoo': 'منصة على Odoo',
+  Website: 'موقع', 'Video · Motion': 'فيديو · موشن', 'Video · Motion · Voiceover': 'فيديو · موشن · تعليق صوتي',
+  'Branding · Design': 'هوية · تصميم', 'Strategy · Content · Reels': 'استراتيجية · محتوى · ريلز',
+  'Motion graphics': 'موشن جرافيك', 'Print · Social design': 'مطبوعات · تصاميم سوشيال',
+  'Video · Voiceover': 'فيديو · تعليق صوتي', 'Content · Social': 'محتوى · سوشيال', 'Developer tooling': 'أدوات للمطورين',
+  // one-liners
+  'Practice management for a law firm, in Arabic and English.': 'إدارة مكتب محاماة بالعربية والإنجليزية.',
+  'A real-estate operating system with an AI copilot.': 'نظام تشغيل للتطوير العقاري مع مساعد ذكي.',
+  'Hotel operations and the booking website guests use.': 'تشغيل الفندق وموقع الحجز الذي يستخدمه الضيوف.',
+  'An ERP with CRM modules and an employee mobile app.': 'نظام ERP مع وحدات CRM وتطبيق جوال للموظفين.',
+  'Projects, contracts, messaging and payments in one platform.': 'المشاريع والعقود والمراسلة والمدفوعات في منصة واحدة.',
+  'Field inspections and quality control that work offline.': 'تفتيش ميداني ومراقبة جودة تعمل دون اتصال.',
+  'Event ticketing with manual payment checks.': 'تذاكر الفعاليات مع التحقق اليدوي من الدفع.',
+  'A clinic operating system from reception to lab.': 'نظام تشغيل للعيادات من الاستقبال حتى المعمل.',
+  'Management for student organisations and chapters.': 'إدارة المنظمات الطلابية وفروعها.',
+  'A circular-economy platform and marketplace.': 'منصة وسوق للاقتصاد الدائري.',
+  'A marketing site for an interior fit-out studio.': 'موقع تسويقي لاستوديو تصميم وتشطيب داخلي.',
+  'Clinic management for eye-care practices.': 'إدارة عيادات طب العيون.',
+  'The starter AURIC uses for every build.': 'القالب الذي تبدأ به أوريك كل مشروع تقني.',
+  // placeholders
+  '[Showreel]': '[الفيديو التعريفي]', '[Brand film]': '[فيلم العلامة]', '[Brand identity]': '[هوية بصرية]',
+  '[Reels campaign]': '[حملة ريلز]', '[Motion piece]': '[عمل موشن]', '[Poster series]': '[سلسلة بوسترات]',
+  '[Product video]': '[فيديو منتج]', '[Social content]': '[محتوى سوشيال]', '[Content campaign]': '[حملة محتوى]',
+  '[Year]': '[السنة]',
+  'Your strongest video work, cut into one reel.': 'أقوى أعمالك في الفيديو، في مقطع واحد.',
+  'A brand film, directed, edited and voiced.': 'فيلم للعلامة: إخراج ومونتاج وتعليق صوتي.',
+  'A full identity: logo, colors, type and applications.': 'هوية كاملة: الشعار والألوان والخطوط وتطبيقاتها.',
+  'A series of reels and posts planned and produced together.': 'سلسلة ريلز ومنشورات خُطط لها ونُفذت معًا.',
+  'Motion graphics for a launch or campaign.': 'موشن جرافيك لإطلاق أو حملة.',
+  'Posters and print for an event or brand.': 'بوسترات ومطبوعات لفعالية أو علامة.',
+  'A product video with voiceover.': 'فيديو منتج مع تعليق صوتي.',
+  'Social content produced every month.': 'محتوى سوشيال يُنتج كل شهر.',
+  // filters
+  All: 'الكل', 'Video & motion': 'فيديو وموشن', 'Design & branding': 'تصميم وهوية', 'Content & social': 'محتوى وسوشيال',
+  'Websites & apps': 'مواقع وتطبيقات',
+};
+const L = (s: string) => (isAr ? AR[s] ?? s : s);
 
 export type Group = 'video' | 'design' | 'content' | 'apps';
 export type MediaType = 'img' | 'video' | 'design' | 'reel' | 'term';
@@ -36,16 +89,16 @@ const sw = (
   slug,
   data,
   name: data.title,
-  cat: meta.cat,
-  kind: meta.kind,
-  services: meta.services,
+  cat: L(meta.cat),
+  kind: L(meta.kind),
+  services: L(meta.services),
   year: data.year,
   group: 'apps',
   type: 'img',
   img: meta.img ?? data.dashboardImages[0]?.src,
   href: `/work/${slug}`,
-  desc: meta.line,
-  line: meta.line,
+  desc: L(meta.line),
+  line: L(meta.line),
 });
 
 /** Software case studies, in portfolio order. */
@@ -68,7 +121,7 @@ export const softwareBySlug = (slug: string) => SOFTWARE.find((p) => p.slug === 
 
 const CREATIVE_HREF = '/case-studies/creative';
 const ph = (name: string, cat: string, group: Group, type: MediaType, services: string, desc: string): Entry => ({
-  name, cat, kind: 'Your work', services, year: '[Year]', group, type, href: CREATIVE_HREF, desc,
+  name: L(name), cat: L(cat), kind: L('Your work'), services: L(services), year: L('[Year]'), group, type, href: CREATIVE_HREF, desc: L(desc),
 });
 
 /** Creative placeholders (replace with real projects as they are added). */
@@ -87,8 +140,8 @@ export const CREATIVE = {
 const S = Object.fromEntries(SOFTWARE.map((p) => [p.slug, p])) as Record<string, SoftwareProject>;
 
 export const CREATE_AURIC: Entry = {
-  name: 'create-auric', cat: 'Developer tool', kind: 'Internal tool', services: 'Developer tooling', year: '2026',
-  group: 'apps', type: 'term', href: '/work', desc: 'The starter AURIC uses for every build.',
+  name: 'create-auric', cat: L('Developer tool'), kind: L('Internal tool'), services: L('Developer tooling'), year: '2026',
+  group: 'apps', type: 'term', href: '/work', desc: L('The starter AURIC uses for every build.'),
 };
 
 /** Work page archive: everything, mixed formats. */
@@ -115,9 +168,9 @@ export const CASE_STUDIES: Entry[] = [
 ];
 
 export const FILTERS: { id: 'all' | Group; name: string }[] = [
-  { id: 'all', name: 'All' },
-  { id: 'video', name: 'Video & motion' },
-  { id: 'design', name: 'Design & branding' },
-  { id: 'content', name: 'Content & social' },
-  { id: 'apps', name: 'Websites & apps' },
+  { id: 'all', name: L('All') },
+  { id: 'video', name: L('Video & motion') },
+  { id: 'design', name: L('Design & branding') },
+  { id: 'content', name: L('Content & social') },
+  { id: 'apps', name: L('Websites & apps') },
 ];

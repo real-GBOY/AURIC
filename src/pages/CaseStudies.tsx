@@ -6,6 +6,7 @@ import { PlayButton } from '../components/ui/Icons';
 import { TitleReveal } from '../components/ui/Reveal';
 import { CASE_STUDIES, FILTERS, type Group } from '../lib/projects';
 import { EASE } from '../lib/motion';
+import { ARROW, t } from '../lib/i18n';
 
 type F = 'all' | Group;
 
@@ -21,16 +22,16 @@ export default function CaseStudies() {
         <div className="wrap flex flex-col gap-10">
           <div className="flex flex-wrap items-end justify-between gap-8" data-hero-out>
             <TitleReveal
-              lines={['Case', <>studies<span className="text-gold">.</span></>]}
+              lines={t([<>Case</>, <>studies<span className="text-gold">.</span></>], [<>دراسات</>, <>الحالة<span className="text-gold">.</span></>])}
               style={{ fontSize: 'clamp(64px,13vw,200px)', lineHeight: 0.84, letterSpacing: '-0.06em' }}
             />
             <motion.div className="flex max-w-[340px] flex-col gap-[14px] pb-[18px]" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
-              <span className="lab !text-gold">{list.length} projects</span>
-              <p className="copy !text-base">The story behind each project: the goal, what we made and how it came together.</p>
-              <a href="/work" className="lab tap !text-cream hover:!text-gold">Visual portfolio →</a>
+              <span className="lab !text-gold">{list.length} {t('projects', 'مشروعًا')}</span>
+              <p className="copy !text-base">{t('The story behind each project: the goal, what we made and how it came together.', 'القصة وراء كل مشروع: الهدف، وما صنعناه، وكيف اكتمل.')}</p>
+              <a href="/work" className="lab tap !text-cream hover:!text-gold">{t('Visual portfolio', 'معرض الأعمال')} {ARROW}</a>
             </motion.div>
           </div>
-          <div className="no-scrollbar -mx-5 flex gap-[10px] overflow-x-auto border-t border-[var(--line)] px-5 pt-7 md:mx-0 md:flex-wrap md:px-0" role="group" aria-label="Filter case studies">
+          <div className="no-scrollbar -mx-5 flex gap-[10px] overflow-x-auto border-t border-[var(--line)] px-5 pt-7 md:mx-0 md:flex-wrap md:px-0" role="group" aria-label={t('Filter case studies', 'تصفية دراسات الحالة')}>
             {FILTERS.map((d) => (
               <button key={d.id} type="button" className="chip" aria-pressed={f === d.id} onClick={() => setF(d.id)}>
                 {d.name}
@@ -87,16 +88,16 @@ export default function CaseStudies() {
                         {p.name}
                       </span>
                       <span className="lab shrink-0 whitespace-nowrap !text-gold">
-                        {String(i + 1).padStart(2, '0')}<span className="hidden sm:inline"> · View →</span>
+                        {String(i + 1).padStart(2, '0')}<span className="hidden sm:inline"> · {t('View', 'عرض')} {ARROW}</span>
                       </span>
                     </div>
                   </div>
                   <div className="grid grid-cols-2 gap-4 pt-[18px] md:grid-cols-4">
                     {[
-                      ['Type', p.kind, true],
-                      ['Category', p.cat],
-                      ['Services', p.services],
-                      ['Year', p.year],
+                      [t('Type', 'النوع'), p.kind, true],
+                      [t('Category', 'المجال'), p.cat],
+                      [t('Services', 'الخدمات'), p.services],
+                      [t('Year', 'السنة'), p.year],
                     ].map(([k, v, gold]) => (
                       <div key={k as string} className="flex flex-col gap-[6px]">
                         <span className="lab">{k}</span>
@@ -111,7 +112,7 @@ export default function CaseStudies() {
         </motion.div>
       </section>
 
-      <BigCTA dark lines={['Next one', <>is <span className="text-gold">yours.</span></>]} size="clamp(56px,9vw,140px)" />
+      <BigCTA dark lines={t([<>Next one</>, <>is <span className="text-gold">yours.</span></>], [<>المشروع القادم</>, <><span className="text-gold">مشروعك.</span></>])} size="clamp(56px,9vw,140px)" />
     </Layout>
   );
 }

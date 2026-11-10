@@ -1,5 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react';
 import { PlayButton } from './Icons';
+import { t } from '../../lib/i18n';
 
 type VideoSlotProps = {
   /** Aspect ratio, e.g. '21/9'. */
@@ -22,7 +23,7 @@ type VideoSlotProps = {
  */
 export function VideoSlot({
   ratio = '16/9',
-  label = 'Your video',
+  label = t('Your video', 'فيديو من أعمالك'),
   src,
   poster,
   playSize = 64,
@@ -53,7 +54,7 @@ export function VideoSlot({
       className={`ph flex items-center justify-center ${className}`}
       style={{ aspectRatio: ratio, borderRadius: radius, ...style }}
       role="img"
-      aria-label={`Placeholder: ${label}`}
+      aria-label={`${t('Placeholder', 'مساحة مؤقتة')}: ${label}`}
     >
       <PlayButton size={playSize} />
       <span className="slot bottom-[14px] left-4">{label}</span>
@@ -99,7 +100,7 @@ export function Screen({ src, alt, ratio, className = '', style, imgClassName = 
 /** Cream "Aa" tile standing in for a design piece. */
 export function DesignSlot({
   ratio = '4/5',
-  label = 'Your design',
+  label = t('Your design', 'تصميمك هنا'),
   size = 80,
   className = '',
   style,
@@ -115,7 +116,7 @@ export function DesignSlot({
       className={`flex flex-col justify-between rounded-[10px] bg-cream p-[22px] text-[#141414] ${className}`}
       style={{ aspectRatio: ratio, ...style }}
       role="img"
-      aria-label={`Placeholder: ${label}`}
+      aria-label={`${t('Placeholder', 'مساحة مؤقتة')}: ${label}`}
     >
       <span className="font-display font-extrabold leading-[.9] tracking-[-0.05em]" style={{ fontSize: size }}>
         Aa
@@ -132,7 +133,7 @@ export function ReelSlot({ label, className = '', radius = 22 }: { label?: strin
       className={`ph flex items-center justify-center ${className}`}
       style={{ aspectRatio: '9/16', borderRadius: radius, border: '6px solid #202023' }}
       role="img"
-      aria-label={`Placeholder: ${label ?? 'Your reel'}`}
+      aria-label={`${t('Placeholder', 'مساحة مؤقتة')}: ${label ?? t('Your reel', 'ريل من أعمالك')}`}
     >
       <PlayButton size={48} />
     </div>

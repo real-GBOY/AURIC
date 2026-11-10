@@ -6,6 +6,7 @@ import { Screen } from '../components/ui/Media';
 import { FitLine, Reveal, TitleReveal } from '../components/ui/Reveal';
 import { SOFTWARE, type SoftwareProject } from '../lib/projects';
 import { usePinnedStrip } from '../lib/usePinnedStrip';
+import { ARROW, isAr, t } from '../lib/i18n';
 import { EASE, inView, rise, stagger, useDragScroll } from '../lib/motion';
 
 const pad = (n: number) => String(n).padStart(2, '0');
@@ -14,7 +15,7 @@ function Story({ label, children, first = false, muted = false }: { label: strin
   return (
     <Reveal className={`grid gap-[14px] border-b border-[var(--line)] py-10 md:grid-cols-[200px_minmax(0,1fr)] md:gap-10 md:py-12 ${first ? 'border-t' : ''}`}>
       <span className="lab !text-gold">{label}</span>
-      <div data-scrub-words className={`font-display font-medium leading-[1.4] tracking-[-0.01em] ${muted ? 'text-copy' : ''}`} style={{ fontSize: 'clamp(18px,1.7vw,25px)' }}>
+      <div data-scrub-words lang={isAr ? 'en' : undefined} dir={isAr ? 'ltr' : undefined} className={`font-display font-medium leading-[1.4] tracking-[-0.01em] ${muted ? 'text-copy' : ''}`} style={{ fontSize: 'clamp(18px,1.7vw,25px)' }}>
         {children}
       </div>
     </Reveal>
@@ -41,8 +42,8 @@ export default function CaseStudy({ project: p }: { project: SoftwareProject }) 
       <section className="overflow-hidden pt-8 md:pt-12">
         <div className="wrap flex flex-col gap-7" data-hero-out>
           <div className="flex flex-wrap items-center justify-between gap-4">
-            <a href="/case-studies" className="lab tap hover:!text-gold">← Case studies</a>
-            <span className="lab !text-gold">Case study · {pad(i + 1)}</span>
+            <a href="/case-studies" className="lab tap hover:!text-gold">{isAr ? '→' : '←'} {t('Case studies', 'دراسات الحالة')}</a>
+            <span className="lab !text-gold">{t('Case study', 'دراسة حالة')} · {pad(i + 1)}</span>
           </div>
           <div className="flex flex-wrap items-end justify-between gap-8">
             <TitleReveal
@@ -60,10 +61,10 @@ export default function CaseStudy({ project: p }: { project: SoftwareProject }) 
             variants={stagger(0.08, 0.5)}
           >
             {[
-              ['Type', p.kind, true],
-              ['Client', p.cat],
-              ['Services', p.services],
-              ['Year', p.year],
+              [t('Type', 'النوع'), p.kind, true],
+              [t('Client', 'العميل'), p.cat],
+              [t('Services', 'الخدمات'), p.services],
+              [t('Year', 'السنة'), p.year],
             ].map(([k, v, gold], n) => (
               <motion.div
                 key={k as string}
@@ -100,11 +101,11 @@ export default function CaseStudy({ project: p }: { project: SoftwareProject }) 
       {/* Story */}
       <section className="pb-20 md:pb-[120px]">
         <div className="wrap">
-          <Story label="The objective" first>
+          <Story label={t('The objective', 'الهدف')} first>
             {d.overview[0]}
           </Story>
-          {d.overview[1] && <Story label="What we did">{d.overview[1]}</Story>}
-          <Story label="Deliverables" muted>
+          {d.overview[1] && <Story label={t('What we did', 'ما قمنا به')}>{d.overview[1]}</Story>}
+          <Story label={t('Deliverables', 'المخرجات')} muted>
             {d.modules.map((m) => m.title).join(' · ')}
           </Story>
         </div>
@@ -115,8 +116,8 @@ export default function CaseStudy({ project: p }: { project: SoftwareProject }) 
         <section ref={stripSection} className="overflow-hidden bg-bg py-20 md:py-[120px]">
           <div className="wrap">
             <Reveal className="mb-10 flex flex-wrap items-end justify-between gap-6">
-              <h2 className="h2">Inside the product</h2>
-              <span className="lab">Drag sideways →</span>
+              <h2 className="h2">{t('Inside the product', 'داخل المنتج')}</h2>
+              <span className="lab">{t('Drag sideways', 'اسحب جانبيًا')} {ARROW}</span>
             </Reveal>
             <div ref={strip} className="strip !gap-6 pb-[14px]">
               {screens.map((s, n) => (
@@ -136,22 +137,22 @@ export default function CaseStudy({ project: p }: { project: SoftwareProject }) 
       <section data-stack className="py-20 md:py-[120px]">
         <div className="wrap">
           <Reveal>
-            <h2 className="h2 mb-10">What it does</h2>
+            <h2 className="h2 mb-10">{t('What it does', 'ماذا يفعل')}</h2>
           </Reveal>
           <motion.ol className="m-0 grid list-none gap-x-8 p-0 md:grid-cols-2 lg:grid-cols-3" initial="hidden" whileInView="visible" viewport={inView} variants={stagger(0.08)}>
             {d.features.slice(0, 6).map((f, n) => (
               <motion.li key={f} variants={rise} className="flex flex-col gap-[14px] border-t border-[rgba(244,241,232,.14)] py-[30px]">
                 <span className={`num-xl text-[48px] md:text-[56px] ${n === 0 || n === 5 ? 'text-gold' : 'stroke-gold'}`}>{pad(n + 1)}</span>
-                <span className="font-display text-[19px] font-medium leading-[1.3] md:text-[22px]">{f}</span>
+                <span lang={isAr ? 'en' : undefined} dir={isAr ? 'ltr' : undefined} className="font-display text-[19px] font-medium leading-[1.3] md:text-[22px]">{f}</span>
               </motion.li>
             ))}
           </motion.ol>
           <Reveal className="mt-10 flex flex-col gap-4 border-t border-[var(--line)] pt-8">
-            <span className="lab !text-gold">Built with</span>
+            <span className="lab !text-gold">{t('Built with', 'بُني باستخدام')}</span>
             <div className="flex flex-wrap gap-2" data-pop>
-              {Array.from(new Set(d.techGroups.flatMap((g) => g.items))).map((t) => (
-                <span key={t} className="rounded-full border border-[var(--line-strong)] px-[14px] py-[6px] text-[14px] text-copy">
-                  {t}
+              {Array.from(new Set(d.techGroups.flatMap((g) => g.items))).map((tech) => (
+                <span key={tech} className="rounded-full border border-[var(--line-strong)] px-[14px] py-[6px] text-[14px] text-copy">
+                  {tech}
                 </span>
               ))}
             </div>
@@ -162,7 +163,7 @@ export default function CaseStudy({ project: p }: { project: SoftwareProject }) 
       {/* The result */}
       <section className="pb-20 md:pb-[100px]">
         <div className="wrap">
-          <Story label="The result" first>
+          <Story label={t('The result', 'النتيجة')} first>
             {d.impact}
           </Story>
         </div>
@@ -174,9 +175,9 @@ export default function CaseStudy({ project: p }: { project: SoftwareProject }) 
         <section className="relative py-20 md:py-[110px]">
           <div className="wrap grid items-center gap-12 md:grid-cols-2">
             <div className="flex flex-col gap-[18px] transition-colors duration-500 group-hover:text-ink">
-              <span className="lab !text-gold transition-colors duration-500 group-hover:!text-ink">Next project</span>
+              <span className="lab !text-gold transition-colors duration-500 group-hover:!text-ink">{t('Next project', 'المشروع التالي')}</span>
               <FitLine className="font-display font-extrabold leading-[.82] tracking-[-0.06em]" style={{ fontSize: 'clamp(44px,7.5vw,120px)' }}>
-                {next.name} →
+                {next.name} {ARROW}
               </FitLine>
               <span className="lab transition-colors duration-500 group-hover:!text-ink">
                 {next.kind} · {next.cat}
@@ -188,9 +189,9 @@ export default function CaseStudy({ project: p }: { project: SoftwareProject }) 
       </a>
 
       <BigCTA
-        lines={[<>Need one<span className="text-gold">?</span></>]}
+        lines={[<>{t('Need one', 'تحتاج مثله')}<span className="text-gold">?</span></>]}
         size="clamp(56px,9vw,140px)"
-        secondary={{ label: isGithub ? 'View on GitHub ↗' : 'Visit live demo ↗', href: d.link, external: true }}
+        secondary={{ label: isGithub ? t('View on GitHub ↗', 'عرض على GitHub ↗') : t('Visit live demo ↗', 'شاهد النسخة الحية ↗'), href: d.link, external: true }}
       />
     </Layout>
   );

@@ -70,6 +70,7 @@ export default function Header() {
           <a
             href={otherLangHref()}
             lang={isAr ? 'en' : 'ar'}
+            hrefLang={isAr ? 'en' : 'ar'}
             className="lab tap min-w-11 justify-center px-1 !text-[12px] !text-cream transition-colors hover:!text-gold"
             aria-label={isAr ? 'English version' : 'النسخة العربية'}
           >

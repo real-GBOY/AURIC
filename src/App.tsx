@@ -8,12 +8,14 @@ import Team from './pages/Team';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
 import { softwareBySlug } from './lib/projects';
+import { basePath } from './lib/i18n';
 
 // Normalise the path: no trailing slash (except the root).
-const path = window.location.pathname.replace(/\/+$/, '') || '/';
+// Same routes in both languages: /ar/... renders the page in Arabic.
+const path = basePath;
 
 export default function App() {
-  if (path === '/' || path === '/ar') return <Home />;
+  if (path === '/') return <Home />;
   if (path === '/services') return <Services />;
   if (path === '/work') return <Work />;
   if (path === '/case-studies') return <CaseStudies />;

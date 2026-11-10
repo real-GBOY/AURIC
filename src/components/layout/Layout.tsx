@@ -12,6 +12,7 @@ import ScrollScenes from '../motion/ScrollScenes';
 import StackSections from '../motion/StackSections';
 import PageTransition from '../motion/PageTransition';
 import Cursor from '../motion/Cursor';
+import ArabicLinks from '../ArabicLinks';
 
 type Props = {
   children: ReactNode;
@@ -32,6 +33,7 @@ export default function Layout({ children, mobileCta = 'dock' }: Props) {
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-gold focus:px-4 focus:py-2 focus:text-[#141414]">
           {t('Skip to content', 'تخطَّ إلى المحتوى')}
         </a>
+        <ArabicLinks />
         <SmoothScroll />
         <ScrollEffects />
         <ScrollScenes />

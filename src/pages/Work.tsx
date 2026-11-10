@@ -8,6 +8,7 @@ import { DesignSlot, ReelSlot, Screen, VideoSlot } from '../components/ui/Media'
 import { Reveal, TitleReveal } from '../components/ui/Reveal';
 import { ARCHIVE, FEED, FILTERS, INDEX, type Entry, type Group } from '../lib/projects';
 import { SHOWREEL } from '../lib/content';
+import { ARROW, t } from '../lib/i18n';
 import { EASE, inView, rise, stagger, useDragScroll } from '../lib/motion';
 import { usePinnedStrip } from '../lib/usePinnedStrip';
 
@@ -33,16 +34,16 @@ function Hero() {
       {/* Desktop */}
       <div className="hidden md:block">
         <div className="wrap relative z-[2] flex flex-wrap items-end justify-between gap-6" data-hero-out>
-          <TitleReveal lines={[<>Work<span className="text-gold">.</span></>]} className="mega" style={{ fontSize: 'clamp(96px,17vw,250px)', lineHeight: 0.82, letterSpacing: '-0.06em' }} />
+          <TitleReveal lines={[<>{t('Work', 'الأعمال')}<span className="text-gold">.</span></>]} className="mega" style={{ fontSize: 'clamp(96px,17vw,250px)', lineHeight: 0.82, letterSpacing: '-0.06em' }} />
           <motion.div className="flex max-w-[340px] flex-col gap-[10px] pb-[58px]" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
-            <span className="lab !text-gold">Selected work · 2025—2026</span>
-            <p className="copy !text-base">Video, design, content and digital products. Made by one team.</p>
-            <a href="/case-studies" className="btn btn-line mt-2 w-fit !min-h-11 !px-5 !text-[14px]">Read the case studies →</a>
+            <span className="lab !text-gold">{t('Selected work · 2025—2026', 'أعمال مختارة · 2025—2026')}</span>
+            <p className="copy !text-base">{t('Video, design, content and digital products. Made by one team.', 'فيديو وتصميم ومحتوى ومنتجات رقمية، من فريق واحد.')}</p>
+            <a href="/case-studies" className="btn btn-line mt-2 w-fit !min-h-11 !px-5 !text-[14px]">{t('Read the case studies', 'اقرأ دراسات الحالة')} {ARROW}</a>
           </motion.div>
         </div>
         <motion.div className="wrap relative z-[1] -mt-9" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.9, ease: EASE }}>
           <div className="overflow-hidden rounded-[10px]" data-scrub-scale="0.9" data-cursor="view">
-            <VideoSlot ratio="21/9" label="Showreel · autoplay, muted loop" src={SHOWREEL.src} playSize={88} radius={10}>
+            <VideoSlot ratio="21/9" label={t('Showreel · autoplay, muted loop', 'الفيديو التعريفي · تشغيل تلقائي بدون صوت')} src={SHOWREEL.src} playSize={88} radius={10}>
               {!SHOWREEL.src && <span className="slot bottom-5 right-[22px] !text-[11px] !text-cream">00:00 / 01:30</span>}
             </VideoSlot>
           </div>
@@ -57,9 +58,9 @@ function Hero() {
           transition={{ duration: 0.8, ease: EASE }}
         >
           <PlayButton size={50} className="absolute left-[18px] top-[18px]" />
-          <span className="slot left-20 top-[30px]">Showreel · autoplay · your video</span>
-          <TitleReveal lines={[<>Work<span className="text-gold">.</span></>]} className="mega" style={{ fontSize: 92, lineHeight: 0.82, letterSpacing: '-0.06em' }} />
-          <span className="lab mt-[14px] !text-cream">Video · design · content · websites</span>
+          <span className="slot left-20 top-[30px]">{t('Showreel · autoplay · your video', 'الفيديو التعريفي · فيديو من أعمالك')}</span>
+          <TitleReveal lines={[<>{t('Work', 'الأعمال')}<span className="text-gold">.</span></>]} className="mega" style={{ fontSize: 92, lineHeight: 0.82, letterSpacing: '-0.06em' }} />
+          <span className="lab mt-[14px] !text-cream">{t('Video · design · content · websites', 'فيديو · تصميم · محتوى · مواقع')}</span>
         </motion.div>
       </div>
     </section>
@@ -72,10 +73,10 @@ function IndexPreview({ e }: { e: Entry }) {
     return (
       <div className="flex aspect-[4/3] flex-col justify-between rounded-lg bg-cream p-[26px] text-[#141414]">
         <span className="font-display text-[96px] font-extrabold leading-[.9] tracking-[-0.05em]">Aa</span>
-        <span className="lab !text-gold-deep">Design preview · your work</span>
+        <span className="lab !text-gold-deep">{t('Design preview · your work', 'معاينة تصميم · من أعمالك')}</span>
       </div>
     );
-  return <VideoSlot ratio="4/3" label="Video preview · plays on hover" radius={8} />;
+  return <VideoSlot ratio="4/3" label={t('Video preview · plays on hover', 'معاينة فيديو · تعمل عند المرور')} radius={8} />;
 }
 
 /* A2 · Interactive index: hover a project, the preview swaps */
@@ -86,11 +87,11 @@ function ProjectIndex() {
     <section className="hidden py-[120px] md:block">
       <div className="wrap">
         <ChapterHead
-          title="The index"
+          title={t('The index', 'الفهرس')}
           right={
             <div className="flex flex-wrap items-baseline gap-6">
-              <span className="lab">Hover a project · preview changes</span>
-              <a href="/case-studies" className="lab tap !text-gold">All case studies →</a>
+              <span className="lab">{t('Hover a project · preview changes', 'مرّر على مشروع · تتغير المعاينة')}</span>
+              <a href="/case-studies" className="lab tap !text-gold">{t('All case studies', 'كل دراسات الحالة')} {ARROW}</a>
             </div>
           }
         />
@@ -129,7 +130,7 @@ function ProjectIndex() {
               <span className="lab !text-gold">{cur.kind}</span>
             </div>
             <p className="copy !text-[15px]">{cur.desc}</p>
-            <a href={cur.href} className="lab tap !text-cream hover:!text-gold">Open case study →</a>
+            <a href={cur.href} className="lab tap !text-cream hover:!text-gold">{t('Open case study', 'افتح دراسة الحالة')} {ARROW}</a>
           </div>
         </div>
       </div>
@@ -143,23 +144,23 @@ function VideoChapter() {
   const section = useRef<HTMLElement>(null);
   usePinnedStrip(section, ref);
   const items = [
-    ['[Brand film]', 'Video edit'],
-    ['[Motion graphics]', 'Motion'],
-    ['[Product video]', 'Video + voiceover'],
-    ['[Event recap]', 'Video edit'],
+    [t('[Brand film]', '[فيلم العلامة]'), t('Video edit', 'مونتاج فيديو')],
+    [t('[Motion graphics]', '[موشن جرافيك]'), t('Motion', 'موشن')],
+    [t('[Product video]', '[فيديو منتج]'), t('Video + voiceover', 'فيديو وتعليق صوتي')],
+    [t('[Event recap]', '[ملخص فعالية]'), t('Video edit', 'مونتاج فيديو')],
   ];
   return (
     <section ref={section} className="hidden overflow-hidden bg-bg py-[120px] md:block">
       <div className="wrap">
-        <ChapterHead n="01" title="Video & motion" right={<span className="lab">Drag or scroll sideways →</span>} />
+        <ChapterHead n="01" title={t('Video & motion', 'فيديو وموشن')} right={<span className="lab">{t('Drag or scroll sideways', 'اسحب أو مرّر جانبيًا')} {ARROW}</span>} />
         <div ref={ref} className="strip" role="list" aria-label="Video projects">
-          {items.map(([t, tag]) => (
-            <a key={t} href="/case-studies/creative" role="listitem" data-cursor="view" className="group flex w-[560px] flex-col gap-[14px]">
+          {items.map(([title, tag]) => (
+            <a key={title} href="/case-studies/creative" role="listitem" data-cursor="view" className="group flex w-[560px] flex-col gap-[14px]">
               <div className="transition-transform duration-500 group-hover:scale-[1.02]">
-                <VideoSlot ratio="16/9" label="Your video" radius={8} />
+                <VideoSlot ratio="16/9" label={t('Your video', 'فيديو من أعمالك')} radius={8} />
               </div>
               <span className="flex justify-between">
-                <span className="h3 !text-[18px]">{t}</span>
+                <span className="h3 !text-[18px]">{title}</span>
                 <span className="lab">{tag}</span>
               </span>
             </a>
@@ -176,7 +177,7 @@ function DesignChapter() {
   return (
     <section data-expand className="hidden bg-cream py-[120px] text-[#141414] md:block">
       <div className="wrap">
-        <ChapterHead n="02" title="Design & branding" cream right={<span className="lab !text-[#4a4740]">Brand identities · posters · social design</span>} />
+        <ChapterHead n="02" title={t('Design & branding', 'تصميم وهوية')} cream right={<span className="lab !text-[#4a4740]">{t('Brand identities · posters · social design', 'هويات بصرية · بوسترات · تصاميم سوشيال')}</span>} />
         <motion.div
           className="grid grid-cols-2 gap-4 [grid-auto-rows:200px] lg:grid-cols-12 lg:[grid-auto-rows:120px]"
           data-parallax="0.05"
@@ -191,16 +192,16 @@ function DesignChapter() {
               <br />
               identity
             </span>
-            <span className="slot bottom-[22px] right-[22px]">Your design</span>
+            <span className="slot bottom-[22px] right-[22px]">{t('Your design', 'تصميمك هنا')}</span>
           </motion.div>
           <motion.div variants={tile} className="relative rounded-lg bg-gold lg:col-[6/9] lg:row-[1/3]">
-            <span className="slot bottom-[14px] left-4 !text-[#141414]">Logo system</span>
+            <span className="slot bottom-[14px] left-4 !text-[#141414]">{t('Logo system', 'نظام الشعار')}</span>
           </motion.div>
           <motion.div variants={tile} className="relative rounded-lg bg-sand lg:col-[9/13] lg:row-[1/4]">
-            <span className="slot bottom-[14px] left-4 !text-[#4a4740]">Poster</span>
+            <span className="slot bottom-[14px] left-4 !text-[#4a4740]">{t('Poster', 'بوستر')}</span>
           </motion.div>
           <motion.div variants={tile} className="relative rounded-lg bg-surface-2 lg:col-[6/9] lg:row-[3/5]">
-            <span className="slot bottom-[14px] left-4">Social post</span>
+            <span className="slot bottom-[14px] left-4">{t('Social post', 'منشور سوشيال')}</span>
           </motion.div>
           <motion.div variants={tile} className="flex gap-2 rounded-lg bg-[#141414] p-[14px] lg:col-[9/13] lg:row-[4/5]" aria-label="Colour palette">
             {['#dca733', '#f4f1e8', '#3c8f6a', '#2f7db7'].map((c) => (
@@ -218,7 +219,7 @@ function ContentChapter() {
   return (
     <section data-stack className="hidden py-[120px] md:block">
       <div className="wrap">
-        <ChapterHead n="03" title="Content & social" right={<span className="lab">Reels · campaigns · content plans</span>} />
+        <ChapterHead n="03" title={t('Content & social', 'محتوى وسوشيال')} right={<span className="lab">{t('Reels · campaigns · content plans', 'ريلز · حملات · خطط محتوى')}</span>} />
         <motion.div className="grid grid-cols-5 gap-3 lg:gap-4" initial="hidden" whileInView="visible" viewport={inView} variants={stagger(0.1)}>
           {[1, 2, 3, 4, 5].map((n) => (
             <motion.div
@@ -229,7 +230,7 @@ function ContentChapter() {
               <motion.div animate={{ y: [0, n % 2 ? -8 : 8, 0] }} transition={{ duration: 5 + n * 0.4, repeat: Infinity, ease: 'easeInOut' }}>
                 <ReelSlot label={`Reel ${pad(n)}`} />
               </motion.div>
-              <span className="lab">[Reel {pad(n)}]</span>
+              <span className="lab">[{t('Reel', 'ريل')} {pad(n)}]</span>
             </motion.div>
           ))}
         </motion.div>
@@ -244,7 +245,7 @@ function SoftwareChapter() {
   return (
     <section className="hidden overflow-hidden bg-bg py-[120px] md:block">
       <div className="wrap">
-        <ChapterHead n="04" title="Websites & apps" right={<a href="/work/mizan" className="lab tap !text-gold">Mizan case study →</a>} />
+        <ChapterHead n="04" title={t('Websites & apps', 'مواقع وتطبيقات')} right={<a href="/work/mizan" className="lab tap !text-gold">{t('Mizan case study', 'دراسة حالة ميزان')} {ARROW}</a>} />
         <div className="relative h-[520px] lg:h-[600px]">
           <motion.a href="/work/atlas" className="absolute left-0 top-5 z-[1] h-[360px] w-[58%] lg:h-[420px]" {...up(0)}>
             <div className="h-full" data-parallax="0.05"><Screen src="/work/atlas/dashboard.png" alt="Atlas dashboard" className="h-full" /></div>
@@ -256,7 +257,7 @@ function SoftwareChapter() {
             <div className="h-full" data-parallax="0.24"><Screen src="/work/nova/mobile-home.jpg" alt="Nova mobile app" bar={false} radius={28} className="h-full" /></div>
           </motion.a>
           <div className="absolute bottom-0 left-0 z-[4] flex flex-wrap gap-7">
-            {[['Mizan', 'Client project'], ['Atlas', 'AURIC product'], ['Nova', 'Client project']].map(([n, k]) => (
+            {[['Mizan', t('Client project', 'مشروع عميل')], ['Atlas', t('AURIC product', 'منتج أوريك')], ['Nova', t('Client project', 'مشروع عميل')]].map(([n, k]) => (
               <span key={n} className="lab">
                 <span className="text-cream">{n}</span> · {k}
               </span>
@@ -290,7 +291,7 @@ function Archive() {
   return (
     <section className="hidden py-[120px] md:block">
       <div className="wrap">
-        <ChapterHead n="05" title="The archive" right={<span className="lab">{items.length} projects</span>} />
+        <ChapterHead n="05" title={t('The archive', 'الأرشيف')} right={<span className="lab">{items.length} {t('projects', 'مشروعًا')}</span>} />
         <FilterChips f={f} setF={setF} list={ARCHIVE} className="mb-10 flex-wrap" />
         <motion.div layout className="grid grid-cols-2 gap-x-5 gap-y-9 lg:grid-cols-4">
           <AnimatePresence mode="popLayout">
@@ -331,8 +332,8 @@ function PhoneFeed() {
       </div>
       <section className="wrap pb-16 pt-6">
         <div className="mb-4 flex justify-between">
-          <span className="lab">{items.length} projects</span>
-          <span className="lab !text-gold">Tap a project</span>
+          <span className="lab">{items.length} {t('projects', 'مشروعًا')}</span>
+          <span className="lab !text-gold">{t('Tap a project', 'اضغط على مشروع')}</span>
         </div>
         <motion.div layout className="grid grid-cols-2 gap-x-3 gap-y-5 [grid-auto-flow:dense]">
           {items.map((p) => {
@@ -340,7 +341,7 @@ function PhoneFeed() {
             return (
               <motion.a key={p.name} layout href={p.href} className={`flex flex-col gap-[10px] ${wide ? 'col-span-2' : ''}`} initial="hidden" whileInView="visible" viewport={inView} variants={rise}>
                 {p.type === 'img' && <Screen src={p.img!} alt={`${p.name} screen`} ratio="16/10" />}
-                {p.type === 'video' && <VideoSlot ratio="16/10" label="Your video" playSize={50} />}
+                {p.type === 'video' && <VideoSlot ratio="16/10" label={t('Your video', 'فيديو من أعمالك')} playSize={50} />}
                 {p.type === 'design' && <DesignSlot ratio="4/5" size={46} className="!rounded-xl !p-[14px]" />}
                 {p.type === 'reel' && (
                   <div className="ph flex aspect-[4/5] items-center justify-center rounded-[18px] border-[5px] !border-surface-2">
@@ -373,10 +374,10 @@ function PhoneFeed() {
       <section className="wrap pb-6">
         <a href="/case-studies" className="flex items-center justify-between rounded-[14px] bg-gold px-5 py-6 text-[#141414]">
           <span className="flex flex-col gap-[6px]">
-            <span className="lab !text-[#3a3010]">Deep dives</span>
-            <span className="font-display text-[28px] font-extrabold leading-none tracking-[-0.04em]">Case studies</span>
+            <span className="lab !text-[#3a3010]">{t('Deep dives', 'قراءة معمّقة')}</span>
+            <span className="font-display text-[28px] font-extrabold leading-none tracking-[-0.04em]">{t('Case studies', 'دراسات الحالة')}</span>
           </span>
-          <span className="text-[28px]">→</span>
+          <span className="text-[28px]">{ARROW}</span>
         </a>
       </section>
     </div>
@@ -394,7 +395,7 @@ export default function Work() {
       <ContentChapter />
       <SoftwareChapter />
       <Archive />
-      <BigCTA dark lines={[<>Yours<span className="text-gold">?</span></>]} text="Your project could be the next one here." size="clamp(64px,10vw,150px)" />
+      <BigCTA dark lines={[<>{t('Yours', 'مشروعك')}<span className="text-gold">?</span></>]} text={t('Your project could be the next one here.', 'قد يكون مشروعك هو التالي هنا.')} size="clamp(64px,10vw,150px)" />
     </Layout>
   );
 }

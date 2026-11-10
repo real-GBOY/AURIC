@@ -3,38 +3,41 @@ import Layout from '../components/layout/Layout';
 import BigCTA from '../components/layout/BigCTA';
 import { Reveal, TitleReveal } from '../components/ui/Reveal';
 import { EASE, inView, rise, stagger } from '../lib/motion';
+import { t } from '../lib/i18n';
 
 const isRtl = () => typeof document !== 'undefined' && document.dir === 'rtl';
 
 // Founder details and portraits. Leave `photo` empty to show the labelled placeholder.
 const FOUNDER = {
-  first: 'Mahmoud',
-  last: 'Nayel',
-  role: 'Founder',
+  first: t('Mahmoud', 'محمود'),
+  last: t('Nayel', 'نايل'),
+  role: t('Founder', 'المؤسس'),
   linkedin: '',
   photo: '',
-  bio: '[Short bio: your background and what you lead at AURIC.]',
+  bio: t('[Short bio: your background and what you lead at AURIC.]', '[نبذة قصيرة: خلفيتك وما تقوده في أوريك.]'),
 };
 
 /** Only confirmed members. Empty entries render as placeholders. */
 const CORE: { name: string; role: string; photo: string }[] = [
-  { name: '[Name]', role: '[Role]', photo: '' },
-  { name: '[Name]', role: '[Role]', photo: '' },
-  { name: '[Name]', role: '[Role]', photo: '' },
-  { name: '[Name]', role: '[Role]', photo: '' },
+  { name: t('[Name]', '[الاسم]'), role: t('[Role]', '[الدور]'), photo: '' },
+  { name: t('[Name]', '[الاسم]'), role: t('[Role]', '[الدور]'), photo: '' },
+  { name: t('[Name]', '[الاسم]'), role: t('[Role]', '[الدور]'), photo: '' },
+  { name: t('[Name]', '[الاسم]'), role: t('[Role]', '[الدور]'), photo: '' },
 ];
 
 const NETWORK = [
-  'Graphic designers', 'Video editors', 'Motion designers', 'Voiceover artists', 'Audio editors', 'Copywriters',
-  'Content creators', 'Marketing strategists', 'Software engineers', 'AI specialists', 'Project managers',
+  ...t(
+    ['Graphic designers', 'Video editors', 'Motion designers', 'Voiceover artists', 'Audio editors', 'Copywriters', 'Content creators', 'Marketing strategists', 'Software engineers', 'AI specialists', 'Project managers'],
+    ['مصممو جرافيك', 'محررو فيديو', 'مصممو موشن', 'معلقون صوتيون', 'مهندسو صوت', 'كتّاب محتوى', 'صنّاع محتوى', 'استراتيجيو تسويق', 'مهندسو برمجيات', 'متخصصو ذكاء اصطناعي', 'مديرو مشاريع'],
+  ),
 ];
 
 const STEPS = [
-  { t: 'Your brief', d: 'One conversation, one lead.' },
-  { t: 'The right team', d: 'Specialists picked for the job.' },
-  { t: 'Made together', d: 'Design, content and code to one plan.' },
-  { t: 'Reviewed', d: 'Checked before you see it.' },
-  { t: 'Delivered', d: 'On time, one point of contact.' },
+  { t: t('Your brief', 'موجزك'), d: t('One conversation, one lead.', 'محادثة واحدة، ومسؤول واحد.') },
+  { t: t('The right team', 'الفريق المناسب'), d: t('Specialists picked for the job.', 'متخصصون يُختارون للمهمة.') },
+  { t: t('Made together', 'صُنع معًا'), d: t('Design, content and code to one plan.', 'تصميم ومحتوى وبرمجة وفق خطة واحدة.') },
+  { t: t('Reviewed', 'مُراجَع'), d: t('Checked before you see it.', 'يُراجَع قبل أن تراه.') },
+  { t: t('Delivered', 'مُسلَّم'), d: t('On time, one point of contact.', 'في الموعد، ونقطة تواصل واحدة.') },
 ];
 
 /* T2 · portrait: greyscale until hover */
@@ -56,7 +59,7 @@ export default function Team() {
       <section className="pb-16 pt-10 md:pb-[88px] md:pt-14">
         <div className="wrap flex flex-wrap items-end justify-between gap-8" data-hero-out>
           <TitleReveal
-            lines={['The', <>people<span className="text-gold">.</span></>]}
+            lines={t([<>The</>, <>people<span className="text-gold">.</span></>], [<>الفريق</>, <>والناس<span className="text-gold">.</span></>])}
             style={{ fontSize: 'clamp(72px,15vw,230px)', lineHeight: 0.84, letterSpacing: '-0.06em' }}
           />
           <motion.p className="copy max-w-[36ch] pb-[18px]" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
@@ -69,13 +72,13 @@ export default function Team() {
       <section className="pb-20 md:pb-[120px]">
         <div className="wrap">
           <div className="mb-7 flex items-end justify-between">
-            <span className="lab !text-gold">Founder</span>
+            <span className="lab !text-gold">{t('Founder', 'المؤسس')}</span>
             <span className="lab">01</span>
           </div>
           <div className="grid items-end gap-6 md:grid-cols-2">
             <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={inView} transition={{ duration: 0.9, ease: EASE }}>
               <Portrait photo={FOUNDER.photo} alt={`${FOUNDER.first} ${FOUNDER.last}`} ratio="4/5">
-                {!FOUNDER.photo && <span className="lab absolute left-6 top-[22px] !text-[11px] !text-gold">Portrait · placeholder</span>}
+                {!FOUNDER.photo && <span className="lab absolute left-6 top-[22px] !text-[11px] !text-gold">{t('Portrait · placeholder', 'صورة · مساحة مؤقتة')}</span>}
               </Portrait>
             </motion.div>
             <div className="flex flex-col gap-[22px] pb-3">
@@ -104,15 +107,15 @@ export default function Team() {
       <section data-stack className="bg-bg py-20 md:py-[120px]">
         <div className="wrap">
           <Reveal className="mb-10 flex flex-wrap items-end justify-between gap-6">
-            <h2 className="h2">Core team</h2>
-            <span className="lab">02 · confirmed members only</span>
+            <h2 className="h2">{t('Core team', 'الفريق الأساسي')}</h2>
+            <span className="lab">{t('02 · confirmed members only', '02 · الأعضاء المؤكدون فقط')}</span>
           </Reveal>
           <motion.div className="grid grid-cols-2 gap-5 lg:grid-cols-4" initial="hidden" whileInView="visible" viewport={inView} variants={stagger(0.1)}>
             {CORE.map((m, i) => (
               <motion.div key={i} variants={rise} className={`flex flex-col gap-[14px] ${i % 2 ? 'mt-10' : ''}`}>
                 <Portrait photo={m.photo} alt={m.name} ratio="3/4">
                   <span className="num-xl stroke-gold absolute left-4 top-3 text-[44px] [-webkit-text-stroke-width:1.2px]">{String(i + 1).padStart(2, '0')}</span>
-                  {!m.photo && <span className="lab absolute bottom-[14px] left-4 !text-[11px] !text-gold">Portrait · placeholder</span>}
+                  {!m.photo && <span className="lab absolute bottom-[14px] left-4 !text-[11px] !text-gold">{t('Portrait · placeholder', 'صورة · مساحة مؤقتة')}</span>}
                 </Portrait>
                 <span className="h3 !text-[19px]">{m.name}</span>
                 <span className="lab">{m.role}</span>
@@ -127,8 +130,8 @@ export default function Team() {
         <div className="wrap">
           <Reveal className="mb-10 flex flex-wrap items-end justify-between gap-6">
             <div className="flex flex-col gap-[14px]">
-              <h2 className="h2">Extended network</h2>
-              <p className="copy max-w-[48ch]">Specialists we brief, review and manage. They work through AURIC, so quality stays ours.</p>
+              <h2 className="h2">{t('Extended network', 'الشبكة الموسّعة')}</h2>
+              <p className="copy max-w-[48ch]">{t('Specialists we brief, review and manage. They work through AURIC, so quality stays ours.', 'متخصصون نوجّههم ونراجع عملهم وندير مشاريعهم. يعملون من خلال أوريك، فتبقى الجودة مسؤوليتنا.')}</p>
             </div>
             <span className="lab">03</span>
           </Reveal>
@@ -156,7 +159,7 @@ export default function Team() {
       <section className="bg-bg py-20 md:py-[120px]">
         <div className="wrap">
           <Reveal className="mb-10 flex flex-wrap items-end justify-between gap-6">
-            <h2 className="h2">How we work together</h2>
+            <h2 className="h2">{t('How we work together', 'كيف نعمل معًا')}</h2>
             <span className="lab">04</span>
           </Reveal>
           <motion.ol
@@ -181,7 +184,7 @@ export default function Team() {
         </div>
       </section>
 
-      <BigCTA lines={['Work', <>with us<span className="text-gold">.</span></>]} size="clamp(60px,10vw,150px)" />
+      <BigCTA lines={t([<>Work</>, <>with us<span className="text-gold">.</span></>], [<>اعمل</>, <>معنا<span className="text-gold">.</span></>])} size="clamp(60px,10vw,150px)" />
     </Layout>
   );
 }

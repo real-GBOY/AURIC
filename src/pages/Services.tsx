@@ -6,6 +6,7 @@ import { PlayButton } from '../components/ui/Icons';
 import { Screen } from '../components/ui/Media';
 import { Reveal, TitleReveal } from '../components/ui/Reveal';
 import { CTA_HREF } from '../lib/site';
+import { t } from '../lib/i18n';
 import { EASE, drop, inView, rise, stagger } from '../lib/motion';
 import { gsap, ScrollTrigger, useGSAP } from '../lib/gsap';
 import { AuricMark } from '../components/Logo';
@@ -45,7 +46,7 @@ function Chapter({ n, name, line, cream = false, outline = false }: { n: string;
     <div className="mb-14 flex flex-wrap items-end justify-between gap-6 lg:flex-nowrap">
       <div className="flex min-w-0 max-w-full flex-col gap-[10px] lg:shrink-0" data-scrub-x="-4">
         <span className={`lab ${cream ? '!text-gold-deep' : '!text-gold'}`}>
-          {n} / AURIC {name}
+          {n} / {t('AURIC', 'أوريك')} {name}
         </span>
         <TitleReveal
           as="h2"
@@ -80,20 +81,20 @@ function ChapterFoot({ note, cta, dark = false, noteIsLab = false }: { note?: Re
 /* S1 · Hero with the division index */
 function Hero() {
   const idx = [
-    { id: 'create', w: 'Create', l: '01 · Video · design · voice' },
-    { id: 'strategy', w: 'Strategy', l: '02 · Plans · content' },
-    { id: 'build', w: 'Build', l: '03 · Websites · apps · AI' },
-    { id: 'manage', w: 'Manage', l: '04 · Delivery', outline: true },
+    { id: 'create', w: t('Create', 'إبداع'), l: t('01 · Video · design · voice', '01 · فيديو · تصميم · صوت') },
+    { id: 'strategy', w: t('Strategy', 'استراتيجية'), l: t('02 · Plans · content', '02 · خطط · محتوى') },
+    { id: 'build', w: t('Build', 'تطوير'), l: t('03 · Websites · apps · AI', '03 · مواقع · تطبيقات · ذكاء اصطناعي') },
+    { id: 'manage', w: t('Manage', 'إدارة'), l: t('04 · Delivery', '04 · التسليم'), outline: true },
   ];
   return (
     <section className="pb-24 pt-12 md:pt-16">
       <div className="wrap flex flex-col gap-14">
         <div className="flex flex-col gap-7" data-hero-out>
-          <span className="lab !text-gold">Services</span>
+          <span className="lab !text-gold">{t('Services', 'الخدمات')}</span>
           <div className="flex flex-wrap items-end justify-between gap-8">
-            <TitleReveal lines={[<>One partner<span className="text-gold">.</span></>]} style={{ fontSize: 'clamp(52px,10vw,150px)' }} />
+            <TitleReveal lines={[<>{t('One partner', 'شريك واحد')}<span className="text-gold">.</span></>]} style={{ fontSize: 'clamp(52px,10vw,150px)' }} />
             <motion.p className="copy max-w-[30ch] pb-3" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
-              Four divisions planned together, so every part of your project fits.
+              {t('Four divisions planned together, so every part of your project fits.', 'أربعة أقسام تُخطَّط معًا، لتتكامل كل أجزاء مشروعك.')}
             </motion.p>
           </div>
         </div>
@@ -125,7 +126,7 @@ function Create() {
   return (
     <section id="create" data-expand data-stack className="bg-cream py-[88px] text-[#141414] md:py-[120px]">
       <div className="wrap">
-        <Chapter n="01" name="Create" line="Video, design, motion and voice from one directed team." cream />
+        <Chapter n="01" name={t('Create', 'إبداع')} line={t('Video, design, motion and voice from one directed team.', 'فيديو وتصميم وموشن وصوت من فريق واحد بإدارة واحدة.')} cream />
         <motion.div
           className="mb-16 grid grid-cols-2 gap-4 [grid-auto-rows:120px] md:grid-cols-12 md:[grid-auto-rows:96px]"
           data-parallax="0.06"
@@ -136,24 +137,24 @@ function Create() {
         >
           <motion.div variants={drop} className="relative col-span-2 row-span-2 flex items-center justify-center rounded-[10px] bg-[#141414] md:col-[1/8] md:row-[1/5]">
             <PlayButton size={80} />
-            <span className="slot bottom-4 left-[18px]">Video edit · your work</span>
+            <span className="slot bottom-4 left-[18px]">{t('Video edit · your work', 'مونتاج فيديو · من أعمالك')}</span>
           </motion.div>
           <motion.div variants={drop} className="relative col-span-2 flex items-end rounded-[10px] bg-gold p-5 md:col-[8/13] md:row-[1/3]">
             <span className="font-display text-[64px] font-extrabold leading-[.9] tracking-[-0.05em]">Aa</span>
-            <span className="slot bottom-4 right-[18px] !text-[#141414]">Brand identity</span>
+            <span className="slot bottom-4 right-[18px] !text-[#141414]">{t('Brand identity', 'هوية بصرية')}</span>
           </motion.div>
           <motion.div variants={drop} className="relative rounded-[10px] bg-[#141414] md:col-[8/11] md:row-[3/5]">
-            <span className="slot bottom-[14px] left-4">Poster</span>
+            <span className="slot bottom-[14px] left-4">{t('Poster', 'بوستر')}</span>
           </motion.div>
           <motion.div variants={drop} className="relative rounded-[10px] bg-sand md:col-[11/13] md:row-[3/5]">
-            <span className="slot bottom-3 left-[14px] !text-[#4a4740]">Motion</span>
+            <span className="slot bottom-3 left-[14px] !text-[#4a4740]">{t('Motion', 'موشن')}</span>
           </motion.div>
         </motion.div>
         <ServiceList
           cream
-          items={['Graphic Design', 'Visual Design', 'Creative Direction', 'Content Creation', 'Video Editing', 'Audio Editing', 'Voiceover Production', 'Motion Graphics', 'Creative Marketing Assets']}
+          items={t(['Graphic Design', 'Visual Design', 'Creative Direction', 'Content Creation', 'Video Editing', 'Audio Editing', 'Voiceover Production', 'Motion Graphics', 'Creative Marketing Assets'], ['تصميم جرافيك', 'تصميم بصري', 'إدارة إبداعية', 'صناعة المحتوى', 'مونتاج الفيديو', 'هندسة الصوت', 'التعليق الصوتي', 'موشن جرافيك', 'مواد تسويقية إبداعية'])}
         />
-        <ChapterFoot note="Brand identities · Social and ad creatives · Reels · Motion · Voiceovers · Print" cta="Discuss creative work" dark />
+        <ChapterFoot note={t('Brand identities · Social and ad creatives · Reels · Motion · Voiceovers · Print', 'هويات بصرية · تصاميم سوشيال وإعلانات · ريلز · موشن · تعليق صوتي · مطبوعات')} cta={t('Discuss creative work', 'ناقش عملًا إبداعيًا')} dark />
       </div>
     </section>
   );
@@ -170,12 +171,12 @@ function Strategy() {
   return (
     <section id="strategy" className="py-[88px] md:py-[120px]">
       <div className="wrap">
-        <Chapter n="02" name="Strategy" line="A plan before anything is made, so every piece of content has a job." />
+        <Chapter n="02" name={t('Strategy', 'استراتيجية')} line={t('A plan before anything is made, so every piece of content has a job.', 'خطة قبل أي تنفيذ، ليكون لكل قطعة محتوى هدف.')} />
         <div className="mb-16 grid items-start gap-14 lg:grid-cols-2">
           <div className="flex flex-col gap-[14px] rounded-[10px] bg-surface p-[30px]">
             <div className="flex justify-between">
-              <span className="h3 !text-[17px]">Content calendar</span>
-              <span className="lab !text-[11px] !text-gold">Example layout</span>
+              <span className="h3 !text-[17px]">{t('Content calendar', 'تقويم المحتوى')}</span>
+              <span className="lab !text-[11px] !text-gold">{t('Example layout', 'مثال توضيحي')}</span>
             </div>
             <motion.div
               className="grid grid-cols-7 gap-2 [grid-auto-rows:44px] md:[grid-auto-rows:56px]"
@@ -199,9 +200,9 @@ function Strategy() {
           </div>
           <motion.div initial="hidden" whileInView="visible" viewport={inView} variants={stagger(0.12)}>
             {[
-              { w: 'Plan', d: 'Goals, audience and message', cls: 'text-gold' },
-              { w: 'Make', d: 'Produced by AURIC Create', cls: '' },
-              { w: 'Publish', d: 'On a calendar, reviewed monthly', cls: 'stroke-cream' },
+              { w: t('Plan', 'نخطط'), d: t('Goals, audience and message', 'الأهداف والجمهور والرسالة'), cls: 'text-gold' },
+              { w: t('Make', 'ننفّذ'), d: t('Produced by AURIC Create', 'من إنتاج أوريك إبداع'), cls: '' },
+              { w: t('Publish', 'ننشر'), d: t('On a calendar, reviewed monthly', 'وفق تقويم، مع مراجعة شهرية'), cls: 'stroke-cream' },
             ].map((r) => (
               <motion.div key={r.w} variants={rise} className="flex flex-wrap items-baseline gap-5 border-b border-[var(--line)] py-[22px]">
                 <span className={`font-display text-[44px] font-extrabold leading-none tracking-[-0.05em] md:text-[56px] ${r.cls}`}>{r.w}</span>
@@ -210,8 +211,8 @@ function Strategy() {
             ))}
           </motion.div>
         </div>
-        <ServiceList items={['Marketing Planning', 'Digital Strategy', 'Content Strategy', 'Campaign Planning', 'Digital Presence Strategy', 'Creative Marketing', 'Brand Communication Planning']} />
-        <ChapterFoot note="We plan and measure. We don't promise guaranteed results." noteIsLab cta="Discuss a plan" />
+        <ServiceList items={t(['Marketing Planning', 'Digital Strategy', 'Content Strategy', 'Campaign Planning', 'Digital Presence Strategy', 'Creative Marketing', 'Brand Communication Planning'], ['تخطيط تسويقي', 'استراتيجية رقمية', 'استراتيجية المحتوى', 'تخطيط الحملات', 'استراتيجية الحضور الرقمي', 'تسويق إبداعي', 'تخطيط تواصل العلامة'])} />
+        <ChapterFoot note={t("We plan and measure. We don't promise guaranteed results.", 'نخطط ونقيس، ولا نعد بنتائج مضمونة.')} noteIsLab cta={t('Discuss a plan', 'ناقش خطة')} />
       </div>
     </section>
   );
@@ -228,7 +229,7 @@ function Build() {
   return (
     <section id="build" className="overflow-hidden bg-bg py-[88px] md:py-[120px]">
       <div className="wrap">
-        <Chapter n="03" name="Build" line="Websites, apps and systems, engineered on a tested foundation." />
+        <Chapter n="03" name={t('Build', 'تطوير')} line={t('Websites, apps and systems, engineered on a tested foundation.', 'مواقع وتطبيقات وأنظمة مبنية على أساس مُجرَّب.')} />
         <div className="relative mb-16 h-[340px] sm:h-[460px] md:h-[560px]">
           <motion.div className="absolute left-0 top-0 z-[1] h-[62%] w-[78%] md:h-[400px] md:w-[60%]" {...up(0)}>
             <div className="h-full" data-parallax="0.04"><Screen src="/work/atlas/dashboard.png" alt="Atlas dashboard" className="h-full" /></div>
@@ -241,9 +242,9 @@ function Build() {
           </motion.div>
         </div>
         <ServiceList
-          items={['Custom Software', 'Web Development', 'Mobile Apps', 'Digital Platforms', 'Business Systems', 'Internal Tools', 'AI Integration', 'AI Automation', 'Process Automation', 'APIs and Integrations', 'Digital Products']}
+          items={t(['Custom Software', 'Web Development', 'Mobile Apps', 'Digital Platforms', 'Business Systems', 'Internal Tools', 'AI Integration', 'AI Automation', 'Process Automation', 'APIs and Integrations', 'Digital Products'], ['برمجيات مخصصة', 'تطوير المواقع', 'تطبيقات الجوال', 'منصات رقمية', 'أنظمة الأعمال', 'أدوات داخلية', 'دمج الذكاء الاصطناعي', 'أتمتة بالذكاء الاصطناعي', 'أتمتة العمليات', 'واجهات برمجية وتكاملات', 'منتجات رقمية'])}
         />
-        <ChapterFoot note="Mizan · Atlas · HotelOS · Nova · create-auric" noteIsLab cta="Discuss a build" />
+        <ChapterFoot note="Mizan · Atlas · HotelOS · Nova · create-auric" noteIsLab cta={t('Discuss a build', 'ناقش مشروعًا تقنيًا')} />
       </div>
     </section>
   );
@@ -251,13 +252,13 @@ function Build() {
 
 /* 04 · Manage — scroll-driven process: a gold dial fills as each stage lights up (S5) */
 const MANAGE_STEPS = [
-  { t: 'Brief', d: 'Scope and plan agreed', x: 'Kick-off call · written scope · timeline' },
-  { t: 'Team', d: 'The right specialists briefed', x: 'Designers · editors · strategists · engineers' },
-  { t: 'Make', d: 'Weekly updates', x: 'Shared progress you can follow' },
-  { t: 'Review', d: 'Checked before you see it', x: 'Quality and brand check by AURIC' },
-  { t: 'Deliver', d: 'On time, supported after', x: 'Handover, files and aftercare' },
+  { t: t('Brief', 'الموجز'), d: t('Scope and plan agreed', 'اتفاق على النطاق والخطة'), x: t('Kick-off call · written scope · timeline', 'مكالمة انطلاق · نطاق مكتوب · جدول زمني') },
+  { t: t('Team', 'الفريق'), d: t('The right specialists briefed', 'المتخصصون المناسبون على اطلاع'), x: t('Designers · editors · strategists · engineers', 'مصممون · محررون · استراتيجيون · مهندسون') },
+  { t: t('Make', 'التنفيذ'), d: t('Weekly updates', 'تحديثات أسبوعية'), x: t('Shared progress you can follow', 'تقدّم مشترك يمكنك متابعته') },
+  { t: t('Review', 'المراجعة'), d: t('Checked before you see it', 'مُراجَع قبل أن تراه'), x: t('Quality and brand check by AURIC', 'فحص الجودة والهوية من أوريك') },
+  { t: t('Deliver', 'التسليم'), d: t('On time, supported after', 'في الموعد، مع دعم بعده'), x: t('Handover, files and aftercare', 'تسليم الملفات والدعم بعد التسليم') },
 ];
-const MANAGE_SERVICES = ['Project Management', 'Digital Project Coordination', 'Production Coordination', 'Resource Management', 'Delivery Planning', 'Quality Assurance'];
+const MANAGE_SERVICES = t(['Project Management', 'Digital Project Coordination', 'Production Coordination', 'Resource Management', 'Delivery Planning', 'Quality Assurance'], ['إدارة المشاريع', 'تنسيق المشاريع الرقمية', 'تنسيق الإنتاج', 'إدارة الموارد', 'تخطيط التسليم', 'ضمان الجودة']);
 const RING = 2 * Math.PI * 120;
 
 function Manage() {
@@ -305,7 +306,7 @@ function Manage() {
   return (
     <section ref={root} id="manage" data-stack className="py-[88px] md:py-[120px]">
       <div className="wrap">
-        <Chapter n="04" name="Manage" line="One owner coordinating every specialist, deadline and review." outline />
+        <Chapter n="04" name={t('Manage', 'إدارة')} line={t('One owner coordinating every specialist, deadline and review.', 'مسؤول واحد ينسّق كل متخصص وموعد ومراجعة.')} outline />
 
         <div className="grid gap-10 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:gap-14">
           {/* The dial sticks while the stages scroll past */}
@@ -342,7 +343,7 @@ function Manage() {
                   <span className="font-display text-[28px] font-extrabold leading-none tracking-[-0.04em]">{MANAGE_STEPS[shown].t}</span>
                 </div>
               </div>
-              <p className="copy max-w-[30ch] text-center !text-[15px]">One owner keeps every stage moving, so you always know where your project is.</p>
+              <p className="copy max-w-[30ch] text-center !text-[15px]">{t('One owner keeps every stage moving, so you always know where your project is.', 'مسؤول واحد يحرّك كل مرحلة، فتعرف دائمًا أين وصل مشروعك.')}</p>
             </div>
           </div>
 
@@ -392,7 +393,7 @@ function ManageServices() {
       <div className="wrap">
         <div className="flex flex-col gap-8 border-t border-[var(--line)] pt-10 lg:flex-row lg:items-end lg:justify-between">
           <div className="flex flex-col gap-4">
-            <span className="lab !text-gold">What Manage covers</span>
+            <span className="lab !text-gold">{t('What Manage covers', 'ما تشمله الإدارة')}</span>
             <ul className="m-0 flex list-none flex-wrap gap-[10px] p-0" data-pop>
               {MANAGE_SERVICES.map((sv) => (
                 <li
@@ -405,7 +406,7 @@ function ManageServices() {
             </ul>
           </div>
           <a href={CTA_HREF} className="btn btn-gold shrink-0 self-start lg:self-auto">
-            Discuss a project
+            {t('Discuss a project', 'ناقش مشروعك')}
           </a>
         </div>
       </div>
@@ -422,7 +423,7 @@ export default function Services() {
       <Build />
       <Manage />
       <ManageServices />
-      <BigCTA dark lines={['Not sure?', <span className="text-gold">Let's talk.</span>]} size="clamp(52px,10vw,150px)" />
+      <BigCTA dark lines={[t('Not sure?', 'لست متأكدًا؟'), <span className="text-gold">{t("Let's talk.", 'لنتحدث.')}</span>]} size="clamp(52px,10vw,150px)" />
     </Layout>
   );
 }
