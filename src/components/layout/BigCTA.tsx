@@ -19,7 +19,9 @@ export default function BigCTA({ lines, text, secondary, dark = false, size = 'c
     <section className={`relative overflow-hidden py-[88px] text-start md:py-[150px] md:text-center ${dark ? 'bg-bg' : ''}`}>
       <div className="wrap relative flex flex-col gap-7 md:items-center md:gap-8">
         {children}
-        <TitleReveal lines={lines} as="h2" onLoad={false} style={{ fontSize: size }} />
+        <div className="w-full" data-scrub-scale="0.82">
+          <TitleReveal lines={lines} as="h2" onLoad={false} style={{ fontSize: size }} />
+        </div>
         {text && <p className="copy max-w-[40ch]">{text}</p>}
         <Reveal className="flex flex-col gap-3 sm:flex-row sm:flex-wrap md:justify-center">
           <a href={href(CTA_HREF)} className="btn btn-gold">

@@ -4,6 +4,8 @@ import BigCTA from '../components/layout/BigCTA';
 import { Reveal, TitleReveal } from '../components/ui/Reveal';
 import { EASE, inView, rise, stagger } from '../lib/motion';
 
+const isRtl = () => typeof document !== 'undefined' && document.dir === 'rtl';
+
 // Founder details and portraits. Leave `photo` empty to show the labelled placeholder.
 const FOUNDER = {
   first: 'Mahmoud',
@@ -40,7 +42,7 @@ function Portrait({ photo, alt, ratio, children }: { photo: string; alt: string;
   return (
     <div className="ph group relative overflow-hidden rounded-[10px]" style={{ aspectRatio: ratio }}>
       {photo ? (
-        <img src={photo} alt={alt} loading="lazy" className="absolute inset-0 h-full w-full object-cover grayscale transition-[filter,transform] duration-700 group-hover:scale-[1.03] group-hover:grayscale-0" />
+        <img src={photo} alt={alt} loading="lazy" data-parallax="0.08" className="absolute inset-[-8%] h-[116%] w-[116%] object-cover grayscale transition-[filter,transform] duration-700 group-hover:scale-[1.03] group-hover:grayscale-0" />
       ) : null}
       {children}
     </div>
@@ -52,7 +54,7 @@ export default function Team() {
     <Layout>
       {/* T1 · Title reveal */}
       <section className="pb-16 pt-10 md:pb-[88px] md:pt-14">
-        <div className="wrap flex flex-wrap items-end justify-between gap-8">
+        <div className="wrap flex flex-wrap items-end justify-between gap-8" data-hero-out>
           <TitleReveal
             lines={['The', <>people<span className="text-gold">.</span></>]}
             style={{ fontSize: 'clamp(72px,15vw,230px)', lineHeight: 0.84, letterSpacing: '-0.06em' }}
@@ -130,11 +132,7 @@ export default function Team() {
             </div>
             <span className="lab">03</span>
           </Reveal>
-          <motion.p
-            className="m-0"
-            animate={{ x: [0, -18, 0, 14, 0] }}
-            transition={{ duration: 24, repeat: Infinity, ease: 'easeInOut' }}
-          >
+          <p className="m-0" data-scrub-x={isRtl() ? '6' : '-6'}>
             {NETWORK.map((n, i) => (
               // Each name carries its own "/" so a separator never starts a line.
               <motion.span
@@ -150,7 +148,7 @@ export default function Team() {
                 {i < NETWORK.length - 1 && <b className="font-light text-charcoal">{' / '}</b>}
               </motion.span>
             ))}
-          </motion.p>
+          </p>
         </div>
       </section>
 

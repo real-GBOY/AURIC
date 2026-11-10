@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Layout from '../components/layout/Layout';
 import BigCTA from '../components/layout/BigCTA';
@@ -9,6 +9,7 @@ import { Reveal, TitleReveal } from '../components/ui/Reveal';
 import { ARCHIVE, FEED, FILTERS, INDEX, type Entry, type Group } from '../lib/projects';
 import { SHOWREEL } from '../lib/content';
 import { EASE, inView, rise, stagger, useDragScroll } from '../lib/motion';
+import { usePinnedStrip } from '../lib/usePinnedStrip';
 
 const pad = (n: number) => String(n).padStart(2, '0');
 type F = 'all' | Group;
@@ -31,7 +32,7 @@ function Hero() {
     <section className="relative overflow-hidden pt-5 md:pt-14">
       {/* Desktop */}
       <div className="hidden md:block">
-        <div className="wrap relative z-[2] flex flex-wrap items-end justify-between gap-6">
+        <div className="wrap relative z-[2] flex flex-wrap items-end justify-between gap-6" data-hero-out>
           <TitleReveal lines={[<>Work<span className="text-gold">.</span></>]} className="mega" style={{ fontSize: 'clamp(96px,17vw,250px)', lineHeight: 0.82, letterSpacing: '-0.06em' }} />
           <motion.div className="flex max-w-[340px] flex-col gap-[10px] pb-[58px]" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
             <span className="lab !text-gold">Selected work · 2025—2026</span>
@@ -40,9 +41,11 @@ function Hero() {
           </motion.div>
         </div>
         <motion.div className="wrap relative z-[1] -mt-9" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.9, ease: EASE }}>
-          <VideoSlot ratio="21/9" label="Showreel · autoplay, muted loop" src={SHOWREEL.src} playSize={88} radius={10}>
-            {!SHOWREEL.src && <span className="slot bottom-5 right-[22px] !text-[11px] !text-cream">00:00 / 01:30</span>}
-          </VideoSlot>
+          <div className="overflow-hidden rounded-[10px]" data-scrub-scale="0.9" data-cursor="view">
+            <VideoSlot ratio="21/9" label="Showreel · autoplay, muted loop" src={SHOWREEL.src} playSize={88} radius={10}>
+              {!SHOWREEL.src && <span className="slot bottom-5 right-[22px] !text-[11px] !text-cream">00:00 / 01:30</span>}
+            </VideoSlot>
+          </div>
         </motion.div>
       </div>
       {/* Phone */}
@@ -137,6 +140,8 @@ function ProjectIndex() {
 /* Chapter 01 · Video filmstrip (A3) */
 function VideoChapter() {
   const ref = useDragScroll<HTMLDivElement>();
+  const section = useRef<HTMLElement>(null);
+  usePinnedStrip(section, ref);
   const items = [
     ['[Brand film]', 'Video edit'],
     ['[Motion graphics]', 'Motion'],
@@ -144,12 +149,12 @@ function VideoChapter() {
     ['[Event recap]', 'Video edit'],
   ];
   return (
-    <section className="hidden overflow-hidden bg-bg py-[120px] md:block">
+    <section ref={section} className="hidden overflow-hidden bg-bg py-[120px] md:block">
       <div className="wrap">
         <ChapterHead n="01" title="Video & motion" right={<span className="lab">Drag or scroll sideways →</span>} />
         <div ref={ref} className="strip" role="list" aria-label="Video projects">
           {items.map(([t, tag]) => (
-            <a key={t} href="/case-studies/creative" role="listitem" className="group flex w-[560px] flex-col gap-[14px]">
+            <a key={t} href="/case-studies/creative" role="listitem" data-cursor="view" className="group flex w-[560px] flex-col gap-[14px]">
               <div className="transition-transform duration-500 group-hover:scale-[1.02]">
                 <VideoSlot ratio="16/9" label="Your video" radius={8} />
               </div>
@@ -174,6 +179,7 @@ function DesignChapter() {
         <ChapterHead n="02" title="Design & branding" cream right={<span className="lab !text-[#4a4740]">Brand identities · posters · social design</span>} />
         <motion.div
           className="grid grid-cols-2 gap-4 [grid-auto-rows:200px] lg:grid-cols-12 lg:[grid-auto-rows:120px]"
+          data-parallax="0.05"
           initial="hidden"
           whileInView="visible"
           viewport={inView}
@@ -241,13 +247,13 @@ function SoftwareChapter() {
         <ChapterHead n="04" title="Websites & apps" right={<a href="/work/mizan" className="lab tap !text-gold">Mizan case study →</a>} />
         <div className="relative h-[520px] lg:h-[600px]">
           <motion.a href="/work/atlas" className="absolute left-0 top-5 z-[1] h-[360px] w-[58%] lg:h-[420px]" {...up(0)}>
-            <Screen src="/work/atlas/dashboard.png" alt="Atlas dashboard" className="h-full" />
+            <div className="h-full" data-parallax="0.05"><Screen src="/work/atlas/dashboard.png" alt="Atlas dashboard" className="h-full" /></div>
           </motion.a>
           <motion.a href="/work/mizan" className="absolute left-[30%] top-[130px] z-[2] h-[340px] w-[52%] shadow-[0_30px_60px_rgba(0,0,0,.55)] lg:h-[400px]" {...up(0.15)}>
-            <Screen src="/work/mizan/dashboard.png" alt="Mizan dashboard" className="h-full" />
+            <div className="h-full" data-parallax="0.14"><Screen src="/work/mizan/dashboard.png" alt="Mizan dashboard" className="h-full" /></div>
           </motion.a>
           <motion.a href="/work/nova" className="absolute right-0 top-0 z-[3] h-[380px] w-[180px] shadow-[0_30px_60px_rgba(0,0,0,.55)] lg:h-[420px] lg:w-[200px]" {...up(0.3)}>
-            <Screen src="/work/nova/mobile-home.jpg" alt="Nova mobile app" bar={false} radius={28} className="h-full" />
+            <div className="h-full" data-parallax="0.24"><Screen src="/work/nova/mobile-home.jpg" alt="Nova mobile app" bar={false} radius={28} className="h-full" /></div>
           </motion.a>
           <div className="absolute bottom-0 left-0 z-[4] flex flex-wrap gap-7">
             {[['Mizan', 'Client project'], ['Atlas', 'AURIC product'], ['Nova', 'Client project']].map(([n, k]) => (

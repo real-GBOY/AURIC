@@ -6,6 +6,10 @@ import { WhatsAppIcon } from '../ui/Icons';
 import { CTA_HREF, whatsappHref } from '../../lib/site';
 import { EASE, useScrolledPast } from '../../lib/motion';
 import { href, t } from '../../lib/i18n';
+import SmoothScroll from '../motion/SmoothScroll';
+import ScrollEffects from '../motion/ScrollEffects';
+import PageTransition from '../motion/PageTransition';
+import Cursor from '../motion/Cursor';
 
 type Props = {
   children: ReactNode;
@@ -26,6 +30,10 @@ export default function Layout({ children, mobileCta = 'dock' }: Props) {
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-gold focus:px-4 focus:py-2 focus:text-[#141414]">
           {t('Skip to content', 'تخطَّ إلى المحتوى')}
         </a>
+        <SmoothScroll />
+        <ScrollEffects />
+        <PageTransition />
+        <Cursor />
         <Header />
         <main id="main">{children}</main>
         <Footer />

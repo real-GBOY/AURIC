@@ -19,7 +19,7 @@ export default function CaseStudies() {
     <Layout>
       <section className="pb-16 pt-10 md:pt-14">
         <div className="wrap flex flex-col gap-10">
-          <div className="flex flex-wrap items-end justify-between gap-8">
+          <div className="flex flex-wrap items-end justify-between gap-8" data-hero-out>
             <TitleReveal
               lines={['Case', <>studies<span className="text-gold">.</span></>]}
               style={{ fontSize: 'clamp(64px,13vw,200px)', lineHeight: 0.84, letterSpacing: '-0.06em' }}
@@ -52,6 +52,7 @@ export default function CaseStudies() {
                   key={p.name}
                   layout
                   href={p.href}
+                  data-cursor="view"
                   className={`group col-span-12 flex flex-col ${full ? '' : 'md:col-span-6'}`}
                   initial={{ opacity: 0, y: 70, scale: 0.97 }}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -64,7 +65,7 @@ export default function CaseStudies() {
                     style={{ aspectRatio: full ? '21/9' : '4/3' }}
                   >
                     {p.type === 'img' && (
-                      <img src={p.img} alt={p.name} loading="lazy" className="absolute inset-0 h-full w-full object-cover object-left-top transition-transform duration-700 group-hover:scale-[1.03]" />
+                      <div className="absolute inset-0" data-scrub-zoom="1.14"><img src={p.img} alt={p.name} loading="lazy" className="absolute inset-0 h-full w-full object-cover object-left-top transition-transform duration-700 group-hover:scale-[1.03]" /></div>
                     )}
                     {(p.type === 'video' || p.type === 'reel') && (
                       <div className="ph absolute inset-0 !border-0">

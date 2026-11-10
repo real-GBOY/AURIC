@@ -249,7 +249,7 @@ export default function Contact() {
     <Layout mobileCta="fab">
       {/* P1 · Title reveal and spinning badge */}
       <section className="overflow-hidden pb-8 pt-8 md:pb-16 md:pt-14">
-        <div className="wrap flex flex-wrap items-end justify-between gap-8">
+        <div className="wrap flex flex-wrap items-end justify-between gap-8" data-hero-out>
           <div className="flex w-full items-end justify-between gap-3 md:w-auto md:justify-start md:gap-10">
             <TitleReveal lines={["Let's", <>talk<span className="text-gold">.</span></>]} style={{ fontSize: 'clamp(72px,15vw,230px)', lineHeight: 0.84, letterSpacing: '-0.06em' }} />
             <div className="mb-[6px] md:hidden">

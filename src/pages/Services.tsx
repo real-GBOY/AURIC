@@ -42,7 +42,7 @@ function ServiceList({ items, cream = false }: { items: string[]; cream?: boolea
 function Chapter({ n, name, line, cream = false, outline = false }: { n: string; name: string; line: string; cream?: boolean; outline?: boolean }) {
   return (
     <div className="mb-14 flex flex-wrap items-end justify-between gap-6 lg:flex-nowrap">
-      <div className="flex min-w-0 max-w-full flex-col gap-[10px] lg:shrink-0">
+      <div className="flex min-w-0 max-w-full flex-col gap-[10px] lg:shrink-0" data-scrub-x="-4">
         <span className={`lab ${cream ? '!text-gold-deep' : '!text-gold'}`}>
           {n} / AURIC {name}
         </span>
@@ -87,7 +87,7 @@ function Hero() {
   return (
     <section className="pb-24 pt-12 md:pt-16">
       <div className="wrap flex flex-col gap-14">
-        <div className="flex flex-col gap-7">
+        <div className="flex flex-col gap-7" data-hero-out>
           <span className="lab !text-gold">Services</span>
           <div className="flex flex-wrap items-end justify-between gap-8">
             <TitleReveal lines={[<>One partner<span className="text-gold">.</span></>]} style={{ fontSize: 'clamp(52px,10vw,150px)' }} />
@@ -127,6 +127,7 @@ function Create() {
         <Chapter n="01" name="Create" line="Video, design, motion and voice from one directed team." cream />
         <motion.div
           className="mb-16 grid grid-cols-2 gap-4 [grid-auto-rows:120px] md:grid-cols-12 md:[grid-auto-rows:96px]"
+          data-parallax="0.06"
           initial="hidden"
           whileInView="visible"
           viewport={inView}
@@ -229,13 +230,13 @@ function Build() {
         <Chapter n="03" name="Build" line="Websites, apps and systems, engineered on a tested foundation." />
         <div className="relative mb-16 h-[340px] sm:h-[460px] md:h-[560px]">
           <motion.div className="absolute left-0 top-0 z-[1] h-[62%] w-[78%] md:h-[400px] md:w-[60%]" {...up(0)}>
-            <Screen src="/work/atlas/dashboard.png" alt="Atlas dashboard" className="h-full" />
+            <div className="h-full" data-parallax="0.04"><Screen src="/work/atlas/dashboard.png" alt="Atlas dashboard" className="h-full" /></div>
           </motion.div>
           <motion.div className="absolute left-[16%] top-[38%] z-[2] h-[58%] w-[70%] shadow-[0_30px_60px_rgba(0,0,0,.55)] md:left-[34%] md:top-[130px] md:h-[380px] md:w-[48%]" {...up(0.15)}>
-            <Screen src="/work/hotel-os/website-booking.png" alt="HotelOS booking website" className="h-full" />
+            <div className="h-full" data-parallax="0.12"><Screen src="/work/hotel-os/website-booking.png" alt="HotelOS booking website" className="h-full" /></div>
           </motion.div>
           <motion.div className="absolute right-0 top-[10%] z-[3] h-[78%] w-[28%] shadow-[0_30px_60px_rgba(0,0,0,.55)] md:top-10 md:h-[420px] md:w-[200px]" {...up(0.3)}>
-            <Screen src="/work/ajwadi/mobile-home-client.png" alt="Ajwadi mobile app" bar={false} radius={28} className="h-full" />
+            <div className="h-full" data-parallax="0.22"><Screen src="/work/ajwadi/mobile-home-client.png" alt="Ajwadi mobile app" bar={false} radius={28} className="h-full" /></div>
           </motion.div>
         </div>
         <ServiceList
@@ -261,13 +262,10 @@ function Manage() {
       <div className="wrap">
         <Chapter n="04" name="Manage" line="One owner coordinating every specialist, deadline and review." outline />
         <div className="relative mb-16 pt-[30px]">
-          <motion.div
+          <div
             aria-hidden="true"
+            data-draw
             className="absolute left-[25px] top-[56px] hidden h-[2px] origin-left bg-gradient-to-r from-gold to-[rgba(220,167,51,.2)] md:right-0 md:block"
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={inView}
-            transition={{ duration: 1.6, ease: EASE }}
           />
           <motion.div className="grid gap-5 sm:grid-cols-2 md:grid-cols-5" initial="hidden" whileInView="visible" viewport={inView} variants={stagger(0.25, 0.2)}>
             {steps.map((s, i) => {

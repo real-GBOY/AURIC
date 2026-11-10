@@ -20,6 +20,7 @@ export default function Footer() {
         <div className="flex flex-wrap items-end justify-between gap-8 border-b border-[var(--line)] pb-12">
           <a
             href={href(CTA_HREF)}
+            data-parallax="0.18"
             className="font-display font-extrabold leading-[.95] tracking-[-0.05em] transition-colors hover:text-gold"
             style={{ fontSize: 'clamp(40px,5.4vw,80px)' }}
           >

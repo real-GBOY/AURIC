@@ -1,9 +1,11 @@
+import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import Layout from '../components/layout/Layout';
 import BigCTA from '../components/layout/BigCTA';
 import { Screen } from '../components/ui/Media';
 import { FitLine, Reveal, TitleReveal } from '../components/ui/Reveal';
 import { SOFTWARE, type SoftwareProject } from '../lib/projects';
+import { usePinnedStrip } from '../lib/usePinnedStrip';
 import { EASE, inView, rise, stagger, useDragScroll } from '../lib/motion';
 
 const pad = (n: number) => String(n).padStart(2, '0');
@@ -24,6 +26,8 @@ export default function CaseStudy({ project: p }: { project: SoftwareProject }) 
   const i = SOFTWARE.findIndex((s) => s.slug === p.slug);
   const next = SOFTWARE[(i + 1) % SOFTWARE.length];
   const strip = useDragScroll<HTMLDivElement>();
+  const stripSection = useRef<HTMLElement>(null);
+  usePinnedStrip(stripSection, strip);
   const screens = [
     ...d.dashboardImages.map((im) => ({ ...im, phone: false })),
     ...d.mobileImages.map((im) => ({ ...im, phone: true })),
@@ -35,7 +39,7 @@ export default function CaseStudy({ project: p }: { project: SoftwareProject }) 
     <Layout>
       {/* C1 · Title reveal */}
       <section className="overflow-hidden pt-8 md:pt-12">
-        <div className="wrap flex flex-col gap-7">
+        <div className="wrap flex flex-col gap-7" data-hero-out>
           <div className="flex flex-wrap items-center justify-between gap-4">
             <a href="/case-studies" className="lab tap hover:!text-gold">← Case studies</a>
             <span className="lab !text-gold">Case study · {pad(i + 1)}</span>
@@ -108,7 +112,7 @@ export default function CaseStudy({ project: p }: { project: SoftwareProject }) 
 
       {/* C3 · Screen strip */}
       {screens.length > 1 && (
-        <section className="overflow-hidden bg-bg py-20 md:py-[120px]">
+        <section ref={stripSection} className="overflow-hidden bg-bg py-20 md:py-[120px]">
           <div className="wrap">
             <Reveal className="mb-10 flex flex-wrap items-end justify-between gap-6">
               <h2 className="h2">Inside the product</h2>
@@ -178,7 +182,7 @@ export default function CaseStudy({ project: p }: { project: SoftwareProject }) 
                 {next.kind} · {next.cat}
               </span>
             </div>
-            {next.img && <Screen src={next.img} alt={`${next.name} screen`} ratio="16/10" className="transition-transform duration-700 group-hover:-rotate-1 group-hover:scale-[1.02]" />}
+            {next.img && <div data-parallax="0.1"><Screen src={next.img} alt={`${next.name} screen`} ratio="16/10" className="transition-transform duration-700 group-hover:-rotate-1 group-hover:scale-[1.02]" /></div>}
           </div>
         </section>
       </a>

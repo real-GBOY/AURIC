@@ -5,6 +5,7 @@ import { WhatsAppIcon } from '../ui/Icons';
 import { CTA_HREF, NAV, PAGES, SOCIALS, whatsappHref } from '../../lib/site';
 import { EASE } from '../../lib/motion';
 import { href, isAr, otherLangHref, t } from '../../lib/i18n';
+import { lenis } from '../motion/SmoothScroll';
 
 const path = (typeof window !== 'undefined' ? window.location.pathname : '/').replace(/^\/ar(?=\/|$)/, '') || '/';
 const isActive = (href: string) =>
@@ -26,6 +27,8 @@ export default function Header() {
   // Lock page scroll while the full-screen menu is open; close it with Escape.
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
+    if (open) lenis?.stop();
+    else lenis?.start();
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false);
     window.addEventListener('keydown', onKey);
     return () => {
@@ -107,6 +110,7 @@ export default function Header() {
           <motion.nav
             id="phone-menu"
             aria-label="Main"
+            data-lenis-prevent
             className="fixed inset-x-0 bottom-0 top-16 z-40 md:top-[74px] flex flex-col overflow-y-auto bg-ink px-5 pb-7 pt-6 lg:hidden"
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}

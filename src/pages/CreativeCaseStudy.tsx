@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Layout from '../components/layout/Layout';
 import BigCTA from '../components/layout/BigCTA';
 import { VideoSlot } from '../components/ui/Media';
 import { Reveal, TitleReveal } from '../components/ui/Reveal';
 import { EASE, drop, inView, rise, stagger, useDragScroll } from '../lib/motion';
+import { usePinnedStrip } from '../lib/usePinnedStrip';
 
 // Template for creative work (brand films, identities, campaigns).
 // Everything in [brackets] is a placeholder: duplicate this page per project and
@@ -26,12 +27,14 @@ const slot = (label: string, cls = '', dark = true) => (
 export default function CreativeCaseStudy() {
   const [after, setAfter] = useState(false);
   const frames = useDragScroll<HTMLDivElement>();
+  const framesSection = useRef<HTMLElement>(null);
+  usePinnedStrip(framesSection, frames);
 
   return (
     <Layout>
       {/* V1 · Title reveal */}
       <section className="overflow-hidden pt-8 md:pt-12">
-        <div className="wrap flex flex-col gap-7">
+        <div className="wrap flex flex-col gap-7" data-hero-out>
           <div className="flex flex-wrap items-center justify-between gap-4">
             <a href="/case-studies" className="lab tap hover:!text-gold">← Case studies</a>
             <span className="lab !text-gold">Creative case study · template</span>
@@ -61,9 +64,11 @@ export default function CreativeCaseStudy() {
       {/* V2 · The film */}
       <section className="pb-20 pt-10 md:pb-[120px] md:pt-12">
         <motion.div className="wrap" initial={{ opacity: 0, scale: 0.96 }} whileInView={{ opacity: 1, scale: 1 }} viewport={inView} transition={{ duration: 0.9, ease: EASE }}>
+          <div className="overflow-hidden rounded-[14px]" data-scrub-scale="0.88" data-cursor="view">
           <VideoSlot ratio="16/9" label="Final film · your video" playSize={104} radius={14}>
             <span className="slot bottom-[22px] right-6 !text-[11px] !text-cream">01:30</span>
           </VideoSlot>
+          </div>
         </motion.div>
       </section>
 
@@ -106,7 +111,7 @@ export default function CreativeCaseStudy() {
       </section>
 
       {/* V4 · Frames drag sideways */}
-      <section className="overflow-hidden py-20 md:py-[120px]">
+      <section ref={framesSection} className="overflow-hidden py-20 md:py-[120px]">
         <div className="wrap">
           <Reveal className="mb-10 flex flex-wrap items-end justify-between gap-6">
             <h2 className="h2">Frames</h2>
@@ -131,7 +136,7 @@ export default function CreativeCaseStudy() {
       </section>
 
       {/* V5 · Brand pieces slide in */}
-      <section className="bg-bg py-20 md:py-[120px]">
+      <section className="overflow-hidden bg-bg py-20 md:py-[120px]">
         <div className="wrap">
           <Reveal className="mb-10 flex flex-wrap items-end justify-between gap-6">
             <h2 className="h2">The brand in use</h2>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Layout from '../components/layout/Layout';
 import BigCTA from '../components/layout/BigCTA';
@@ -12,6 +12,8 @@ import { HOME as C } from '../lib/home-copy';
 import { ARROW, href, isAr } from '../lib/i18n';
 import { CTA_HREF } from '../lib/site';
 import { EASE, inView, lineUp, pillGrow, rise, stagger, useDragScroll } from '../lib/motion';
+import { gsap, MQ, ScrollTrigger, useGSAP } from '../lib/gsap';
+import { usePinnedStrip } from '../lib/usePinnedStrip';
 
 const pad = (n: number) => String(n).padStart(2, '0');
 
@@ -36,7 +38,7 @@ function Hero() {
 
   return (
     <section className="relative pb-9 pt-7 md:pb-14 md:pt-16">
-      <div className="wrap flex flex-col">
+      <div className="wrap flex flex-col" data-hero-out>
         <div className="mb-[22px] flex flex-wrap items-center justify-between gap-4 md:mb-[18px]">
           <span className="lab !text-gold">{C.eyebrow}</span>
           <span className="lab hidden md:inline">{C.eyebrowRight}</span>
@@ -83,31 +85,58 @@ function Hero() {
 /* ─── H2 · Showreel ──────────────────────────────────────────────────────── */
 function Showreel() {
   return (
-    <motion.section
-      className="pb-9 md:pb-10"
-      initial={{ opacity: 0, scale: 0.97 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={inView}
-      transition={{ duration: 0.9, ease: EASE }}
-    >
+    <section className="pb-9 md:pb-10">
       <div className="wrap">
-        <div className="hidden md:block">
+        <div className="hidden overflow-hidden rounded-xl md:block" data-scrub-scale="0.86" data-cursor="view">
           <VideoSlot ratio="21/9" label={C.showreel} src={SHOWREEL.src} playSize={96} />
         </div>
-        <div className="md:hidden">
+        <div className="overflow-hidden rounded-xl md:hidden" data-scrub-scale="0.92">
           <VideoSlot ratio="4/5" label={C.showreelPhone} src={SHOWREEL.vertical || SHOWREEL.src} playSize={76} radius={14} />
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }
 
 /* ─── H3 · Service marquee ───────────────────────────────────────────────── */
 function Marquee() {
+  const root = useRef<HTMLDivElement>(null);
+  const track = useRef<HTMLDivElement>(null);
   const words = [...C.marquee, ...C.marquee];
+
+  // Endless loop that speeds up and leans with the scroll velocity.
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      mm.add(MQ.motion, () => {
+        const dir = isAr ? 1 : -1;
+        const loop = gsap.fromTo(track.current, { xPercent: 0 }, { xPercent: 50 * dir, duration: 32, ease: 'none', repeat: -1 });
+        const skewTo = gsap.quickTo(track.current, 'skewX', { duration: 0.4, ease: 'power3' });
+        let boost = gsap.to({}, {});
+        ScrollTrigger.create({
+          trigger: root.current,
+          start: 'top bottom',
+          end: 'bottom top',
+          onUpdate: (self) => {
+            const v = self.getVelocity();
+            boost.kill();
+            loop.timeScale(1 + Math.min(Math.abs(v) / 250, 5) * (v < 0 ? -1 : 1));
+            boost = gsap.to(loop, { timeScale: 1, duration: 1.2, ease: 'power3.out', delay: 0.05 });
+            skewTo(gsap.utils.clamp(-8, 8, v / -300));
+          },
+        });
+        const calm = () => skewTo(0);
+        ScrollTrigger.addEventListener('scrollEnd', calm);
+        return () => ScrollTrigger.removeEventListener('scrollEnd', calm);
+      });
+      return () => mm.revert();
+    },
+    { scope: root },
+  );
+
   return (
-    <div className="group overflow-hidden whitespace-nowrap border-y border-[rgba(244,241,232,.1)] py-6 md:py-10" aria-hidden="true">
-      <div className="inline-flex animate-marquee group-hover:[animation-play-state:paused] motion-reduce:animate-none">
+    <div ref={root} className="overflow-hidden whitespace-nowrap border-y border-[rgba(244,241,232,.1)] py-6 md:py-10" aria-hidden="true">
+      <div ref={track} className="inline-flex will-change-transform">
         {words.map((w, i) => (
           <span
             key={i}
@@ -231,6 +260,8 @@ function Divisions() {
 /* ─── H5 · Selected work strip ───────────────────────────────────────────── */
 function SelectedWork() {
   const ref = useDragScroll<HTMLDivElement>();
+  const section = useRef<HTMLElement>(null);
+  usePinnedStrip(section, ref);
   const [page, setPage] = useState(0);
   const cards = [
     { title: C.work.brandFilm, tag: C.work.video, href: '/work', w: 'w-[300px] md:w-[640px]', media: <VideoSlot ratio="16/10" label={C.work.yourVideo} radius={10} className="hidden md:flex" />, phone: <VideoSlot ratio="4/5" label={C.work.yourVideo} radius={12} className="md:hidden" /> },
@@ -240,7 +271,7 @@ function SelectedWork() {
   ];
 
   return (
-    <section className="overflow-hidden bg-bg py-[72px] md:py-[120px]">
+    <section ref={section} className="overflow-hidden bg-bg py-[72px] md:py-[120px]">
       <div className="wrap">
         <Reveal className="mb-6 flex flex-wrap items-end justify-between gap-6 md:mb-10">
           <h2 className="h2">
@@ -270,7 +301,7 @@ function SelectedWork() {
           variants={stagger(0.1)}
         >
           {cards.map((c) => (
-            <motion.a key={c.title} href={c.href} className={`flex flex-col gap-[10px] md:gap-[14px] ${c.w}`} variants={rise}>
+            <motion.a key={c.title} href={c.href} data-cursor="view" className={`flex flex-col gap-[10px] md:gap-[14px] ${c.w}`} variants={rise}>
               {c.media}
               {c.phone}
               <span className="flex justify-between gap-3">
