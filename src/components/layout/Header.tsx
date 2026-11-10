@@ -35,9 +35,14 @@ export default function Header() {
   }, [open]);
 
   return (
+    <>
     <header
       className={`sticky top-0 z-50 border-b transition-colors duration-300 ${
-        scrolled || open ? 'border-[var(--line)] bg-ink/90 backdrop-blur-md' : 'border-[rgba(244,241,232,.1)] bg-ink'
+        open
+          ? 'border-[var(--line)] bg-ink'
+          : scrolled
+            ? 'border-[var(--line)] bg-ink/90 backdrop-blur-md'
+            : 'border-[rgba(244,241,232,.1)] bg-ink'
       }`}
     >
       <div className="wrap flex h-16 items-center justify-between gap-6 md:h-[74px]">
@@ -93,8 +98,10 @@ export default function Header() {
           </button>
         </div>
       </div>
+    </header>
 
-      {/* M1 · full-screen phone menu */}
+      {/* M1 · full-screen phone menu. Rendered outside the header: the header's
+          backdrop blur would otherwise trap this fixed layer inside its 64px box. */}
       <AnimatePresence>
         {open && (
           <motion.nav
@@ -116,7 +123,7 @@ export default function Header() {
                   className="grid grid-cols-[44px_minmax(0,1fr)] items-baseline gap-2 border-b border-[rgba(244,241,232,.1)] py-[14px]"
                 >
                   <span className="lab !text-gold">{String(i + 1).padStart(2, '0')}</span>
-                  <b className={`font-display text-[40px] font-extrabold leading-none tracking-[-0.045em] ${isActive(item.href) ? 'text-gold' : ''}`}>
+                  <b className={`font-display text-[34px] font-extrabold leading-none sm:text-[40px] tracking-[-0.045em] ${isActive(item.href) ? 'text-gold' : ''}`}>
                     {t(item.label, item.ar)}
                   </b>
                 </motion.a>
@@ -141,6 +148,6 @@ export default function Header() {
           </motion.nav>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }
