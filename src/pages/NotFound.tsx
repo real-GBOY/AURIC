@@ -2,7 +2,9 @@ import { motion } from 'framer-motion';
 import Layout from '../components/layout/Layout';
 import { AuricMark } from '../components/Logo';
 import { CTA_HREF } from '../lib/site';
-import { ARROW, t } from '../lib/i18n';
+import { useEffect } from 'react';
+import { ARROW, LANG, t } from '../lib/i18n';
+import { NOT_FOUND } from '../lib/seo';
 import { EASE, inView, stagger } from '../lib/motion';
 
 const SUGGESTIONS = [
@@ -13,6 +15,9 @@ const SUGGESTIONS = [
 ];
 
 export default function NotFound() {
+  useEffect(() => {
+    document.title = NOT_FOUND[LANG].title;
+  }, []);
   return (
     <Layout>
       {/* N1 · 404 with the sun turning in place of the 0 */}

@@ -2,151 +2,151 @@
   "rewrites": [
     {
       "source": "/services",
-      "destination": "/index.html"
+      "destination": "/services/index.html"
     },
     {
       "source": "/work",
-      "destination": "/index.html"
+      "destination": "/work/index.html"
     },
     {
       "source": "/case-studies",
-      "destination": "/index.html"
+      "destination": "/case-studies/index.html"
     },
     {
       "source": "/case-studies/creative",
-      "destination": "/index.html"
+      "destination": "/case-studies/creative/index.html"
     },
     {
       "source": "/team",
-      "destination": "/index.html"
+      "destination": "/team/index.html"
     },
     {
       "source": "/contact",
-      "destination": "/index.html"
+      "destination": "/contact/index.html"
     },
     {
       "source": "/work/mizan",
-      "destination": "/index.html"
+      "destination": "/work/mizan/index.html"
     },
     {
       "source": "/work/atlas",
-      "destination": "/index.html"
+      "destination": "/work/atlas/index.html"
     },
     {
       "source": "/work/hotel-os",
-      "destination": "/index.html"
+      "destination": "/work/hotel-os/index.html"
     },
     {
       "source": "/work/nova",
-      "destination": "/index.html"
+      "destination": "/work/nova/index.html"
     },
     {
       "source": "/work/ajwadi",
-      "destination": "/index.html"
+      "destination": "/work/ajwadi/index.html"
     },
     {
       "source": "/work/raqib",
-      "destination": "/index.html"
+      "destination": "/work/raqib/index.html"
     },
     {
       "source": "/work/admit",
-      "destination": "/index.html"
+      "destination": "/work/admit/index.html"
     },
     {
       "source": "/work/clinic-os",
-      "destination": "/index.html"
+      "destination": "/work/clinic-os/index.html"
     },
     {
       "source": "/work/enactix",
-      "destination": "/index.html"
+      "destination": "/work/enactix/index.html"
     },
     {
       "source": "/work/weavolution",
-      "destination": "/index.html"
+      "destination": "/work/weavolution/index.html"
     },
     {
       "source": "/work/build-art",
-      "destination": "/index.html"
+      "destination": "/work/build-art/index.html"
     },
     {
       "source": "/work/opticare",
-      "destination": "/index.html"
+      "destination": "/work/opticare/index.html"
     },
     {
       "source": "/ar",
-      "destination": "/index.html"
+      "destination": "/ar/index.html"
     },
     {
       "source": "/ar/services",
-      "destination": "/index.html"
+      "destination": "/ar/services/index.html"
     },
     {
       "source": "/ar/work",
-      "destination": "/index.html"
+      "destination": "/ar/work/index.html"
     },
     {
       "source": "/ar/case-studies",
-      "destination": "/index.html"
+      "destination": "/ar/case-studies/index.html"
     },
     {
       "source": "/ar/case-studies/creative",
-      "destination": "/index.html"
+      "destination": "/ar/case-studies/creative/index.html"
     },
     {
       "source": "/ar/team",
-      "destination": "/index.html"
+      "destination": "/ar/team/index.html"
     },
     {
       "source": "/ar/contact",
-      "destination": "/index.html"
+      "destination": "/ar/contact/index.html"
     },
     {
       "source": "/ar/work/mizan",
-      "destination": "/index.html"
+      "destination": "/ar/work/mizan/index.html"
     },
     {
       "source": "/ar/work/atlas",
-      "destination": "/index.html"
+      "destination": "/ar/work/atlas/index.html"
     },
     {
       "source": "/ar/work/hotel-os",
-      "destination": "/index.html"
+      "destination": "/ar/work/hotel-os/index.html"
     },
     {
       "source": "/ar/work/nova",
-      "destination": "/index.html"
+      "destination": "/ar/work/nova/index.html"
     },
     {
       "source": "/ar/work/ajwadi",
-      "destination": "/index.html"
+      "destination": "/ar/work/ajwadi/index.html"
     },
     {
       "source": "/ar/work/raqib",
-      "destination": "/index.html"
+      "destination": "/ar/work/raqib/index.html"
     },
     {
       "source": "/ar/work/admit",
-      "destination": "/index.html"
+      "destination": "/ar/work/admit/index.html"
     },
     {
       "source": "/ar/work/clinic-os",
-      "destination": "/index.html"
+      "destination": "/ar/work/clinic-os/index.html"
     },
     {
       "source": "/ar/work/enactix",
-      "destination": "/index.html"
+      "destination": "/ar/work/enactix/index.html"
     },
     {
       "source": "/ar/work/weavolution",
-      "destination": "/index.html"
+      "destination": "/ar/work/weavolution/index.html"
     },
     {
       "source": "/ar/work/build-art",
-      "destination": "/index.html"
+      "destination": "/ar/work/build-art/index.html"
     },
     {
       "source": "/ar/work/opticare",
-      "destination": "/index.html"
+      "destination": "/ar/work/opticare/index.html"
     }
   ],
   "build": {

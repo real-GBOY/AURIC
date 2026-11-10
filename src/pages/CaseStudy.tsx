@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Layout from '../components/layout/Layout';
 import BigCTA from '../components/layout/BigCTA';
@@ -6,7 +6,8 @@ import { Screen } from '../components/ui/Media';
 import { FitLine, Reveal, TitleReveal } from '../components/ui/Reveal';
 import { SOFTWARE, type SoftwareProject } from '../lib/projects';
 import { usePinnedStrip } from '../lib/usePinnedStrip';
-import { ARROW, isAr, t } from '../lib/i18n';
+import { ARROW, LANG, isAr, t } from '../lib/i18n';
+import { projectMeta, setPageMeta } from '../lib/seo';
 import { EASE, inView, rise, stagger, useDragScroll } from '../lib/motion';
 
 const pad = (n: number) => String(n).padStart(2, '0');
@@ -26,6 +27,9 @@ export default function CaseStudy({ project: p }: { project: SoftwareProject }) 
   const d = p.data;
   const i = SOFTWARE.findIndex((s) => s.slug === p.slug);
   const next = SOFTWARE[(i + 1) % SOFTWARE.length];
+  useEffect(() => {
+    setPageMeta(`/work/${p.slug}`, LANG, projectMeta(p.name, p.line, LANG));
+  }, [p]);
   const strip = useDragScroll<HTMLDivElement>();
   const stripSection = useRef<HTMLElement>(null);
   usePinnedStrip(stripSection, strip);

@@ -1,11 +1,12 @@
 import { AnimatePresence, MotionConfig, motion } from 'framer-motion';
-import type { ReactNode } from 'react';
+import { useEffect, type ReactNode } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import { WhatsAppIcon } from '../ui/Icons';
 import { CTA_HREF, whatsappHref } from '../../lib/site';
 import { EASE, useScrolledPast } from '../../lib/motion';
-import { href, t } from '../../lib/i18n';
+import { LANG, basePath, href, t } from '../../lib/i18n';
+import { PAGES, setPageMeta } from '../../lib/seo';
 import SmoothScroll from '../motion/SmoothScroll';
 import ScrollEffects from '../motion/ScrollEffects';
 import ScrollScenes from '../motion/ScrollScenes';
@@ -26,6 +27,12 @@ type Props = {
 
 export default function Layout({ children, mobileCta = 'dock' }: Props) {
   const past = useScrolledPast();
+
+  // Static pages: keep the title and tags right (the build already wrote them into the HTML).
+  useEffect(() => {
+    const page = PAGES[basePath];
+    if (page) setPageMeta(basePath, LANG, page[LANG]);
+  }, []);
 
   return (
     <MotionConfig reducedMotion="user">
