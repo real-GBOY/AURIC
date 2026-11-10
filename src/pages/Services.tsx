@@ -42,7 +42,7 @@ function ServiceList({ items, cream = false }: { items: string[]; cream?: boolea
 function Chapter({ n, name, line, cream = false, outline = false }: { n: string; name: string; line: string; cream?: boolean; outline?: boolean }) {
   return (
     <div className="mb-14 flex flex-wrap items-end justify-between gap-6 lg:flex-nowrap">
-      <div className="flex shrink-0 flex-col gap-[10px]">
+      <div className="flex min-w-0 max-w-full flex-col gap-[10px] lg:shrink-0">
         <span className={`lab ${cream ? '!text-gold-deep' : '!text-gold'}`}>
           {n} / AURIC {name}
         </span>

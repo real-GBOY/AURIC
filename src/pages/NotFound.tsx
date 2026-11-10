@@ -21,7 +21,7 @@ export default function NotFound() {
           <h1
             aria-label="404"
             className="flex items-center justify-center gap-[0.02em] font-display font-extrabold leading-[.8] tracking-[-0.07em]"
-            style={{ fontSize: 'clamp(150px,30vw,440px)' }}
+            style={{ fontSize: 'clamp(96px,30vw,440px)' }}
           >
             <motion.span initial={{ opacity: 0, y: 60 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: EASE }}>4</motion.span>
             <motion.span

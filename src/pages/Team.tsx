@@ -138,7 +138,7 @@ export default function Team() {
             {NETWORK.map((n, i) => (
               <span key={n}>
                 <motion.span
-                  className={`inline-block whitespace-nowrap font-display font-bold leading-[1.2] tracking-[-0.04em] ${(i + 1) % 3 === 0 ? 'stroke-gold [-webkit-text-stroke-width:1.2px]' : ''}`}
+                  className={`inline-block font-display font-bold sm:whitespace-nowrap leading-[1.2] tracking-[-0.04em] ${(i + 1) % 3 === 0 ? 'stroke-gold [-webkit-text-stroke-width:1.2px]' : ''}`}
                   style={{ fontSize: 'clamp(28px,3.6vw,54px)' }}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}

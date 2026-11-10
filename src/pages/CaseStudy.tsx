@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import Layout from '../components/layout/Layout';
 import BigCTA from '../components/layout/BigCTA';
 import { Screen } from '../components/ui/Media';
-import { Reveal, TitleReveal } from '../components/ui/Reveal';
+import { FitLine, Reveal, TitleReveal } from '../components/ui/Reveal';
 import { SOFTWARE, type SoftwareProject } from '../lib/projects';
 import { EASE, inView, rise, stagger, useDragScroll } from '../lib/motion';
 
@@ -171,9 +171,9 @@ export default function CaseStudy({ project: p }: { project: SoftwareProject }) 
           <div className="wrap grid items-center gap-12 md:grid-cols-2">
             <div className="flex flex-col gap-[18px] transition-colors duration-500 group-hover:text-ink">
               <span className="lab !text-gold transition-colors duration-500 group-hover:!text-ink">Next project</span>
-              <span className="whitespace-nowrap font-display font-extrabold leading-[.82] tracking-[-0.06em]" style={{ fontSize: 'clamp(44px,7.5vw,120px)' }}>
+              <FitLine className="font-display font-extrabold leading-[.82] tracking-[-0.06em]" style={{ fontSize: 'clamp(44px,7.5vw,120px)' }}>
                 {next.name} →
-              </span>
+              </FitLine>
               <span className="lab transition-colors duration-500 group-hover:!text-ink">
                 {next.kind} · {next.cat}
               </span>

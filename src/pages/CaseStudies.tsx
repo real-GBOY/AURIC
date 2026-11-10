@@ -79,13 +79,13 @@ export default function CaseStudies() {
                     <div className="absolute inset-x-0 bottom-0 h-[62%] bg-gradient-to-t from-[rgba(10,10,11,.92)] to-transparent" />
                     <div className="absolute inset-x-5 bottom-5 flex items-end justify-between gap-5 md:inset-x-7 md:bottom-6">
                       <span
-                        className="font-display font-extrabold leading-[.9] tracking-[-0.05em] text-cream"
+                        className="min-w-0 break-words font-display font-extrabold leading-[.9] tracking-[-0.05em] text-cream"
                         style={{ fontSize: full ? 'clamp(44px,9vw,130px)' : 'clamp(32px,4.4vw,64px)' }}
                       >
                         {p.name}
                       </span>
-                      <span className="lab whitespace-nowrap !text-gold">
-                        {String(i + 1).padStart(2, '0')} · View →
+                      <span className="lab shrink-0 whitespace-nowrap !text-gold">
+                        {String(i + 1).padStart(2, '0')}<span className="hidden sm:inline"> · View →</span>
                       </span>
                     </div>
                   </div>

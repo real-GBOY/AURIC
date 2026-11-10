@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import type { ElementType, ReactNode } from 'react';
+import { useRef, type ElementType, type ReactNode } from 'react';
+import { useFitText } from '../../lib/fit';
 import { inView, lineUp, rise, stagger } from '../../lib/motion';
 
 /** Fades and lifts its children into view once. */
@@ -48,17 +49,34 @@ export function TitleReveal({
   onLoad?: boolean;
 }) {
   const Tag = motion[as] as ElementType;
+  const ref = useRef<HTMLElement>(null);
+  useFitText(ref);
   const trigger = onLoad ? { animate: 'visible' } : { whileInView: 'visible', viewport: inView };
   return (
-    <Tag className={className} style={style} initial="hidden" {...trigger} variants={stagger(0.12, 0.05)}>
+    <Tag ref={ref} className={`min-w-0 max-w-full ${className}`} style={style} initial="hidden" {...trigger} variants={stagger(0.12, 0.05)}>
       {lines.map((line, i) => (
-        <span key={i} className="-mb-[0.08em] block overflow-hidden pb-[0.14em]">
-          <motion.span className="block" variants={lineUp}>
+        // The mask only clips vertically (for the slide-up); lines never wrap and
+        // the whole title shrinks to fit its column instead of being cut off.
+        <span key={i} className="-mb-[0.08em] block pb-[0.14em] [overflow-x:visible] [overflow-y:clip]">
+          <motion.span data-fit-line className="inline-block whitespace-nowrap" variants={lineUp}>
             {line}
           </motion.span>
         </span>
       ))}
     </Tag>
+  );
+}
+
+/** A single big line (not animated) that shrinks to fit its column. */
+export function FitLine({ children, className = '', style }: { children: ReactNode; className?: string; style?: React.CSSProperties }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  useFitText(ref);
+  return (
+    <span ref={ref} className={`block min-w-0 max-w-full ${className}`} style={style}>
+      <span data-fit-line className="inline-block whitespace-nowrap">
+        {children}
+      </span>
+    </span>
   );
 }
 
