@@ -63,6 +63,41 @@ export function VideoSlot({
   );
 }
 
+const RESPONSIVE = /^(\/work\/.+)\.(png|jpe?g)$/i;
+
+/**
+ * A project screenshot served as responsive WebP (800w and 1600w, made by `npm run images`)
+ * with the original file as the fallback. Other images are rendered as a plain <img>.
+ */
+export function Photo({
+  src,
+  alt,
+  className,
+  style,
+  sizes = '(min-width: 1024px) 50vw, 100vw',
+  eager = false,
+  ...rest
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+  style?: CSSProperties;
+  sizes?: string;
+  eager?: boolean;
+} & Record<`data-${string}`, string | undefined>) {
+  const m = RESPONSIVE.exec(src);
+  const img = (
+    <img src={src} alt={alt} className={className} style={style} loading={eager ? 'eager' : 'lazy'} decoding="async" {...rest} />
+  );
+  if (!m) return img;
+  return (
+    <picture className="contents">
+      <source type="image/webp" srcSet={`${m[1]}-800.webp 800w, ${m[1]}-1600.webp 1600w`} sizes={sizes} />
+      {img}
+    </picture>
+  );
+}
+
 type ScreenProps = {
   src: string;
   alt: string;
@@ -70,13 +105,15 @@ type ScreenProps = {
   className?: string;
   style?: CSSProperties;
   imgClassName?: string;
+  /** How wide the image is shown, for picking the right file size. */
+  sizes?: string;
   /** Show the browser bar on top. Off for phone screens. */
   bar?: boolean;
   radius?: number;
 };
 
 /** A real product screenshot inside a browser frame. */
-export function Screen({ src, alt, ratio, className = '', style, imgClassName = '', bar = true, radius }: ScreenProps) {
+export function Screen({ src, alt, ratio, className = '', style, imgClassName = '', sizes, bar = true, radius }: ScreenProps) {
   return (
     <div className={`frame ${className}`} style={{ aspectRatio: ratio, borderRadius: radius, ...style }}>
       {bar && (
@@ -86,10 +123,10 @@ export function Screen({ src, alt, ratio, className = '', style, imgClassName = 
           <i />
         </div>
       )}
-      <img
+      <Photo
         src={src}
         alt={alt}
-        loading="lazy"
+        sizes={sizes}
         className={`w-full object-cover object-left-top ${imgClassName}`}
         style={{ height: bar ? 'calc(100% - 28px)' : '100%' }}
       />

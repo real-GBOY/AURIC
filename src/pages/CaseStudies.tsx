@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Layout from '../components/layout/Layout';
 import BigCTA from '../components/layout/BigCTA';
 import { PlayButton } from '../components/ui/Icons';
+import { Photo } from '../components/ui/Media';
 import { TitleReveal } from '../components/ui/Reveal';
 import { CASE_STUDIES, FILTERS, type Group } from '../lib/projects';
 import { EASE } from '../lib/motion';
@@ -67,7 +68,7 @@ export default function CaseStudies() {
                     style={{ aspectRatio: full ? '21/9' : '4/3' }}
                   >
                     {p.type === 'img' && (
-                      <div className="absolute inset-0" data-scrub-zoom="1.14"><img src={p.img} alt={p.name} loading="lazy" className="absolute inset-0 h-full w-full object-cover object-left-top transition-transform duration-700 group-hover:scale-[1.03]" /></div>
+                      <div className="absolute inset-0" data-scrub-zoom="1.14"><Photo src={p.img!} alt={p.name} sizes="(min-width: 768px) 50vw, 100vw" className="absolute inset-0 h-full w-full object-cover object-left-top transition-transform duration-700 group-hover:scale-[1.03]" /></div>
                     )}
                     {(p.type === 'video' || p.type === 'reel') && (
                       <div className="ph absolute inset-0 !border-0">

@@ -58,7 +58,7 @@ export default function ScrollScenes() {
                   { clipPath: 'inset(100% 0% 0% 0% round 12px)' },
                   { clipPath: 'inset(0% 0% 0% 0% round 0px)', duration: 1.2, ease: 'expo.inOut', stagger: 0.12, clearProps: 'clipPath' },
                 );
-                const imgs = batch.flatMap((b) => Array.from(b.querySelectorAll(':scope > img:not([data-parallax])')));
+                const imgs = batch.flatMap((b) => Array.from(b.querySelectorAll(':scope > img:not([data-parallax]), :scope > picture > img:not([data-parallax])')));
                 if (imgs.length) gsap.fromTo(imgs, { scale: 1.25 }, { scale: 1, duration: 1.6, ease: 'expo.out', stagger: 0.12, clearProps: 'transform' });
               },
             },
