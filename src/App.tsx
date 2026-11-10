@@ -4,6 +4,7 @@ import Work from './pages/Work';
 import CaseStudies from './pages/CaseStudies';
 import CaseStudy from './pages/CaseStudy';
 import CreativeCaseStudy from './pages/CreativeCaseStudy';
+import Team from './pages/Team';
 import NotFound from './components/NotFound';
 import { softwareBySlug } from './lib/projects';
 
@@ -16,6 +17,7 @@ export default function App() {
   if (path === '/work') return <Work />;
   if (path === '/case-studies') return <CaseStudies />;
   if (path === '/case-studies/creative') return <CreativeCaseStudy />;
+  if (path === '/team') return <Team />;
 
   const match = path.match(/^\/work\/([a-z0-9-]+)$/);
   const project = match && softwareBySlug(match[1]);
