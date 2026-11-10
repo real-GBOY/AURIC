@@ -41,7 +41,7 @@ export default function Header() {
       }`}
     >
       <div className="wrap flex h-16 items-center justify-between gap-6 md:h-[74px]">
-        <a href={href('/')} aria-label="AURIC home" className="flex items-center">
+        <a href={href('/')} aria-label="AURIC home" className="flex min-h-11 items-center">
           <Logo size={26} />
         </a>
 
@@ -51,7 +51,7 @@ export default function Header() {
               key={item.href}
               href={item.href}
               aria-current={isActive(item.href) ? 'page' : undefined}
-              className={`text-[15px] font-medium transition-colors hover:text-gold ${isActive(item.href) ? 'text-gold' : ''}`}
+              className={`tap text-[15px] font-medium transition-colors hover:text-gold ${isActive(item.href) ? 'text-gold' : ''}`}
             >
               {t(item.label, item.ar)}
             </a>
@@ -62,7 +62,7 @@ export default function Header() {
           <a
             href={otherLangHref()}
             lang={isAr ? 'en' : 'ar'}
-            className="lab px-1 !text-[12px] !text-cream transition-colors hover:!text-gold"
+            className="lab tap min-w-11 justify-center px-1 !text-[12px] !text-cream transition-colors hover:!text-gold"
             aria-label={isAr ? 'English version' : 'النسخة العربية'}
           >
             {isAr ? 'EN' : 'عربي'}
@@ -132,7 +132,7 @@ export default function Header() {
               </a>
               <div className="mt-3 flex justify-between">
                 {SOCIALS.map((s) => (
-                  <a key={s.label} href={s.href || '#'} className="lab !text-cream">
+                  <a key={s.label} href={s.href || '#'} className="lab tap !text-cream">
                     {t(s.label, s.ar)}
                   </a>
                 ))}

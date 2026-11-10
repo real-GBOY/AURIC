@@ -33,7 +33,7 @@ export default function CreativeCaseStudy() {
       <section className="overflow-hidden pt-8 md:pt-12">
         <div className="wrap flex flex-col gap-7">
           <div className="flex flex-wrap items-center justify-between gap-4">
-            <a href="/case-studies" className="lab hover:!text-gold">← Case studies</a>
+            <a href="/case-studies" className="lab tap hover:!text-gold">← Case studies</a>
             <span className="lab !text-gold">Creative case study · template</span>
           </div>
           <div className="flex flex-wrap items-end justify-between gap-8">

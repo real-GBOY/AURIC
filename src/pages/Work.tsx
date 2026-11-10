@@ -87,11 +87,11 @@ function ProjectIndex() {
           right={
             <div className="flex flex-wrap items-baseline gap-6">
               <span className="lab">Hover a project · preview changes</span>
-              <a href="/case-studies" className="lab !text-gold">All case studies →</a>
+              <a href="/case-studies" className="lab tap !text-gold">All case studies →</a>
             </div>
           }
         />
-        <div className="grid items-start gap-12 lg:grid-cols-2">
+        <div className="grid items-start gap-8 md:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:grid-cols-2 lg:gap-12">
           <div role="list">
             {INDEX.map((e, k) => {
               const on = k === i;
@@ -126,7 +126,7 @@ function ProjectIndex() {
               <span className="lab !text-gold">{cur.kind}</span>
             </div>
             <p className="copy !text-[15px]">{cur.desc}</p>
-            <a href={cur.href} className="lab !text-cream hover:!text-gold">Open case study →</a>
+            <a href={cur.href} className="lab tap !text-cream hover:!text-gold">Open case study →</a>
           </div>
         </div>
       </div>
@@ -213,12 +213,12 @@ function ContentChapter() {
     <section className="hidden py-[120px] md:block">
       <div className="wrap">
         <ChapterHead n="03" title="Content & social" right={<span className="lab">Reels · campaigns · content plans</span>} />
-        <motion.div className="grid grid-cols-3 gap-4 lg:grid-cols-5" initial="hidden" whileInView="visible" viewport={inView} variants={stagger(0.1)}>
+        <motion.div className="grid grid-cols-5 gap-3 lg:gap-4" initial="hidden" whileInView="visible" viewport={inView} variants={stagger(0.1)}>
           {[1, 2, 3, 4, 5].map((n) => (
             <motion.div
               key={n}
               variants={{ hidden: { opacity: 0, y: 70 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: EASE } } }}
-              className={`flex flex-col gap-3 ${n % 2 === 0 ? 'lg:mt-12' : ''}`}
+              className={`flex flex-col gap-3 ${n % 2 === 0 ? "mt-8 lg:mt-12" : ""}`}
             >
               <motion.div animate={{ y: [0, n % 2 ? -8 : 8, 0] }} transition={{ duration: 5 + n * 0.4, repeat: Infinity, ease: 'easeInOut' }}>
                 <ReelSlot label={`Reel ${pad(n)}`} />
@@ -238,7 +238,7 @@ function SoftwareChapter() {
   return (
     <section className="hidden overflow-hidden bg-bg py-[120px] md:block">
       <div className="wrap">
-        <ChapterHead n="04" title="Websites & apps" right={<a href="/work/mizan" className="lab !text-gold">Mizan case study →</a>} />
+        <ChapterHead n="04" title="Websites & apps" right={<a href="/work/mizan" className="lab tap !text-gold">Mizan case study →</a>} />
         <div className="relative h-[520px] lg:h-[600px]">
           <motion.a href="/work/atlas" className="absolute left-0 top-5 z-[1] h-[360px] w-[58%] lg:h-[420px]" {...up(0)}>
             <Screen src="/work/atlas/dashboard.png" alt="Atlas dashboard" className="h-full" />
@@ -302,9 +302,9 @@ function Archive() {
                 <EntryMedia e={p} />
                 <span className="flex items-baseline justify-between gap-[10px]">
                   <span className="h3 !text-[18px]">{p.name}</span>
-                  <span className="lab !text-[10.5px]">{p.cat}</span>
+                  <span className="lab !text-[11px]">{p.cat}</span>
                 </span>
-                <span className="lab !text-[10.5px] !text-gold">{p.kind}</span>
+                <span className="lab !text-[11px] !text-gold">{p.kind}</span>
               </motion.a>
             ))}
           </AnimatePresence>

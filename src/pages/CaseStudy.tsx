@@ -37,7 +37,7 @@ export default function CaseStudy({ project: p }: { project: SoftwareProject }) 
       <section className="overflow-hidden pt-8 md:pt-12">
         <div className="wrap flex flex-col gap-7">
           <div className="flex flex-wrap items-center justify-between gap-4">
-            <a href="/case-studies" className="lab hover:!text-gold">← Case studies</a>
+            <a href="/case-studies" className="lab tap hover:!text-gold">← Case studies</a>
             <span className="lab !text-gold">Case study · {pad(i + 1)}</span>
           </div>
           <div className="flex flex-wrap items-end justify-between gap-8">
@@ -86,7 +86,7 @@ export default function CaseStudy({ project: p }: { project: SoftwareProject }) 
               transition={{ duration: 1.1, ease: EASE }}
             >
               <motion.div initial={{ scale: 1.15 }} whileInView={{ scale: 1 }} viewport={{ once: true, margin: '-60px' }} transition={{ duration: 1.4, ease: EASE }}>
-                <Screen src={hero} alt={`${d.title} main screen`} ratio="16/8.5" />
+                <Screen src={hero} alt={`${d.title} main screen`} className="aspect-[4/3] md:aspect-[16/8.5]" />
               </motion.div>
             </motion.div>
           </div>

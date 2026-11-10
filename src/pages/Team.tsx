@@ -73,7 +73,7 @@ export default function Team() {
           <div className="grid items-end gap-6 md:grid-cols-2">
             <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={inView} transition={{ duration: 0.9, ease: EASE }}>
               <Portrait photo={FOUNDER.photo} alt={`${FOUNDER.first} ${FOUNDER.last}`} ratio="4/5">
-                {!FOUNDER.photo && <span className="lab absolute left-6 top-[22px] !text-[10px] !text-gold">Portrait · placeholder</span>}
+                {!FOUNDER.photo && <span className="lab absolute left-6 top-[22px] !text-[11px] !text-gold">Portrait · placeholder</span>}
               </Portrait>
             </motion.div>
             <div className="flex flex-col gap-[22px] pb-3">
@@ -86,7 +86,7 @@ export default function Team() {
               />
               <Reveal className="flex flex-wrap gap-6 border-t border-[rgba(244,241,232,.14)] pt-[18px]">
                 <span className="lab !text-gold">{FOUNDER.role}</span>
-                <a href={FOUNDER.linkedin || '#'} className="lab !text-cream hover:!text-gold" target={FOUNDER.linkedin ? '_blank' : undefined} rel="noreferrer">
+                <a href={FOUNDER.linkedin || '#'} className="lab tap !text-cream hover:!text-gold" target={FOUNDER.linkedin ? '_blank' : undefined} rel="noreferrer">
                   LinkedIn ↗
                 </a>
               </Reveal>
@@ -110,7 +110,7 @@ export default function Team() {
               <motion.div key={i} variants={rise} className={`flex flex-col gap-[14px] ${i % 2 ? 'mt-10' : ''}`}>
                 <Portrait photo={m.photo} alt={m.name} ratio="3/4">
                   <span className="num-xl stroke-gold absolute left-4 top-3 text-[44px] [-webkit-text-stroke-width:1.2px]">{String(i + 1).padStart(2, '0')}</span>
-                  {!m.photo && <span className="lab absolute bottom-[14px] left-4 !text-[10px] !text-gold">Portrait · placeholder</span>}
+                  {!m.photo && <span className="lab absolute bottom-[14px] left-4 !text-[11px] !text-gold">Portrait · placeholder</span>}
                 </Portrait>
                 <span className="h3 !text-[19px]">{m.name}</span>
                 <span className="lab">{m.role}</span>
@@ -136,23 +136,19 @@ export default function Team() {
             transition={{ duration: 24, repeat: Infinity, ease: 'easeInOut' }}
           >
             {NETWORK.map((n, i) => (
-              <span key={n}>
-                <motion.span
-                  className={`inline-block font-display font-bold sm:whitespace-nowrap leading-[1.2] tracking-[-0.04em] ${(i + 1) % 3 === 0 ? 'stroke-gold [-webkit-text-stroke-width:1.2px]' : ''}`}
-                  style={{ fontSize: 'clamp(28px,3.6vw,54px)' }}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={inView}
-                  transition={{ delay: i * 0.05, duration: 0.6 }}
-                >
-                  {n}
-                </motion.span>
-                {i < NETWORK.length - 1 && (
-                  <b className="px-[.22em] font-display font-light text-charcoal" style={{ fontSize: 'clamp(28px,3.6vw,54px)' }}>
-                    {' / '}
-                  </b>
-                )}
-              </span>
+              // Each name carries its own "/" so a separator never starts a line.
+              <motion.span
+                key={n}
+                className="inline font-display font-bold leading-[1.25] tracking-[-0.04em]"
+                style={{ fontSize: 'clamp(26px,3.6vw,54px)' }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={inView}
+                transition={{ delay: i * 0.05, duration: 0.6 }}
+              >
+                <span className={(i + 1) % 3 === 0 ? 'stroke-gold [-webkit-text-stroke-width:1.2px]' : ''}>{n}</span>
+                {i < NETWORK.length - 1 && <b className="font-light text-charcoal">{' / '}</b>}
+              </motion.span>
             ))}
           </motion.p>
         </div>
@@ -166,7 +162,7 @@ export default function Team() {
             <span className="lab">04</span>
           </Reveal>
           <motion.ol
-            className="m-0 grid list-none grid-cols-1 border-t border-[rgba(244,241,232,.14)] p-0 sm:grid-cols-2 lg:grid-cols-5"
+            className="m-0 grid list-none grid-cols-2 border-t border-[rgba(244,241,232,.14)] p-0 lg:grid-cols-5"
             initial="hidden"
             whileInView="visible"
             viewport={inView}
@@ -176,9 +172,9 @@ export default function Team() {
               <motion.li
                 key={s.t}
                 variants={rise}
-                className="flex flex-col gap-3 border-b border-[rgba(244,241,232,.14)] py-6 lg:border-b-0 lg:border-r lg:px-5 lg:pb-0 lg:pt-[30px] lg:first:pl-0 lg:last:border-r-0"
+                className={`flex flex-col gap-3 border-b border-[rgba(244,241,232,.14)] py-6 ${i === 4 ? 'col-span-2' : i % 2 === 0 ? 'border-e pe-4' : 'ps-4'} lg:col-span-1 lg:border-b-0 lg:border-e lg:px-5 lg:pb-0 lg:pt-[30px] lg:first:ps-0 lg:last:border-e-0`}
               >
-                <span className={`num-xl text-[56px] md:text-[72px] ${i === 0 || i === 4 ? 'text-gold' : 'stroke-gold'}`}>{String(i + 1).padStart(2, '0')}</span>
+                <span className={`num-xl text-[48px] md:text-[72px] ${i === 0 || i === 4 ? 'text-gold' : 'stroke-gold'}`}>{String(i + 1).padStart(2, '0')}</span>
                 <span className="h3 !text-[19px]">{s.t}</span>
                 <p className="copy !text-[15px]">{s.d}</p>
               </motion.li>

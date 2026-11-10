@@ -179,7 +179,7 @@
   .slot {
     position: absolute;
     font-family: 'Geist Mono', monospace;
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--gold);
@@ -235,6 +235,13 @@
   }
   .no-scrollbar::-webkit-scrollbar {
     display: none;
+  }
+
+  /* Minimum 44px touch target for small text links */
+  .tap {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
   }
 
   /* Pill chips (filters, form choices) */

@@ -137,7 +137,7 @@ function Divisions() {
         </Reveal>
 
         {/* Desktop */}
-        <div className="hidden items-start gap-12 md:grid lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
+        <div className="hidden items-start gap-8 md:grid md:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-12">
           <div>
             {C.divisions.map((d, i) => {
               const on = i === active;
@@ -149,7 +149,7 @@ function Divisions() {
                   onFocus={() => setActive(i)}
                   onClick={() => setActive(i)}
                   aria-pressed={on}
-                  className={`grid w-full grid-cols-[72px_minmax(0,1fr)_auto] items-center gap-5 border-b border-[var(--line)] py-[26px] text-start transition-colors ${on ? 'text-gold' : ''}`}
+                  className={`grid w-full grid-cols-[48px_minmax(0,1fr)] items-center gap-4 border-b lg:grid-cols-[72px_minmax(0,1fr)_auto] lg:gap-5 border-[var(--line)] py-[26px] text-start transition-colors ${on ? 'text-gold' : ''}`}
                 >
                   <span className={`lab ${on ? '!text-gold' : ''}`}>{pad(i + 1)}</span>
                   <span className="font-display font-bold leading-none tracking-[-0.04em]" style={{ fontSize: 'clamp(34px,4.4vw,64px)' }}>
@@ -157,7 +157,7 @@ function Divisions() {
                       {d.name}
                     </motion.span>
                   </span>
-                  <span className={`lab ${on ? '!text-gold' : ''}`}>
+                  <span className={`lab hidden lg:inline ${on ? '!text-gold' : ''}`}>
                     {d.short}
                     {on ? ` ${ARROW}` : ''}
                   </span>
@@ -178,7 +178,7 @@ function Divisions() {
               </motion.div>
             </AnimatePresence>
             <p className="copy">{cur.desc}</p>
-            <a href={href(`/services#${cur.key}`)} className="lab !text-cream hover:!text-gold">
+            <a href={href(`/services#${cur.key}`)} className="lab tap !text-cream hover:!text-gold">
               {cur.see} {ARROW}
             </a>
           </div>
@@ -212,7 +212,7 @@ function Divisions() {
                       <div className="flex flex-col gap-4 pb-[22px]">
                         <DivisionPreview k={d.key} compact />
                         <p className="copy !text-[15px]">{d.phoneDesc}</p>
-                        <a href={href(`/services#${d.key}`)} className="lab !text-cream">
+                        <a href={href(`/services#${d.key}`)} className="lab tap !text-cream">
                           {d.see} {ARROW}
                         </a>
                       </div>
@@ -248,10 +248,10 @@ function SelectedWork() {
             {C.selected[1]}
           </h2>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-            <a href="/case-studies" className="lab !text-cream hover:!text-gold">
+            <a href="/case-studies" className="lab tap !text-cream hover:!text-gold">
               {C.caseStudies} {ARROW}
             </a>
-            <a href="/work" className="lab !text-gold">
+            <a href="/work" className="lab tap !text-gold">
               <span className="hidden md:inline">{C.fullPortfolio} {ARROW}</span>
               <span className="md:hidden">{C.allWork} {ARROW}</span>
             </a>
@@ -366,7 +366,7 @@ function Packages() {
             {C.ways[0]} <br className="md:hidden" />
             {C.ways[1]}
           </h2>
-          <a href="/services#packages" className="lab hidden !text-gold md:inline">
+          <a href="/services#packages" className="lab tap hidden !text-gold md:inline-flex">
             {C.waysLink} {ARROW}
           </a>
         </Reveal>
@@ -437,7 +437,7 @@ function ClientProof() {
                 <span className="h-10 w-10 rounded-full border border-dashed border-[rgba(244,241,232,.3)] bg-surface-2 md:h-12 md:w-12" />
                 <span className="flex flex-col gap-1">
                   <span className="text-base font-semibold">{q.quote ? q.name : C.clientName}</span>
-                  <span className="lab !text-[10.5px]">{q.quote ? q.role : C.clientRole}</span>
+                  <span className="lab !text-[11px]">{q.quote ? q.role : C.clientRole}</span>
                 </span>
               </figcaption>
             </motion.figure>
@@ -448,7 +448,7 @@ function ClientProof() {
             l.src ? (
               <img key={i} src={l.src} alt={l.name} className="h-16 w-full object-contain md:h-[84px]" />
             ) : (
-              <div key={i} className="lab flex h-16 items-center justify-center rounded-[10px] border border-dashed border-[rgba(244,241,232,.2)] !text-[9px] !text-dim md:h-[84px] md:!text-[10px]">
+              <div key={i} className="lab flex h-16 items-center justify-center rounded-[10px] border border-dashed border-[rgba(244,241,232,.2)] !text-[11px] !text-dim md:h-[84px] md:!text-[11px]">
                 {C.logo}
               </div>
             ),

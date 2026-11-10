@@ -173,7 +173,7 @@ function Strategy() {
           <div className="flex flex-col gap-[14px] rounded-[10px] bg-surface p-[30px]">
             <div className="flex justify-between">
               <span className="h3 !text-[17px]">Content calendar</span>
-              <span className="lab !text-[10px] !text-gold">Example layout</span>
+              <span className="lab !text-[11px] !text-gold">Example layout</span>
             </div>
             <motion.div
               className="grid grid-cols-7 gap-2 [grid-auto-rows:44px] md:[grid-auto-rows:56px]"
@@ -335,7 +335,7 @@ function Packages() {
               >
                 <div className="flex items-center justify-between">
                   <span className={`lab ${f ? '!text-[#3a3010]' : ''}`}>{pad(i + 1)}</span>
-                  {f && <span className="lab rounded-full bg-ink px-[10px] py-[5px] !text-[10px] !text-gold">Start here</span>}
+                  {f && <span className="lab rounded-full bg-ink px-[10px] py-[5px] !text-[11px] !text-gold">Start here</span>}
                 </div>
                 <h3 className="font-display text-[30px] font-extrabold leading-none tracking-[-0.045em]">{p.name}</h3>
                 <span className={`text-[15px] ${f ? 'text-[#3a3010]' : 'text-muted'}`}>{p.who}</span>
@@ -352,7 +352,7 @@ function Packages() {
                 </ul>
                 <div className="flex items-center justify-between gap-3">
                   <span className={`lab ${f ? '!text-[#3a3010]' : ''}`}>{p.time}</span>
-                  <a href={`${CTA_HREF}?package=${encodeURIComponent(p.name)}`} className={`text-[15px] font-semibold ${f ? 'text-ink hover:underline' : 'hover:text-gold'}`}>
+                  <a href={`${CTA_HREF}?package=${encodeURIComponent(p.name)}`} className={`tap text-[15px] font-semibold ${f ? 'text-ink hover:underline' : 'hover:text-gold'}`}>
                     Ask about this →
                   </a>
                 </div>

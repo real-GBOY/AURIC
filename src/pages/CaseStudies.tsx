@@ -27,7 +27,7 @@ export default function CaseStudies() {
             <motion.div className="flex max-w-[340px] flex-col gap-[14px] pb-[18px]" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
               <span className="lab !text-gold">{list.length} projects</span>
               <p className="copy !text-base">The story behind each project: the goal, what we made and how it came together.</p>
-              <a href="/work" className="lab !text-cream hover:!text-gold">Visual portfolio →</a>
+              <a href="/work" className="lab tap !text-cream hover:!text-gold">Visual portfolio →</a>
             </motion.div>
           </div>
           <div className="no-scrollbar -mx-5 flex gap-[10px] overflow-x-auto border-t border-[var(--line)] px-5 pt-7 md:mx-0 md:flex-wrap md:px-0" role="group" aria-label="Filter case studies">

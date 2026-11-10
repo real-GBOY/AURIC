@@ -11,7 +11,7 @@ const FOOTER_PAGES = [
   { label: 'Start a Project', ar: 'ابدأ مشروعك', href: CTA_HREF },
 ];
 
-const linkCls = 'text-[15px] text-cream transition-colors hover:text-gold';
+const linkCls = 'tap text-[15px] text-cream transition-colors hover:text-gold md:min-h-0';
 
 export default function Footer() {
   return (
@@ -35,15 +35,15 @@ export default function Footer() {
           </a>
         </div>
 
-        <div className="grid gap-10" style={{ gridTemplateColumns: 'repeat(auto-fit,minmax(200px,1fr))' }}>
-          <div className="flex flex-col gap-[14px]">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-4 lg:gap-10">
+          <div className="col-span-2 flex flex-col gap-[14px] md:col-span-1">
             <Logo size={26} />
             <p className="max-w-[28ch] text-[15px] leading-[1.55] text-copy">
               {t('Your digital partner for creativity, strategy, technology and execution.', 'شريكك الرقمي في الإبداع والاستراتيجية والتقنية والتنفيذ.')}
             </p>
           </div>
-          <div className="flex flex-col gap-[10px]">
-            <span className="lab">{t('Contact', 'تواصل')}</span>
+          <div className="col-span-2 flex flex-col md:col-span-1 md:gap-[10px]">
+            <span className="lab mb-1 md:mb-0">{t('Contact', 'تواصل')}</span>
             <a href={emailHref()} className={linkCls}>
               {CONTACT.email || CONTACT.emailLabel}
             </a>
@@ -52,16 +52,16 @@ export default function Footer() {
             </a>
             <span className="text-[15px] text-copy">{t(CONTACT.city, CONTACT.cityAr)}</span>
           </div>
-          <div className="flex flex-col gap-[10px]">
-            <span className="lab">{t('Follow', 'تابعنا')}</span>
+          <div className="flex flex-col md:gap-[10px]">
+            <span className="lab mb-1 md:mb-0">{t('Follow', 'تابعنا')}</span>
             {SOCIALS.map((s) => (
               <a key={s.label} href={s.href || '#'} className={linkCls} target={s.href ? '_blank' : undefined} rel="noreferrer">
                 {t(s.label, s.ar)} ↗
               </a>
             ))}
           </div>
-          <div className="flex flex-col gap-[10px]">
-            <span className="lab">{t('Pages', 'الصفحات')}</span>
+          <div className="flex flex-col md:gap-[10px]">
+            <span className="lab mb-1 md:mb-0">{t('Pages', 'الصفحات')}</span>
             {FOOTER_PAGES.map((p) => (
               <a key={p.href} href={href(p.href)} className={linkCls}>
                 {t(p.label, p.ar)}
