@@ -52,7 +52,7 @@ export function TitleReveal({
   return (
     <Tag className={className} style={style} initial="hidden" {...trigger} variants={stagger(0.12, 0.05)}>
       {lines.map((line, i) => (
-        <span key={i} className="block overflow-hidden pb-[0.06em]">
+        <span key={i} className="-mb-[0.08em] block overflow-hidden pb-[0.14em]">
           <motion.span className="block" variants={lineUp}>
             {line}
           </motion.span>

@@ -1,21 +1,14 @@
-import Nav from './components/Nav';
-import Hero from './components/Hero';
-import Marquee from './components/Marquee';
-import About from './components/About';
-import Services from './components/Services';
-import Work from './components/Work';
-import Process from './components/Process';
-import StatsBar from './components/StatsBar';
-import CTA from './components/CTA';
-import Footer from './components/Footer';
+import Home from './pages/Home';
 import NotFound from './components/NotFound';
 import CaseStudy from './components/CaseStudy';
 import AllWork from './components/AllWork';
 import { NOVA_PROJECT, AJWADI_PROJECT, ENACTIX_PROJECT, WEAVOLUTION_PROJECT, BUILD_ART_PROJECT, OPTICARE_PROJECT, ATLAS_PROJECT, MIZAN_PROJECT, HOTEL_OS_PROJECT, CLINIC_OS_PROJECT, RAQIB_PROJECT, ADMIT_PROJECT } from './lib/data';
 
-const path = window.location.pathname;
+// Normalise the path: no trailing slash (except the root).
+const path = window.location.pathname.replace(/\/+$/, '') || '/';
 
 export default function App() {
+  if (path === '/') return <Home />;
   if (path === '/work') return <AllWork />;
   if (path === '/work/nova') return <CaseStudy project={NOVA_PROJECT} />;
   if (path === '/work/ajwadi') return <CaseStudy project={AJWADI_PROJECT} />;
@@ -29,20 +22,5 @@ export default function App() {
   if (path === '/work/clinic-os') return <CaseStudy project={CLINIC_OS_PROJECT} />;
   if (path === '/work/raqib') return <CaseStudy project={RAQIB_PROJECT} />;
   if (path === '/work/admit') return <CaseStudy project={ADMIT_PROJECT} />;
-  if (path !== '/') return <NotFound />;
-
-  return (
-    <div className="min-h-screen">
-      <Nav />
-      <Hero />
-      <Marquee />
-      <About />
-      <Services />
-      <Work />
-      <Process />
-      <StatsBar />
-      <CTA />
-      <Footer />
-    </div>
-  );
+  return <NotFound />;
 }
