@@ -43,6 +43,8 @@ export default function ScrollScenes() {
               ease: 'expo.out',
               stagger: rtl ? 0.06 : 0.022,
               scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+              // The masks are only for the reveal; afterwards they would clip descenders (g, y, p).
+              onComplete: () => gsap.set(split.masks, { overflow: 'visible', clipPath: 'none' }),
             });
           });
 
