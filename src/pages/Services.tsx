@@ -5,7 +5,6 @@ import BigCTA from '../components/layout/BigCTA';
 import { PlayButton } from '../components/ui/Icons';
 import { Screen } from '../components/ui/Media';
 import { Reveal, TitleReveal } from '../components/ui/Reveal';
-import { PACKAGES } from '../lib/content';
 import { CTA_HREF } from '../lib/site';
 import { EASE, drop, inView, rise, stagger } from '../lib/motion';
 import { gsap, ScrollTrigger, useGSAP } from '../lib/gsap';
@@ -405,73 +404,6 @@ function Manage() {
   );
 }
 
-/* S6 · Ways to work with us — package cards rise in a stagger */
-function Packages() {
-  return (
-    <section id="packages" className="border-t border-[rgba(244,241,232,.1)] bg-ink py-[88px] md:py-[120px]">
-      <div className="wrap">
-        <div className="mb-12 flex flex-wrap items-end justify-between gap-8">
-          <TitleReveal
-            as="h2"
-            onLoad={false}
-            className="font-display font-extrabold leading-[.9] tracking-[-0.045em]"
-            style={{ fontSize: 'clamp(44px,7vw,104px)' }}
-            lines={['Ways to work', <>with us<span className="text-gold">.</span></>]}
-          />
-          <Reveal as="p" className="copy max-w-[34ch] pb-[10px]">
-            Pick the package closest to what you need. Every project is priced after a short call.
-          </Reveal>
-        </div>
-        <motion.div
-          className="grid gap-[18px] sm:grid-cols-2 xl:grid-cols-4"
-          initial="hidden"
-          whileInView="visible"
-          viewport={inView}
-          variants={stagger(0.12)}
-        >
-          {PACKAGES.map((p, i) => {
-            const f = !!p.featured;
-            return (
-              <motion.div
-                key={p.name}
-                variants={{ hidden: { opacity: 0, y: 60 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } } }}
-                whileHover={{ y: -6 }}
-                className={`flex min-h-[460px] flex-col gap-[18px] rounded-[14px] px-[26px] py-[30px] md:min-h-[520px] ${
-                  f ? 'bg-gold text-ink' : 'border border-[var(--line)] bg-surface'
-                }`}
-              >
-                <div className="flex items-center justify-between">
-                  <span className={`lab ${f ? '!text-[#3a3010]' : ''}`}>{pad(i + 1)}</span>
-                  {f && <span className="lab rounded-full bg-ink px-[10px] py-[5px] !text-[11px] !text-gold">Start here</span>}
-                </div>
-                <h3 className="font-display text-[30px] font-extrabold leading-none tracking-[-0.045em]">{p.name}</h3>
-                <span className={`text-[15px] ${f ? 'text-[#3a3010]' : 'text-muted'}`}>{p.who}</span>
-                <ul className="m-0 flex-1 list-none p-0">
-                  {p.items.map((it) => (
-                    <li
-                      key={it}
-                      className={`flex items-baseline gap-[10px] border-b py-[9px] text-[15px] leading-[1.45] ${f ? 'border-[rgba(10,10,11,.15)]' : 'border-[rgba(244,241,232,.1)]'}`}
-                    >
-                      <span className={f ? 'text-ink' : 'text-gold'}>+</span>
-                      {it}
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex items-center justify-between gap-3">
-                  <span className={`lab ${f ? '!text-[#3a3010]' : ''}`}>{p.time}</span>
-                  <a href={`${CTA_HREF}?package=${encodeURIComponent(p.name)}`} className={`tap text-[15px] font-semibold ${f ? 'text-ink hover:underline' : 'hover:text-gold'}`}>
-                    Ask about this →
-                  </a>
-                </div>
-              </motion.div>
-            );
-          })}
-        </motion.div>
-      </div>
-    </section>
-  );
-}
-
 export default function Services() {
   return (
     <Layout>
@@ -480,7 +412,6 @@ export default function Services() {
       <Strategy />
       <Build />
       <Manage />
-      <Packages />
       <BigCTA dark lines={['Not sure?', <span className="text-gold">Let's talk.</span>]} size="clamp(52px,10vw,150px)" />
     </Layout>
   );

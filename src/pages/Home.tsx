@@ -483,15 +483,13 @@ function Packages() {
             {C.ways[0]} <br className="md:hidden" />
             {C.ways[1]}
           </h2>
-          <a href="/services#packages" className="lab tap hidden !text-gold md:inline-flex">
-            {C.waysLink} {ARROW}
-          </a>
+          <span className="lab hidden md:inline">{C.priced}</span>
         </Reveal>
         <motion.div initial="hidden" whileInView="visible" viewport={inView} variants={stagger(0.08)}>
           {PACKAGES.map((p, i) => (
             <motion.a
               key={p.name}
-              href="/services#packages"
+              href={`${CTA_HREF}?package=${encodeURIComponent(p.name)}`}
               variants={rise}
               whileHover={{ y: -4 }}
               className="group flex flex-col gap-[6px] border-b border-[var(--line)] py-5 md:grid md:grid-cols-[70px_minmax(0,1fr)_auto] md:items-center md:gap-5 md:py-[26px]"

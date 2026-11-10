@@ -31,7 +31,6 @@ type Copy = {
   audiences: string[];
   you: string;
   ways: [string, string];
-  waysLink: string;
   startHere: string;
   packages: { name: string; who: string }[];
   priced: string;
@@ -83,7 +82,6 @@ const EN: Copy = {
   audiences: ['Businesses', 'Startups', 'Entrepreneurs', 'Professionals', 'Personal brands'],
   you: 'You.',
   ways: ['Ways to work', 'with us'],
-  waysLink: "See what's included",
   startHere: 'Start here',
   packages: [
     { name: 'Digital Launch', who: 'New businesses and rebrands' },
@@ -143,7 +141,6 @@ const AR: Copy = {
   audiences: ['الشركات', 'الشركات الناشئة', 'رواد الأعمال', 'المهنيين', 'العلامات الشخصية'],
   you: 'وأنت.',
   ways: ['طرق العمل', 'معنا'],
-  waysLink: 'السعر يُحدد بعد مكالمة قصيرة',
   startHere: 'ابدأ من هنا',
   packages: [
     { name: 'الإطلاق الرقمي', who: 'للمشاريع الجديدة وإعادة بناء العلامة' },

@@ -9,7 +9,7 @@ const HEADER_OFFSET = -88;
 
 /**
  * Lenis smooth scrolling, driven by GSAP's ticker so ScrollTrigger scenes stay
- * in sync. In-page anchor links (#create, #packages…) glide to their target.
+ * in sync. In-page anchor links (#create, #build…) glide to their target.
  * Off for reduced-motion users, who get the browser's native scrolling.
  */
 export default function SmoothScroll() {
