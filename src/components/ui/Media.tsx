@@ -74,7 +74,8 @@ export function Photo({
   alt,
   className,
   style,
-  sizes = '(min-width: 1024px) 50vw, 100vw',
+  // Safe default: assume the image can be shown full width (never blurry); small images override it.
+  sizes = '(min-width: 1500px) 1480px, 100vw',
   eager = false,
   ...rest
 }: {

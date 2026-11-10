@@ -6,7 +6,7 @@ import { t } from '../../lib/i18n';
 export default function EntryMedia({ e, ratio = '4/3', compact = false }: { e: Entry; ratio?: string; compact?: boolean }) {
   switch (e.type) {
     case 'img':
-      return <Screen src={e.img!} alt={`${e.name} screen`} ratio={ratio} />;
+      return <Screen src={e.img!} alt={`${e.name} screen`} ratio={ratio} sizes="(min-width: 1024px) 25vw, 50vw" />;
     case 'video':
       return <VideoSlot ratio={ratio} label={t('Your video', 'فيديو من أعمالك')} playSize={compact ? 44 : 56} radius={8} />;
     case 'design':

@@ -77,7 +77,7 @@ export default function DivisionPreview({ k, compact = false }: { k: DivisionKey
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <Screen src="/work/atlas/dashboard.png" alt="Atlas dashboard" className="h-full" />
+          <Screen src="/work/atlas/dashboard.png" alt="Atlas dashboard" sizes="(min-width: 768px) 40vw, 90vw" className="h-full" />
         </motion.div>
         <motion.div
           className={`absolute ${compact ? 'bottom-[10px] right-3 h-[80%] w-[26%]' : 'bottom-6 right-5 h-[52%] w-[40%]'}`}

@@ -352,7 +352,7 @@ function SelectedWork() {
   const cards = [
     { title: C.work.brandFilm, tag: C.work.video, href: '/work', w: 'w-[300px] md:w-[640px]', media: <VideoSlot ratio="16/10" label={C.work.yourVideo} radius={10} className="hidden md:flex" />, phone: <VideoSlot ratio="4/5" label={C.work.yourVideo} radius={12} className="md:hidden" /> },
     { title: C.work.identity, tag: C.work.design, href: '/work', w: 'w-[300px] md:w-[400px]', media: <DesignSlot ratio="4/5" label={C.work.yourDesign} />, phone: null },
-    { title: C.work.mizan, tag: C.work.mizanTag, href: '/work/mizan', w: 'w-[300px] md:w-[640px]', media: <><Screen src="/work/mizan/dashboard.png" alt="Mizan dashboard" ratio="16/10" className="hidden md:block" /><Screen src="/work/mizan/dashboard.png" alt="Mizan dashboard" ratio="4/5" className="md:hidden" /></>, phone: null },
+    { title: C.work.mizan, tag: C.work.mizanTag, href: '/work/mizan', w: 'w-[300px] md:w-[640px]', media: <><Screen src="/work/mizan/dashboard.png" alt="Mizan dashboard" ratio="16/10" sizes="640px" className="hidden md:block" /><Screen src="/work/mizan/dashboard.png" alt="Mizan dashboard" ratio="4/5" sizes="300px" className="md:hidden" /></>, phone: null },
     { title: C.work.reel, tag: C.work.content, href: '/work', w: 'hidden md:flex md:w-[300px]', media: <ReelSlot />, phone: null },
   ];
 

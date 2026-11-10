@@ -126,7 +126,7 @@ export default function CaseStudy({ project: p }: { project: SoftwareProject }) 
             <div ref={strip} className="strip !gap-6 pb-[14px]">
               {screens.map((s, n) => (
                 <figure key={s.src} className={`m-0 flex flex-col gap-3 ${s.phone ? 'w-[220px] md:w-[260px]' : 'w-[300px] sm:w-[520px] md:w-[720px]'}`}>
-                  <Screen src={s.src} alt={s.alt} ratio={s.phone ? '9/19' : '16/10'} bar={!s.phone} radius={s.phone ? 26 : undefined} />
+                  <Screen src={s.src} alt={s.alt} ratio={s.phone ? '9/19' : '16/10'} bar={!s.phone} radius={s.phone ? 26 : undefined} sizes={s.phone ? '(min-width: 768px) 260px, 220px' : '(min-width: 768px) 720px, 300px'} />
                   <figcaption className="lab">
                     {pad(n + 1)} · {s.alt.replace(new RegExp(`^${d.title}\\s*`, 'i'), '')}
                   </figcaption>
@@ -187,7 +187,7 @@ export default function CaseStudy({ project: p }: { project: SoftwareProject }) 
                 {next.kind} · {next.cat}
               </span>
             </div>
-            {next.img && <div data-parallax="0.1"><Screen src={next.img} alt={`${next.name} screen`} ratio="16/10" className="transition-transform duration-700 group-hover:-rotate-1 group-hover:scale-[1.02]" /></div>}
+            {next.img && <div data-parallax="0.1"><Screen src={next.img} alt={`${next.name} screen`} ratio="16/10" sizes="(min-width: 768px) 50vw, 100vw" className="transition-transform duration-700 group-hover:-rotate-1 group-hover:scale-[1.02]" /></div>}
           </div>
         </section>
       </a>
