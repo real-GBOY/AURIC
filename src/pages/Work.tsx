@@ -33,7 +33,7 @@ function Hero() {
       <div className="hidden md:block">
         <div className="wrap relative z-[2] flex flex-wrap items-end justify-between gap-6">
           <TitleReveal lines={[<>Work<span className="text-gold">.</span></>]} className="mega" style={{ fontSize: 'clamp(96px,17vw,250px)', lineHeight: 0.82, letterSpacing: '-0.06em' }} />
-          <motion.div className="flex max-w-[340px] flex-col gap-[10px] pb-[18px]" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
+          <motion.div className="flex max-w-[340px] flex-col gap-[10px] pb-[58px]" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
             <span className="lab !text-gold">Selected work · 2025—2026</span>
             <p className="copy !text-base">Video, design, content and digital products. Made by one team.</p>
             <a href="/case-studies" className="btn btn-line mt-2 w-fit !min-h-11 !px-5 !text-[14px]">Read the case studies →</a>
@@ -236,17 +236,17 @@ function ContentChapter() {
 function SoftwareChapter() {
   const up = (d: number) => ({ initial: { opacity: 0, y: 90 }, whileInView: { opacity: 1, y: 0 }, viewport: inView, transition: { duration: 0.9, delay: d, ease: EASE } });
   return (
-    <section className="hidden overflow-hidden bg-bg pb-[140px] pt-[120px] md:block">
+    <section className="hidden overflow-hidden bg-bg py-[120px] md:block">
       <div className="wrap">
         <ChapterHead n="04" title="Websites & apps" right={<a href="/work/mizan" className="lab !text-gold">Mizan case study →</a>} />
-        <div className="relative h-[560px] lg:h-[640px]">
-          <motion.a href="/work/atlas" className="absolute left-0 top-10 z-[1] h-[360px] w-[58%] lg:h-[420px]" {...up(0)}>
+        <div className="relative h-[520px] lg:h-[600px]">
+          <motion.a href="/work/atlas" className="absolute left-0 top-5 z-[1] h-[360px] w-[58%] lg:h-[420px]" {...up(0)}>
             <Screen src="/work/atlas/dashboard.png" alt="Atlas dashboard" className="h-full" />
           </motion.a>
-          <motion.a href="/work/mizan" className="absolute left-[30%] top-[150px] z-[2] h-[340px] w-[52%] shadow-[0_30px_60px_rgba(0,0,0,.55)] lg:h-[400px]" {...up(0.15)}>
+          <motion.a href="/work/mizan" className="absolute left-[30%] top-[130px] z-[2] h-[340px] w-[52%] shadow-[0_30px_60px_rgba(0,0,0,.55)] lg:h-[400px]" {...up(0.15)}>
             <Screen src="/work/mizan/dashboard.png" alt="Mizan dashboard" className="h-full" />
           </motion.a>
-          <motion.a href="/work/nova" className="absolute right-0 top-5 z-[3] h-[380px] w-[180px] shadow-[0_30px_60px_rgba(0,0,0,.55)] lg:h-[420px] lg:w-[200px]" {...up(0.3)}>
+          <motion.a href="/work/nova" className="absolute right-0 top-0 z-[3] h-[380px] w-[180px] shadow-[0_30px_60px_rgba(0,0,0,.55)] lg:h-[420px] lg:w-[200px]" {...up(0.3)}>
             <Screen src="/work/nova/mobile-home.jpg" alt="Nova mobile app" bar={false} radius={28} className="h-full" />
           </motion.a>
           <div className="absolute bottom-0 left-0 z-[4] flex flex-wrap gap-7">

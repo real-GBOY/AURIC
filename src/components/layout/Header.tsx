@@ -100,7 +100,7 @@ export default function Header() {
           <motion.nav
             id="phone-menu"
             aria-label="Main"
-            className="fixed inset-x-0 bottom-0 top-16 z-40 flex flex-col overflow-y-auto bg-ink px-5 pb-7 pt-6 lg:hidden"
+            className="fixed inset-x-0 bottom-0 top-16 z-40 md:top-[74px] flex flex-col overflow-y-auto bg-ink px-5 pb-7 pt-6 lg:hidden"
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
