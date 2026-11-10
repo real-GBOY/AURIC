@@ -3,7 +3,7 @@ import Layout from '../components/layout/Layout';
 import { AuricMark } from '../components/Logo';
 import { CTA_HREF } from '../lib/site';
 import { useEffect } from 'react';
-import { ARROW, LANG, t } from '../lib/i18n';
+import { ARROW, LANG, isAr, t } from '../lib/i18n';
 import { NOT_FOUND } from '../lib/seo';
 import { EASE, inView, stagger } from '../lib/motion';
 
@@ -67,7 +67,7 @@ export default function NotFound() {
               <motion.a
                 key={s.href}
                 href={s.href}
-                variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } }}
+                variants={{ hidden: { opacity: 0, x: isAr ? 20 : -20 }, visible: { opacity: 1, x: 0 } }}
                 whileHover={{ x: 12 }}
                 transition={{ duration: 0.3, ease: EASE }}
                 className="flex flex-col gap-2 border-b border-[var(--line)] py-6 font-display text-[24px] font-bold tracking-[-0.035em] transition-colors hover:text-gold sm:flex-row sm:items-center sm:justify-between md:text-[30px]"

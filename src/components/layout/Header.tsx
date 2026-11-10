@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Logo from '../Logo';
 import { WhatsAppIcon } from '../ui/Icons';
@@ -16,6 +16,7 @@ const isActive = (href: string) =>
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const toggle = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -29,9 +30,17 @@ export default function Header() {
     document.body.style.overflow = open ? 'hidden' : '';
     if (open) lenis?.stop();
     else lenis?.start();
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false);
+    // Keyboard and screen-reader users stay inside the menu: the page behind it is inert while it is open.
+    const behind = Array.from(document.querySelectorAll<HTMLElement>('main, footer, aside'));
+    if (open) behind.forEach((el) => el.setAttribute('inert', ''));
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return;
+      setOpen(false);
+      toggle.current?.focus();
+    };
     window.addEventListener('keydown', onKey);
     return () => {
+      behind.forEach((el) => el.removeAttribute('inert'));
       document.body.style.overflow = '';
       window.removeEventListener('keydown', onKey);
     };
@@ -82,6 +91,7 @@ export default function Header() {
 
           {/* M1 · phone menu toggle */}
           <button
+            ref={toggle}
             type="button"
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? t('Close menu', 'إغلاق القائمة') : t('Open menu', 'فتح القائمة')}

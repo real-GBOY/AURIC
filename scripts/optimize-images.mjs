@@ -1,6 +1,6 @@
-// Makes responsive WebP copies of every project screenshot, and the app icons.
+// Makes responsive AVIF and WebP copies of every project screenshot, and the app icons.
 //   npm run images
-// For public/work/<project>/<name>.png|jpg it writes <name>-800.webp and <name>-1600.webp next to it
+// For public/work/<project>/<name>.png|jpg it writes <name>-800|1600 .avif and .webp next to it
 // (never upscaling). The originals stay as the fallback. Safe to re-run: files already newer than
 // their source are skipped. Commit the generated files.
 import { existsSync, readdirSync, statSync } from 'node:fs';
@@ -31,6 +31,11 @@ for (const file of walk(ROOT)) {
       made++;
     }
     if (w === 1600) after += statSync(out).size;
+    const avif = `${stem}-${w}.avif`;
+    if (!existsSync(avif) || statSync(avif).mtimeMs < statSync(file).mtimeMs) {
+      await sharp(file).resize({ width, withoutEnlargement: true }).avif({ quality: 55, effort: 4 }).toFile(avif);
+      made++;
+    }
   }
 }
 console.log(`images: ${made} written · originals ${(before / 1048576).toFixed(1)} MB → largest WebP set ${(after / 1048576).toFixed(1)} MB`);

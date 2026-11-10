@@ -12,6 +12,9 @@ if (isAr) {
   document.documentElement.dir = 'rtl';
 }
 
+// Cookieless visit counts (Vercel Web Analytics). Needs "Web Analytics" switched on in the Vercel project; until then it does nothing.
+if (import.meta.env.PROD) import('@vercel/analytics').then(({ inject }) => inject());
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ErrorBoundary>

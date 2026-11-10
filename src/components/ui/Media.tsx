@@ -93,6 +93,7 @@ export function Photo({
   if (!m) return img;
   return (
     <picture className="contents">
+      <source type="image/avif" srcSet={`${m[1]}-800.avif 800w, ${m[1]}-1600.avif 1600w`} sizes={sizes} />
       <source type="image/webp" srcSet={`${m[1]}-800.webp 800w, ${m[1]}-1600.webp 1600w`} sizes={sizes} />
       {img}
     </picture>

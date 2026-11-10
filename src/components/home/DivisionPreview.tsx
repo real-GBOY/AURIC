@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import type { DivisionKey } from '../../lib/content';
+import { isAr } from '../../lib/i18n';
 import { PlayButton } from '../ui/Icons';
 import { Screen } from '../ui/Media';
 
@@ -98,7 +99,7 @@ export default function DivisionPreview({ k, compact = false }: { k: DivisionKey
         <motion.div
           key={r}
           className={`flex items-center gap-3 ${compact ? 'text-[15px]' : 'text-[18px]'}`}
-          initial={{ opacity: 0, x: -12 }}
+          initial={{ opacity: 0, x: isAr ? 12 : -12 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: i * 0.15 }}
         >
@@ -108,7 +109,7 @@ export default function DivisionPreview({ k, compact = false }: { k: DivisionKey
       ))}
       <motion.div
         className={`flex items-center gap-3 text-gold ${compact ? 'text-[15px]' : 'text-[18px]'}`}
-        initial={{ opacity: 0, x: -12 }}
+        initial={{ opacity: 0, x: isAr ? 12 : -12 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: rows.length * 0.15 }}
       >

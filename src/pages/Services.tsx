@@ -6,7 +6,7 @@ import { PlayButton } from '../components/ui/Icons';
 import { Screen } from '../components/ui/Media';
 import { Reveal, TitleReveal } from '../components/ui/Reveal';
 import { CTA_HREF } from '../lib/site';
-import { t } from '../lib/i18n';
+import { isAr, t } from '../lib/i18n';
 import { EASE, drop, inView, rise, stagger } from '../lib/motion';
 import { gsap, ScrollTrigger, useGSAP } from '../lib/gsap';
 import { AuricMark } from '../components/Logo';
@@ -103,7 +103,7 @@ function Hero() {
             <motion.a
               key={d.id}
               href={`#${d.id}`}
-              variants={{ hidden: { opacity: 0, x: -30 }, visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: EASE } } }}
+              variants={{ hidden: { opacity: 0, x: isAr ? 30 : -30 }, visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: EASE } } }}
               className="group flex flex-col gap-2 border-b border-[var(--line)] py-[22px] sm:flex-row sm:items-baseline sm:justify-between sm:gap-4"
             >
               <span

@@ -121,7 +121,7 @@ type Brief = ReturnType<typeof useBrief>;
 /** Hidden trap field. Off-screen and out of the tab order, so real visitors never meet it. */
 function Trap({ b }: { b: Brief }) {
   return (
-    <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, overflow: 'hidden' }}>
+    <div aria-hidden="true" style={{ position: 'absolute', width: 1, height: 1, margin: -1, overflow: 'hidden', clip: 'rect(0 0 0 0)', whiteSpace: 'nowrap' }}>
       <label>
         Website
         <input type="text" name="website" tabIndex={-1} autoComplete="off" value={b.trap} onChange={(e) => b.setTrap(e.target.value)} />
