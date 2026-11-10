@@ -153,7 +153,8 @@
     "env": {
       "VITE_EMAILJS_SERVICE_ID": "service_a8oxz9r",
       "VITE_EMAILJS_TEMPLATE_ID": "template_5iwa87j",
-      "VITE_EMAILJS_PUBLIC_KEY": "aDH40t3RISIAaGX6L"
+      "VITE_EMAILJS_PUBLIC_KEY": "aDH40t3RISIAaGX6L",
+      "VITE_TURNSTILE_SITE_KEY": "0x4AAAAAAF79UIIH7Tf-rRk4"
     }
   },
   "cleanUrls": false,

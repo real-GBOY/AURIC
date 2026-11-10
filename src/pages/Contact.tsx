@@ -1,4 +1,4 @@
-import { useRef, useState, type FormEvent } from 'react';
+import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 import Layout from '../components/layout/Layout';
@@ -8,6 +8,7 @@ import { TitleReveal } from '../components/ui/Reveal';
 import { CONTACT, SOCIALS, emailHref, whatsappHref } from '../lib/site';
 import { ARROW, LANG, t } from '../lib/i18n';
 import { inView, rise, stagger } from '../lib/motion';
+import { TURNSTILE_SITE_KEY, loadTurnstile } from '../lib/turnstile';
 
 const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
 const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
@@ -50,6 +51,8 @@ function useBrief() {
   const [status, setStatus] = useState<Status>('idle');
   const [note, setNote] = useState('');
   const openedAt = useRef(Date.now());
+  const [token, setToken] = useState(''); // Cloudflare Turnstile result
+  const [captchaRound, setCaptchaRound] = useState(0); // bump to get a fresh check
 
   const toggle = (s: string) => setSvc((cur) => (cur.includes(s) ? cur.filter((x) => x !== s) : [...cur, s]));
 
@@ -72,14 +75,13 @@ function useBrief() {
       /* storage can be unavailable (private mode); skip the pause */
     }
 
+    if (TURNSTILE_SITE_KEY && !token) return setNote(t('Please wait for the security check to finish, then send again.', 'من فضلك انتظر انتهاء الفحص الأمني ثم أرسل مرة أخرى.'));
+
     setNote('');
     setStatus('sending');
     try {
       // Variable names match the existing "Contact Us" EmailJS template.
-      await emailjs.send(
-        SERVICE_ID,
-        TEMPLATE_ID,
-        {
+      const params = {
           name: name.trim(),
           email,
           reply_to: email,
@@ -97,9 +99,19 @@ function useBrief() {
           ]
             .filter(Boolean)
             .join('\n'),
-        },
-        { publicKey: PUBLIC_KEY },
-      );
+      };
+      if (TURNSTILE_SITE_KEY) {
+        // Live site: our server checks the Turnstile token and sends the email.
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token, params }),
+        });
+        if (!res.ok) throw new Error(`contact api ${res.status}`);
+      } else {
+        // Local development (no Turnstile key): send straight from the browser.
+        await emailjs.send(SERVICE_ID, TEMPLATE_ID, params, { publicKey: PUBLIC_KEY });
+      }
       try {
         localStorage.setItem(COOLDOWN_KEY, String(Date.now()));
       } catch {
@@ -107,13 +119,15 @@ function useBrief() {
       }
       setStatus('sent');
     } catch (err) {
-      console.error('EmailJS send failed:', err);
+      console.error('Send failed:', err);
       setStatus('error');
+      setToken('');
+      setCaptchaRound((n) => n + 1);
       setNote(t('Something went wrong. Please try again or message us on WhatsApp.', 'حدث خطأ ما. حاول مرة أخرى أو راسلنا على واتساب.'));
     }
   };
 
-  return { name, setName, company, setCompany, who, setWho, svc, toggle, goal, setGoal, budget, setBudget, time, setTime, email, setEmail, trap, setTrap, status, note, submit };
+  return { name, setName, company, setCompany, who, setWho, svc, toggle, goal, setGoal, budget, setBudget, time, setTime, email, setEmail, trap, setTrap, status, note, submit, setToken, captchaRound };
 }
 
 type Brief = ReturnType<typeof useBrief>;
@@ -128,6 +142,44 @@ function Trap({ b }: { b: Brief }) {
       </label>
     </div>
   );
+}
+
+/** Cloudflare Turnstile check. Renders nothing when no site key is configured (local development). */
+function Captcha({ b, wide }: { b: Brief; wide: boolean }) {
+  const box = useRef<HTMLDivElement>(null);
+  const { setToken, captchaRound } = b;
+  // Both forms are in the page (one is hidden by CSS); only the one on screen runs the check.
+  const [shown, setShown] = useState(() => window.matchMedia('(min-width: 1024px)').matches === wide);
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1024px)');
+    const on = () => setShown(mq.matches === wide);
+    mq.addEventListener('change', on);
+    return () => mq.removeEventListener('change', on);
+  }, [wide]);
+  useEffect(() => {
+    if (!TURNSTILE_SITE_KEY || !shown) return;
+    let id: string | undefined;
+    let gone = false;
+    loadTurnstile()
+      .then((api) => {
+        if (gone || !box.current) return;
+        id = api.render(box.current, {
+          sitekey: TURNSTILE_SITE_KEY,
+          theme: 'dark',
+          language: LANG === 'ar' ? 'ar' : 'auto',
+          callback: (tok: string) => setToken(tok),
+          'expired-callback': () => setToken(''),
+          'error-callback': () => setToken(''),
+        });
+      })
+      .catch(() => setToken(''));
+    return () => {
+      gone = true;
+      if (id) window.turnstile?.remove(id);
+    };
+  }, [setToken, captchaRound, shown]);
+  if (!TURNSTILE_SITE_KEY || !shown) return null;
+  return <div ref={box} className="my-3 min-h-[1px]" />;
 }
 
 function Badge({ size, text }: { size: number; text: string }) {
@@ -185,6 +237,7 @@ function SentenceForm({ b }: { b: Brief }) {
   return (
     <form onSubmit={b.submit} noValidate className="wrap relative hidden lg:block">
       <Trap b={b} />
+      <Captcha b={b} wide />
       <p className={sentence} style={size}>
         {t("Hi AURIC, I'm", 'مرحبًا أوريك، أنا')}
         <input aria-label={t('Your name', 'اسمك')} className={blank} style={{ width: 320, fontSize: 'inherit' }} placeholder={t('your name', 'اسمك')} autoComplete="name" maxLength={LIMITS.name} value={b.name} onChange={(e) => b.setName(e.target.value)} disabled={sent} />
@@ -263,6 +316,7 @@ function StepForm({ b }: { b: Brief }) {
   return (
     <motion.form onSubmit={b.submit} noValidate className="relative flex flex-col gap-10 lg:hidden" initial="hidden" whileInView="visible" viewport={inView} variants={stagger(0.08)}>
       <Trap b={b} />
+      <Captcha b={b} wide={false} />
       <Step n="01" label={t('Who', 'من')}>
         <p className={q}>{t("Hi AURIC, I'm", 'مرحبًا أوريك، أنا')}</p>
         <input aria-label={t('Your name', 'اسمك')} className={input} placeholder={t('your name', 'اسمك')} autoComplete="name" maxLength={LIMITS.name} value={b.name} onChange={(e) => b.setName(e.target.value)} />
