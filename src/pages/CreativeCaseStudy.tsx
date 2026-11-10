@@ -30,7 +30,7 @@ export default function CreativeCaseStudy() {
   return (
     <Layout>
       {/* V1 · Title reveal */}
-      <section className="pt-8 md:pt-12">
+      <section className="overflow-hidden pt-8 md:pt-12">
         <div className="wrap flex flex-col gap-7">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <a href="/case-studies" className="lab hover:!text-gold">← Case studies</a>
