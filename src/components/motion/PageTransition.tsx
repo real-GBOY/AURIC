@@ -27,9 +27,9 @@ export default function PageTransition() {
       gsap
         .timeline({ defaults: { ease: 'power4.inOut' } })
         .set([ink.current, gold.current], { yPercent: 0 })
-        .to(mark.current, { scale: 0.6, opacity: 0, duration: 0.35, ease: 'power2.in' }, 0.05)
-        .to(ink.current, { yPercent: -100, duration: 0.75 }, 0.15)
-        .to(gold.current, { yPercent: -100, duration: 0.75 }, 0.25)
+        .to(mark.current, { scale: 0.6, opacity: 0, duration: 0.2, ease: 'power2.in' }, 0)
+        .to(ink.current, { yPercent: -100, duration: 0.5 }, 0.05)
+        .to(gold.current, { yPercent: -100, duration: 0.5 }, 0.1)
         .set(el, { display: 'none' });
     };
     enter();
@@ -49,11 +49,11 @@ export default function PageTransition() {
       if (url.pathname === location.pathname && url.search === location.search) return; // same page (hash links)
       e.preventDefault();
       gsap
-        .timeline({ defaults: { ease: 'power4.inOut' }, onComplete: () => location.assign(url.href) })
+        .timeline({ defaults: { ease: 'power3.inOut' }, onComplete: () => location.assign(url.href) })
         .set(el, { display: 'block' })
-        .fromTo(gold.current, { yPercent: 100 }, { yPercent: 0, duration: 0.55 })
-        .fromTo(ink.current, { yPercent: 100 }, { yPercent: 0, duration: 0.55 }, 0.08)
-        .fromTo(mark.current, { scale: 0.6, opacity: 0, rotate: -60 }, { scale: 1, opacity: 1, rotate: 0, duration: 0.4, ease: 'back.out(2)' }, 0.35);
+        .fromTo(gold.current, { yPercent: 100 }, { yPercent: 0, duration: 0.32 })
+        .fromTo(ink.current, { yPercent: 100 }, { yPercent: 0, duration: 0.32 }, 0.06)
+        .fromTo(mark.current, { scale: 0.6, opacity: 0, rotate: -60 }, { scale: 1, opacity: 1, rotate: 0, duration: 0.25, ease: 'back.out(2)' }, 0.14);
     };
     document.addEventListener('click', onClick);
 

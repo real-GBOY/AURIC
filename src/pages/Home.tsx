@@ -11,72 +11,158 @@ import { AUDIENCES, CLIENT_LOGOS, PACKAGES, QUOTES, SHOWREEL, type DivisionKey }
 import { HOME as C } from '../lib/home-copy';
 import { ARROW, href, isAr } from '../lib/i18n';
 import { CTA_HREF } from '../lib/site';
-import { EASE, inView, lineUp, pillGrow, rise, stagger, useDragScroll } from '../lib/motion';
-import { gsap, MQ, ScrollTrigger, useGSAP } from '../lib/gsap';
+import { EASE, inView, rise, stagger, useDragScroll } from '../lib/motion';
+import { gsap, MQ, ScrollTrigger, SplitText, useGSAP } from '../lib/gsap';
 import { usePinnedStrip } from '../lib/usePinnedStrip';
 
 const pad = (n: number) => String(n).padStart(2, '0');
 
-/* ─── H1 · Hero: giant lines with inline media pills ─────────────────────── */
+/* ─── H1 · Hero: giant lines with inline media pills ───────────────────────
+   GSAP entrance: the labels decode, headline letters flip up in 3D line by line,
+   each media pill springs out of its line, the gold dot drops and bounces with a
+   ring burst, then the paragraph rises line by line and the buttons follow.
+   Arabic splits by word (letters must stay joined). Reduced motion: static. */
 function Hero() {
-  const line = 'flex flex-wrap items-center gap-[clamp(14px,2vw,28px)] transition-colors hover:text-gold';
-  const pill = (node: React.ReactNode, delay: number) => (
-    <motion.span
-      className="hidden origin-left md:inline-flex rtl:origin-right"
-      variants={pillGrow}
-      transition={{ delay }}
-    >
-      {node}
-    </motion.span>
+  const root = useRef<HTMLElement>(null);
+
+  useGSAP(
+    (_ctx, contextSafe) => {
+      const mm = gsap.matchMedia();
+      mm.add(MQ.motion, () => {
+        const q = gsap.utils.selector(root);
+        gsap.set(root.current, { autoAlpha: 0 });
+        let alive = true;
+
+        const build = contextSafe!(() => {
+          if (!alive) return; // a newer mount owns the hero now
+          const splits = q('.hero-text').map((el) =>
+            SplitText.create(el, { type: isAr ? 'words' : 'words,chars', mask: 'words' }),
+          );
+          const copy = SplitText.create(q('.hero-copy'), { type: 'lines', mask: 'lines' });
+
+          const tl = gsap.timeline({ delay: 0.3, defaults: { ease: 'expo.out' } });
+          tl.set(root.current, { autoAlpha: 1 });
+
+          // Labels decode like a terminal
+          q('[data-scramble]').forEach((el, i) => {
+            const text = el.textContent || '';
+            tl.fromTo(
+              el,
+              { opacity: 0 },
+              { opacity: 1, duration: 0.01 },
+              0.05 + i * 0.15,
+            ).to(el, { duration: 1.1, ease: 'none', scrambleText: { text, chars: isAr ? 'أوريك0123456789' : 'AURIC01/<>·', revealDelay: 0.25, speed: 0.8 } }, '<');
+          });
+
+          // Headline: each line's letters flip up out of their word masks
+          splits.forEach((sp, i) => {
+            const pieces = isAr ? sp.words : sp.chars;
+            tl.from(
+              pieces,
+              {
+                yPercent: 120,
+                rotateX: -85,
+                opacity: 0,
+                transformOrigin: '50% 100%',
+                duration: 1.15,
+                stagger: { each: isAr ? 0.06 : 0.028, from: i % 2 ? 'end' : 'start' },
+              },
+              0.12 + i * 0.13,
+            );
+          });
+
+          // Media pills spring out of their lines
+          q('.hero-pill').forEach((el, i) => {
+            tl.fromTo(
+              el,
+              { scale: 0, rotate: i % 2 ? 14 : -14, opacity: 0 },
+              { scale: 1, rotate: 0, opacity: 1, duration: 1.2, ease: 'elastic.out(1, 0.55)' },
+              0.45 + i * 0.13,
+            );
+          });
+          tl.fromTo(q('.hero-mpill'), { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 1, ease: 'elastic.out(1, 0.6)', stagger: 0.07 }, 0.75);
+
+          // The gold dot drops in, bounces, and sends out a ring
+          tl.fromTo(q('.hero-dot'), { yPercent: -900, scale: 0.4, opacity: 0 }, { yPercent: 0, scale: 1, opacity: 1, duration: 0.9, ease: 'bounce.out' }, 0.95)
+            .fromTo(q('.hero-burst'), { scale: 0, opacity: 0.9 }, { scale: 5, opacity: 0, duration: 0.8, ease: 'power2.out' }, 1.62);
+
+          // Paragraph lines rise, then the buttons
+          tl.from(copy.lines, { yPercent: 105, duration: 0.9, stagger: 0.08 }, 0.95)
+            .fromTo(q('.hero-btn'), { y: 26, opacity: 0, clipPath: 'inset(100% 0% 0% 0%)' }, { y: 0, opacity: 1, clipPath: 'inset(0% 0% 0% 0%)', duration: 0.8, stagger: 0.09 }, 1.1);
+        });
+
+        // Split after the fonts are in, so line and letter boxes are measured correctly.
+        document.fonts?.ready.then(build).catch(build) ?? build();
+        return () => {
+          alive = false;
+        };
+      });
+      return () => mm.revert();
+    },
+    { scope: root },
   );
+
+  const line = 'flex flex-wrap items-center gap-[clamp(14px,2vw,28px)] transition-colors hover:text-gold [perspective:900px]';
+  const pill = (node: React.ReactNode) => <span className="hero-pill hidden md:inline-flex">{node}</span>;
+  const word = (text: string) => <span className="hero-text">{text}</span>;
   const rows: { href: string; content: React.ReactNode }[] = [
-    { href: href('/services#create'), content: <><span className="mega">{C.hero[0]}</span>{pill(<TimelinePill />, 0.5)}</> },
-    { href: href('/services#strategy'), content: <>{pill(<CalendarPill />, 0.62)}<span className="mega">{C.hero[1]}</span></> },
-    { href: href('/services#build'), content: <><span className="mega">{C.hero[2]}</span>{pill(<CodePill />, 0.74)}</> },
-    { href: href('/services#manage'), content: <>{pill(<DeliveredPill />, 0.86)}<span className="mega">{C.hero[3]}<span className="text-gold">.</span></span></> },
+    { href: href('/services#create'), content: <><span className="mega">{word(C.hero[0])}</span>{pill(<TimelinePill />)}</> },
+    { href: href('/services#strategy'), content: <>{pill(<CalendarPill />)}<span className="mega">{word(C.hero[1])}</span></> },
+    { href: href('/services#build'), content: <><span className="mega">{word(C.hero[2])}</span>{pill(<CodePill />)}</> },
+    {
+      href: href('/services#manage'),
+      content: (
+        <>
+          {pill(<DeliveredPill />)}
+          <span className="mega">
+            {word(C.hero[3])}
+            <span className="hero-dot relative inline-block text-gold">
+              .
+              <span
+                aria-hidden="true"
+                className="hero-burst pointer-events-none absolute bottom-[0.1em] left-1/2 h-[0.28em] w-[0.28em] -translate-x-1/2 rounded-full border-2 border-gold opacity-0"
+              />
+            </span>
+          </span>
+        </>
+      ),
+    },
   ];
 
   return (
-    <section className="relative pb-9 pt-7 md:pb-14 md:pt-16">
+    <section ref={root} className="relative pb-9 pt-7 md:pb-14 md:pt-16">
       <div className="wrap flex flex-col" data-hero-out>
         <div className="mb-[22px] flex flex-wrap items-center justify-between gap-4 md:mb-[18px]">
-          <span className="lab !text-gold">{C.eyebrow}</span>
-          <span className="lab hidden md:inline">{C.eyebrowRight}</span>
+          <span className="lab !text-gold" data-scramble>{C.eyebrow}</span>
+          <span className="lab hidden md:inline" data-scramble>{C.eyebrowRight}</span>
         </div>
 
-        <motion.h1 className="flex flex-col gap-[6px] md:gap-[clamp(8px,1.2vw,16px)]" initial="hidden" animate="visible" variants={stagger(0.12)}>
+        <h1 className="flex flex-col gap-[6px] md:gap-[clamp(8px,1.2vw,16px)]">
           {rows.map((r) => (
-            <span key={r.href} className="block overflow-hidden pb-[0.05em]">
-              <motion.a href={r.href} className={line} variants={lineUp}>
+            <span key={r.href} className="block pb-[0.05em]">
+              <a href={r.href} className={line}>
                 {r.content}
-              </motion.a>
+              </a>
             </span>
           ))}
-        </motion.h1>
+        </h1>
 
         {/* Phone: the four pills become one row under the headline */}
-        <motion.div className="mt-[26px] flex gap-2 md:hidden" initial="hidden" animate="visible" variants={stagger(0.08, 0.6)}>
+        <div className="mt-[26px] flex gap-2 md:hidden">
           {[TimelinePill, CalendarPill, CodePill, DeliveredPill].map((P, i) => (
-            <motion.span key={i} className="flex flex-1 origin-left rtl:origin-right" variants={pillGrow}>
+            <span key={i} className="hero-mpill flex flex-1">
               <P size="sm" />
-            </motion.span>
+            </span>
           ))}
-        </motion.div>
+        </div>
 
-        <motion.div
-          className="mt-[26px] flex flex-col gap-6 md:mt-9 md:flex-row md:flex-wrap md:items-end md:justify-between"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9, duration: 0.7, ease: EASE }}
-        >
-          <p className="copy max-w-[44ch]">
-            {C.heroText}
-          </p>
+        <div className="mt-[26px] flex flex-col gap-6 md:mt-9 md:flex-row md:flex-wrap md:items-end md:justify-between">
+          <p className="hero-copy copy max-w-[44ch]">{C.heroText}</p>
           <div className="flex flex-col gap-[10px] sm:flex-row sm:gap-3">
-            <a href={href(CTA_HREF)} className="btn btn-gold">{C.start}</a>
-            <a href="/work" className="btn btn-line">{C.explore}</a>
+            <a href={href(CTA_HREF)} className="hero-btn btn btn-gold">{C.start}</a>
+            <a href="/work" className="hero-btn btn btn-line">{C.explore}</a>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
