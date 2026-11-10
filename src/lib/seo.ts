@@ -4,6 +4,7 @@
 // (setPageMeta keeps the tags right during development and for client-side changes).
 // No browser APIs at module level: this file is also imported by Node.
 
+import { CONTACT, SOCIALS } from './site';
 export const SITE = 'https://auric404.me';
 export const SITE_NAME = 'AURIC';
 export const OG_IMAGE = `${SITE}/og-image.png`;
@@ -135,6 +136,10 @@ export const jsonLd = (path: string, lang: Lang, meta: Meta) => {
         logo: `${SITE}/favicon.svg`,
         description: PAGES['/'].en.description,
         founder: { '@type': 'Person', name: 'Mahmoud Nayel' },
+        email: CONTACT.email,
+        telephone: `+${CONTACT.whatsapp}`,
+        address: { '@type': 'PostalAddress', addressLocality: 'New Maadi, Cairo', addressCountry: 'EG' },
+        sameAs: SOCIALS.map((x) => x.href),
       },
       {
         '@type': 'WebSite',

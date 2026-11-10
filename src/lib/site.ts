@@ -1,20 +1,19 @@
 // Single place for contact details and navigation.
-// Values in [brackets] are placeholders: replace them with the real details before launch.
+// Anything still in [brackets] elsewhere in the site is a placeholder to replace before launch.
 
 export const CONTACT = {
-  email: '', // e.g. 'hello@auric404.me'
-  emailLabel: '[hello@yourdomain.com]',
-  whatsapp: '', // international format, digits only, e.g. '201001234567'
-  whatsappLabel: '[+20 WhatsApp number]',
-  city: '[City], Egypt',
-  cityAr: '[المدينة]، مصر',
+  email: 'auric404@gmail.com',
+  emailLabel: 'auric404@gmail.com',
+  whatsapp: '201026597474', // international format, digits only
+  whatsappLabel: '+20 102 659 7474',
+  city: 'New Maadi, Cairo, Egypt',
+  cityAr: 'المعادي الجديدة، القاهرة، مصر',
 };
 
+// Only accounts with a real link are listed. Add Behance, TikTok and others here when they exist.
 export const SOCIALS = [
-  { label: 'Instagram', ar: 'إنستغرام', href: '' },
-  { label: 'LinkedIn', ar: 'لينكدإن', href: '' },
-  { label: 'Behance', ar: 'بيهانس', href: '' },
-  { label: 'TikTok', ar: 'تيك توك', href: '' },
+  { label: 'Instagram', ar: 'إنستغرام', href: 'https://www.instagram.com/auric404/' },
+  { label: 'LinkedIn', ar: 'لينكدإن', href: 'https://www.linkedin.com/company/auric-co/' },
 ];
 
 /** WhatsApp chat link. Falls back to the Start a Project page until a number is set. */

@@ -50,7 +50,7 @@ export default function Footer() {
               {CONTACT.email || CONTACT.emailLabel}
             </a>
             <a href={whatsappHref()} className={linkCls} dir="ltr">
-              {CONTACT.whatsapp ? `+${CONTACT.whatsapp}` : CONTACT.whatsappLabel}
+              {CONTACT.whatsappLabel}
             </a>
             <span className="text-[15px] text-copy">{t(CONTACT.city, CONTACT.cityAr)}</span>
           </div>

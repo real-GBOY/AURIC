@@ -401,7 +401,7 @@ export default function Contact() {
           <span className="flex flex-col gap-1">
             <span className="font-display text-[22px] font-bold tracking-[-0.03em]">{t('WhatsApp us', 'راسلنا على واتساب')}</span>
             <span className="text-[13px]">
-              <bdi>{CONTACT.whatsapp ? `+${CONTACT.whatsapp}` : '[+20 number]'}</bdi> · {t('usually within the hour', 'عادةً خلال ساعة')}
+              <bdi>{CONTACT.whatsappLabel}</bdi> · {t('usually within the hour', 'عادةً خلال ساعة')}
             </span>
           </span>
           <WhatsAppIcon />
