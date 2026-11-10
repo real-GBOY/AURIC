@@ -1,5 +1,5 @@
+import { useRef, useState, type ReactNode } from 'react';
 import { motion } from 'framer-motion';
-import type { ReactNode } from 'react';
 import Layout from '../components/layout/Layout';
 import BigCTA from '../components/layout/BigCTA';
 import { PlayButton } from '../components/ui/Icons';
@@ -8,6 +8,8 @@ import { Reveal, TitleReveal } from '../components/ui/Reveal';
 import { PACKAGES } from '../lib/content';
 import { CTA_HREF } from '../lib/site';
 import { EASE, drop, inView, rise, stagger } from '../lib/motion';
+import { gsap, ScrollTrigger, useGSAP } from '../lib/gsap';
+import { AuricMark } from '../components/Logo';
 
 const pad = (n: number) => String(n).padStart(2, '0');
 
@@ -248,49 +250,156 @@ function Build() {
   );
 }
 
-/* 04 · Manage — delivery track ticks one by one (S5) */
+/* 04 · Manage — scroll-driven process: a gold dial fills as each stage lights up (S5) */
+const MANAGE_STEPS = [
+  { t: 'Brief', d: 'Scope and plan agreed', x: 'Kick-off call · written scope · timeline' },
+  { t: 'Team', d: 'The right specialists briefed', x: 'Designers · editors · strategists · engineers' },
+  { t: 'Make', d: 'Weekly updates', x: 'Shared progress you can follow' },
+  { t: 'Review', d: 'Checked before you see it', x: 'Quality and brand check by AURIC' },
+  { t: 'Deliver', d: 'On time, supported after', x: 'Handover, files and aftercare' },
+];
+const MANAGE_SERVICES = ['Project Management', 'Digital Project Coordination', 'Production Coordination', 'Resource Management', 'Delivery Planning', 'Quality Assurance'];
+const RING = 2 * Math.PI * 120;
+
 function Manage() {
-  const steps = [
-    { t: 'Brief', d: 'Scope and plan agreed' },
-    { t: 'Team', d: 'The right specialists briefed' },
-    { t: 'Make', d: 'Weekly updates' },
-    { t: 'Review', d: 'Checked before you see it' },
-    { t: 'Deliver', d: 'On time, supported after' },
-  ];
+  const root = useRef<HTMLElement>(null);
+  const [active, setActive] = useState(-1);
+
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      // Desktop / tablet: the dial fills and the stages light up with the scroll.
+      mm.add('(min-width: 768px) and (prefers-reduced-motion: no-preference)', () => {
+        const q = gsap.utils.selector(root);
+        gsap.set(q('.mg-ring'), { strokeDasharray: RING, strokeDashoffset: RING });
+        const st = ScrollTrigger.create({
+          trigger: q('.mg-steps')[0],
+          start: 'top 60%',
+          end: 'bottom 55%',
+          scrub: 0.6,
+          animation: gsap
+            .timeline()
+            .to(q('.mg-ring'), { strokeDashoffset: 0, ease: 'none' }, 0)
+            .to(q('.mg-sun'), { rotate: 360, ease: 'none' }, 0),
+          onUpdate: (self) => setActive(Math.min(MANAGE_STEPS.length - 1, Math.floor(self.progress * MANAGE_STEPS.length))),
+          onLeaveBack: () => setActive(-1),
+        });
+        return () => st.kill();
+      });
+      // Phones: a gold line draws down beside the stages.
+      mm.add('(max-width: 767px) and (prefers-reduced-motion: no-preference)', () => {
+        const el = root.current!;
+        gsap.fromTo(
+          el.querySelector('.mg-line'),
+          { scaleY: 0 },
+          { scaleY: 1, ease: 'none', scrollTrigger: { trigger: el.querySelector('.mg-steps'), start: 'top 75%', end: 'bottom 60%', scrub: true } },
+        );
+      });
+      return () => mm.revert();
+    },
+    { scope: root },
+  );
+
+  const shown = Math.max(active, 0);
+  const lit = (i: number) => active === -1 || i === active;
+
   return (
-    <section id="manage" data-stack className="py-[88px] md:py-[120px]">
+    <section ref={root} id="manage" data-stack className="py-[88px] md:py-[120px]">
       <div className="wrap">
         <Chapter n="04" name="Manage" line="One owner coordinating every specialist, deadline and review." outline />
-        <div className="relative mb-16 pt-[30px]">
-          <div
-            aria-hidden="true"
-            data-draw
-            className="absolute left-[25px] top-[56px] hidden h-[2px] origin-left bg-gradient-to-r from-gold to-[rgba(220,167,51,.2)] md:right-0 md:block"
-          />
-          <motion.div className="grid gap-5 sm:grid-cols-2 md:grid-cols-5" initial="hidden" whileInView="visible" viewport={inView} variants={stagger(0.25, 0.2)}>
-            {steps.map((s, i) => {
-              const last = i === steps.length - 1;
-              return (
-                <motion.div key={s.t} variants={rise} className="relative flex flex-row items-center gap-4 md:flex-col md:items-start md:gap-3">
-                  {last ? (
-                    <span className="m-1 h-11 w-11 shrink-0 rotate-45 bg-gold" />
-                  ) : (
-                    <motion.span
-                      className="h-[52px] w-[52px] shrink-0 rounded-full border-2 border-gold"
-                      variants={{ hidden: { backgroundColor: '#0a0a0b' }, visible: { backgroundColor: i === 0 ? '#dca733' : '#0a0a0b' } }}
-                    />
-                  )}
-                  <span className="flex flex-col gap-1 md:gap-3">
-                    <span className={`h3 !text-[18px] ${last ? 'text-gold' : ''}`}>{s.t}</span>
-                    <span className="copy !text-[14px]">{s.d}</span>
+
+        <div className="grid gap-10 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:gap-14">
+          {/* The dial sticks while the stages scroll past */}
+          <div className="hidden md:block">
+            <div className="sticky top-28 flex flex-col items-center gap-6">
+              <div className="relative aspect-square w-full max-w-[340px]">
+                <svg viewBox="0 0 280 280" className="absolute inset-0 h-full w-full -rotate-90" aria-hidden="true">
+                  <circle cx="140" cy="140" r="120" fill="none" stroke="rgba(244,241,232,.1)" strokeWidth="2" />
+                  <circle className="mg-ring" cx="140" cy="140" r="120" fill="none" stroke="#dca733" strokeWidth="3" strokeLinecap="round" />
+                  {MANAGE_STEPS.map((_, i) => {
+                    const a = (i / MANAGE_STEPS.length) * Math.PI * 2;
+                    const done = i <= active;
+                    return (
+                      <circle
+                        key={i}
+                        cx={140 + 120 * Math.cos(a)}
+                        cy={140 + 120 * Math.sin(a)}
+                        r={done ? 7 : 5}
+                        fill={done ? '#dca733' : '#0a0a0b'}
+                        stroke="#dca733"
+                        strokeWidth="2"
+                        style={{ transition: 'r .3s, fill .3s' }}
+                      />
+                    );
+                  })}
+                </svg>
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-center">
+                  <span className="mg-sun inline-flex text-gold">
+                    <AuricMark size={58} />
                   </span>
-                </motion.div>
+                  <span className="lab mt-2" aria-live="polite">
+                    <span className="text-gold">{pad(shown + 1)}</span> / {pad(MANAGE_STEPS.length)}
+                  </span>
+                  <span className="font-display text-[28px] font-extrabold leading-none tracking-[-0.04em]">{MANAGE_STEPS[shown].t}</span>
+                </div>
+              </div>
+              <p className="copy max-w-[30ch] text-center !text-[15px]">One owner keeps every stage moving, so you always know where your project is.</p>
+            </div>
+          </div>
+
+          {/* The stages */}
+          <ol className="mg-steps relative m-0 list-none p-0 ps-8 md:ps-0">
+            <span aria-hidden="true" className="absolute bottom-0 start-[7px] top-0 w-px bg-[rgba(244,241,232,.12)] md:hidden" />
+            <span aria-hidden="true" className="mg-line absolute bottom-0 start-[7px] top-0 w-[2px] origin-top bg-gold md:hidden" />
+            {MANAGE_STEPS.map((s, i) => {
+              const last = i === MANAGE_STEPS.length - 1;
+              const on = i === active;
+              const solid = on || (active === -1 && (i === 0 || last));
+              return (
+                <li
+                  key={s.t}
+                  className={`relative flex flex-col gap-3 border-t border-[var(--line)] py-8 transition-opacity duration-500 md:min-h-[34vh] md:justify-center md:py-10 ${lit(i) ? 'opacity-100' : 'md:opacity-30'}`}
+                >
+                  <span
+                    aria-hidden="true"
+                    className={`absolute -start-8 top-10 h-[15px] w-[15px] md:hidden ${last ? 'rotate-45 bg-gold' : 'rounded-full border-2 border-gold bg-ink'}`}
+                  />
+                  <div className="flex items-baseline gap-5">
+                    <span className={`num-xl text-[52px] transition-colors duration-500 md:text-[84px] ${solid ? 'text-gold' : 'stroke-gold'}`}>{pad(i + 1)}</span>
+                    <span
+                      className={`font-display font-extrabold leading-none tracking-[-0.045em] transition-[color,transform] duration-500 ${on ? 'translate-x-3 text-gold rtl:-translate-x-3' : ''} ${last && active === -1 ? 'text-gold' : ''}`}
+                      style={{ fontSize: 'clamp(30px,3.6vw,52px)' }}
+                    >
+                      {s.t}
+                    </span>
+                  </div>
+                  <p className="copy max-w-[40ch]">{s.d}</p>
+                  <span className="lab">{s.x}</span>
+                </li>
               );
             })}
-          </motion.div>
+          </ol>
         </div>
-        <ServiceList items={['Project Management', 'Digital Project Coordination', 'Production Coordination', 'Resource Management', 'Delivery Planning', 'Quality Assurance']} />
-        <ChapterFoot cta="Discuss a project" />
+
+        {/* Services as pills */}
+        <div className="mt-16 flex flex-col gap-8 border-t border-[var(--line)] pt-10 lg:flex-row lg:items-end lg:justify-between">
+          <div className="flex flex-col gap-4">
+            <span className="lab !text-gold">What Manage covers</span>
+            <ul className="m-0 flex list-none flex-wrap gap-[10px] p-0" data-pop>
+              {MANAGE_SERVICES.map((sv) => (
+                <li
+                  key={sv}
+                  className="rounded-full border border-[var(--line-strong)] px-5 py-3 font-display text-[15px] font-medium transition-colors hover:border-gold hover:text-gold md:text-[17px]"
+                >
+                  {sv}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <a href={CTA_HREF} className="btn btn-gold shrink-0 self-start lg:self-auto">
+            Discuss a project
+          </a>
+        </div>
       </div>
     </section>
   );
