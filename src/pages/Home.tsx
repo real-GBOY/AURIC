@@ -247,10 +247,15 @@ function SelectedWork() {
             {C.selected[0]} <br className="md:hidden" />
             {C.selected[1]}
           </h2>
-          <a href="/work" className="lab !text-gold">
-            <span className="hidden md:inline">{C.fullPortfolio} {ARROW}</span>
-            <span className="md:hidden">{C.allWork} {ARROW}</span>
-          </a>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            <a href="/case-studies" className="lab !text-cream hover:!text-gold">
+              {C.caseStudies} {ARROW}
+            </a>
+            <a href="/work" className="lab !text-gold">
+              <span className="hidden md:inline">{C.fullPortfolio} {ARROW}</span>
+              <span className="md:hidden">{C.allWork} {ARROW}</span>
+            </a>
+          </div>
         </Reveal>
         <motion.div
           ref={ref}

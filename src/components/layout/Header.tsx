@@ -10,7 +10,7 @@ const path = (typeof window !== 'undefined' ? window.location.pathname : '/').re
 const isActive = (href: string) =>
   href === '/'
     ? path === '/'
-    : path === href || path.startsWith(href + '/') || (href === '/work' && path.startsWith('/case-studies'));
+    : path === href || path.startsWith(href + '/');
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -45,7 +45,7 @@ export default function Header() {
           <Logo size={26} />
         </a>
 
-        <nav aria-label="Main" className="hidden items-center gap-8 md:flex">
+        <nav aria-label="Main" className="hidden items-center gap-7 lg:flex">
           {NAV.map((item) => (
             <a
               key={item.href}
@@ -67,7 +67,7 @@ export default function Header() {
           >
             {isAr ? 'EN' : 'عربي'}
           </a>
-          <a href={href(CTA_HREF)} className="btn btn-gold hidden !min-h-[42px] !px-[18px] !text-[14px] md:inline-flex">
+          <a href={href(CTA_HREF)} className="btn btn-gold hidden !min-h-[42px] !px-[18px] !text-[14px] lg:inline-flex">
             {t('Start a Project', 'ابدأ مشروعك')}
           </a>
 
@@ -78,7 +78,7 @@ export default function Header() {
             aria-label={open ? t('Close menu', 'إغلاق القائمة') : t('Open menu', 'فتح القائمة')}
             aria-expanded={open}
             aria-controls="phone-menu"
-            className={`flex h-11 w-11 flex-col items-center justify-center gap-[5px] rounded-full border transition-colors md:hidden ${
+            className={`flex h-11 w-11 flex-col items-center justify-center gap-[5px] rounded-full border transition-colors lg:hidden ${
               open ? 'border-gold bg-gold text-[#141414]' : 'border-[var(--line-strong)]'
             }`}
           >
@@ -100,7 +100,7 @@ export default function Header() {
           <motion.nav
             id="phone-menu"
             aria-label="Main"
-            className="fixed inset-x-0 bottom-0 top-16 z-40 flex flex-col overflow-y-auto bg-ink px-5 pb-7 pt-6 md:hidden"
+            className="fixed inset-x-0 bottom-0 top-16 z-40 flex flex-col overflow-y-auto bg-ink px-5 pb-7 pt-6 lg:hidden"
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}

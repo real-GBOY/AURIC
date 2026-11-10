@@ -36,6 +36,7 @@ function Hero() {
           <motion.div className="flex max-w-[340px] flex-col gap-[10px] pb-[18px]" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
             <span className="lab !text-gold">Selected work · 2025—2026</span>
             <p className="copy !text-base">Video, design, content and digital products. Made by one team.</p>
+            <a href="/case-studies" className="btn btn-line mt-2 w-fit !min-h-11 !px-5 !text-[14px]">Read the case studies →</a>
           </motion.div>
         </div>
         <motion.div className="wrap relative z-[1] -mt-9" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.9, ease: EASE }}>

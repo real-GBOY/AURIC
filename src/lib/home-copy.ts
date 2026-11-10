@@ -21,6 +21,7 @@ type Copy = {
   selected: [string, string];
   fullPortfolio: string;
   allWork: string;
+  caseStudies: string;
   work: { brandFilm: string; video: string; identity: string; design: string; yourVideo: string; yourDesign: string; mizan: string; mizanTag: string; mizanTagPhone: string; reel: string; content: string };
   how: [string, string];
   howRight: string;
@@ -67,6 +68,7 @@ const EN: Copy = {
   selected: ['Selected', 'work'],
   fullPortfolio: 'Full portfolio',
   allWork: 'All work',
+  caseStudies: 'Case studies',
   work: { brandFilm: '[Brand film]', video: 'Video', identity: '[Brand identity]', design: 'Design', yourVideo: 'Your video', yourDesign: 'Your design', mizan: 'Mizan', mizanTag: 'Client project · App', mizanTagPhone: 'App', reel: '[Reel]', content: 'Content' },
   how: ['How we', 'work'],
   howRight: 'One partner, start to finish',
@@ -126,6 +128,7 @@ const AR: Copy = {
   selected: ['أعمال', 'مختارة'],
   fullPortfolio: 'كل الأعمال',
   allWork: 'كل الأعمال',
+  caseStudies: 'دراسات الحالة',
   work: { brandFilm: '[فيلم العلامة]', video: 'فيديو', identity: '[هوية بصرية]', design: 'تصميم', yourVideo: 'فيديو من أعمالك', yourDesign: 'تصميمك هنا', mizan: 'ميزان', mizanTag: 'مشروع عميل · تطبيق', mizanTagPhone: 'تطبيق', reel: '[ريل]', content: 'محتوى' },
   how: ['كيف', 'نعمل'],
   howRight: 'شريك واحد من البداية للنهاية',

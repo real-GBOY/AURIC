@@ -26,6 +26,7 @@ export const emailHref = () => (CONTACT.email ? `mailto:${CONTACT.email}` : '/co
 export const NAV = [
   { label: 'Services', ar: 'الخدمات', href: '/services' },
   { label: 'Work', ar: 'الأعمال', href: '/work' },
+  { label: 'Case studies', ar: 'دراسات الحالة', href: '/case-studies' },
   { label: 'Team', ar: 'الفريق', href: '/team' },
   { label: 'Contact', ar: 'تواصل', href: '/contact' },
 ];
@@ -37,6 +38,7 @@ export const PAGES = [
   { label: 'Work', ar: 'الأعمال', href: '/work' },
   { label: 'Case studies', ar: 'دراسات الحالة', href: '/case-studies' },
   { label: 'Team', ar: 'الفريق', href: '/team' },
+  { label: 'Contact', ar: 'تواصل', href: '/contact' },
 ];
 
 export const CTA_HREF = '/contact';
