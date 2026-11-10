@@ -36,9 +36,9 @@ function Hero() {
         const build = contextSafe!(() => {
           if (!alive) return; // a newer mount owns the hero now
           const splits = q('.hero-text').map((el) =>
-            SplitText.create(el, { type: isAr ? 'words' : 'words,chars', mask: 'words' }),
+            SplitText.create(el, { type: isAr ? 'words' : 'words,chars', mask: 'words', aria: 'none' }),
           );
-          const copy = SplitText.create(q('.hero-copy'), { type: 'lines', mask: 'lines' });
+          const copy = SplitText.create(q('.hero-copy'), { type: 'lines', mask: 'lines', aria: 'none' });
 
           const tl = gsap.timeline({ delay: 0.3, defaults: { ease: 'expo.out' } });
           tl.set(root.current, { autoAlpha: 1 });
@@ -105,12 +105,13 @@ function Hero() {
   const line = 'flex flex-wrap items-center gap-[clamp(14px,2vw,28px)] transition-colors hover:text-gold [perspective:900px]';
   const pill = (node: React.ReactNode) => <span className="hero-pill hidden md:inline-flex">{node}</span>;
   const word = (text: string) => <span className="hero-text">{text}</span>;
-  const rows: { href: string; content: React.ReactNode }[] = [
-    { href: href('/services#create'), content: <><span className="mega">{word(C.hero[0])}</span>{pill(<TimelinePill />)}</> },
-    { href: href('/services#strategy'), content: <>{pill(<CalendarPill />)}<span className="mega">{word(C.hero[1])}</span></> },
-    { href: href('/services#build'), content: <><span className="mega">{word(C.hero[2])}</span>{pill(<CodePill />)}</> },
+  const rows: { href: string; label: string; content: React.ReactNode }[] = [
+    { href: href('/services#create'), label: C.hero[0], content: <><span className="mega">{word(C.hero[0])}</span>{pill(<TimelinePill />)}</> },
+    { href: href('/services#strategy'), label: C.hero[1], content: <>{pill(<CalendarPill />)}<span className="mega">{word(C.hero[1])}</span></> },
+    { href: href('/services#build'), label: C.hero[2], content: <><span className="mega">{word(C.hero[2])}</span>{pill(<CodePill />)}</> },
     {
       href: href('/services#manage'),
+      label: `${C.hero[3]}.`,
       content: (
         <>
           {pill(<DeliveredPill />)}
@@ -140,7 +141,7 @@ function Hero() {
         <h1 className="flex flex-col gap-[6px] md:gap-[clamp(8px,1.2vw,16px)]">
           {rows.map((r) => (
             <span key={r.href} className="block pb-[0.05em]">
-              <a href={r.href} className={line}>
+              <a href={r.href} aria-label={r.label} className={line}>
                 {r.content}
               </a>
             </span>

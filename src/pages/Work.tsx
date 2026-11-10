@@ -96,29 +96,29 @@ function ProjectIndex() {
           }
         />
         <div className="grid items-start gap-8 md:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:grid-cols-2 lg:gap-12">
-          <div role="list">
+          <ul className="m-0 list-none p-0">
             {INDEX.map((e, k) => {
               const on = k === i;
               return (
-                <a
-                  key={e.name}
-                  href={e.href}
-                  role="listitem"
-                  onMouseEnter={() => setI(k)}
-                  onFocus={() => setI(k)}
-                  className={`grid w-full grid-cols-[48px_minmax(0,1fr)_auto] items-baseline gap-4 border-b border-[var(--line)] py-[22px] transition-colors ${on ? 'text-gold' : ''}`}
-                >
-                  <span className={`lab ${on ? '!text-gold' : ''}`}>{pad(k + 1)}</span>
-                  <span className="font-display font-semibold leading-[1.1] tracking-[-0.02em]" style={{ fontSize: 'clamp(22px,2.4vw,34px)' }}>
-                    <motion.span className="inline-block" animate={{ x: on ? 10 : 0 }} transition={{ duration: 0.3, ease: EASE }}>
-                      {e.name}
-                    </motion.span>
-                  </span>
-                  <span className={`lab ${on ? '!text-gold' : ''}`}>{e.cat}</span>
-                </a>
+                <li key={e.name}>
+                  <a
+                    href={e.href}
+                    onMouseEnter={() => setI(k)}
+                    onFocus={() => setI(k)}
+                    className={`grid w-full grid-cols-[48px_minmax(0,1fr)_auto] items-baseline gap-4 border-b border-[var(--line)] py-[22px] transition-colors ${on ? 'text-gold' : ''}`}
+                  >
+                    <span className={`lab ${on ? '!text-gold' : ''}`}>{pad(k + 1)}</span>
+                    <span className="font-display font-semibold leading-[1.1] tracking-[-0.02em]" style={{ fontSize: 'clamp(22px,2.4vw,34px)' }}>
+                      <motion.span className="inline-block" animate={{ x: on ? 10 : 0 }} transition={{ duration: 0.3, ease: EASE }}>
+                        {e.name}
+                      </motion.span>
+                    </span>
+                    <span className={`lab ${on ? '!text-gold' : ''}`}>{e.cat}</span>
+                  </a>
+                </li>
               );
             })}
-          </div>
+          </ul>
           <div className="sticky top-24 flex flex-col gap-4" data-tilt>
             <AnimatePresence mode="wait">
               <motion.div key={cur.name} initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.98 }} transition={{ duration: 0.3 }}>
@@ -140,7 +140,7 @@ function ProjectIndex() {
 
 /* Chapter 01 · Video filmstrip (A3) */
 function VideoChapter() {
-  const ref = useDragScroll<HTMLDivElement>();
+  const ref = useDragScroll<HTMLUListElement>();
   const section = useRef<HTMLElement>(null);
   usePinnedStrip(section, ref);
   const items = [
@@ -153,19 +153,21 @@ function VideoChapter() {
     <section ref={section} className="hidden overflow-hidden bg-bg py-[120px] md:block">
       <div className="wrap">
         <ChapterHead n="01" title={t('Video & motion', 'فيديو وموشن')} right={<span className="lab">{t('Drag or scroll sideways', 'اسحب أو مرّر جانبيًا')} {ARROW}</span>} />
-        <div ref={ref} className="strip" role="list" aria-label="Video projects">
+        <ul ref={ref} className="strip m-0 list-none p-0" aria-label={t('Video projects', 'مشاريع الفيديو')}>
           {items.map(([title, tag]) => (
-            <a key={title} href="/case-studies/creative" role="listitem" data-cursor="view" className="group flex w-[560px] flex-col gap-[14px]">
-              <div className="transition-transform duration-500 group-hover:scale-[1.02]">
-                <VideoSlot ratio="16/9" label={t('Your video', 'فيديو من أعمالك')} radius={8} />
-              </div>
-              <span className="flex justify-between">
-                <span className="h3 !text-[18px]">{title}</span>
-                <span className="lab">{tag}</span>
-              </span>
-            </a>
+            <li key={title} className="w-[560px]">
+              <a href="/case-studies/creative" data-cursor="view" className="group flex flex-col gap-[14px]">
+                <div className="transition-transform duration-500 group-hover:scale-[1.02]">
+                  <VideoSlot ratio="16/9" label={t('Your video', 'فيديو من أعمالك')} radius={8} />
+                </div>
+                <span className="flex justify-between">
+                  <span className="h3 !text-[18px]">{title}</span>
+                  <span className="lab">{tag}</span>
+                </span>
+              </a>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );
@@ -203,7 +205,7 @@ function DesignChapter() {
           <motion.div variants={tile} className="relative rounded-lg bg-surface-2 lg:col-[6/9] lg:row-[3/5]">
             <span className="slot bottom-[14px] left-4">{t('Social post', 'منشور سوشيال')}</span>
           </motion.div>
-          <motion.div variants={tile} className="flex gap-2 rounded-lg bg-[#141414] p-[14px] lg:col-[9/13] lg:row-[4/5]" aria-label="Colour palette">
+          <motion.div variants={tile} className="flex gap-2 rounded-lg bg-[#141414] p-[14px] lg:col-[9/13] lg:row-[4/5]" role="img" aria-label={t('Colour palette', 'لوحة الألوان')}>
             {['#dca733', '#f4f1e8', '#3c8f6a', '#2f7db7'].map((c) => (
               <span key={c} className="flex-1 rounded" style={{ background: c }} />
             ))}
@@ -271,12 +273,12 @@ function SoftwareChapter() {
 
 function FilterChips({ f, setF, list, className = '' }: { f: F; setF: (f: F) => void; list: Entry[]; className?: string }) {
   return (
-    <div className={`flex gap-[10px] ${className}`} role="group" aria-label="Filter the work">
+    <div className={`flex gap-[10px] ${className}`} role="group" aria-label={t('Filter the work', 'تصفية الأعمال')}>
       {FILTERS.map((d) => {
         const n = d.id === 'all' ? list.length : list.filter((p) => p.group === d.id).length;
         return (
           <button key={d.id} type="button" className="chip md:!rounded md:!text-[14px]" aria-pressed={f === d.id} onClick={() => setF(d.id)}>
-            {d.name} <span className="opacity-60">{n}</span>
+            {d.name} <span className="opacity-80">{n}</span>
           </button>
         );
       })}

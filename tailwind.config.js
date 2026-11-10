@@ -16,7 +16,7 @@ export default {
         'gold-deep': '#7A5A12',
         muted: '#96928A',
         copy: '#B3AFA6',
-        dim: '#6F6B64',
+        dim: '#8A867E', // 5.2:1 on the page background (was #6F6B64, 3.5:1)
         charcoal: '#3A3A3F',
         whatsapp: '#25D366',
       },

@@ -51,6 +51,8 @@ export default function Layout({ children, mobileCta = 'dock' }: Props) {
         <main id="main">{children}</main>
         <Footer />
 
+        {/* Floating contact shortcuts, in their own labelled region so they sit inside a landmark */}
+        <aside aria-label={t('Quick contact', 'تواصل سريع')}>
         {/* Round WhatsApp button: always on desktop, on phones only where there is no dock */}
         <a
           href={whatsappHref()}
@@ -78,7 +80,7 @@ export default function Layout({ children, mobileCta = 'dock' }: Props) {
                 </a>
                 <a
                   href={whatsappHref()}
-                  aria-label="Chat with AURIC on WhatsApp"
+                  aria-label={t('Chat with AURIC on WhatsApp', 'تحدث مع أوريك على واتساب')}
                   className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[10px] bg-whatsapp text-ink"
                 >
                   <WhatsAppIcon />
@@ -87,6 +89,7 @@ export default function Layout({ children, mobileCta = 'dock' }: Props) {
             )}
           </AnimatePresence>
         )}
+        </aside>
       </div>
     </MotionConfig>
   );

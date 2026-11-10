@@ -79,7 +79,8 @@ export default function ScrollScenes() {
           // 4 · Statement text lights up word by word, tied to scroll
           gsap.utils.toArray<HTMLElement>('[data-scrub-words]').forEach((el) => {
             if (!visible(el)) return;
-            const split = SplitText.create(el, { type: 'words' });
+            // aria 'none': keep the words readable (they sit inside links and paragraphs; an aria-label on those is not allowed)
+            const split = SplitText.create(el, { type: 'words', aria: 'none' });
             gsap.fromTo(split.words, { opacity: 0.14 }, {
               opacity: 1,
               ease: 'none',
