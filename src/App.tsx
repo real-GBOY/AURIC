@@ -13,7 +13,7 @@ import { softwareBySlug } from './lib/projects';
 const path = window.location.pathname.replace(/\/+$/, '') || '/';
 
 export default function App() {
-  if (path === '/') return <Home />;
+  if (path === '/' || path === '/ar') return <Home />;
   if (path === '/services') return <Services />;
   if (path === '/work') return <Work />;
   if (path === '/case-studies') return <CaseStudies />;

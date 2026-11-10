@@ -4,8 +4,9 @@ import Logo from '../Logo';
 import { WhatsAppIcon } from '../ui/Icons';
 import { CTA_HREF, NAV, PAGES, SOCIALS, whatsappHref } from '../../lib/site';
 import { EASE } from '../../lib/motion';
+import { href, isAr, otherLangHref, t } from '../../lib/i18n';
 
-const path = typeof window !== 'undefined' ? window.location.pathname : '/';
+const path = (typeof window !== 'undefined' ? window.location.pathname : '/').replace(/^\/ar(?=\/|$)/, '') || '/';
 const isActive = (href: string) =>
   href === '/'
     ? path === '/'
@@ -40,7 +41,7 @@ export default function Header() {
       }`}
     >
       <div className="wrap flex h-16 items-center justify-between gap-6 md:h-[74px]">
-        <a href="/" aria-label="AURIC home" className="flex items-center">
+        <a href={href('/')} aria-label="AURIC home" className="flex items-center">
           <Logo size={26} />
         </a>
 
@@ -52,21 +53,29 @@ export default function Header() {
               aria-current={isActive(item.href) ? 'page' : undefined}
               className={`text-[15px] font-medium transition-colors hover:text-gold ${isActive(item.href) ? 'text-gold' : ''}`}
             >
-              {item.label}
+              {t(item.label, item.ar)}
             </a>
           ))}
         </nav>
 
         <div className="flex items-center gap-[10px]">
-          <a href={CTA_HREF} className="btn btn-gold hidden !min-h-[42px] !px-[18px] !text-[14px] md:inline-flex">
-            Start a Project
+          <a
+            href={otherLangHref()}
+            lang={isAr ? 'en' : 'ar'}
+            className="lab px-1 !text-[12px] !text-cream transition-colors hover:!text-gold"
+            aria-label={isAr ? 'English version' : 'النسخة العربية'}
+          >
+            {isAr ? 'EN' : 'عربي'}
+          </a>
+          <a href={href(CTA_HREF)} className="btn btn-gold hidden !min-h-[42px] !px-[18px] !text-[14px] md:inline-flex">
+            {t('Start a Project', 'ابدأ مشروعك')}
           </a>
 
           {/* M1 · phone menu toggle */}
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-label={open ? t('Close menu', 'إغلاق القائمة') : t('Open menu', 'فتح القائمة')}
             aria-expanded={open}
             aria-controls="phone-menu"
             className={`flex h-11 w-11 flex-col items-center justify-center gap-[5px] rounded-full border transition-colors md:hidden ${
@@ -101,30 +110,30 @@ export default function Header() {
               {PAGES.map((item, i) => (
                 <motion.a
                   key={item.href}
-                  href={item.href}
+                  href={href(item.href)}
                   onClick={() => setOpen(false)}
-                  variants={{ hidden: { opacity: 0, x: -24 }, visible: { opacity: 1, x: 0, transition: { duration: 0.45, ease: EASE } } }}
+                  variants={{ hidden: { opacity: 0, x: isAr ? 24 : -24 }, visible: { opacity: 1, x: 0, transition: { duration: 0.45, ease: EASE } } }}
                   className="grid grid-cols-[44px_minmax(0,1fr)] items-baseline gap-2 border-b border-[rgba(244,241,232,.1)] py-[14px]"
                 >
                   <span className="lab !text-gold">{String(i + 1).padStart(2, '0')}</span>
                   <b className={`font-display text-[40px] font-extrabold leading-none tracking-[-0.045em] ${isActive(item.href) ? 'text-gold' : ''}`}>
-                    {item.label}
+                    {t(item.label, item.ar)}
                   </b>
                 </motion.a>
               ))}
             </motion.div>
 
             <div className="mt-auto flex flex-col gap-[10px] pt-8">
-              <a href={CTA_HREF} className="btn btn-gold w-full !min-h-[54px] !text-[16px] !font-semibold">
-                Start a Project
+              <a href={href(CTA_HREF)} className="btn btn-gold w-full !min-h-[54px] !text-[16px] !font-semibold">
+                {t('Start a Project', 'ابدأ مشروعك')}
               </a>
               <a href={whatsappHref()} className="btn w-full !min-h-[54px] bg-whatsapp !text-[16px] !font-semibold text-ink">
-                <WhatsAppIcon /> Chat on WhatsApp
+                <WhatsAppIcon /> {t('Chat on WhatsApp', 'تحدث معنا على واتساب')}
               </a>
               <div className="mt-3 flex justify-between">
                 {SOCIALS.map((s) => (
                   <a key={s.label} href={s.href || '#'} className="lab !text-cream">
-                    {s.label}
+                    {t(s.label, s.ar)}
                   </a>
                 ))}
               </div>

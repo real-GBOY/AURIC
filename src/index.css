@@ -267,3 +267,52 @@
     text-wrap: balance;
   }
 }
+
+/* ── Arabic (right to left) ─────────────────────────────────────────────────
+   Alexandria for headlines, IBM Plex Sans Arabic for text, no negative
+   letter-spacing. The logo and code snippets stay left to right. */
+[dir='rtl'] body {
+  font-family: 'IBM Plex Sans Arabic', 'Geist', system-ui, sans-serif;
+}
+[dir='rtl'] .mega,
+[dir='rtl'] .h2,
+[dir='rtl'] .h3,
+[dir='rtl'] .big,
+[dir='rtl'] .font-display {
+  font-family: 'Alexandria', 'Unbounded', sans-serif;
+  letter-spacing: 0 !important;
+}
+[dir='rtl'] .mega {
+  font-weight: 900;
+  line-height: 1.12;
+}
+[dir='rtl'] .h2 {
+  font-weight: 800;
+  line-height: 1.15;
+}
+[dir='rtl'] .lab {
+  font-family: 'IBM Plex Sans Arabic', 'Geist Mono', monospace;
+  letter-spacing: 0;
+  text-transform: none;
+  font-size: 13px;
+}
+[dir='rtl'] .copy {
+  line-height: 1.8;
+}
+[dir='rtl'] .font-mono {
+  direction: ltr;
+}
+[dir='rtl'] .slot {
+  font-family: 'IBM Plex Sans Arabic', 'Geist Mono', monospace;
+  letter-spacing: 0;
+  text-transform: none;
+  font-size: 12px;
+}
+@media (min-width: 768px) {
+  [dir='rtl'] .md\:lab {
+    font-family: 'IBM Plex Sans Arabic', 'Geist Mono', monospace;
+    letter-spacing: 0;
+    text-transform: none;
+    font-size: 13px;
+  }
+}

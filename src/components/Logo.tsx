@@ -50,7 +50,7 @@ export default function Logo({
   showWord = true,
 }: LogoProps) {
   return (
-    <span className={`inline-flex items-center shrink-0 ${className}`} style={{ gap }}>
+    <span dir="ltr" className={`inline-flex items-center shrink-0 ${className}`} style={{ gap }}>
       <AuricMark size={size} className="text-gold shrink-0" />
       {showWord && (
         <span className={`font-pixel text-cream ${wordClassName}`}>

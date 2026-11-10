@@ -5,6 +5,7 @@ import Footer from './Footer';
 import { WhatsAppIcon } from '../ui/Icons';
 import { CTA_HREF, whatsappHref } from '../../lib/site';
 import { EASE, useScrolledPast } from '../../lib/motion';
+import { href, t } from '../../lib/i18n';
 
 type Props = {
   children: ReactNode;
@@ -23,7 +24,7 @@ export default function Layout({ children, mobileCta = 'dock' }: Props) {
     <MotionConfig reducedMotion="user">
       <div className="min-h-screen bg-ink">
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-gold focus:px-4 focus:py-2 focus:text-[#141414]">
-          Skip to content
+          {t('Skip to content', 'تخطَّ إلى المحتوى')}
         </a>
         <Header />
         <main id="main">{children}</main>
@@ -32,8 +33,8 @@ export default function Layout({ children, mobileCta = 'dock' }: Props) {
         {/* Round WhatsApp button: always on desktop, on phones only where there is no dock */}
         <a
           href={whatsappHref()}
-          aria-label="Chat with AURIC on WhatsApp"
-          className={`fixed bottom-4 right-4 z-[60] h-14 w-14 items-center justify-center rounded-full bg-whatsapp text-ink shadow-[0_10px_30px_rgba(0,0,0,.45)] transition-transform hover:scale-105 md:bottom-6 md:right-6 md:flex md:h-[60px] md:w-[60px] ${
+          aria-label={t('Chat with AURIC on WhatsApp', 'تحدث مع أوريك على واتساب')}
+          className={`fixed bottom-4 end-4 z-[60] h-14 w-14 items-center justify-center rounded-full bg-whatsapp text-ink shadow-[0_10px_30px_rgba(0,0,0,.45)] transition-transform hover:scale-105 md:bottom-6 md:end-6 md:flex md:h-[60px] md:w-[60px] ${
             mobileCta === 'fab' ? 'flex' : 'hidden'
           }`}
         >
@@ -51,8 +52,8 @@ export default function Layout({ children, mobileCta = 'dock' }: Props) {
                 exit={{ y: 90, opacity: 0 }}
                 transition={{ duration: 0.45, ease: EASE }}
               >
-                <a href={CTA_HREF} className="btn btn-gold !min-h-12 flex-1 !rounded-md !text-[15px] !font-semibold">
-                  Start a Project
+                <a href={href(CTA_HREF)} className="btn btn-gold !min-h-12 flex-1 !rounded-md !text-[15px] !font-semibold">
+                  {t('Start a Project', 'ابدأ مشروعك')}
                 </a>
                 <a
                   href={whatsappHref()}
