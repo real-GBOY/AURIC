@@ -1,46 +1,4 @@
-import { Monitor, Boxes, Sparkles, Workflow, LayoutDashboard, Plug } from 'lucide-react';
-
-export const WRAP = 'max-w-[1480px] mx-auto px-[var(--edge)]';
-
-export const SERVICES = [
-  { Icon: Monitor,        title: 'High-Performance Websites', desc: 'Fast, polished sites engineered to convert — built end to end, not assembled from templates.' },
-  { Icon: Boxes,          title: 'Custom Web Applications',   desc: 'Purpose-built software designed around the way your business actually operates.' },
-  { Icon: Sparkles,       title: 'AI-Powered Solutions',      desc: 'Practical AI that automates work, surfaces insight, and compounds your advantage.' },
-  { Icon: Workflow,       title: 'Business Process Automation', desc: 'Automation and internal systems that remove friction and free your team to focus.' },
-  { Icon: LayoutDashboard, title: 'Dashboards & Analytics',   desc: 'Portals and dashboards that turn scattered data into decisions your team can act on.' },
-  { Icon: Plug,           title: 'API Integrations',          desc: 'Clean, reliable integrations that connect your systems and scale with you.' },
-];
-
-export const HERO_ICONS = [
-  { Icon: Monitor,         label: 'High-Performance Websites' },
-  { Icon: Boxes,           label: 'Custom Web Applications' },
-  { Icon: Sparkles,        label: 'AI-Powered Solutions' },
-  { Icon: Workflow,        label: 'Business Process Automation' },
-  { Icon: LayoutDashboard, label: 'Dashboards & Analytics' },
-  { Icon: Plug,            label: 'API Integrations' },
-];
-
-// ─── All projects (full portfolio listing page) ───────────────────────────────
-
-export const ALL_WORKS = [
-  { title: 'Atlas', cat: 'Real-Estate Developer Operating System', tag: 'Web + AI', year: "'26", bg: 'linear-gradient(135deg,#3c8f6a 0%,#0e2219 100%)', span: 'col-span-1 sm:col-span-2', href: '/work/atlas', image: '/work/atlas/dashboard.png' },
-  { title: 'Mizan', cat: 'Bilingual Law-Firm Management System', tag: 'Web + Mobile', year: "'26", bg: 'linear-gradient(135deg,#8f4a4a 0%,#2a1212 100%)', span: 'col-span-1 sm:col-span-2', href: '/work/mizan', image: '/work/mizan/dashboard.png' },
-  { title: 'Ajwadi',             cat: 'Collaboration & Project Management Platform', tag: 'Web + Mobile', year: "'25", bg: 'linear-gradient(135deg,#2f6e6a 0%,#101f1e 100%)', span: 'col-span-1 sm:col-span-3', href: '/work/ajwadi', image: '/work/ajwadi/dashboard-overview.png' },
-  { title: 'Nova',               cat: 'Enterprise ERP + CRM Platform',  tag: 'Web + Mobile', year: "'25", bg: 'linear-gradient(135deg,#DCA733 0%,#241d0f 100%)', span: 'col-span-1 sm:col-span-3', href: '/work/nova', image: '/work/nova/dashboard-overview.jpg' },
-  { title: 'Clinic OS', cat: 'Clinic Operating System on Odoo', tag: 'Web', year: "'26", bg: 'linear-gradient(135deg,#2f9fa7 0%,#0b2224 100%)', span: 'col-span-1 sm:col-span-2', href: '/work/clinic-os', image: '/work/clinic-os/reception-dashboard.png' },
-  { title: 'Raqib', cat: 'Security Quality & Field Inspection Platform', tag: 'Web · Offline PWA', year: "'26", bg: 'linear-gradient(135deg,#3f6fb7 0%,#0d1830 100%)', span: 'col-span-1 sm:col-span-2', href: '/work/raqib', image: '/work/raqib/dashboard.png' },
-  { title: 'Admit', cat: 'Event Ticketing with Manual Payment Verification', tag: 'Web', year: "'26", bg: 'linear-gradient(135deg,#b7643f 0%,#2b160d 100%)', span: 'col-span-1 sm:col-span-2', href: '/work/admit', image: '/work/admit/dashboard.png' },
-  { title: 'Enactix',            cat: 'Student Org Management Platform', tag: 'Web + Mobile', year: "'25", bg: 'linear-gradient(135deg,#6a4a8f 0%,#1c1228 100%)', span: 'col-span-1 sm:col-span-2', href: '/work/enactix', image: '/work/enactix/dashboard-overview.jpg' },
-  { title: 'Weavolution',        cat: 'Sustainability & Circular Economy Platform', tag: 'Web', year: "'25", bg: 'linear-gradient(135deg,#3f5fb7 0%,#0d1530 100%)', span: 'col-span-1 sm:col-span-2', href: '/work/weavolution', image: '/work/weavolution/home-hero.png' },
-  { title: 'Build Art',          cat: 'Interior Design & Fit-Out Marketing Site', tag: 'Web', year: "'25", bg: 'linear-gradient(135deg,#b7913f 0%,#2b210d 100%)', span: 'col-span-1 sm:col-span-2', href: '/work/build-art', image: '/work/build-art/hero.png' },
-  { title: 'OptiCare', cat: 'Clinic Management System for Ophthalmology Practices', tag: 'Web', year: "'26", bg: 'linear-gradient(135deg,#2f7db7 0%,#0d1e30 100%)', span: 'col-span-1 sm:col-span-2', href: '/work/opticare', image: '/work/opticare/dashboard-overview.jpg' },
-  { title: 'Hotel OS', cat: 'Hotel Operations Platform & Booking Website', tag: 'Web', year: "'26", bg: 'linear-gradient(135deg,#7a5fb7 0%,#1a1230 100%)', span: 'col-span-1 sm:col-span-2', href: '/work/hotel-os', image: '/work/hotel-os/dashboard.png' },
-];
-
-// Home page "Selected Work": first five of ALL_WORKS, so the order always matches the work page.
-// The home grid is a 6-col layout (3+3 / 2+2+2), so spans are set here.
-const HOME_SPANS = ['col-span-1 sm:col-span-3', 'col-span-1 sm:col-span-3', 'col-span-1 sm:col-span-2', 'col-span-1 sm:col-span-2', 'col-span-1 sm:col-span-2'];
-export const WORKS = ALL_WORKS.slice(0, HOME_SPANS.length).map((work, i) => ({ ...work, span: HOME_SPANS[i] }));
+// Software case study content. Display metadata (type, category, order) lives in projects.ts.
 
 // ─── Case study projects ───────────────────────────────────────────────────────
 
@@ -664,18 +622,3 @@ export const ADMIT_PROJECT: CaseStudyProject = {
   ],
   mobileImages: [],
 };
-
-export const STEPS = [
-  { n: '01', title: 'Discover', desc: 'We study your business, customers and operations to define measurable objectives.' },
-  { n: '02', title: 'Design',   desc: 'We craft intuitive user experiences built around real goals, not templates.' },
-  { n: '03', title: 'Build',    desc: 'We engineer scalable systems using modern technologies, in tight, visible loops.' },
-  { n: '04', title: 'Optimize', desc: 'We continuously improve for performance, security and long-term success.' },
-];
-
-// Only figures that can be backed up by the portfolio above.
-export const STATS_BAR = [
-  { target: 12, suffix: '', label: 'Products Delivered' },
-  { target: 10, suffix: '', label: 'Industries Served' },
-  { target: 4,  suffix: '', label: 'Web + Mobile Platforms' },
-  { target: 3,  suffix: '', label: 'Businesses Partnered' },
-];

@@ -6,7 +6,7 @@ import CaseStudy from './pages/CaseStudy';
 import CreativeCaseStudy from './pages/CreativeCaseStudy';
 import Team from './pages/Team';
 import Contact from './pages/Contact';
-import NotFound from './components/NotFound';
+import NotFound from './pages/NotFound';
 import { softwareBySlug } from './lib/projects';
 
 // Normalise the path: no trailing slash (except the root).
