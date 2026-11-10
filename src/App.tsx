@@ -1,4 +1,5 @@
 import Home from './pages/Home';
+import Services from './pages/Services';
 import NotFound from './components/NotFound';
 import CaseStudy from './components/CaseStudy';
 import AllWork from './components/AllWork';
@@ -9,6 +10,7 @@ const path = window.location.pathname.replace(/\/+$/, '') || '/';
 
 export default function App() {
   if (path === '/') return <Home />;
+  if (path === '/services') return <Services />;
   if (path === '/work') return <AllWork />;
   if (path === '/work/nova') return <CaseStudy project={NOVA_PROJECT} />;
   if (path === '/work/ajwadi') return <CaseStudy project={AJWADI_PROJECT} />;
