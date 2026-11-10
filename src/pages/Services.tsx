@@ -379,9 +379,18 @@ function Manage() {
             })}
           </ol>
         </div>
+      </div>
+    </section>
+  );
+}
 
-        {/* Services as pills */}
-        <div className="mt-16 flex flex-col gap-8 border-t border-[var(--line)] pt-10 lg:flex-row lg:items-end lg:justify-between">
+/* What Manage covers — its own section so the stacked Manage scene above
+   (which eases back and dims) doesn't affect it; this block slides over it. */
+function ManageServices() {
+  return (
+    <section className="bg-ink pb-[88px] pt-14 md:pb-[120px] md:pt-16">
+      <div className="wrap">
+        <div className="flex flex-col gap-8 border-t border-[var(--line)] pt-10 lg:flex-row lg:items-end lg:justify-between">
           <div className="flex flex-col gap-4">
             <span className="lab !text-gold">What Manage covers</span>
             <ul className="m-0 flex list-none flex-wrap gap-[10px] p-0" data-pop>
@@ -412,6 +421,7 @@ export default function Services() {
       <Strategy />
       <Build />
       <Manage />
+      <ManageServices />
       <BigCTA dark lines={['Not sure?', <span className="text-gold">Let's talk.</span>]} size="clamp(52px,10vw,150px)" />
     </Layout>
   );
