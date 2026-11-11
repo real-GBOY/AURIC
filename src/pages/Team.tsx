@@ -56,7 +56,7 @@ function Portrait({ photo, alt, ratio, color = false, children }: { photo: strin
   return (
     <div className="ph group relative overflow-hidden rounded-[10px]" style={{ aspectRatio: ratio }}>
       {photo ? (
-        <img src={photo} alt={alt} loading="lazy" data-parallax="0.08" className={`absolute inset-[-8%] h-[116%] w-[116%] object-cover ${color ? '' : 'grayscale group-hover:grayscale-0'} transition-[filter,transform] duration-700 group-hover:scale-[1.03]`} />
+        <img src={photo} alt={alt} loading="lazy" data-parallax="0.08" className={`absolute inset-[-8%] h-[116%] w-[116%] max-w-none object-cover ${color ? '' : 'grayscale group-hover:grayscale-0'} transition-[filter,transform] duration-700 group-hover:scale-[1.03]`} />
       ) : null}
       {children}
     </div>
