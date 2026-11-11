@@ -34,45 +34,8 @@ const withTags = (html: string, tags: string) => {
  * the right title, description, canonical, hreflang, share tags and structured data.
  * Also writes sitemap.xml and the 404 page (served with a real 404 status by Vercel).
  */
-const PAGE_FILE: Record<string, string> = {
-  '/': 'Home',
-  '/services': 'Services',
-  '/work': 'Work',
-  '/case-studies': 'CaseStudies',
-  '/case-studies/creative': 'CreativeCaseStudy',
-  '/team': 'Team',
-  '/contact': 'Contact',
-};
-
-/**
- * The code a route needs, as <link rel="modulepreload"> tags. Pages are code-split, and without these
- * a crawler such as Googlebot only discovers a page's chunk after running the app, and sometimes fails to
- * fetch it (the page then renders the error screen and is treated as a soft 404). With them the chunk is
- * part of the HTML the crawler is given.
- */
-function preloadTags(path: string, bundle: Record<string, { type: string; fileName: string; facadeModuleId?: string | null; imports?: string[]; isEntry?: boolean }>): string {
-  const name = PAGE_FILE[path] ?? (path.startsWith('/work/') ? 'CaseStudyRoute' : '');
-  const page = Object.values(bundle).find((c) => c.type === 'chunk' && c.facadeModuleId?.split(String.fromCharCode(92)).join('/').endsWith(`/src/pages/${name}.tsx`));
-  if (!name || !page) return '';
-  const seen = new Set<string>();
-  const walk = (file: string) => {
-    const c = bundle[file];
-    if (!c || seen.has(file) || c.isEntry) return;
-    seen.add(file);
-    (c.imports ?? []).forEach(walk);
-  };
-  walk(page.fileName);
-  return [...seen].map((f) => `<link rel="modulepreload" crossorigin href="/${f}">`).join(NEWLINE_INDENT);
-}
-
-const NEWLINE_INDENT = String.fromCharCode(10) + '    ';
-let outputBundle: Parameters<typeof preloadTags>[1] = {};
-
 const seo = (): Plugin => ({
   name: 'auric-seo',
-  writeBundle(_options, bundle) {
-    outputBundle = bundle as unknown as Parameters<typeof preloadTags>[1];
-  },
   // Dev server and build: fill the marker for the page being requested.
   transformIndexHtml: {
     order: 'pre',
@@ -96,8 +59,7 @@ const seo = (): Plugin => ({
 
     for (const lang of LANGS) {
       for (const path of PATHS) {
-        const preload = preloadTags(path, outputBundle as Parameters<typeof preloadTags>[1]);
-        let html = withTags(base, `${headTags(path, lang, metaOf(path, lang), { noindex: NOINDEX.has(path) })}${preload ? NEWLINE_INDENT + preload : ''}`);
+        let html = withTags(base, headTags(path, lang, metaOf(path, lang), { noindex: NOINDEX.has(path) }));
         if (lang === 'ar') html = html.replace('<html lang="en">', '<html lang="ar" dir="rtl">');
         const dir = lang === 'ar' ? resolve(dist, 'ar', path === '/' ? '' : path.slice(1)) : path === '/' ? dist : resolve(dist, path.slice(1));
         write(resolve(dir, 'index.html'), html);
