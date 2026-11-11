@@ -79,3 +79,11 @@ test('vercel.json sends security headers, long caching and the www redirect', ()
   assert.match(cache('/assets/(.*)'), /immutable/);
   assert.ok(v.redirects.some((r) => r.has?.[0]?.value === 'www.auric404.me' && r.permanent));
 });
+
+test('every indexable page preloads its own code, so crawlers get it with the HTML', () => {
+  for (const f of routes) {
+    const html = read(f);
+    const links = html.match(/<link rel="modulepreload"[^>]*>/g) || [];
+    assert.ok(links.length >= 2, `${f}: ${links.length} modulepreload tags`);
+  }
+});
