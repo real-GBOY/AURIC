@@ -11,7 +11,7 @@ const isRtl = () => typeof document !== 'undefined' && document.dir === 'rtl';
 const FOUNDER = {
   first: t('Mahmoud', 'محمود'),
   last: t('Nayel', 'نايل'),
-  role: t('Founder', 'المؤسس'),
+  role: t('Founder and CEO', 'المؤسس والرئيس التنفيذي'),
   linkedin: '',
   photo: '/team/mahmoud-nayel.webp',
   bio: t('[Short bio: your background and what you lead at AURIC.]', '[نبذة قصيرة: خلفيتك وما تقوده في أوريك.]'),
@@ -83,7 +83,7 @@ export default function Team() {
       <section className="pb-20 md:pb-[120px]">
         <div className="wrap">
           <div className="mb-7 flex items-end justify-between">
-            <span className="lab !text-gold">{t('Founder', 'المؤسس')}</span>
+            <span className="lab !text-gold">{FOUNDER.role}</span>
             <span className="lab">01</span>
           </div>
           <div className="grid items-end gap-6 md:grid-cols-2">
