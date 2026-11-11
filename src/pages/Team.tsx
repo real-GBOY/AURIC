@@ -17,6 +17,17 @@ const FOUNDER = {
   bio: t('[Short bio: your background and what you lead at AURIC.]', '[نبذة قصيرة: خلفيتك وما تقوده في أوريك.]'),
 };
 
+// Second lead, shown under the founder with the layout mirrored. Fill in the details and add a photo
+// (leave `photo` empty to show the labelled placeholder). Delete this block and its section to remove it.
+const LEAD = {
+  first: t('[First name]', '[الاسم الأول]'),
+  last: t('[Last name]', '[اسم العائلة]'),
+  role: t('[Role]', '[الدور]'),
+  linkedin: '',
+  photo: '',
+  bio: t('[Short bio: background and what this person leads at AURIC.]', '[نبذة قصيرة: الخلفية وما يقوده هذا الشخص في أوريك.]'),
+};
+
 /** Only confirmed members. Empty entries render as placeholders. */
 const CORE: { name: string; role: string; photo: string }[] = [
   { name: t('[Name]', '[الاسم]'), role: t('[Role]', '[الدور]'), photo: '' },
@@ -103,12 +114,49 @@ export default function Team() {
         </div>
       </section>
 
+      {/* Second lead: same block as the founder, mirrored (text left, portrait right) */}
+      <section className="pb-20 md:pb-[120px]">
+        <div className="wrap">
+          <div className="mb-7 flex items-end justify-between">
+            <span className="lab !text-gold">{LEAD.role}</span>
+            <span className="lab">02</span>
+          </div>
+          <div className="grid items-end gap-6 md:grid-cols-2">
+            <motion.div className="md:order-2" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={inView} transition={{ duration: 0.9, ease: EASE }}>
+              <Portrait photo={LEAD.photo} alt={`${LEAD.first} ${LEAD.last}`} ratio="4/5">
+                {!LEAD.photo && <span className="lab absolute left-6 top-[22px] !text-[11px] !text-gold">{t('Portrait · placeholder', 'صورة · مساحة مؤقتة')}</span>}
+              </Portrait>
+            </motion.div>
+            <div className="flex flex-col gap-[22px] pb-3 md:order-1">
+              <TitleReveal
+                as="h2"
+                onLoad={false}
+                className="font-display font-extrabold leading-[.88] tracking-[-0.055em]"
+                style={{ fontSize: 'clamp(52px,7vw,110px)' }}
+                lines={[LEAD.first, <>{LEAD.last}<span className="text-gold">.</span></>]}
+              />
+              <Reveal className="flex flex-wrap gap-6 border-t border-[rgba(244,241,232,.14)] pt-[18px]">
+                <span className="lab !text-gold">{LEAD.role}</span>
+                {LEAD.linkedin && (
+                  <a href={LEAD.linkedin} className="lab tap !text-cream hover:!text-gold" target="_blank" rel="noreferrer">
+                    LinkedIn ↗
+                  </a>
+                )}
+              </Reveal>
+              <Reveal as="p" className="copy max-w-[40ch]">
+                {LEAD.bio}
+              </Reveal>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Core team */}
       <section data-stack className="bg-bg py-20 md:py-[120px]">
         <div className="wrap">
           <Reveal className="mb-10 flex flex-wrap items-end justify-between gap-6">
             <h2 className="h2">{t('Core team', 'الفريق الأساسي')}</h2>
-            <span className="lab">{t('02 · confirmed members only', '02 · الأعضاء المؤكدون فقط')}</span>
+            <span className="lab">{t('03 · confirmed members only', '03 · الأعضاء المؤكدون فقط')}</span>
           </Reveal>
           <motion.div className="grid grid-cols-2 gap-5 lg:grid-cols-4" initial="hidden" whileInView="visible" viewport={inView} variants={stagger(0.1)}>
             {CORE.map((m, i) => (
@@ -133,7 +181,7 @@ export default function Team() {
               <h2 className="h2">{t('Extended network', 'الشبكة الموسّعة')}</h2>
               <p className="copy max-w-[48ch]">{t('Specialists we brief, review and manage. They work through AURIC, so quality stays ours.', 'متخصصون نوجّههم ونراجع عملهم وندير مشاريعهم. يعملون من خلال أوريك، فتبقى الجودة مسؤوليتنا.')}</p>
             </div>
-            <span className="lab">03</span>
+            <span className="lab">04</span>
           </Reveal>
           <p className="m-0" data-scrub-x={isRtl() ? '6' : '-6'} data-scrub-words>
             {NETWORK.map((n, i) => (
