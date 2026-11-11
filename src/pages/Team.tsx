@@ -52,11 +52,11 @@ const STEPS = [
 ];
 
 /* T2 · portrait: greyscale until hover */
-function Portrait({ photo, alt, ratio, children }: { photo: string; alt: string; ratio: string; children?: React.ReactNode }) {
+function Portrait({ photo, alt, ratio, color = false, children }: { photo: string; alt: string; ratio: string; color?: boolean; children?: React.ReactNode }) {
   return (
     <div className="ph group relative overflow-hidden rounded-[10px]" style={{ aspectRatio: ratio }}>
       {photo ? (
-        <img src={photo} alt={alt} loading="lazy" data-parallax="0.08" className="absolute inset-[-8%] h-[116%] w-[116%] object-cover grayscale transition-[filter,transform] duration-700 group-hover:scale-[1.03] group-hover:grayscale-0" />
+        <img src={photo} alt={alt} loading="lazy" data-parallax="0.08" className={`absolute inset-[-8%] h-[116%] w-[116%] object-cover ${color ? '' : 'grayscale group-hover:grayscale-0'} transition-[filter,transform] duration-700 group-hover:scale-[1.03]`} />
       ) : null}
       {children}
     </div>
@@ -88,7 +88,7 @@ export default function Team() {
           </div>
           <div className="grid items-end gap-6 md:grid-cols-2">
             <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={inView} transition={{ duration: 0.9, ease: EASE }}>
-              <Portrait photo={FOUNDER.photo} alt={`${FOUNDER.first} ${FOUNDER.last}`} ratio="4/5">
+              <Portrait photo={FOUNDER.photo} alt={`${FOUNDER.first} ${FOUNDER.last}`} ratio="4/5" color>
                 {!FOUNDER.photo && <span className="lab absolute left-6 top-[22px] !text-[11px] !text-gold">{t('Portrait · placeholder', 'صورة · مساحة مؤقتة')}</span>}
               </Portrait>
             </motion.div>
@@ -100,11 +100,13 @@ export default function Team() {
                 style={{ fontSize: 'clamp(52px,7vw,110px)' }}
                 lines={[FOUNDER.first, <>{FOUNDER.last}<span className="text-gold">.</span></>]}
               />
-              <Reveal className="flex flex-wrap gap-6 border-t border-[rgba(244,241,232,.14)] pt-[18px]">
-                <span className="lab !text-gold">{FOUNDER.role}</span>
-                <a href={FOUNDER.linkedin || '#'} className="lab tap !text-cream hover:!text-gold" target={FOUNDER.linkedin ? '_blank' : undefined} rel="noreferrer">
-                  LinkedIn ↗
-                </a>
+              <Reveal className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-t border-[rgba(244,241,232,.14)] pt-[18px]">
+                <span className="font-display text-[clamp(22px,2.4vw,34px)] font-bold leading-none tracking-[-0.03em] text-gold">{FOUNDER.role}</span>
+                {FOUNDER.linkedin && (
+                  <a href={FOUNDER.linkedin} className="lab tap !text-cream hover:!text-gold" target="_blank" rel="noreferrer">
+                    LinkedIn ↗
+                  </a>
+                )}
               </Reveal>
               <Reveal as="p" className="copy max-w-[40ch]">
                 {FOUNDER.bio}
@@ -135,8 +137,8 @@ export default function Team() {
                 style={{ fontSize: 'clamp(52px,7vw,110px)' }}
                 lines={[LEAD.first, <>{LEAD.last}<span className="text-gold">.</span></>]}
               />
-              <Reveal className="flex flex-wrap gap-6 border-t border-[rgba(244,241,232,.14)] pt-[18px]">
-                <span className="lab !text-gold">{LEAD.role}</span>
+              <Reveal className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-t border-[rgba(244,241,232,.14)] pt-[18px]">
+                <span className="font-display text-[clamp(22px,2.4vw,34px)] font-bold leading-none tracking-[-0.03em] text-gold">{LEAD.role}</span>
                 {LEAD.linkedin && (
                   <a href={LEAD.linkedin} className="lab tap !text-cream hover:!text-gold" target="_blank" rel="noreferrer">
                     LinkedIn ↗
