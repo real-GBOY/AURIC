@@ -11,10 +11,13 @@ const isRtl = () => typeof document !== 'undefined' && document.dir === 'rtl';
 const FOUNDER = {
   first: t('Mahmoud', 'محمود'),
   last: t('Nayel', 'نايل'),
-  role: t('Founder and CEO', 'المؤسس والرئيس التنفيذي'),
+  role: t('Founder & CEO', 'المؤسس والرئيس التنفيذي'),
   linkedin: '',
   photo: '/team/mahmoud-nayel.webp',
-  bio: t('[Short bio: your background and what you lead at AURIC.]', '[نبذة قصيرة: خلفيتك وما تقوده في أوريك.]'),
+  bio: t(
+    'Mahmoud founded AURIC in Cairo so businesses get one team and one point of contact for video, design, strategy and software. He leads the company and its Build work: the websites, apps and systems behind client projects.',
+    'أسّس محمود أوريك في القاهرة ليحصل أصحاب الأعمال على فريق واحد ونقطة تواصل واحدة للفيديو والتصميم والاستراتيجية والبرمجيات. يقود الشركة وجانب البناء فيها: المواقع والتطبيقات والأنظمة التي تقف خلف مشاريع العملاء.',
+  ),
 };
 
 // Second lead, shown under the founder with the layout mirrored. Fill in the details and add a photo
