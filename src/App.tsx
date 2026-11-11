@@ -1,16 +1,16 @@
-import { lazy, Suspense } from 'react';
 import { basePath } from './lib/i18n';
 
-// One chunk per page: a visitor only downloads the code for the page they open.
-const Home = lazy(() => import('./pages/Home'));
-const Services = lazy(() => import('./pages/Services'));
-const Work = lazy(() => import('./pages/Work'));
-const CaseStudies = lazy(() => import('./pages/CaseStudies'));
-const CaseStudyRoute = lazy(() => import('./pages/CaseStudyRoute'));
-const CreativeCaseStudy = lazy(() => import('./pages/CreativeCaseStudy'));
-const Team = lazy(() => import('./pages/Team'));
-const Contact = lazy(() => import('./pages/Contact'));
-const NotFound = lazy(() => import('./pages/NotFound'));
+// Pages are bundled with the app, not split into separate files: Googlebot's renderer sometimes fails to
+// fetch a page's lazy chunk, which rendered the error screen and made Google treat the page as a soft 404.
+import Home from './pages/Home';
+import Services from './pages/Services';
+import Work from './pages/Work';
+import CaseStudies from './pages/CaseStudies';
+import CaseStudyRoute from './pages/CaseStudyRoute';
+import CreativeCaseStudy from './pages/CreativeCaseStudy';
+import Team from './pages/Team';
+import Contact from './pages/Contact';
+import NotFound from './pages/NotFound';
 
 // Same routes in both languages: /ar/... renders the page in Arabic.
 const path = basePath;
@@ -31,10 +31,5 @@ function Page() {
 }
 
 export default function App() {
-  // The page background is already dark, so an empty fallback doesn't flash while a chunk loads.
-  return (
-    <Suspense fallback={null}>
-      <Page />
-    </Suspense>
-  );
+  return <Page />;
 }
