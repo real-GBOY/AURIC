@@ -13,18 +13,18 @@ const FOUNDER = {
   last: t('Nayel', 'نايل'),
   role: t('Founder', 'المؤسس'),
   linkedin: '',
-  photo: '',
+  photo: '/team/mahmoud-nayel.webp',
   bio: t('[Short bio: your background and what you lead at AURIC.]', '[نبذة قصيرة: خلفيتك وما تقوده في أوريك.]'),
 };
 
 // Second lead, shown under the founder with the layout mirrored. Fill in the details and add a photo
 // (leave `photo` empty to show the labelled placeholder). Delete this block and its section to remove it.
 const LEAD = {
-  first: t('[First name]', '[الاسم الأول]'),
-  last: t('[Last name]', '[اسم العائلة]'),
-  role: t('[Role]', '[الدور]'),
+  first: t('Sherif', 'شريف'),
+  last: t('Ashraf', 'أشرف'),
+  role: t('Creative Director', 'المدير الإبداعي'),
   linkedin: '',
-  photo: '',
+  photo: '/team/sherif-ashraf.webp',
   bio: t('[Short bio: background and what this person leads at AURIC.]', '[نبذة قصيرة: الخلفية وما يقوده هذا الشخص في أوريك.]'),
 };
 
