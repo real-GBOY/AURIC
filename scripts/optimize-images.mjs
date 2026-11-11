@@ -43,4 +43,7 @@ console.log(`images: ${made} written · originals ${(before / 1048576).toFixed(1
 // App icons from the favicon
 const svg = join(PUBLIC, 'favicon.svg');
 await sharp(svg, { density: 512 }).resize(180, 180).png().toFile(join(PUBLIC, 'apple-touch-icon.png'));
-console.log(`icons: ${basename(join(PUBLIC, 'apple-touch-icon.png'))}`);
+for (const size of [192, 512]) {
+  await sharp(svg, { density: 512 }).resize(size, size).png().toFile(join(PUBLIC, `icon-${size}.png`));
+}
+console.log('icons: apple-touch-icon.png, icon-192.png, icon-512.png');

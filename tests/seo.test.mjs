@@ -64,3 +64,18 @@ test('the sitemap lists every indexable page', () => {
   assert.ok(count >= 36, `sitemap has ${count} entries`);
   assert.ok(xml.includes(`${SITE}/work`), 'missing /work');
 });
+
+test('every page links the web app manifest, and its icons exist', () => {
+  for (const f of routes) assert.ok(read(f).includes('rel="manifest"'), `${f}: manifest link`);
+  const m = JSON.parse(read(join(dist, 'site.webmanifest')));
+  for (const icon of m.icons) assert.ok(existsSync(join(dist, icon.src)), `missing ${icon.src}`);
+});
+
+test('vercel.json sends security headers, long caching and the www redirect', () => {
+  const v = JSON.parse(readFileSync(new URL('../vercel.json', import.meta.url), 'utf8'));
+  const all = v.headers.find((h) => h.source === '/(.*)').headers.map((h) => h.key);
+  for (const k of ['X-Content-Type-Options', 'X-Frame-Options', 'Referrer-Policy', 'Permissions-Policy']) assert.ok(all.includes(k), k);
+  const cache = (src) => v.headers.find((h) => h.source === src)?.headers[0].value || '';
+  assert.match(cache('/assets/(.*)'), /immutable/);
+  assert.ok(v.redirects.some((r) => r.has?.[0]?.value === 'www.auric404.me' && r.permanent));
+});
