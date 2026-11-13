@@ -90,7 +90,7 @@ export const QUOTES = [
 // Digitmask is the supplied artwork turned white. Empty `src` = labelled placeholder.
 export const CLIENT_LOGOS: { name: string; src: string }[] = [
   { name: 'Digitmask', src: '/clients/digitmask.png' },
-  { name: 'Ajwadi, a platform for hiring freelancers in KSA', src: '/clients/ajwadi.png' },
+  { name: 'Ajwadi, a platform for hiring freelancers in KSA', src: '/clients/ajwadi-wordmark.png' },
   { name: 'Atlas, real estate OS', src: '/clients/atlas.png' },
   ...Array.from({ length: 3 }, () => ({ name: 'Client logo', src: '' })),
 ];

@@ -10,6 +10,8 @@
 -->
 <style>
   @font-face { font-family: 'Geist'; src: url('../../public/fonts/geist-latin.woff2') format('woff2'); font-weight: 100 900; }
+  /* Ajwadi wordmark: Chakra Petch (angular, technical). Used only to render the PNG, never shipped to visitors. */
+  @font-face { font-family: 'Chakra Petch'; src: url('../../node_modules/@fontsource/chakra-petch/files/chakra-petch-latin-700-normal.woff2') format('woff2'); font-weight: 700; }
   @font-face { font-family: 'Geist Mono'; src: url('../../public/fonts/geist-mono-latin.woff2') format('woff2'); font-weight: 100 900; }
   html, body { margin: 0; background: transparent; }
   body { padding: 40px; display: flex; flex-direction: column; gap: 40px; align-items: flex-start; }
@@ -17,7 +19,7 @@
   .name { font: 700 82px/0.95 'Geist', sans-serif; letter-spacing: -0.03em; }
   /* Large on purpose: the logo wall shows each lockup only ~84px tall, so the tagline must stay legible. */
   .sub { margin-top: 12px; font: 500 31px/1.22 'Geist Mono', monospace; letter-spacing: .03em; text-transform: uppercase; color: rgba(255,255,255,.82); }
-  .ajwadi .name { font-size: 104px; }
+  .ajwadi .name { font: 700 108px/0.9 'Chakra Petch', sans-serif; letter-spacing: .02em; text-transform: uppercase; }
   .atlas .name { font: 800 74px/0.95 'Geist', sans-serif; letter-spacing: 0.02em; }
   .atlas .sub { letter-spacing: .32em; }
 </style>
@@ -25,7 +27,7 @@
 <body>
   <!-- Ajwadi: wordmark with what the platform is, white. (Digitmask is a separate client:
        its logo is lifted straight from the supplied artwork, not drawn here.) -->
-  <div class="lockup ajwadi" id="ajwadi">
+  <div class="lockup ajwadi" id="ajwadi-wordmark">
     <div>
       <div class="name">Ajwadi</div>
       <div class="sub">Platform for hiring<br />freelancers in KSA</div>
@@ -51,7 +53,7 @@
     </div>
   </div>
 <script>
-  window.ready = document.fonts.ready.then(() => Promise.all(['700 40px Geist', '500 20px "Geist Mono"'].map((f) => document.fonts.load(f))));
+  window.ready = document.fonts.ready.then(() => Promise.all(['700 40px Geist', '500 20px "Geist Mono"', '700 40px "Chakra Petch"'].map((f) => document.fonts.load(f))));
 </script>
 </body>
 </html>
