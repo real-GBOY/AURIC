@@ -15,8 +15,8 @@ const FOUNDER = {
   linkedin: '',
   photo: '/team/mahmoud-nayel.webp',
   bio: t(
-    'Mahmoud founded AURIC in Cairo so businesses get one team and one point of contact for video, design, strategy and software. He leads the company and its Build work: the websites, apps and systems behind client projects.',
-    'أسّس محمود أوريك في القاهرة ليحصل أصحاب الأعمال على فريق واحد ونقطة تواصل واحدة للفيديو والتصميم والاستراتيجية والبرمجيات. يقود الشركة وجانب البناء فيها: المواقع والتطبيقات والأنظمة التي تقف خلف مشاريع العملاء.',
+    "Responsible for leading AURIC's overall operations and business strategy. Mahmoud oversees executive leadership, drives company growth, manages resources and decisions, and makes sure every department works toward AURIC's vision, objectives and long-term success.",
+    'مسؤول عن قيادة العمليات واستراتيجية الأعمال في أوريك. يشرف محمود على القيادة التنفيذية، ويقود نمو الشركة، ويدير الموارد واتخاذ القرار، ويضمن أن تعمل كل الأقسام نحو رؤية أوريك وأهدافها ونجاحها على المدى الطويل.',
   ),
 };
 
@@ -25,10 +25,14 @@ const FOUNDER = {
 const LEAD = {
   first: t('Sherif', 'شريف'),
   last: t('Ashraf', 'أشرف'),
-  role: t('Creative Director', 'المدير الإبداعي'),
+  short: 'CCMO',
+  role: t('Chief Creative & Media Officer', 'الرئيس التنفيذي للإبداع والإعلام'),
   linkedin: '',
   photo: '/team/sherif-ashraf.webp',
-  bio: t('[Short bio: background and what this person leads at AURIC.]', '[نبذة قصيرة: الخلفية وما يقوده هذا الشخص في أوريك.]'),
+  bio: t(
+    "Responsible for AURIC's creative vision and media production. Sherif oversees video production, graphic design, art direction and creative execution, and audits every visual output so it meets AURIC's standards for quality and consistency.",
+    'مسؤول عن الرؤية الإبداعية والإنتاج الإعلامي في أوريك. يشرف شريف على إنتاج الفيديو والتصميم الجرافيكي والإدارة الفنية والتنفيذ الإبداعي، ويراجع كل مُخرَج بصري ليطابق معايير أوريك في الجودة والاتساق.',
+  ),
 };
 
 /** Only confirmed members. Empty entries render as placeholders. */
@@ -123,7 +127,7 @@ export default function Team() {
       <section className="pb-20 md:pb-[120px]">
         <div className="wrap">
           <div className="mb-7 flex items-end justify-between">
-            <span className="lab !text-gold">{LEAD.role}</span>
+            <span className="lab !text-gold">{LEAD.short} · {LEAD.role}</span>
             <span className="lab">02</span>
           </div>
           <div className="grid items-end gap-6 md:grid-cols-2">
