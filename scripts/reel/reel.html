@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>AURIC showreel</title>
+<!--
+  AURIC showreel composition. Rendered frame by frame by scripts/render-reel.mjs into
+  public/media/showreel.mp4 (21:9) and showreel-vertical.mp4 (4:5).
+  Open it in a browser to preview: reel.html?layout=wide or ?layout=tall, then call play().
+  Every shot is real AURIC work from public/work. Brand rules: ink / gold / cream,
+  Unbounded headlines, Geist Mono labels, Press Start 2P only in the logo.
+-->
+<style>
+  @font-face { font-family: 'Unbounded'; src: url('../../public/fonts/unbounded-latin.woff2') format('woff2'); font-weight: 200 900; }
+  @font-face { font-family: 'Geist Mono'; src: url('../../public/fonts/geist-mono-latin.woff2') format('woff2'); font-weight: 100 900; }
+  @font-face { font-family: 'Geist'; src: url('../../public/fonts/geist-latin.woff2') format('woff2'); font-weight: 100 900; }
+  @font-face { font-family: 'Press Start 2P'; src: url('../../public/fonts/press-start-2p-latin.woff2') format('woff2'); }
+
+  :root { --ink: #0A0A0B; --bg: #0A0A0B; --surface: #19191B; --surface2: #202023; --cream: #F4F1E8; --sand: #D9D4C7; --gold: #DCA733; --line: rgba(244,241,232,.12); }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; background: var(--ink); overflow: hidden; }
+  #stage { position: relative; overflow: hidden; background: var(--ink); color: var(--cream); font-family: 'Geist', system-ui, sans-serif; }
+  .abs { position: absolute; }
+  .scene { position: absolute; inset: 0; visibility: hidden; }
+  .lab { font-family: 'Geist Mono', monospace; text-transform: uppercase; letter-spacing: .12em; color: var(--sand); }
+  .gold { color: var(--gold); }
+  .disp { font-family: 'Unbounded', sans-serif; font-weight: 800; letter-spacing: -0.055em; line-height: .88; color: var(--cream); }
+  /* Room below the baseline so descenders (g, p, y) are never clipped by the reveal mask. */
+  .mask { display: block; overflow: hidden; padding-bottom: .24em; margin-bottom: -.24em; }
+  .mask > span { display: inline-block; will-change: transform; }
+  .dot { color: var(--gold); }
+  .pixel { font-family: 'Press Start 2P', monospace; }
+
+  /* Browser frame, same language as the site's .frame */
+  .frame { position: absolute; border-radius: 14px; overflow: hidden; background: var(--surface); border: 1px solid var(--line); box-shadow: 0 40px 120px rgba(0,0,0,.55); }
+  .frame .bar { height: 34px; display: flex; align-items: center; gap: 8px; padding: 0 16px; background: var(--surface2); border-bottom: 1px solid var(--line); }
+  .frame .bar i { width: 10px; height: 10px; border-radius: 50%; background: rgba(244,241,232,.22); }
+  .frame .bar i:first-child { background: var(--gold); }
+  .frame .bar b { margin-left: 14px; font: 500 12px 'Geist Mono', monospace; letter-spacing: .08em; color: rgba(244,241,232,.45); text-transform: uppercase; }
+  .frame .view { position: absolute; left: 0; right: 0; top: 34px; bottom: 0; overflow: hidden; }
+  .frame img, .full img, .phone img, .tile img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+
+  .phone { position: absolute; border-radius: 46px; padding: 11px; background: #0A0A0B; border: 1px solid rgba(244,241,232,.18); box-shadow: 0 50px 120px rgba(0,0,0,.6); }
+  .phone .scr { width: 100%; height: 100%; border-radius: 36px; overflow: hidden; background: #fff; }
+  .phone::after { content: ''; position: absolute; top: 20px; left: 50%; width: 92px; height: 26px; margin-left: -46px; border-radius: 20px; background: #0A0A0B; }
+
+  .full { position: absolute; inset: 0; overflow: hidden; }
+  .shade { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,11,.97) 0%, rgba(10,10,11,.7) 38%, rgba(10,10,11,0) 72%); }
+  .vignette { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse at center, rgba(0,0,0,0) 55%, rgba(0,0,0,.45) 100%); z-index: 40; }
+  .wipe { position: absolute; top: 0; bottom: 0; background: var(--gold); z-index: 30; transform-origin: left center; }
+  .gridline { position: absolute; background: var(--line); }
+  .tile { position: absolute; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+  .counter { font: 600 14px 'Geist Mono', monospace; letter-spacing: .14em; color: var(--gold); }
+  .rule { position: absolute; height: 1px; background: rgba(244,241,232,.18); transform-origin: left center; }
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<script src="../../node_modules/gsap/dist/gsap.min.js"></script>
+<script>
+(() => {
+  const params = new URLSearchParams(location.search);
+  const TALL = params.get('layout') === 'tall';
+  const W = TALL ? 1080 : 1920;
+  const H = TALL ? 1350 : 824;
+  const stage = document.getElementById('stage');
+  stage.style.width = W + 'px';
+  stage.style.height = H + 'px';
+  const IMG = (p) => '../../public/work/' + p;
+
+  // ---------- helpers ----------
+  const el = (tag, cls, parent, html) => {
+    const n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (html != null) n.innerHTML = html;
+    (parent || stage).appendChild(n);
+    return n;
+  };
+  const css = (n, o) => { Object.assign(n.style, o); return n; };
+  const px = (v) => v + 'px';
+  const scene = () => el('div', 'scene');
+  // Masked words: each word slides up out of its own mask.
+  const words = (parent, text, cls, style) => {
+    const box = el('div', cls, parent);
+    if (style) css(box, style);
+    const spans = [];
+    text.split(' ').forEach((w, i, a) => {
+      const m = el('span', 'mask', box);
+      m.style.display = 'inline-block';
+      if (i < a.length - 1) m.style.marginRight = '.24em';
+      const s = el('span', '', m, w.replace('.', '<span class="dot">.</span>'));
+      spans.push(s);
+    });
+    return { box, spans };
+  };
+  const markSVG = (size, color) => {
+    const rays = Array.from({ length: 12 }, (_, i) => {
+      const s = i % 2 === 1, w = s ? 4.5 : 5.8, h = s ? 9 : 14, y = s ? 5.1 : 1.3;
+      return `<rect x="${32 - w / 2}" y="${y}" width="${w}" height="${h}" rx="1.2" transform="rotate(${i * 30} 32 32)"/>`;
+    }).join('');
+    return `<svg viewBox="0 0 64 64" width="${size}" height="${size}" fill="${color}">${rays}<circle cx="32" cy="32" r="10.2"/></svg>`;
+  };
+  const frame = (parent, src, label, x, y, w, h) => {
+    const f = css(el('div', 'frame', parent), { left: px(x), top: px(y), width: px(w), height: px(h) });
+    el('div', 'bar', f, `<i></i><i></i><i></i><b>${label}</b>`);
+    const v = el('div', 'view', f);
+    const img = el('img', '', v); img.src = src;
+    return { f, img };
+  };
+
+  const tl = gsap.timeline({ paused: true, defaults: { ease: 'expo.out' } });
+  const show = (s, at, until) => { tl.set(s, { visibility: 'visible' }, at); tl.set(s, { visibility: 'hidden' }, until); };
+
+  const vignette = el('div', 'vignette');
+
+  // ============ S0 · Intro: the mark and the word ============ 0.0 – 2.4
+  {
+    const s = scene(); show(s, 0, 2.4);
+    // faint grid that draws in
+    const lines = [];
+    const cols = TALL ? 4 : 8, rows = TALL ? 5 : 4;
+    for (let i = 1; i < cols; i++) lines.push(css(el('div', 'gridline', s), { left: px((W / cols) * i), top: 0, width: '1px', height: px(H), transformOrigin: 'top' }));
+    for (let i = 1; i < rows; i++) lines.push(css(el('div', 'gridline', s), { top: px((H / rows) * i), left: 0, height: '1px', width: px(W), transformOrigin: 'left' }));
+    tl.fromTo(lines, { scaleY: 0, scaleX: 0 }, { scaleY: 1, scaleX: 1, duration: 1.4, stagger: 0.04, ease: 'power3.out' }, 0);
+
+    const size = TALL ? 230 : 210;
+    const mark = css(el('div', 'abs', s, markSVG(size, '#DCA733')), { left: px(W / 2 - size / 2), top: px(H / 2 - size / 2 - (TALL ? 90 : 70)) });
+    tl.fromTo(mark, { scale: 0, rotate: -180 }, { scale: 1, rotate: 0, duration: 1.1, ease: 'back.out(1.6)' }, 0.15);
+
+    const word = css(el('div', 'abs pixel', s, 'A<span class="gold">U</span>RIC'), { left: 0, width: px(W), textAlign: 'center', top: px(H / 2 + size / 2 - (TALL ? 50 : 40)), fontSize: px(TALL ? 58 : 54), letterSpacing: '.04em', color: '#F4F1E8' });
+    const letters = [];
+    word.innerHTML = '';
+    ['A', 'U', 'R', 'I', 'C'].forEach((c) => letters.push(css(el('span', c === 'U' ? 'gold' : '', word, c), { display: 'inline-block' })));
+    tl.fromTo(letters, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.07 }, 0.55);
+
+    const tag = css(el('div', 'abs lab', s, 'Your digital partner'), { left: 0, width: px(W), textAlign: 'center', top: px(H / 2 + size / 2 + (TALL ? 60 : 50)), fontSize: px(TALL ? 20 : 17), color: '#DCA733' });
+    tl.fromTo(tag, { opacity: 0, letterSpacing: '.6em' }, { opacity: 1, letterSpacing: '.12em', duration: 0.9 }, 0.95);
+
+    // exit: the mark spins and grows into a gold field
+    tl.to([word, tag, lines], { opacity: 0, duration: 0.25, ease: 'power2.in' }, 2.0);
+    tl.to(mark, { scale: 14, rotate: 120, duration: 0.45, ease: 'power3.in' }, 1.95);
+  }
+
+  // ============ S1 · Headline, like the site hero ============ 2.4 – 5.0
+  {
+    const s = scene(); show(s, 2.4, 5.0);
+    css(s, { background: '#0A0A0B' });
+    const gold = css(el('div', 'abs', s), { inset: 0, background: '#DCA733' });
+    tl.fromTo(gold, { yPercent: 0 }, { yPercent: -100, duration: 0.55, ease: 'expo.inOut' }, 2.4);
+
+    const size = TALL ? 150 : 168;
+    const lines = TALL ? ['Your', 'idea', 'planned,', 'built,', 'launched.'] : ['Your idea', 'planned,', 'built,', 'launched.'];
+    const block = css(el('div', 'abs disp', s), { left: px(TALL ? 70 : 120), top: px(TALL ? 170 : 70), fontSize: px(size) });
+    const rows = lines.map((l) => {
+      const m = el('span', 'mask', block);
+      return el('span', '', m, l.replace('.', '<span class="dot">.</span>'));
+    });
+    rows.forEach((r, i) => tl.fromTo(r, { yPercent: 110, rotate: 4 }, { yPercent: 0, rotate: 0, duration: 0.7 }, 2.62 + i * 0.22));
+    const lab = css(el('div', 'abs lab', s, 'AURIC — Video · Design · Strategy · Websites · Apps'), { left: px(TALL ? 74 : 124), bottom: px(TALL ? 90 : 56), fontSize: px(TALL ? 18 : 16), color: '#DCA733' });
+    tl.fromTo(lab, { opacity: 0 }, { opacity: 1, duration: 0.5 }, 3.4);
+    tl.to(block, { yPercent: TALL ? -6 : -8, duration: 2.4, ease: 'none' }, 2.6);
+  }
+
+  // ============ S2 · Build montage: real products ============ 5.0 – 12.5
+  const SHOTS = [
+    { src: 'mizan/dashboard-arabic.png', name: 'Mizan', meta: 'Law firm · Design · Web · Mobile · AI', url: 'mizan · arabic + english' },
+    { src: 'atlas/dashboard.png', name: 'Atlas', meta: 'Real estate · Platform · AI', url: 'atlas · ai copilot' },
+    { src: 'hotel-os/analytics.png', name: 'Hotel OS', meta: 'Hospitality · Platform · Website', url: 'hotel os · analytics' },
+    { src: 'raqib/analytics.png', name: 'Raqib', meta: 'Inspection · Platform · Offline app', url: 'raqib · quality control' },
+    { src: 'clinic-os/queue-board.png', name: 'Clinic OS', meta: 'Healthcare · Platform on Odoo', url: 'clinic os · live queue' },
+    { src: 'nova/dashboard-attendance.jpg', name: 'Nova', meta: 'Enterprise, UAE · ERP · Mobile app', url: 'nova · erp' },
+  ];
+  const S2 = 5.0, SHOT = 1.25;
+  SHOTS.forEach((sh, i) => {
+    const t0 = S2 + i * SHOT;
+    const s = scene(); show(s, t0, t0 + SHOT);
+    const left = i % 2 === 0;
+    let fx, fy, fw, fh, tx, ty, nameSize;
+    if (TALL) {
+      fw = 960; fh = Math.round(fw * 0.625) + 34; fx = 60; fy = 470;
+      tx = 64; ty = 150; nameSize = 128;
+    } else {
+      fw = 1080; fh = Math.round(fw * 0.625) + 34; fy = Math.round((H - fh) / 2);
+      fx = left ? W - fw - 70 : 70;
+      tx = left ? 110 : W - 70 - fw - 40 - 640 + 680; ty = 250; nameSize = 120;
+      tx = left ? 110 : fx + fw + 70;
+    }
+    const { f, img } = frame(s, IMG(sh.src), sh.url, fx, fy, fw, fh);
+    // frame: clip reveal, the screen inside settles from a push-in
+    tl.fromTo(f, { clipPath: 'inset(100% 0% 0% 0% round 14px)', y: 40 }, { clipPath: 'inset(0% 0% 0% 0% round 14px)', y: 0, duration: 0.6, ease: 'expo.out' }, t0);
+    tl.fromTo(img, { scale: 1.22, yPercent: i % 2 ? -4 : 4 }, { scale: 1.04, yPercent: 0, duration: SHOT + 0.1, ease: 'power2.out' }, t0);
+
+    const textW = TALL ? W - 128 : 560;
+    const counter = css(el('div', 'abs counter', s, String(i + 1).padStart(2, '0') + ' / ' + String(SHOTS.length).padStart(2, '0')), { left: px(tx), top: px(ty - (TALL ? 60 : 70)) });
+    const nm = words(s, sh.name + '.', 'abs disp', { left: px(tx), top: px(ty), width: px(textW), fontSize: px(nameSize) });
+    const rule = css(el('div', 'rule', s), { left: px(tx), top: px(ty + nameSize * (sh.name.length > 6 && !TALL ? 2 : 1) * 0.95 + 26), width: px(Math.min(textW, 520)) });
+    const meta = css(el('div', 'abs lab', s, sh.meta), { left: px(tx), top: px(ty + nameSize * (sh.name.length > 6 && !TALL ? 2 : 1) * 0.95 + 46), width: px(textW), fontSize: px(TALL ? 20 : 17), lineHeight: '1.5' });
+    tl.fromTo(counter, { opacity: 0, x: -12 }, { opacity: 1, x: 0, duration: 0.4 }, t0 + 0.05);
+    tl.fromTo(nm.spans, { yPercent: 110 }, { yPercent: 0, duration: 0.6, stagger: 0.06 }, t0 + 0.08);
+    tl.fromTo(rule, { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: 'power3.out' }, t0 + 0.2);
+    tl.fromTo(meta, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.45 }, t0 + 0.28);
+
+    // gold slit wipe into the next shot
+    if (i < SHOTS.length - 1) {
+      const w = css(el('div', 'wipe', stage), { left: 0, width: px(W), visibility: 'hidden' });
+      tl.set(w, { visibility: 'visible' }, t0 + SHOT - 0.16);
+      tl.fromTo(w, { scaleX: 0, transformOrigin: left ? 'left center' : 'right center' }, { scaleX: 1, duration: 0.16, ease: 'power4.in' }, t0 + SHOT - 0.16);
+      tl.to(w, { scaleX: 0, transformOrigin: left ? 'right center' : 'left center', duration: 0.2, ease: 'power4.out' }, t0 + SHOT);
+      tl.set(w, { visibility: 'hidden' }, t0 + SHOT + 0.2);
+    }
+  });
+
+  // ============ S3 · Mobile apps ============ 12.5 – 16.5
+  {
+    const t0 = 12.5;
+    const s = scene(); show(s, t0, 16.5);
+    const PH = [
+      { src: 'nova/mobile-home.jpg' },
+      { src: 'enactix/mobile-chapter-overview.jpg' },
+      { src: 'ajwadi/mobile-home-client.png' },
+    ];
+    const pw = TALL ? 300 : 286, ph = Math.round(pw * 2.12);
+    const gap = TALL ? -40 : 46;
+    const baseX = TALL ? (W - (pw * 3 + gap * 2)) / 2 : W - (pw * 3 + gap * 2) - 110;
+    const baseY = TALL ? 520 : (H - ph) / 2 + 30;
+    PH.forEach((p, i) => {
+      const n = css(el('div', 'phone', s), { left: px(baseX + i * (pw + gap)), top: px(baseY + (i === 1 ? -40 : 20)), width: px(pw), height: px(ph), zIndex: i === 1 ? 3 : 2 });
+      const scr = el('div', 'scr', n); const im = el('img', '', scr); im.src = IMG(p.src);
+      tl.fromTo(n, { y: H, rotate: (i - 1) * 8 }, { y: 0, rotate: (i - 1) * (TALL ? 5 : 3), duration: 1.0, ease: 'expo.out' }, t0 + 0.1 + i * 0.12);
+      tl.to(n, { y: (i - 1) * -24 - 20, duration: 3.0, ease: 'none' }, t0 + 1.1);
+      tl.fromTo(im, { objectPosition: '50% 0%' }, { objectPosition: '50% 40%', duration: 3.6, ease: 'power1.inOut' }, t0 + 0.3);
+    });
+    const tx = TALL ? 64 : 110, ty = TALL ? 150 : 230;
+    const nm = words(s, 'Mobile apps.', 'abs disp', { left: px(tx), top: px(ty), width: px(TALL ? 950 : 640), fontSize: px(TALL ? 120 : 112) });
+    const meta = css(el('div', 'abs lab', s, 'Nova · Enactix · Ajwadi'), { left: px(tx), top: px(ty + (TALL ? 140 : 240)), fontSize: px(TALL ? 20 : 17) });
+    const counter = css(el('div', 'abs counter', s, 'Build · mobile'), { left: px(tx), top: px(ty - (TALL ? 60 : 70)) });
+    tl.fromTo(counter, { opacity: 0 }, { opacity: 1, duration: 0.4 }, t0 + 0.1);
+    tl.fromTo(nm.spans, { yPercent: 110 }, { yPercent: 0, duration: 0.7, stagger: 0.08 }, t0 + 0.15);
+    tl.fromTo(meta, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5 }, t0 + 0.45);
+  }
+
+  // ============ S4 · The wall: everything we've built ============ 16.5 – 20.5
+  {
+    const t0 = 16.5;
+    const s = scene(); show(s, t0, 21.1); // stays under the first website shot while it wipes in
+    const wall = css(el('div', 'abs', s), { left: px(W / 2), top: px(H / 2), width: '0px', height: '0px', perspective: '1800px' });
+    const plane = css(el('div', 'abs', wall), { left: 0, top: 0, transformStyle: 'preserve-3d' });
+    const pool = ['atlas/units.png', 'hotel-os/calendar.png', 'mizan/calendar.png', 'admit/customer-event.png', 'raqib/dashboard-arabic.png', 'opticare/dashboard-overview.jpg', 'enactix/dashboard-overview.jpg', 'build-art/hero.png', 'atlas/revenue.png', 'clinic-os/manager-dashboard.png', 'hotel-os/website-booking.png', 'admit/review.png', 'mizan/billing.png', 'weavolution/home-hero.png', 'nova/dashboard-members.jpg', 'raqib/inspection.png', 'admit/customer-home.png', 'atlas/pipeline.png'];
+    const tw = 440, th = 275, gx = 26, gy = 26, perRow = 7, rowsN = TALL ? 7 : 5;
+    const rowsEls = [];
+    for (let r = 0; r < rowsN; r++) {
+      const row = css(el('div', 'abs', plane), { left: px(-(perRow * (tw + gx)) / 2), top: px((r - rowsN / 2) * (th + gy)) });
+      for (let c = 0; c < perRow; c++) {
+        const t = css(el('div', 'tile', row), { left: px(c * (tw + gx)), top: 0, width: px(tw), height: px(th) });
+        const im = el('img', '', t); im.src = IMG(pool[(r * 5 + c * 3) % pool.length]);
+      }
+      rowsEls.push(row);
+      tl.fromTo(row, { x: r % 2 ? -260 : 260 }, { x: r % 2 ? 260 : -260, duration: 4.0, ease: 'none' }, t0);
+    }
+    tl.fromTo(plane, { rotateX: 42, rotateZ: -16, scale: TALL ? 1.25 : 1.05, opacity: 0 }, { rotateX: 30, rotateZ: -12, scale: TALL ? 1.35 : 1.15, opacity: 1, duration: 4.0, ease: 'power1.out' }, t0);
+    const dim = css(el('div', 'abs', s), { inset: 0, background: 'radial-gradient(ellipse at center, rgba(10,10,11,.86) 0%, rgba(10,10,11,.55) 55%, rgba(10,10,11,.2) 100%)' });
+    tl.fromTo(dim, { opacity: 0 }, { opacity: 1, duration: 0.8 }, t0 + 0.6);
+    const lines = ['Websites.', 'Apps.', 'Systems.'];
+    const block = css(el('div', 'abs disp', s), { left: 0, width: px(W), textAlign: 'center', top: px(TALL ? 420 : 170), fontSize: px(TALL ? 150 : 150) });
+    const rows = lines.map((l) => { const m = el('span', 'mask', block); return el('span', '', m, l.replace('.', '<span class="dot">.</span>')); });
+    rows.forEach((r, i) => tl.fromTo(r, { yPercent: 110 }, { yPercent: 0, duration: 0.7 }, t0 + 0.8 + i * 0.32));
+    const lab = css(el('div', 'abs lab', s, 'Real AURIC work · one team'), { left: 0, width: px(W), textAlign: 'center', bottom: px(TALL ? 260 : 70), fontSize: px(TALL ? 19 : 16), color: '#DCA733' });
+    tl.fromTo(lab, { opacity: 0 }, { opacity: 1, duration: 0.5 }, t0 + 1.9);
+  }
+
+  // ============ S5 · Websites, full bleed ============ 20.5 – 23.0
+  const WEB = [
+    { src: 'build-art/hero.png', name: 'Build-Art', meta: 'Interior design · Website' },
+    { src: 'admit/customer-event.png', name: 'Admit', meta: 'Ticketing · Platform' },
+  ];
+  WEB.forEach((wb, i) => {
+    const t0 = 20.5 + i * 1.25;
+    const s = scene(); show(s, t0, t0 + 1.25 + (i < WEB.length - 1 ? 0.6 : 0)); // overlap the next wipe
+    const full = el('div', 'full', s); const im = el('img', '', full); im.src = IMG(wb.src);
+    if (TALL) { im.style.objectPosition = i === 0 ? '30% 0%' : '20% 0%'; }
+    el('div', 'shade', s);
+    tl.fromTo(full, { clipPath: i === 0 ? 'inset(0% 0% 0% 100%)' : 'inset(0% 100% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.55, ease: 'expo.inOut' }, t0);
+    tl.fromTo(im, { scale: 1.18 }, { scale: 1.02, duration: 1.4, ease: 'power2.out' }, t0);
+    const nm = words(s, wb.name + '.', 'abs disp', { left: px(TALL ? 64 : 110), bottom: px(TALL ? 150 : 96), fontSize: px(TALL ? 120 : 120) });
+    const meta = css(el('div', 'abs lab', s, wb.meta), { left: px(TALL ? 68 : 114), bottom: px(TALL ? 100 : 56), fontSize: px(TALL ? 20 : 17), color: '#DCA733' });
+    tl.fromTo(nm.spans, { yPercent: 110 }, { yPercent: 0, duration: 0.6, stagger: 0.06 }, t0 + 0.25);
+    tl.fromTo(meta, { opacity: 0 }, { opacity: 1, duration: 0.4 }, t0 + 0.4);
+  });
+
+  // ============ S6 · Four divisions ============ 23.0 – 25.0
+  const DIV = [
+    ['01', 'Create', 'Video · design · voice'],
+    ['02', 'Strategy', 'Marketing · content'],
+    ['03', 'Build', 'Websites · apps · AI'],
+    ['04', 'Manage', 'One owner'],
+  ];
+  DIV.forEach((d, i) => {
+    const t0 = 23.0 + i * 0.5;
+    const s = scene(); show(s, t0, t0 + 0.5);
+    css(s, { background: i % 2 ? '#0A0A0B' : '#121214' });
+    const num = css(el('div', 'abs', s, d[0]), { left: px(TALL ? 64 : 110), top: px(TALL ? 300 : 120), font: `800 ${TALL ? 120 : 130}px Unbounded`, color: 'transparent', WebkitTextStroke: '2px #DCA733', letterSpacing: '-0.05em' });
+    const nm = words(s, d[1] + '.', 'abs disp', { left: px(TALL ? 64 : 110), top: px(TALL ? 470 : 300), fontSize: px(TALL ? 170 : 230) });
+    const lab = css(el('div', 'abs lab', s, d[2]), { left: px(TALL ? 68 : 116), top: px(TALL ? 690 : 600), fontSize: px(TALL ? 22 : 20) });
+    tl.fromTo(num, { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.35 }, t0);
+    tl.fromTo(nm.spans, { yPercent: 110 }, { yPercent: 0, duration: 0.42 }, t0 + 0.02);
+    tl.fromTo(lab, { opacity: 0 }, { opacity: 1, duration: 0.3 }, t0 + 0.12);
+  });
+
+  // ============ S7 · End card ============ 25.0 – 30.0
+  {
+    const t0 = 25.0;
+    const s = scene(); show(s, t0, 30.01);
+    const size = TALL ? 128 : 140;
+    const lines = TALL ? ['Your idea', 'planned,', 'built,', 'launched.'] : ['Your idea planned,', 'built, launched.'];
+    const block = css(el('div', 'abs disp', s), { left: px(TALL ? 64 : 110), top: px(TALL ? 260 : 150), fontSize: px(size) });
+    const rows = lines.map((l) => { const m = el('span', 'mask', block); return el('span', '', m, l.replace('.', '<span class="dot">.</span>')); });
+    rows.forEach((r, i) => tl.fromTo(r, { yPercent: 110 }, { yPercent: 0, duration: 0.9 }, t0 + 0.1 + i * 0.16));
+    const foot = css(el('div', 'abs', s), { left: px(TALL ? 64 : 110), right: px(TALL ? 64 : 110), bottom: px(TALL ? 120 : 80), display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: '1px solid rgba(244,241,232,.18)', paddingTop: '26px' });
+    const logo = el('div', '', foot);
+    css(logo, { display: 'flex', alignItems: 'center', gap: '16px' });
+    el('div', '', logo, markSVG(TALL ? 56 : 52, '#DCA733'));
+    css(el('div', 'pixel', logo, 'A<span class="gold">U</span>RIC'), { fontSize: px(TALL ? 26 : 24), color: '#F4F1E8' });
+    css(el('div', 'lab', foot, 'auric404.me'), { fontSize: px(TALL ? 22 : 20), color: '#DCA733' });
+    tl.fromTo(foot, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8 }, t0 + 0.7);
+    // fade to ink so the loop restarts cleanly on the intro's black
+    const out = css(el('div', 'abs', s), { inset: 0, background: '#0A0A0B', zIndex: 50 });
+    tl.fromTo(out, { opacity: 0 }, { opacity: 1, duration: 0.6, ease: 'power2.in' }, 29.4);
+  }
+
+  tl.set({}, {}, 30);
+
+  // ---------- API for the renderer ----------
+  window.DURATION = 30;
+  window.seek = (t) => { tl.seek(t, false); return true; };
+  window.play = () => tl.restart();
+  const imgs = [...document.images];
+  window.ready = Promise.all([
+    document.fonts.ready,
+    ...['800 40px Unbounded', '400 16px "Geist Mono"', '16px "Press Start 2P"'].map((f) => document.fonts.load(f)),
+    ...imgs.map((i) => (i.complete ? (i.decode ? i.decode().catch(() => {}) : 0) : new Promise((r) => { i.onload = () => r(); i.onerror = () => r(); }))),
+  ]).then(() => { tl.seek(0); return imgs.filter((i) => !i.naturalWidth).map((i) => i.src); });
+})();
+</script>
+</body>
+</html>

@@ -88,5 +88,13 @@ export const QUOTES = [
 /** Client logos (image paths). Empty entries render as labelled placeholders. */
 export const CLIENT_LOGOS: { name: string; src: string }[] = Array.from({ length: 6 }, () => ({ name: 'Client logo', src: '' }));
 
-/** Showreel video file (e.g. '/media/showreel.mp4'). Empty = placeholder. */
-export const SHOWREEL = { src: '', vertical: '' };
+/**
+ * Showreel videos, rendered from scripts/reel/reel.html with `npm run reel` (real AURIC work only).
+ * Empty `src` = placeholder.
+ */
+export const SHOWREEL = {
+  src: '/media/showreel.mp4',
+  poster: '/media/showreel-poster.webp',
+  vertical: '/media/showreel-vertical.mp4',
+  posterVertical: '/media/showreel-vertical-poster.webp',
+};

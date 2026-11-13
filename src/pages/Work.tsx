@@ -4,7 +4,7 @@ import Layout from '../components/layout/Layout';
 import BigCTA from '../components/layout/BigCTA';
 import EntryMedia from '../components/work/EntryMedia';
 import { PlayButton } from '../components/ui/Icons';
-import { DesignSlot, ReelSlot, Screen, VideoSlot } from '../components/ui/Media';
+import { DesignSlot, LoopVideo, ReelSlot, Screen, VideoSlot } from '../components/ui/Media';
 import { Reveal, TitleReveal } from '../components/ui/Reveal';
 import { ARCHIVE, FEED, FILTERS, INDEX, type Entry, type Group } from '../lib/projects';
 import { SHOWREEL } from '../lib/content';
@@ -43,7 +43,7 @@ function Hero() {
         </div>
         <motion.div className="wrap relative z-[1] -mt-9" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.9, ease: EASE }}>
           <div className="overflow-hidden rounded-[10px]" data-scrub-scale="0.9" data-cursor="view">
-            <VideoSlot ratio="21/9" label={t('Showreel · autoplay, muted loop', 'الفيديو التعريفي · تشغيل تلقائي بدون صوت')} src={SHOWREEL.src} playSize={88} radius={10}>
+            <VideoSlot ratio="21/9" label={t('AURIC showreel', 'الفيديو التعريفي لأوريك')} src={SHOWREEL.src} poster={SHOWREEL.poster} playSize={88} radius={10}>
               {!SHOWREEL.src && <span className="slot bottom-5 right-[22px] !text-[11px] !text-cream">00:00 / 01:30</span>}
             </VideoSlot>
           </div>
@@ -57,10 +57,19 @@ function Hero() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: EASE }}
         >
-          <PlayButton size={50} className="absolute left-[18px] top-[18px]" />
-          <span className="slot left-20 top-[30px]">{t('Showreel · autoplay · your video', 'الفيديو التعريفي · فيديو من أعمالك')}</span>
-          <TitleReveal lines={[<>{t('Work', 'الأعمال')}<span className="text-gold">.</span></>]} className="mega" style={{ fontSize: 92, lineHeight: 0.82, letterSpacing: '-0.06em' }} />
-          <span className="lab mt-[14px] !text-cream">{t('Video · design · content · websites', 'فيديو · تصميم · محتوى · مواقع')}</span>
+          {SHOWREEL.vertical ? (
+            <>
+              <LoopVideo src={SHOWREEL.vertical} poster={SHOWREEL.posterVertical} label={t('AURIC showreel', 'الفيديو التعريفي لأوريك')} className="rounded-2xl" />
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-[rgba(10,10,11,.92)] via-[rgba(10,10,11,.25)] to-transparent" />
+            </>
+          ) : (
+            <>
+              <PlayButton size={50} className="absolute left-[18px] top-[18px]" />
+              <span className="slot left-20 top-[30px]">{t('Showreel · autoplay · your video', 'الفيديو التعريفي · فيديو من أعمالك')}</span>
+            </>
+          )}
+          <TitleReveal lines={[<>{t('Work', 'الأعمال')}<span className="text-gold">.</span></>]} className="mega relative z-[1]" style={{ fontSize: 92, lineHeight: 0.82, letterSpacing: '-0.06em' }} />
+          <span className="lab relative z-[1] mt-[14px] !text-cream">{t('Video · design · content · websites', 'فيديو · تصميم · محتوى · مواقع')}</span>
         </motion.div>
       </div>
     </section>

@@ -9,7 +9,7 @@ import { DesignSlot, ReelSlot, Screen, VideoSlot } from '../components/ui/Media'
 import { Reveal } from '../components/ui/Reveal';
 import { AUDIENCES, CLIENT_LOGOS, PACKAGES, QUOTES, SHOWREEL, type DivisionKey } from '../lib/content';
 import { HOME as C } from '../lib/home-copy';
-import { ARROW, href, isAr } from '../lib/i18n';
+import { ARROW, href, isAr, t } from '../lib/i18n';
 import { CTA_HREF } from '../lib/site';
 import { EASE, inView, rise, stagger, useDragScroll } from '../lib/motion';
 import { gsap, MQ, ScrollTrigger, SplitText, useGSAP, whenFontsReady } from '../lib/gsap';
@@ -180,10 +180,10 @@ function Showreel() {
     <section className="pb-9 md:pb-10">
       <div className="wrap">
         <div className="hidden overflow-hidden rounded-xl md:block" data-scrub-scale="0.86" data-cursor="view">
-          <VideoSlot ratio="21/9" label={C.showreel} src={SHOWREEL.src} playSize={96} />
+          <VideoSlot ratio="21/9" label={t('AURIC showreel', 'الفيديو التعريفي لأوريك')} src={SHOWREEL.src} poster={SHOWREEL.poster} playSize={96} />
         </div>
         <div className="overflow-hidden rounded-xl md:hidden" data-scrub-scale="0.92">
-          <VideoSlot ratio="4/5" label={C.showreelPhone} src={SHOWREEL.vertical || SHOWREEL.src} playSize={76} radius={14} />
+          <VideoSlot ratio="4/5" label={t('AURIC showreel', 'الفيديو التعريفي لأوريك')} src={SHOWREEL.vertical || SHOWREEL.src} poster={SHOWREEL.posterVertical} playSize={76} radius={14} />
         </div>
       </div>
     </section>

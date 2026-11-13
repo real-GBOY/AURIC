@@ -1,6 +1,45 @@
-import type { CSSProperties, ReactNode } from 'react';
+import { useEffect, useRef, type CSSProperties, type ReactNode } from 'react';
 import { PlayButton } from './Icons';
 import { t } from '../../lib/i18n';
+
+/**
+ * A silent looping video that only plays while it is on screen (saves battery and data),
+ * and stays on its poster frame for visitors who prefer reduced motion.
+ */
+export function LoopVideo({ src, poster, label, className = '' }: { src: string; poster?: string; label?: string; className?: string }) {
+  const ref = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    const v = ref.current;
+    if (!v) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      v.pause();
+      return;
+    }
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) v.play().catch(() => {});
+        else v.pause();
+      },
+      { threshold: 0.15 },
+    );
+    io.observe(v);
+    return () => io.disconnect();
+  }, []);
+  return (
+    <video
+      ref={ref}
+      className={`absolute inset-0 h-full w-full object-cover ${className}`}
+      src={src}
+      poster={poster}
+      muted
+      loop
+      playsInline
+      disablePictureInPicture
+      preload="metadata"
+      aria-label={label}
+    />
+  );
+}
 
 type VideoSlotProps = {
   /** Aspect ratio, e.g. '21/9'. */
@@ -35,16 +74,7 @@ export function VideoSlot({
   if (src) {
     return (
       <div className={`relative overflow-hidden ${className}`} style={{ aspectRatio: ratio, borderRadius: radius, ...style }}>
-        <video
-          className="absolute inset-0 h-full w-full object-cover"
-          src={src}
-          poster={poster}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-        />
+        <LoopVideo src={src} poster={poster} label={label} />
         {children}
       </div>
     );
