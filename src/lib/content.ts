@@ -86,7 +86,12 @@ export const QUOTES = [
 ];
 
 /** Client logos (image paths). Empty entries render as labelled placeholders. */
-export const CLIENT_LOGOS: { name: string; src: string }[] = Array.from({ length: 6 }, () => ({ name: 'Client logo', src: '' }));
+// White transparent PNGs made by `npm run logos` (scripts/logos/logos.html). Empty `src` = labelled placeholder.
+export const CLIENT_LOGOS: { name: string; src: string }[] = [
+  { name: 'Ajwadi, a platform for hiring freelancers in KSA', src: '/clients/ajwadi.png' },
+  { name: 'Atlas, real estate OS', src: '/clients/atlas.png' },
+  ...Array.from({ length: 4 }, () => ({ name: 'Client logo', src: '' })),
+];
 
 /**
  * Showreel videos, rendered from scripts/reel/reel.html with `npm run reel` (real AURIC work only).

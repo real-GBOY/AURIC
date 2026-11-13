@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Client logo lockups</title>
+<!--
+  White client logo lockups for the dark site, rendered to transparent PNGs by
+  scripts/render-logos.mjs (npm run logos) into public/clients/.
+  Each .lockup is captured on its own. Marks are vector rebuilds of the originals.
+-->
+<style>
+  @font-face { font-family: 'Geist'; src: url('../../public/fonts/geist-latin.woff2') format('woff2'); font-weight: 100 900; }
+  @font-face { font-family: 'Geist Mono'; src: url('../../public/fonts/geist-mono-latin.woff2') format('woff2'); font-weight: 100 900; }
+  html, body { margin: 0; background: transparent; }
+  body { padding: 40px; display: flex; flex-direction: column; gap: 40px; align-items: flex-start; }
+  .lockup { display: inline-flex; align-items: center; gap: 28px; padding: 18px 24px; color: #fff; }
+  .name { font: 700 82px/0.95 'Geist', sans-serif; letter-spacing: -0.03em; }
+  /* Large on purpose: the logo wall shows each lockup only ~84px tall, so the tagline must stay legible. */
+  .sub { margin-top: 12px; font: 500 31px/1.22 'Geist Mono', monospace; letter-spacing: .03em; text-transform: uppercase; color: rgba(255,255,255,.82); }
+  .atlas .name { font: 800 74px/0.95 'Geist', sans-serif; letter-spacing: 0.02em; }
+  .atlas .sub { letter-spacing: .32em; }
+</style>
+</head>
+<body>
+  <!-- Ajwadi: pixel "D" mark (rounded blocks on a 4 x 6 grid), white -->
+  <div class="lockup" id="ajwadi">
+    <svg width="132" height="212" viewBox="0 0 412 662" fill="#fff" aria-hidden="true">
+      <!-- col 0: tall bar, rows 1-4 -->
+      <rect x="0" y="105" width="100" height="415" rx="12" />
+      <!-- col 1: top and bottom nubs -->
+      <rect x="105" y="0" width="100" height="100" rx="12" />
+      <rect x="105" y="525" width="100" height="100" rx="12" />
+      <!-- col 2: steps -->
+      <rect x="210" y="105" width="100" height="100" rx="12" />
+      <rect x="210" y="420" width="100" height="100" rx="12" />
+      <!-- col 3: right bar, rows 2-3 -->
+      <rect x="315" y="210" width="100" height="205" rx="12" />
+    </svg>
+    <div>
+      <div class="name">Ajwadi</div>
+      <div class="sub">Platform for hiring<br />freelancers in KSA</div>
+    </div>
+  </div>
+
+  <!-- Atlas: square-grid mark (26 x 26 units) with its gold accent, as in the Atlas app -->
+  <div class="lockup atlas" id="atlas">
+    <svg width="168" height="168" viewBox="0 0 26 26" aria-hidden="true">
+      <g fill="#fff">
+        <rect x="0" y="0" width="12" height="12" />
+        <rect x="21" y="0" width="5" height="5" />
+        <rect x="14" y="7" width="5" height="5" />
+        <rect x="7" y="14" width="5" height="5" />
+        <rect x="14" y="14" width="12" height="12" />
+        <rect x="0" y="21" width="5" height="5" />
+      </g>
+      <rect x="1" y="15" width="3" height="3" fill="#DCA733" />
+    </svg>
+    <div>
+      <div class="name">ATLAS</div>
+      <div class="sub">Real estate OS</div>
+    </div>
+  </div>
+<script>
+  window.ready = document.fonts.ready.then(() => Promise.all(['700 40px Geist', '500 20px "Geist Mono"'].map((f) => document.fonts.load(f))));
+</script>
+</body>
+</html>
