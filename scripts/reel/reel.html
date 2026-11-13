@@ -6,9 +6,12 @@
 <!--
   AURIC showreel composition. Rendered frame by frame by scripts/render-reel.mjs into
   public/media/showreel.mp4 (21:9) and showreel-vertical.mp4 (4:5).
-  Open it in a browser to preview: reel.html?layout=wide or ?layout=tall, then call play().
-  Every shot is real AURIC work from public/work. Brand rules: ink / gold / cream,
-  Unbounded headlines, Geist Mono labels, Press Start 2P only in the logo.
+  Preview in a browser: reel.html?layout=wide or ?layout=tall, then call play().
+
+  Honesty rule: nothing here is presented as client work it isn't. Product shots are real
+  AURIC software (public/work). The Create / Strategy / Manage scenes show each service as
+  designed motion built from AURIC's own identity and team photos, captioned as services.
+  Brand rules: ink / gold / cream, Unbounded headlines, Geist Mono labels, pixel font only in the logo.
 -->
 <style>
   @font-face { font-family: 'Unbounded'; src: url('../../public/fonts/unbounded-latin.woff2') format('woff2'); font-weight: 200 900; }
@@ -16,42 +19,57 @@
   @font-face { font-family: 'Geist'; src: url('../../public/fonts/geist-latin.woff2') format('woff2'); font-weight: 100 900; }
   @font-face { font-family: 'Press Start 2P'; src: url('../../public/fonts/press-start-2p-latin.woff2') format('woff2'); }
 
-  :root { --ink: #0A0A0B; --bg: #0A0A0B; --surface: #19191B; --surface2: #202023; --cream: #F4F1E8; --sand: #D9D4C7; --gold: #DCA733; --line: rgba(244,241,232,.12); }
+  :root { --ink: #0A0A0B; --surface: #19191B; --surface2: #202023; --cream: #F4F1E8; --sand: #D9D4C7; --gold: #DCA733; --line: rgba(244,241,232,.12); }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { width: 100%; height: 100%; background: var(--ink); overflow: hidden; }
   #stage { position: relative; overflow: hidden; background: var(--ink); color: var(--cream); font-family: 'Geist', system-ui, sans-serif; }
   .abs { position: absolute; }
-  .scene { position: absolute; inset: 0; visibility: hidden; }
+  .scene { position: absolute; inset: 0; visibility: hidden; background: var(--ink); }
   .lab { font-family: 'Geist Mono', monospace; text-transform: uppercase; letter-spacing: .12em; color: var(--sand); }
   .gold { color: var(--gold); }
   .disp { font-family: 'Unbounded', sans-serif; font-weight: 800; letter-spacing: -0.055em; line-height: .88; color: var(--cream); }
   /* Room below the baseline so descenders (g, p, y) are never clipped by the reveal mask. */
   .mask { display: block; overflow: hidden; padding-bottom: .24em; margin-bottom: -.24em; }
-  .mask > span { display: inline-block; will-change: transform; }
+  .mask > span { display: inline-block; }
   .dot { color: var(--gold); }
   .pixel { font-family: 'Press Start 2P', monospace; }
+  .counter { font: 600 14px 'Geist Mono', monospace; letter-spacing: .14em; color: var(--gold); text-transform: uppercase; }
+  .rule { position: absolute; height: 1px; background: rgba(244,241,232,.18); transform-origin: left center; }
 
-  /* Browser frame, same language as the site's .frame */
   .frame { position: absolute; border-radius: 14px; overflow: hidden; background: var(--surface); border: 1px solid var(--line); box-shadow: 0 40px 120px rgba(0,0,0,.55); }
   .frame .bar { height: 34px; display: flex; align-items: center; gap: 8px; padding: 0 16px; background: var(--surface2); border-bottom: 1px solid var(--line); }
   .frame .bar i { width: 10px; height: 10px; border-radius: 50%; background: rgba(244,241,232,.22); }
   .frame .bar i:first-child { background: var(--gold); }
   .frame .bar b { margin-left: 14px; font: 500 12px 'Geist Mono', monospace; letter-spacing: .08em; color: rgba(244,241,232,.45); text-transform: uppercase; }
   .frame .view { position: absolute; left: 0; right: 0; top: 34px; bottom: 0; overflow: hidden; }
-  .frame img, .full img, .phone img, .tile img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+  img { display: block; }
+  .cover { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
 
   .phone { position: absolute; border-radius: 46px; padding: 11px; background: #0A0A0B; border: 1px solid rgba(244,241,232,.18); box-shadow: 0 50px 120px rgba(0,0,0,.6); }
-  .phone .scr { width: 100%; height: 100%; border-radius: 36px; overflow: hidden; background: #fff; }
-  .phone::after { content: ''; position: absolute; top: 20px; left: 50%; width: 92px; height: 26px; margin-left: -46px; border-radius: 20px; background: #0A0A0B; }
+  .phone .scr { position: relative; width: 100%; height: 100%; border-radius: 36px; overflow: hidden; background: #fff; }
+  .phone::after { content: ''; position: absolute; top: 20px; left: 50%; width: 92px; height: 26px; margin-left: -46px; border-radius: 20px; background: #0A0A0B; z-index: 3; }
 
   .full { position: absolute; inset: 0; overflow: hidden; }
   .shade { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,11,.97) 0%, rgba(10,10,11,.7) 38%, rgba(10,10,11,0) 72%); }
   .vignette { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse at center, rgba(0,0,0,0) 55%, rgba(0,0,0,.45) 100%); z-index: 40; }
-  .wipe { position: absolute; top: 0; bottom: 0; background: var(--gold); z-index: 30; transform-origin: left center; }
+  .wipe { position: absolute; top: 0; bottom: 0; background: var(--gold); z-index: 30; }
   .gridline { position: absolute; background: var(--line); }
   .tile { position: absolute; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
-  .counter { font: 600 14px 'Geist Mono', monospace; letter-spacing: .14em; color: var(--gold); }
-  .rule { position: absolute; height: 1px; background: rgba(244,241,232,.18); transform-origin: left center; }
+
+  /* Editor (Create · video) */
+  .panel { position: absolute; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .track { position: absolute; left: 92px; right: 18px; height: 46px; border-radius: 6px; background: rgba(244,241,232,.04); }
+  .tname { position: absolute; left: 18px; font: 600 12px 'Geist Mono', monospace; letter-spacing: .12em; color: rgba(244,241,232,.5); }
+  .clip { position: absolute; top: 4px; bottom: 4px; border-radius: 5px; overflow: hidden; border: 1px solid rgba(10,10,11,.6); }
+  .clip img { width: 100%; height: 100%; object-fit: cover; opacity: .9; }
+  .bar-w { position: absolute; bottom: 50%; width: 4px; border-radius: 2px; background: var(--gold); transform-origin: center; }
+  .lower { position: absolute; display: flex; flex-direction: column; gap: 6px; padding: 12px 18px; background: rgba(10,10,11,.82); border-left: 3px solid var(--gold); }
+
+  /* Strategy */
+  .cell { position: absolute; border-radius: 8px; background: var(--surface); border: 1px solid var(--line); }
+  .cell b { position: absolute; left: 10px; top: 8px; font: 500 12px 'Geist Mono', monospace; color: rgba(244,241,232,.4); }
+  .chip { position: absolute; left: 10px; right: 10px; height: 26px; border-radius: 13px; font: 700 11px 'Geist Mono', monospace; letter-spacing: .12em; display: flex; align-items: center; padding-left: 10px; }
+  .post { position: absolute; left: 0; right: 0; overflow: hidden; }
 </style>
 </head>
 <body>
@@ -67,6 +85,7 @@
   stage.style.width = W + 'px';
   stage.style.height = H + 'px';
   const IMG = (p) => '../../public/work/' + p;
+  const TEAM = (p) => '../../public/team/' + p;
 
   // ---------- helpers ----------
   const el = (tag, cls, parent, html) => {
@@ -78,8 +97,8 @@
   };
   const css = (n, o) => { Object.assign(n.style, o); return n; };
   const px = (v) => v + 'px';
-  const scene = () => el('div', 'scene');
-  // Masked words: each word slides up out of its own mask.
+  const img = (parent, src, cls = 'cover') => { const i = el('img', cls, parent); i.src = src; return i; };
+  const dotify = (t) => t.replace(/\.$/, '<span class="dot">.</span>');
   const words = (parent, text, cls, style) => {
     const box = el('div', cls, parent);
     if (style) css(box, style);
@@ -88,10 +107,13 @@
       const m = el('span', 'mask', box);
       m.style.display = 'inline-block';
       if (i < a.length - 1) m.style.marginRight = '.24em';
-      const s = el('span', '', m, w.replace('.', '<span class="dot">.</span>'));
-      spans.push(s);
+      spans.push(el('span', '', m, dotify(w)));
     });
     return { box, spans };
+  };
+  const lines = (parent, list, cls, style) => {
+    const box = css(el('div', cls, parent), style || {});
+    return { box, rows: list.map((l) => el('span', '', el('span', 'mask', box), dotify(l))) };
   };
   const markSVG = (size, color) => {
     const rays = Array.from({ length: 12 }, (_, i) => {
@@ -103,234 +125,378 @@
   const frame = (parent, src, label, x, y, w, h) => {
     const f = css(el('div', 'frame', parent), { left: px(x), top: px(y), width: px(w), height: px(h) });
     el('div', 'bar', f, `<i></i><i></i><i></i><b>${label}</b>`);
-    const v = el('div', 'view', f);
-    const img = el('img', '', v); img.src = src;
-    return { f, img };
+    return { f, img: img(el('div', 'view', f), src) };
   };
+  // seeded random so every render is identical
+  let seed = 7;
+  const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
 
+  const UNDER = []; // captions to place under their title after fonts load
   const tl = gsap.timeline({ paused: true, defaults: { ease: 'expo.out' } });
   const show = (s, at, until) => { tl.set(s, { visibility: 'visible' }, at); tl.set(s, { visibility: 'hidden' }, until); };
+  const scene = (at, until) => { const s = el('div', 'scene'); show(s, at, until); return s; };
+  // Section heading used by every service scene: small counter, big title, rule, caption.
+  const heading = (s, t0, counterText, title, meta, x, y, size, width) => {
+    const counter = css(el('div', 'abs counter', s, counterText), { left: px(x), top: px(y - 56) });
+    const nm = words(s, title, 'abs disp', { left: px(x), top: px(y), width: px(width), fontSize: px(size) });
+    tl.fromTo(counter, { opacity: 0, x: -12 }, { opacity: 1, x: 0, duration: 0.4 }, t0 + 0.05);
+    tl.fromTo(nm.spans, { yPercent: 110 }, { yPercent: 0, duration: 0.65, stagger: 0.06 }, t0 + 0.08);
+    if (meta) {
+      // Placed under the title's real height once fonts are loaded (see window.ready).
+      const rule = css(el('div', 'rule', s), { left: px(x), top: px(y + size), width: px(Math.min(width, 520)) });
+      const m = css(el('div', 'abs lab', s, meta), { left: px(x), top: px(y + size + 20), width: px(width), fontSize: px(TALL ? 20 : 17), lineHeight: '1.5' });
+      UNDER.push({ box: nm.box, rule, meta: m, size });
+      tl.fromTo(rule, { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: 'power3.out' }, t0 + 0.2);
+      tl.fromTo(m, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.45 }, t0 + 0.3);
+    }
+  };
+  const goldWipe = (at, dir = 'left') => {
+    const w = css(el('div', 'wipe', stage), { left: 0, width: px(W), visibility: 'hidden' });
+    tl.set(w, { visibility: 'visible' }, at - 0.16);
+    tl.fromTo(w, { scaleX: 0, transformOrigin: dir === 'left' ? 'left center' : 'right center' }, { scaleX: 1, duration: 0.16, ease: 'power4.in' }, at - 0.16);
+    tl.to(w, { scaleX: 0, transformOrigin: dir === 'left' ? 'right center' : 'left center', duration: 0.2, ease: 'power4.out' }, at);
+    tl.set(w, { visibility: 'hidden' }, at + 0.2);
+  };
 
-  const vignette = el('div', 'vignette');
+  el('div', 'vignette');
+  const PAD = TALL ? 64 : 110;
+  let T = 0; // running time cursor
 
-  // ============ S0 · Intro: the mark and the word ============ 0.0 – 2.4
+  // ============ Intro: the mark and the word ============
   {
-    const s = scene(); show(s, 0, 2.4);
-    // faint grid that draws in
-    const lines = [];
+    const s = scene(0, 2.4);
+    const lns = [];
     const cols = TALL ? 4 : 8, rows = TALL ? 5 : 4;
-    for (let i = 1; i < cols; i++) lines.push(css(el('div', 'gridline', s), { left: px((W / cols) * i), top: 0, width: '1px', height: px(H), transformOrigin: 'top' }));
-    for (let i = 1; i < rows; i++) lines.push(css(el('div', 'gridline', s), { top: px((H / rows) * i), left: 0, height: '1px', width: px(W), transformOrigin: 'left' }));
-    tl.fromTo(lines, { scaleY: 0, scaleX: 0 }, { scaleY: 1, scaleX: 1, duration: 1.4, stagger: 0.04, ease: 'power3.out' }, 0);
-
+    for (let i = 1; i < cols; i++) lns.push(css(el('div', 'gridline', s), { left: px((W / cols) * i), top: 0, width: '1px', height: px(H), transformOrigin: 'top' }));
+    for (let i = 1; i < rows; i++) lns.push(css(el('div', 'gridline', s), { top: px((H / rows) * i), left: 0, height: '1px', width: px(W), transformOrigin: 'left' }));
+    tl.fromTo(lns, { scaleY: 0, scaleX: 0 }, { scaleY: 1, scaleX: 1, duration: 1.4, stagger: 0.04, ease: 'power3.out' }, 0);
     const size = TALL ? 230 : 210;
     const mark = css(el('div', 'abs', s, markSVG(size, '#DCA733')), { left: px(W / 2 - size / 2), top: px(H / 2 - size / 2 - (TALL ? 90 : 70)) });
     tl.fromTo(mark, { scale: 0, rotate: -180 }, { scale: 1, rotate: 0, duration: 1.1, ease: 'back.out(1.6)' }, 0.15);
-
-    const word = css(el('div', 'abs pixel', s, 'A<span class="gold">U</span>RIC'), { left: 0, width: px(W), textAlign: 'center', top: px(H / 2 + size / 2 - (TALL ? 50 : 40)), fontSize: px(TALL ? 58 : 54), letterSpacing: '.04em', color: '#F4F1E8' });
-    const letters = [];
-    word.innerHTML = '';
-    ['A', 'U', 'R', 'I', 'C'].forEach((c) => letters.push(css(el('span', c === 'U' ? 'gold' : '', word, c), { display: 'inline-block' })));
+    const word = css(el('div', 'abs pixel', s), { left: 0, width: px(W), textAlign: 'center', top: px(H / 2 + size / 2 - (TALL ? 50 : 40)), fontSize: px(TALL ? 58 : 54), letterSpacing: '.04em', color: '#F4F1E8' });
+    const letters = ['A', 'U', 'R', 'I', 'C'].map((c) => css(el('span', c === 'U' ? 'gold' : '', word, c), { display: 'inline-block' }));
     tl.fromTo(letters, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.07 }, 0.55);
-
     const tag = css(el('div', 'abs lab', s, 'Your digital partner'), { left: 0, width: px(W), textAlign: 'center', top: px(H / 2 + size / 2 + (TALL ? 60 : 50)), fontSize: px(TALL ? 20 : 17), color: '#DCA733' });
     tl.fromTo(tag, { opacity: 0, letterSpacing: '.6em' }, { opacity: 1, letterSpacing: '.12em', duration: 0.9 }, 0.95);
-
-    // exit: the mark spins and grows into a gold field
-    tl.to([word, tag, lines], { opacity: 0, duration: 0.25, ease: 'power2.in' }, 2.0);
+    tl.to([word, tag, lns], { opacity: 0, duration: 0.25, ease: 'power2.in' }, 2.0);
     tl.to(mark, { scale: 14, rotate: 120, duration: 0.45, ease: 'power3.in' }, 1.95);
+    T = 2.4;
   }
 
-  // ============ S1 · Headline, like the site hero ============ 2.4 – 5.0
+  // ============ Headline, like the site hero ============
   {
-    const s = scene(); show(s, 2.4, 5.0);
-    css(s, { background: '#0A0A0B' });
+    const t0 = T, d = 2.6;
+    const s = scene(t0, t0 + d);
     const gold = css(el('div', 'abs', s), { inset: 0, background: '#DCA733' });
-    tl.fromTo(gold, { yPercent: 0 }, { yPercent: -100, duration: 0.55, ease: 'expo.inOut' }, 2.4);
-
-    const size = TALL ? 150 : 168;
-    const lines = TALL ? ['Your', 'idea', 'planned,', 'built,', 'launched.'] : ['Your idea', 'planned,', 'built,', 'launched.'];
-    const block = css(el('div', 'abs disp', s), { left: px(TALL ? 70 : 120), top: px(TALL ? 170 : 70), fontSize: px(size) });
-    const rows = lines.map((l) => {
-      const m = el('span', 'mask', block);
-      return el('span', '', m, l.replace('.', '<span class="dot">.</span>'));
-    });
-    rows.forEach((r, i) => tl.fromTo(r, { yPercent: 110, rotate: 4 }, { yPercent: 0, rotate: 0, duration: 0.7 }, 2.62 + i * 0.22));
-    const lab = css(el('div', 'abs lab', s, 'AURIC — Video · Design · Strategy · Websites · Apps'), { left: px(TALL ? 74 : 124), bottom: px(TALL ? 90 : 56), fontSize: px(TALL ? 18 : 16), color: '#DCA733' });
-    tl.fromTo(lab, { opacity: 0 }, { opacity: 1, duration: 0.5 }, 3.4);
-    tl.to(block, { yPercent: TALL ? -6 : -8, duration: 2.4, ease: 'none' }, 2.6);
+    tl.fromTo(gold, { yPercent: 0 }, { yPercent: -100, duration: 0.55, ease: 'expo.inOut' }, t0);
+    const L = lines(s, TALL ? ['Your', 'idea', 'planned,', 'built,', 'launched.'] : ['Your idea', 'planned,', 'built,', 'launched.'], 'abs disp', { left: px(TALL ? 70 : 120), top: px(TALL ? 170 : 70), fontSize: px(TALL ? 150 : 168) });
+    L.rows.forEach((r, i) => tl.fromTo(r, { yPercent: 110, rotate: 4 }, { yPercent: 0, rotate: 0, duration: 0.7 }, t0 + 0.22 + i * 0.22));
+    const lab = css(el('div', 'abs lab', s, 'Video · Design · Strategy · Websites · Apps'), { left: px(TALL ? 74 : 124), bottom: px(TALL ? 90 : 56), fontSize: px(TALL ? 18 : 16), color: '#DCA733' });
+    tl.fromTo(lab, { opacity: 0 }, { opacity: 1, duration: 0.5 }, t0 + 1.0);
+    tl.to(L.box, { yPercent: TALL ? -6 : -8, duration: 2.4, ease: 'none' }, t0 + 0.2);
+    T += d;
   }
 
-  // ============ S2 · Build montage: real products ============ 5.0 – 12.5
+  // ============ CREATE · Video: an edit in progress ============
+  {
+    const t0 = T, d = 3.8;
+    const s = scene(t0, t0 + d);
+    // monitor
+    const mw = TALL ? 952 : 1000, mh = Math.round(mw * 9 / 16);
+    const mx = TALL ? 64 : W - mw - 110, my = TALL ? 330 : 56;
+    const mon = css(el('div', 'panel', s), { left: px(mx), top: px(my), width: px(mw), height: px(mh), background: '#000' });
+    const shots = [
+      { src: TEAM('sherif-ashraf.webp'), pos: '50% 30%', name: 'Sherif Ashraf', role: 'Creative Director' },
+      { src: IMG('build-art/hero.png'), pos: '50% 0%' },
+      { src: TEAM('mahmoud-nayel.webp'), pos: '50% 25%', name: 'Mahmoud Nayel', role: 'Founder & CEO', grade: true },
+    ];
+    const seg = (d - 0.4) / shots.length;
+    shots.forEach((sh, i) => {
+      const box = css(el('div', 'full', mon), { opacity: 0 });
+      const im = img(box, sh.src); im.style.objectPosition = sh.pos;
+      const a = t0 + 0.25 + i * seg;
+      tl.set(box, { opacity: 1 }, a);
+      if (i < shots.length - 1) tl.set(box, { opacity: 0 }, a + seg);
+      tl.fromTo(im, { scale: 1.16 }, { scale: 1.02, duration: seg + 0.2, ease: 'power2.out' }, a);
+      if (sh.grade) {
+        // colour grade: a black-and-white "before" wipes away to the graded "after"
+        const before = css(el('div', 'full', box), {});
+        const bi = img(before, sh.src); bi.style.objectPosition = sh.pos; bi.style.filter = 'grayscale(1) contrast(1.1) brightness(.9)';
+        const line = css(el('div', 'abs', box), { top: 0, bottom: 0, width: '3px', background: '#DCA733' });
+        tl.fromTo(before, { clipPath: 'inset(0% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 100%)', duration: seg * 0.8, ease: 'power2.inOut' }, a + 0.15);
+        tl.fromTo(line, { left: '0%' }, { left: '100%', duration: seg * 0.8, ease: 'power2.inOut' }, a + 0.15);
+        css(el('div', 'abs lab', box, 'Grade · before / after'), { right: '18px', top: '16px', fontSize: '12px', color: '#DCA733' });
+      }
+      if (sh.name) {
+        const lower = css(el('div', 'lower', box), { left: '28px', bottom: '28px' });
+        css(el('div', 'disp', lower, sh.name), { fontSize: px(TALL ? 30 : 30), letterSpacing: '-0.03em' });
+        css(el('div', 'lab', lower, sh.role), { fontSize: '12px', color: '#DCA733' });
+        tl.fromTo(lower, { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45 }, a + 0.2);
+      }
+    });
+    // letterbox + rec dot
+    css(el('div', 'abs lab', mon, '● Rec · 4K'), { left: '18px', top: '16px', fontSize: '12px', color: '#F4F1E8', zIndex: 2 });
+    tl.fromTo(mon, { clipPath: 'inset(50% 0% 50% 0% round 14px)' }, { clipPath: 'inset(0% 0% 0% 0% round 14px)', duration: 0.6, ease: 'expo.out' }, t0);
+
+    // timeline panel
+    const px0 = TALL ? 64 : 110, pw = W - px0 * 2;
+    const ph = TALL ? 250 : 200, py = TALL ? my + mh + 40 : my + mh + 26;
+    const panel = css(el('div', 'panel', s), { left: px(px0), top: px(py), width: px(pw), height: px(Math.min(ph, H - py - 30)) });
+    const tracks = [['V1', 12], ['V2', 64], ['A1', 116]];
+    tracks.forEach(([n, y]) => { css(el('div', 'tname', panel, n), { top: px(y + 16) }); css(el('div', 'track', panel), { top: px(y) }); });
+    const v1 = panel.children[1], v2 = panel.children[3], a1 = panel.children[5];
+    const clipSrc = [TEAM('sherif-ashraf.webp'), IMG('build-art/hero.png'), TEAM('mahmoud-nayel.webp'), IMG('admit/customer-event.png'), IMG('atlas/dashboard.png')];
+    const tw = pw - 110;
+    let cx = 0;
+    clipSrc.forEach((src, i) => {
+      const w = tw * [0.22, 0.2, 0.24, 0.17, 0.17][i];
+      const c = css(el('div', 'clip', v1), { left: px(cx), width: px(w - 4), background: '#DCA733' });
+      img(c, src);
+      tl.fromTo(c, { scaleX: 0, transformOrigin: 'left center' }, { scaleX: 1, duration: 0.5 }, t0 + 0.15 + i * 0.07);
+      cx += w;
+    });
+    [[0.12, 0.18, 'Title'], [0.46, 0.14, 'Lower third'], [0.72, 0.16, 'Logo']].forEach(([l, w, t], i) => {
+      const c = css(el('div', 'clip', v2), { left: px(tw * l), width: px(tw * w), background: 'rgba(220,167,51,.25)', borderColor: 'rgba(220,167,51,.7)' });
+      css(el('div', 'lab', c, t), { position: 'absolute', left: '8px', top: '9px', fontSize: '11px', color: '#F4F1E8' });
+      tl.fromTo(c, { opacity: 0 }, { opacity: 1, duration: 0.3 }, t0 + 0.4 + i * 0.08);
+    });
+    // voiceover waveform
+    const bars = Math.floor(tw / 9);
+    for (let i = 0; i < bars; i++) {
+      const h = 6 + Math.pow(rnd(), 1.6) * 30;
+      const b = css(el('div', 'bar-w', a1), { left: px(i * 9), height: px(h), marginBottom: px(-h / 2) });
+      tl.fromTo(b, { scaleY: 0.15 }, { scaleY: 1, duration: 0.35, ease: 'power2.out' }, t0 + 0.3 + i * 0.004);
+      tl.to(b, { scaleY: 0.35 + rnd() * 0.65, duration: 0.3, ease: 'sine.inOut', repeat: Math.floor((d - 0.8) / 0.3), yoyo: true }, t0 + 0.7 + (i % 5) * 0.02);
+    }
+    css(el('div', 'abs lab', a1, 'Voiceover'), { right: '10px', top: '-20px', fontSize: '11px', color: '#DCA733' });
+    // playhead
+    const head = css(el('div', 'abs', panel), { top: '6px', bottom: '6px', width: '2px', background: '#DCA733', left: '92px', boxShadow: '0 0 12px rgba(220,167,51,.8)' });
+    tl.fromTo(head, { x: 0 }, { x: tw, duration: d - 0.3, ease: 'none' }, t0 + 0.2);
+    tl.fromTo(panel, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, t0 + 0.05);
+
+    if (TALL) heading(s, t0, 'Create · 01', 'Video & motion.', 'Editing · motion · voiceover', PAD, 120, 92, W - PAD * 2);
+    else heading(s, t0, 'Create · 01', 'Video & motion.', 'Editing · motion graphics · voiceover', PAD, 150, 112, mx - PAD - 60);
+    T += d;
+  }
+
+  // ============ CREATE · Design: the AURIC identity, constructed ============
+  {
+    const t0 = T, d = 3.2;
+    const s = scene(t0, t0 + d);
+    goldWipe(t0, 'right');
+    const ms = TALL ? 420 : 470;
+    const mx = TALL ? (W - ms) / 2 : 640, my = TALL ? 300 : (H - ms) / 2;
+    const NS = 'http://www.w3.org/2000/svg';
+    const svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('viewBox', '0 0 64 64'); svg.setAttribute('width', ms); svg.setAttribute('height', ms);
+    css(svg, { position: 'absolute', left: px(mx), top: px(my), overflow: 'visible' });
+    s.appendChild(svg);
+    const guide = (tag, attrs) => { const n = document.createElementNS(NS, tag); Object.entries(attrs).forEach(([k, v]) => n.setAttribute(k, v)); n.setAttribute('fill', 'none'); n.setAttribute('stroke', 'rgba(244,241,232,.28)'); n.setAttribute('stroke-width', '0.18'); svg.appendChild(n); return n; };
+    const guides = [guide('circle', { cx: 32, cy: 32, r: 31 }), guide('circle', { cx: 32, cy: 32, r: 20 }), guide('circle', { cx: 32, cy: 32, r: 10.2 }), guide('line', { x1: 0, y1: 32, x2: 64, y2: 32 }), guide('line', { x1: 32, y1: 0, x2: 32, y2: 64 }), guide('line', { x1: 9.4, y1: 9.4, x2: 54.6, y2: 54.6 }), guide('line', { x1: 54.6, y1: 9.4, x2: 9.4, y2: 54.6 })];
+    guides.forEach((g, i) => { const len = g.getTotalLength ? g.getTotalLength() : 200; g.setAttribute('stroke-dasharray', len); tl.fromTo(g, { attr: { 'stroke-dashoffset': len } }, { attr: { 'stroke-dashoffset': 0 }, duration: 0.9, ease: 'power2.out' }, t0 + 0.1 + i * 0.05); });
+    const rays = Array.from({ length: 12 }, (_, i) => {
+      const sh = i % 2 === 1, w = sh ? 4.5 : 5.8, h = sh ? 9 : 14, y = sh ? 5.1 : 1.3;
+      const r = document.createElementNS(NS, 'rect');
+      Object.entries({ x: 32 - w / 2, y, width: w, height: h, rx: 1.2, fill: '#DCA733', transform: `rotate(${i * 30} 32 32)` }).forEach(([k, v]) => r.setAttribute(k, v));
+      svg.appendChild(r);
+      return r;
+    });
+    const core = document.createElementNS(NS, 'circle');
+    Object.entries({ cx: 32, cy: 32, r: 10.2, fill: '#DCA733' }).forEach(([k, v]) => core.setAttribute(k, v));
+    svg.appendChild(core);
+    tl.fromTo(core, { attr: { r: 0 } }, { attr: { r: 10.2 }, duration: 0.6, ease: 'back.out(2)' }, t0 + 0.55);
+    rays.forEach((r, i) => tl.fromTo(r, { opacity: 0, attr: { y: 22 } }, { opacity: 1, attr: { y: i % 2 ? 5.1 : 1.3 }, duration: 0.5, ease: 'back.out(1.8)' }, t0 + 0.7 + i * 0.04));
+    tl.to(svg, { rotate: 30, duration: d, ease: 'none', transformOrigin: '50% 50%' }, t0);
+
+    // palette + type
+    const sw = [['#0A0A0B', 'Ink'], ['#DCA733', 'Gold'], ['#F4F1E8', 'Cream'], ['#D9D4C7', 'Sand']];
+    const sx = TALL ? PAD : 1220, sy = TALL ? 830 : 150, swW = TALL ? 222 : 140, swH = TALL ? 150 : 190, gap = 14;
+    sw.forEach(([c, n], i) => {
+      const b = css(el('div', 'abs', s), { left: px(sx + i * (swW + gap)), top: px(sy), width: px(swW), height: px(swH), background: c, borderRadius: '10px', border: '1px solid rgba(244,241,232,.16)' });
+      css(el('div', 'lab', b, n), { position: 'absolute', left: '12px', bottom: '30px', fontSize: '12px', color: i >= 2 ? '#0A0A0B' : '#F4F1E8' });
+      css(el('div', 'lab', b, c), { position: 'absolute', left: '12px', bottom: '12px', fontSize: '11px', color: i >= 2 ? 'rgba(10,10,11,.6)' : 'rgba(244,241,232,.55)' });
+      tl.fromTo(b, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, t0 + 0.6 + i * 0.08);
+    });
+    const ty = TALL ? sy + swH + 50 : sy + swH + 40;
+    const aa = css(el('div', 'abs disp', s, 'Aa'), { left: px(sx), top: px(ty), fontSize: px(TALL ? 150 : 150) });
+    const specs = css(el('div', 'abs lab', s, 'Unbounded · Geist · Geist Mono'), { left: px(sx + (TALL ? 330 : 300)), top: px(ty + (TALL ? 60 : 56)), fontSize: px(TALL ? 18 : 15), lineHeight: '1.8', color: '#D9D4C7', width: px(TALL ? 600 : 260) });
+    tl.fromTo(aa, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6 }, t0 + 1.0);
+    tl.fromTo(specs, { opacity: 0 }, { opacity: 1, duration: 0.5 }, t0 + 1.2);
+
+    if (TALL) heading(s, t0, 'Create · 02', 'Brand identity.', 'Logo · colour · type · design', PAD, 120, 96, W - PAD * 2);
+    else heading(s, t0, 'Create · 02', 'Brand identity.', 'Logo · colour · type · graphic design', PAD, 300, 84, 470);
+    T += d;
+  }
+
+  // ============ STRATEGY · Content: a month planned, posts going out ============
+  {
+    const t0 = T, d = 3.4;
+    const s = scene(t0, t0 + d);
+    goldWipe(t0, 'left');
+    // calendar
+    const cols = 7, rows = 4;
+    const cx = TALL ? PAD : PAD, cy = TALL ? 330 : 300;
+    const cw = TALL ? 120 : 112, ch = TALL ? 96 : 96, g = TALL ? 9 : 10;
+    const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    days.forEach((dname, i) => css(el('div', 'abs lab', s, dname), { left: px(cx + i * (cw + g)), top: px(cy - 30), fontSize: '12px', color: 'rgba(244,241,232,.5)' }));
+    const plan = { 1: 'reel', 3: 'post', 5: 'story', 8: 'post', 9: 'reel', 12: 'post', 15: 'reel', 17: 'story', 19: 'post', 22: 'reel', 24: 'post', 26: 'story' };
+    const chipStyle = { reel: ['#DCA733', '#0A0A0B', 'Reel'], post: ['#F4F1E8', '#0A0A0B', 'Post'], story: ['transparent', '#DCA733', 'Story'] };
+    let k = 0;
+    for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+      const i = r * cols + c;
+      const cell = css(el('div', 'cell', s), { left: px(cx + c * (cw + g)), top: px(cy + r * (ch + g)), width: px(cw), height: px(ch) });
+      el('b', '', cell, String(i + 1));
+      tl.fromTo(cell, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.35 }, t0 + 0.1 + i * 0.012);
+      if (plan[i]) {
+        const [bg, fg, label] = chipStyle[plan[i]];
+        const chip = css(el('div', 'chip', cell, label), { bottom: '10px', background: bg, color: fg, border: plan[i] === 'story' ? '1px solid #DCA733' : 'none' });
+        tl.fromTo(chip, { y: -40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: 'back.out(2)' }, t0 + 0.55 + k * 0.08);
+        k++;
+      }
+    }
+    // phone feed of AURIC posts
+    const pw = TALL ? 330 : 300, ph = Math.round(pw * 2.05);
+    const fx = TALL ? W - pw - 70 : W - pw - 150, fy = TALL ? 700 : (H - ph) / 2 + 20;
+    const phone = css(el('div', 'phone', s), { left: px(fx), top: px(fy), width: px(pw), height: px(ph), zIndex: 5 });
+    const scr = css(el('div', 'scr', phone), { background: '#0A0A0B' });
+    const feed = css(el('div', 'abs', scr), { left: 0, right: 0, top: 0 });
+    const pH = pw - 22; // square posts
+    const posts = [
+      (b) => { css(b, { background: '#DCA733' }); css(el('div', 'disp', b, 'Your idea,<br>launched<span style="color:#0A0A0B">.</span>'), { position: 'absolute', left: '22px', bottom: '22px', fontSize: '30px', color: '#0A0A0B' }); },
+      (b) => { const i = img(b, TEAM('sherif-ashraf.webp')); i.style.objectPosition = '50% 30%'; css(el('div', 'lab', b, 'Meet the team'), { position: 'absolute', left: '16px', bottom: '16px', fontSize: '11px', color: '#DCA733', background: 'rgba(10,10,11,.8)', padding: '6px 8px' }); },
+      (b) => { css(b, { background: '#19191B' }); css(el('div', 'disp', b, '04'), { position: 'absolute', left: '20px', top: '18px', fontSize: '70px', color: 'transparent', WebkitTextStroke: '1.5px #DCA733' }); css(el('div', 'disp', b, 'Manage<span class="dot">.</span>'), { position: 'absolute', left: '20px', bottom: '22px', fontSize: '36px' }); },
+      (b) => { const i = img(b, IMG('atlas/dashboard.png')); css(el('div', 'lab', b, 'New launch'), { position: 'absolute', left: '16px', bottom: '16px', fontSize: '11px', color: '#0A0A0B', background: '#DCA733', padding: '6px 8px' }); },
+      (b) => { css(b, { background: '#F4F1E8' }); css(el('div', '', b, markSVG(90, '#DCA733')), { position: 'absolute', left: '20px', top: '20px' }); css(el('div', 'disp', b, 'One team<span class="dot">.</span>'), { position: 'absolute', left: '20px', bottom: '22px', fontSize: '32px', color: '#0A0A0B' }); },
+    ];
+    css(el('div', 'lab', feed, 'auric404'), { height: '58px', padding: '30px 0 0 18px', fontSize: '12px', color: '#F4F1E8' });
+    posts.forEach((fn, i) => { const b = css(el('div', 'post', feed), { position: 'relative', height: px(pH), margin: '0 0 8px 0' }); fn(b); });
+    tl.fromTo(phone, { y: H, rotate: 6 }, { y: 0, rotate: TALL ? -3 : -4, duration: 0.9 }, t0 + 0.15);
+    tl.fromTo(feed, { y: 0 }, { y: -(pH + 8) * 3.2, duration: d - 0.6, ease: 'power1.inOut' }, t0 + 0.6);
+
+    if (TALL) heading(s, t0, 'Strategy · 03', 'Content & social.', 'Plans · calendars · posts · reels', PAD, 120, 84, W - PAD * 2);
+    else heading(s, t0, 'Strategy · 03', 'Content plans.', 'Marketing · calendars · posts · reels', PAD, 96, 96, 900);
+    T += d;
+  }
+
+  // ============ BUILD · real products ============
   const SHOTS = [
     { src: 'mizan/dashboard-arabic.png', name: 'Mizan', meta: 'Law firm · Design · Web · Mobile · AI', url: 'mizan · arabic + english' },
     { src: 'atlas/dashboard.png', name: 'Atlas', meta: 'Real estate · Platform · AI', url: 'atlas · ai copilot' },
     { src: 'hotel-os/analytics.png', name: 'Hotel OS', meta: 'Hospitality · Platform · Website', url: 'hotel os · analytics' },
-    { src: 'raqib/analytics.png', name: 'Raqib', meta: 'Inspection · Platform · Offline app', url: 'raqib · quality control' },
     { src: 'clinic-os/queue-board.png', name: 'Clinic OS', meta: 'Healthcare · Platform on Odoo', url: 'clinic os · live queue' },
-    { src: 'nova/dashboard-attendance.jpg', name: 'Nova', meta: 'Enterprise, UAE · ERP · Mobile app', url: 'nova · erp' },
   ];
-  const S2 = 5.0, SHOT = 1.25;
+  const SHOT = 1.2;
   SHOTS.forEach((sh, i) => {
-    const t0 = S2 + i * SHOT;
-    const s = scene(); show(s, t0, t0 + SHOT);
+    const t0 = T + i * SHOT;
+    const s = scene(t0, t0 + SHOT);
     const left = i % 2 === 0;
-    let fx, fy, fw, fh, tx, ty, nameSize;
-    if (TALL) {
-      fw = 960; fh = Math.round(fw * 0.625) + 34; fx = 60; fy = 470;
-      tx = 64; ty = 150; nameSize = 128;
-    } else {
-      fw = 1080; fh = Math.round(fw * 0.625) + 34; fy = Math.round((H - fh) / 2);
-      fx = left ? W - fw - 70 : 70;
-      tx = left ? 110 : W - 70 - fw - 40 - 640 + 680; ty = 250; nameSize = 120;
-      tx = left ? 110 : fx + fw + 70;
-    }
-    const { f, img } = frame(s, IMG(sh.src), sh.url, fx, fy, fw, fh);
-    // frame: clip reveal, the screen inside settles from a push-in
-    tl.fromTo(f, { clipPath: 'inset(100% 0% 0% 0% round 14px)', y: 40 }, { clipPath: 'inset(0% 0% 0% 0% round 14px)', y: 0, duration: 0.6, ease: 'expo.out' }, t0);
-    tl.fromTo(img, { scale: 1.22, yPercent: i % 2 ? -4 : 4 }, { scale: 1.04, yPercent: 0, duration: SHOT + 0.1, ease: 'power2.out' }, t0);
-
-    const textW = TALL ? W - 128 : 560;
-    const counter = css(el('div', 'abs counter', s, String(i + 1).padStart(2, '0') + ' / ' + String(SHOTS.length).padStart(2, '0')), { left: px(tx), top: px(ty - (TALL ? 60 : 70)) });
-    const nm = words(s, sh.name + '.', 'abs disp', { left: px(tx), top: px(ty), width: px(textW), fontSize: px(nameSize) });
-    const rule = css(el('div', 'rule', s), { left: px(tx), top: px(ty + nameSize * (sh.name.length > 6 && !TALL ? 2 : 1) * 0.95 + 26), width: px(Math.min(textW, 520)) });
-    const meta = css(el('div', 'abs lab', s, sh.meta), { left: px(tx), top: px(ty + nameSize * (sh.name.length > 6 && !TALL ? 2 : 1) * 0.95 + 46), width: px(textW), fontSize: px(TALL ? 20 : 17), lineHeight: '1.5' });
-    tl.fromTo(counter, { opacity: 0, x: -12 }, { opacity: 1, x: 0, duration: 0.4 }, t0 + 0.05);
-    tl.fromTo(nm.spans, { yPercent: 110 }, { yPercent: 0, duration: 0.6, stagger: 0.06 }, t0 + 0.08);
-    tl.fromTo(rule, { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: 'power3.out' }, t0 + 0.2);
-    tl.fromTo(meta, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.45 }, t0 + 0.28);
-
-    // gold slit wipe into the next shot
-    if (i < SHOTS.length - 1) {
-      const w = css(el('div', 'wipe', stage), { left: 0, width: px(W), visibility: 'hidden' });
-      tl.set(w, { visibility: 'visible' }, t0 + SHOT - 0.16);
-      tl.fromTo(w, { scaleX: 0, transformOrigin: left ? 'left center' : 'right center' }, { scaleX: 1, duration: 0.16, ease: 'power4.in' }, t0 + SHOT - 0.16);
-      tl.to(w, { scaleX: 0, transformOrigin: left ? 'right center' : 'left center', duration: 0.2, ease: 'power4.out' }, t0 + SHOT);
-      tl.set(w, { visibility: 'hidden' }, t0 + SHOT + 0.2);
-    }
+    let fx, fy, fw, fh, tx, ty, nameSize, textW;
+    if (TALL) { fw = 960; fh = Math.round(fw * 0.625) + 34; fx = 60; fy = 470; tx = PAD; ty = 150; nameSize = 128; textW = W - PAD * 2; }
+    else { fw = 1080; fh = Math.round(fw * 0.625) + 34; fy = Math.round((H - fh) / 2); fx = left ? W - fw - 70 : 70; tx = left ? PAD : fx + fw + 70; ty = 250; nameSize = 120; textW = 560; }
+    const f = frame(s, IMG(sh.src), sh.url, fx, fy, fw, fh);
+    tl.fromTo(f.f, { clipPath: 'inset(100% 0% 0% 0% round 14px)', y: 40 }, { clipPath: 'inset(0% 0% 0% 0% round 14px)', y: 0, duration: 0.6 }, t0);
+    tl.fromTo(f.img, { scale: 1.22, yPercent: i % 2 ? -4 : 4 }, { scale: 1.04, yPercent: 0, duration: SHOT + 0.1, ease: 'power2.out' }, t0);
+    heading(s, t0, `Build · ${String(i + 1).padStart(2, '0')} / ${String(SHOTS.length).padStart(2, '0')}`, sh.name + '.', sh.meta, tx, ty, nameSize, textW);
+    goldWipe(t0, left ? 'left' : 'right');
   });
+  T += SHOTS.length * SHOT;
 
-  // ============ S3 · Mobile apps ============ 12.5 – 16.5
+  // ============ BUILD · mobile apps ============
   {
-    const t0 = 12.5;
-    const s = scene(); show(s, t0, 16.5);
-    const PH = [
-      { src: 'nova/mobile-home.jpg' },
-      { src: 'enactix/mobile-chapter-overview.jpg' },
-      { src: 'ajwadi/mobile-home-client.png' },
-    ];
-    const pw = TALL ? 300 : 286, ph = Math.round(pw * 2.12);
-    const gap = TALL ? -40 : 46;
+    const t0 = T, d = 2.6;
+    const s = scene(t0, t0 + d);
+    const PH = ['nova/mobile-home.jpg', 'enactix/mobile-chapter-overview.jpg', 'ajwadi/mobile-home-client.png'];
+    const pw = TALL ? 300 : 286, ph = Math.round(pw * 2.12), gap = TALL ? -40 : 46;
     const baseX = TALL ? (W - (pw * 3 + gap * 2)) / 2 : W - (pw * 3 + gap * 2) - 110;
     const baseY = TALL ? 520 : (H - ph) / 2 + 30;
     PH.forEach((p, i) => {
       const n = css(el('div', 'phone', s), { left: px(baseX + i * (pw + gap)), top: px(baseY + (i === 1 ? -40 : 20)), width: px(pw), height: px(ph), zIndex: i === 1 ? 3 : 2 });
-      const scr = el('div', 'scr', n); const im = el('img', '', scr); im.src = IMG(p.src);
-      tl.fromTo(n, { y: H, rotate: (i - 1) * 8 }, { y: 0, rotate: (i - 1) * (TALL ? 5 : 3), duration: 1.0, ease: 'expo.out' }, t0 + 0.1 + i * 0.12);
-      tl.to(n, { y: (i - 1) * -24 - 20, duration: 3.0, ease: 'none' }, t0 + 1.1);
-      tl.fromTo(im, { objectPosition: '50% 0%' }, { objectPosition: '50% 40%', duration: 3.6, ease: 'power1.inOut' }, t0 + 0.3);
+      const im = img(el('div', 'scr', n), IMG(p));
+      tl.fromTo(n, { y: H, rotate: (i - 1) * 8 }, { y: 0, rotate: (i - 1) * (TALL ? 5 : 3), duration: 0.9 }, t0 + 0.05 + i * 0.1);
+      tl.to(n, { y: (i - 1) * -24 - 20, duration: d - 0.9, ease: 'none' }, t0 + 0.9);
+      tl.fromTo(im, { objectPosition: '50% 0%' }, { objectPosition: '50% 40%', duration: d, ease: 'power1.inOut' }, t0 + 0.2);
     });
-    const tx = TALL ? 64 : 110, ty = TALL ? 150 : 230;
-    const nm = words(s, 'Mobile apps.', 'abs disp', { left: px(tx), top: px(ty), width: px(TALL ? 950 : 640), fontSize: px(TALL ? 120 : 112) });
-    const meta = css(el('div', 'abs lab', s, 'Nova · Enactix · Ajwadi'), { left: px(tx), top: px(ty + (TALL ? 140 : 240)), fontSize: px(TALL ? 20 : 17) });
-    const counter = css(el('div', 'abs counter', s, 'Build · mobile'), { left: px(tx), top: px(ty - (TALL ? 60 : 70)) });
-    tl.fromTo(counter, { opacity: 0 }, { opacity: 1, duration: 0.4 }, t0 + 0.1);
-    tl.fromTo(nm.spans, { yPercent: 110 }, { yPercent: 0, duration: 0.7, stagger: 0.08 }, t0 + 0.15);
-    tl.fromTo(meta, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5 }, t0 + 0.45);
+    heading(s, t0, 'Build · mobile', 'Mobile apps.', 'Nova · Enactix · Ajwadi', PAD, TALL ? 150 : 230, TALL ? 120 : 112, TALL ? 950 : 640);
+    T += d;
   }
 
-  // ============ S4 · The wall: everything we've built ============ 16.5 – 20.5
+  // ============ MANAGE · one owner, start to finish ============
   {
-    const t0 = 16.5;
-    const s = scene(); show(s, t0, 21.1); // stays under the first website shot while it wipes in
+    const t0 = T, d = 2.8;
+    const s = scene(t0, t0 + d);
+    goldWipe(t0, 'right');
+    const steps = ['Your brief', 'The right team', 'Made together', 'Reviewed by AURIC', 'Delivered'];
+    const sx = TALL ? PAD : 1000, sy = TALL ? 560 : 170, gapY = TALL ? 116 : 104;
+    const spine = css(el('div', 'abs', s), { left: px(sx + 15), top: px(sy + 16), width: '2px', height: px(gapY * (steps.length - 1)), background: 'rgba(244,241,232,.16)', transformOrigin: 'top' });
+    const fill = css(el('div', 'abs', s), { left: px(sx + 15), top: px(sy + 16), width: '2px', height: px(gapY * (steps.length - 1)), background: '#DCA733', transformOrigin: 'top' });
+    tl.fromTo(spine, { scaleY: 0 }, { scaleY: 1, duration: 0.6, ease: 'power3.out' }, t0 + 0.1);
+    tl.fromTo(fill, { scaleY: 0 }, { scaleY: 1, duration: d - 0.9, ease: 'power1.inOut' }, t0 + 0.4);
+    steps.forEach((st, i) => {
+      const last = i === steps.length - 1;
+      const at = t0 + 0.35 + i * ((d - 1.0) / (steps.length - 1));
+      const dot = css(el('div', 'abs', s), { left: px(sx + (last ? 4 : 6)), top: px(sy + i * gapY + (last ? 4 : 6)), width: px(last ? 24 : 20), height: px(last ? 24 : 20), borderRadius: last ? '3px' : '50%', background: last ? '#DCA733' : '#0A0A0B', border: last ? 'none' : '2px solid #F4F1E8', transform: last ? 'rotate(45deg)' : 'none' });
+      const label = css(el('div', 'abs disp', s, st), { left: px(sx + 64), top: px(sy + i * gapY - 4), fontSize: px(TALL ? 46 : 40), letterSpacing: '-0.03em', color: last ? '#DCA733' : '#F4F1E8' });
+      tl.fromTo(dot, { scale: 0 }, { scale: 1, duration: 0.4, ease: 'back.out(2.5)' }, at);
+      tl.fromTo(label, { x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45 }, at + 0.03);
+      if (!last) tl.to(dot, { background: '#F4F1E8', duration: 0.2 }, at + 0.25);
+    });
+    if (TALL) heading(s, t0, 'Manage · 04', 'One owner.', 'One point of contact · start to finish', PAD, 160, 130, W - PAD * 2);
+    else heading(s, t0, 'Manage · 04', 'One owner.', 'One point of contact · every deadline · every review', PAD, 220, 130, 760);
+    T += d;
+  }
+
+  // ============ The wall: everything, all at once ============
+  {
+    const t0 = T, d = 3.2;
+    const s = scene(t0, t0 + d);
     const wall = css(el('div', 'abs', s), { left: px(W / 2), top: px(H / 2), width: '0px', height: '0px', perspective: '1800px' });
     const plane = css(el('div', 'abs', wall), { left: 0, top: 0, transformStyle: 'preserve-3d' });
-    const pool = ['atlas/units.png', 'hotel-os/calendar.png', 'mizan/calendar.png', 'admit/customer-event.png', 'raqib/dashboard-arabic.png', 'opticare/dashboard-overview.jpg', 'enactix/dashboard-overview.jpg', 'build-art/hero.png', 'atlas/revenue.png', 'clinic-os/manager-dashboard.png', 'hotel-os/website-booking.png', 'admit/review.png', 'mizan/billing.png', 'weavolution/home-hero.png', 'nova/dashboard-members.jpg', 'raqib/inspection.png', 'admit/customer-home.png', 'atlas/pipeline.png'];
+    const pool = ['work/atlas/units.png', 'work/enactix/dashboard-overview.jpg', 'work/hotel-os/calendar.png', 'work/admit/customer-event.png', 'work/raqib/dashboard-arabic.png', 'work/mizan/calendar.png', 'work/opticare/dashboard-overview.jpg', 'work/build-art/hero.png', 'work/atlas/revenue.png', 'work/clinic-os/manager-dashboard.png', 'work/hotel-os/website-booking.png', 'work/admit/review.png', 'work/mizan/billing.png', 'work/weavolution/home-hero.png', 'work/nova/dashboard-members.jpg', 'work/raqib/inspection.png', 'work/admit/customer-home.png', 'work/atlas/pipeline.png', 'work/build-art/design-philosophy.png'];
     const tw = 440, th = 275, gx = 26, gy = 26, perRow = 7, rowsN = TALL ? 7 : 5;
-    const rowsEls = [];
     for (let r = 0; r < rowsN; r++) {
       const row = css(el('div', 'abs', plane), { left: px(-(perRow * (tw + gx)) / 2), top: px((r - rowsN / 2) * (th + gy)) });
       for (let c = 0; c < perRow; c++) {
         const t = css(el('div', 'tile', row), { left: px(c * (tw + gx)), top: 0, width: px(tw), height: px(th) });
-        const im = el('img', '', t); im.src = IMG(pool[(r * 5 + c * 3) % pool.length]);
+        const src = pool[(r * 5 + c * 3) % pool.length];
+        const im = img(t, '../../public/' + src);
+        if (src.startsWith('team/')) im.style.objectPosition = '50% 30%';
       }
-      rowsEls.push(row);
-      tl.fromTo(row, { x: r % 2 ? -260 : 260 }, { x: r % 2 ? 260 : -260, duration: 4.0, ease: 'none' }, t0);
+      tl.fromTo(row, { x: r % 2 ? -240 : 240 }, { x: r % 2 ? 240 : -240, duration: d, ease: 'none' }, t0);
     }
-    tl.fromTo(plane, { rotateX: 42, rotateZ: -16, scale: TALL ? 1.25 : 1.05, opacity: 0 }, { rotateX: 30, rotateZ: -12, scale: TALL ? 1.35 : 1.15, opacity: 1, duration: 4.0, ease: 'power1.out' }, t0);
-    const dim = css(el('div', 'abs', s), { inset: 0, background: 'radial-gradient(ellipse at center, rgba(10,10,11,.86) 0%, rgba(10,10,11,.55) 55%, rgba(10,10,11,.2) 100%)' });
-    tl.fromTo(dim, { opacity: 0 }, { opacity: 1, duration: 0.8 }, t0 + 0.6);
-    const lines = ['Websites.', 'Apps.', 'Systems.'];
-    const block = css(el('div', 'abs disp', s), { left: 0, width: px(W), textAlign: 'center', top: px(TALL ? 420 : 170), fontSize: px(TALL ? 150 : 150) });
-    const rows = lines.map((l) => { const m = el('span', 'mask', block); return el('span', '', m, l.replace('.', '<span class="dot">.</span>')); });
-    rows.forEach((r, i) => tl.fromTo(r, { yPercent: 110 }, { yPercent: 0, duration: 0.7 }, t0 + 0.8 + i * 0.32));
-    const lab = css(el('div', 'abs lab', s, 'Real AURIC work · one team'), { left: 0, width: px(W), textAlign: 'center', bottom: px(TALL ? 260 : 70), fontSize: px(TALL ? 19 : 16), color: '#DCA733' });
-    tl.fromTo(lab, { opacity: 0 }, { opacity: 1, duration: 0.5 }, t0 + 1.9);
+    tl.fromTo(plane, { rotateX: 42, rotateZ: -16, scale: TALL ? 1.25 : 1.05, opacity: 0 }, { rotateX: 30, rotateZ: -12, scale: TALL ? 1.35 : 1.15, opacity: 1, duration: d, ease: 'power1.out' }, t0);
+    const dim = css(el('div', 'abs', s), { inset: 0, background: 'radial-gradient(ellipse at center, rgba(10,10,11,.88) 0%, rgba(10,10,11,.6) 55%, rgba(10,10,11,.25) 100%)' });
+    tl.fromTo(dim, { opacity: 0 }, { opacity: 1, duration: 0.6 }, t0 + 0.4);
+    const L = lines(s, ['Video.', 'Design.', 'Content.', 'Software.'], 'abs disp', { left: 0, width: px(W), textAlign: 'center', top: px(TALL ? 330 : 120), fontSize: px(TALL ? 140 : 132) });
+    L.rows.forEach((r, i) => tl.fromTo(r, { yPercent: 110 }, { yPercent: 0, duration: 0.6 }, t0 + 0.5 + i * 0.22));
+    const lab = css(el('div', 'abs lab', s, 'One team · one point of contact'), { left: 0, width: px(W), textAlign: 'center', bottom: px(TALL ? 240 : 46), fontSize: px(TALL ? 19 : 16), color: '#DCA733' });
+    tl.fromTo(lab, { opacity: 0 }, { opacity: 1, duration: 0.5 }, t0 + 1.5);
+    T += d;
   }
 
-  // ============ S5 · Websites, full bleed ============ 20.5 – 23.0
-  const WEB = [
-    { src: 'build-art/hero.png', name: 'Build-Art', meta: 'Interior design · Website' },
-    { src: 'admit/customer-event.png', name: 'Admit', meta: 'Ticketing · Platform' },
-  ];
-  WEB.forEach((wb, i) => {
-    const t0 = 20.5 + i * 1.25;
-    const s = scene(); show(s, t0, t0 + 1.25 + (i < WEB.length - 1 ? 0.6 : 0)); // overlap the next wipe
-    const full = el('div', 'full', s); const im = el('img', '', full); im.src = IMG(wb.src);
-    if (TALL) { im.style.objectPosition = i === 0 ? '30% 0%' : '20% 0%'; }
-    el('div', 'shade', s);
-    tl.fromTo(full, { clipPath: i === 0 ? 'inset(0% 0% 0% 100%)' : 'inset(0% 100% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.55, ease: 'expo.inOut' }, t0);
-    tl.fromTo(im, { scale: 1.18 }, { scale: 1.02, duration: 1.4, ease: 'power2.out' }, t0);
-    const nm = words(s, wb.name + '.', 'abs disp', { left: px(TALL ? 64 : 110), bottom: px(TALL ? 150 : 96), fontSize: px(TALL ? 120 : 120) });
-    const meta = css(el('div', 'abs lab', s, wb.meta), { left: px(TALL ? 68 : 114), bottom: px(TALL ? 100 : 56), fontSize: px(TALL ? 20 : 17), color: '#DCA733' });
-    tl.fromTo(nm.spans, { yPercent: 110 }, { yPercent: 0, duration: 0.6, stagger: 0.06 }, t0 + 0.25);
-    tl.fromTo(meta, { opacity: 0 }, { opacity: 1, duration: 0.4 }, t0 + 0.4);
-  });
-
-  // ============ S6 · Four divisions ============ 23.0 – 25.0
-  const DIV = [
-    ['01', 'Create', 'Video · design · voice'],
-    ['02', 'Strategy', 'Marketing · content'],
-    ['03', 'Build', 'Websites · apps · AI'],
-    ['04', 'Manage', 'One owner'],
-  ];
-  DIV.forEach((d, i) => {
-    const t0 = 23.0 + i * 0.5;
-    const s = scene(); show(s, t0, t0 + 0.5);
-    css(s, { background: i % 2 ? '#0A0A0B' : '#121214' });
-    const num = css(el('div', 'abs', s, d[0]), { left: px(TALL ? 64 : 110), top: px(TALL ? 300 : 120), font: `800 ${TALL ? 120 : 130}px Unbounded`, color: 'transparent', WebkitTextStroke: '2px #DCA733', letterSpacing: '-0.05em' });
-    const nm = words(s, d[1] + '.', 'abs disp', { left: px(TALL ? 64 : 110), top: px(TALL ? 470 : 300), fontSize: px(TALL ? 170 : 230) });
-    const lab = css(el('div', 'abs lab', s, d[2]), { left: px(TALL ? 68 : 116), top: px(TALL ? 690 : 600), fontSize: px(TALL ? 22 : 20) });
-    tl.fromTo(num, { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.35 }, t0);
-    tl.fromTo(nm.spans, { yPercent: 110 }, { yPercent: 0, duration: 0.42 }, t0 + 0.02);
-    tl.fromTo(lab, { opacity: 0 }, { opacity: 1, duration: 0.3 }, t0 + 0.12);
-  });
-
-  // ============ S7 · End card ============ 25.0 – 30.0
+  // ============ End card ============
   {
-    const t0 = 25.0;
-    const s = scene(); show(s, t0, 30.01);
-    const size = TALL ? 128 : 140;
-    const lines = TALL ? ['Your idea', 'planned,', 'built,', 'launched.'] : ['Your idea planned,', 'built, launched.'];
-    const block = css(el('div', 'abs disp', s), { left: px(TALL ? 64 : 110), top: px(TALL ? 260 : 150), fontSize: px(size) });
-    const rows = lines.map((l) => { const m = el('span', 'mask', block); return el('span', '', m, l.replace('.', '<span class="dot">.</span>')); });
-    rows.forEach((r, i) => tl.fromTo(r, { yPercent: 110 }, { yPercent: 0, duration: 0.9 }, t0 + 0.1 + i * 0.16));
-    const foot = css(el('div', 'abs', s), { left: px(TALL ? 64 : 110), right: px(TALL ? 64 : 110), bottom: px(TALL ? 120 : 80), display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: '1px solid rgba(244,241,232,.18)', paddingTop: '26px' });
-    const logo = el('div', '', foot);
-    css(logo, { display: 'flex', alignItems: 'center', gap: '16px' });
+    const t0 = T, d = 4.4;
+    const s = scene(t0, t0 + d + 0.01);
+    const L = lines(s, TALL ? ['Your idea', 'planned,', 'built,', 'launched.'] : ['Your idea planned,', 'built, launched.'], 'abs disp', { left: px(PAD), top: px(TALL ? 260 : 150), fontSize: px(TALL ? 128 : 140) });
+    L.rows.forEach((r, i) => tl.fromTo(r, { yPercent: 110 }, { yPercent: 0, duration: 0.9 }, t0 + 0.1 + i * 0.16));
+    const foot = css(el('div', 'abs', s), { left: px(PAD), right: px(PAD), bottom: px(TALL ? 120 : 80), display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: '1px solid rgba(244,241,232,.18)', paddingTop: '26px' });
+    const logo = css(el('div', '', foot), { display: 'flex', alignItems: 'center', gap: '16px' });
     el('div', '', logo, markSVG(TALL ? 56 : 52, '#DCA733'));
     css(el('div', 'pixel', logo, 'A<span class="gold">U</span>RIC'), { fontSize: px(TALL ? 26 : 24), color: '#F4F1E8' });
     css(el('div', 'lab', foot, 'auric404.me'), { fontSize: px(TALL ? 22 : 20), color: '#DCA733' });
     tl.fromTo(foot, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8 }, t0 + 0.7);
     // fade to ink so the loop restarts cleanly on the intro's black
     const out = css(el('div', 'abs', s), { inset: 0, background: '#0A0A0B', zIndex: 50 });
-    tl.fromTo(out, { opacity: 0 }, { opacity: 1, duration: 0.6, ease: 'power2.in' }, 29.4);
+    tl.fromTo(out, { opacity: 0 }, { opacity: 1, duration: 0.6, ease: 'power2.in' }, t0 + d - 0.6);
+    T += d;
   }
 
-  tl.set({}, {}, 30);
+  const DURATION = Math.round(T * 100) / 100;
+  tl.set({}, {}, DURATION);
 
   // ---------- API for the renderer ----------
-  window.DURATION = 30;
+  window.DURATION = DURATION;
+  window.SCENES = DURATION;
   window.seek = (t) => { tl.seek(t, false); return true; };
   window.play = () => tl.restart();
   const imgs = [...document.images];
@@ -338,7 +504,16 @@
     document.fonts.ready,
     ...['800 40px Unbounded', '400 16px "Geist Mono"', '16px "Press Start 2P"'].map((f) => document.fonts.load(f)),
     ...imgs.map((i) => (i.complete ? (i.decode ? i.decode().catch(() => {}) : 0) : new Promise((r) => { i.onload = () => r(); i.onerror = () => r(); }))),
-  ]).then(() => { tl.seek(0); return imgs.filter((i) => !i.naturalWidth).map((i) => i.src); });
+  ]).then(() => {
+    // Real title heights are known now: put each rule and caption just below its title.
+    UNDER.forEach(({ box, rule, meta, size }) => {
+      const bottom = box.offsetTop + box.offsetHeight - size * 0.18;
+      rule.style.top = px(bottom + 22);
+      meta.style.top = px(bottom + 42);
+    });
+    tl.seek(0);
+    return imgs.filter((i) => !i.naturalWidth).map((i) => i.src);
+  });
 })();
 </script>
 </body>

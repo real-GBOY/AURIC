@@ -13,8 +13,9 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const FPS = 30;
 const CUTS = {
-  wide: { w: 1920, h: 824, out: 'showreel', crf: 26, poster: 26.2 },
-  tall: { w: 1080, h: 1350, out: 'showreel-vertical', crf: 27, poster: 14.6 }, // the phones shot: its caption sits at the top, clear of page headlines laid over it
+  // poster = the second at which the poster frame is taken
+  wide: { w: 1920, h: 824, out: 'showreel', crf: 26, poster: 31.0 }, // the end card
+  tall: { w: 1080, h: 1350, out: 'showreel-vertical', crf: 27, poster: 22.0 }, // the phones shot: caption at the top, clear of page headlines laid over it
 };
 
 const chrome = [process.env.CHROME_PATH, 'C:/Program Files/Google/Chrome/Application/chrome.exe', 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe', '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', '/usr/bin/google-chrome', '/usr/bin/chromium'].filter(Boolean).find((p) => existsSync(p));
