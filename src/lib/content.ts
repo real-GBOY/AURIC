@@ -96,6 +96,7 @@ export const CLIENT_LOGOS: { name: string; src: string }[] = [
   { name: 'SmileSuite, dental clinic management', src: '/clients/smilesuite.png' },
   { name: 'Lumen Labs, dental supplies and lab', src: '/clients/lumenlabs.png' },
   { name: 'Carlo Bay Accademia', src: '/clients/carlobay.png' },
+  { name: 'Zaan, salon management in Saudi Arabia', src: '/clients/zaan.png' },
 ];
 
 /**

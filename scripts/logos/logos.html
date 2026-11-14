@@ -83,6 +83,13 @@
       <div class="sub">Dental supplies<br />&amp; lab</div>
     </div>
   </div>
+  <!-- Zaan: their wordmark (from zaan.sa) turned white, with what the product is. -->
+  <div class="lockup zaan" id="zaan">
+    <div>
+      <img src="zaan-wordmark.png" alt="" style="height: 100px; width: auto; display: block;" />
+      <div class="sub">Salon management<br />Saudi Arabia</div>
+    </div>
+  </div>
 <script>
   window.ready = document.fonts.ready.then(() => Promise.all(['700 40px Geist', '500 20px "Geist Mono"', '700 40px "Chakra Petch"'].map((f) => document.fonts.load(f)))).then(() => Promise.all([...document.images].map((i) => (i.complete ? 0 : new Promise((r) => (i.onload = i.onerror = r))))));
 </script>
