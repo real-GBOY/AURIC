@@ -12,6 +12,8 @@
   @font-face { font-family: 'Geist'; src: url('../../public/fonts/geist-latin.woff2') format('woff2'); font-weight: 100 900; }
   /* Ajwadi wordmark: Chakra Petch (angular, technical). Used only to render the PNG, never shipped to visitors. */
   @font-face { font-family: 'Chakra Petch'; src: url('../../node_modules/@fontsource/chakra-petch/files/chakra-petch-latin-700-normal.woff2') format('woff2'); font-weight: 700; }
+  /* Mizan wordmark: Spectral, as in Mizan's identity. Render-only, never shipped to visitors. */
+  @font-face { font-family: 'Spectral'; src: url('../../node_modules/@fontsource/spectral/files/spectral-latin-400-normal.woff2') format('woff2'); font-weight: 400; }
   @font-face { font-family: 'Geist Mono'; src: url('../../public/fonts/geist-mono-latin.woff2') format('woff2'); font-weight: 100 900; }
   html, body { margin: 0; background: transparent; }
   body { padding: 40px; display: flex; flex-direction: column; gap: 40px; align-items: flex-start; }
@@ -90,8 +92,27 @@
       <div class="sub">Salon management<br />Saudi Arabia</div>
     </div>
   </div>
+  <!-- Mizan: the balance mark exactly as in Mizan's identity code (full mark: beam, hangers, pans,
+       post, base plate), strokes in white; the brass pivot stays brass, per their brand rules.
+       Wordmark in Spectral, with Mizan's own strapline. -->
+  <div class="lockup mizan" id="mizan">
+    <svg width="170" height="170" viewBox="0 0 100 100" fill="none" stroke="#fff" stroke-width="4.6" stroke-linecap="round" aria-hidden="true">
+      <path d="M16 32 H 84" />
+      <path d="M16 32 V 42" />
+      <path d="M84 32 V 42" />
+      <circle cx="16" cy="53" r="11" />
+      <circle cx="84" cy="53" r="11" />
+      <path d="M50 26 V 78" />
+      <path d="M36 81 H 64" />
+      <circle cx="50" cy="22" r="4.5" fill="#b99a5b" stroke="none" />
+    </svg>
+    <div>
+      <div class="name" style="font: 400 104px/0.95 'Spectral', serif; letter-spacing: 0.02em;">Mizan</div>
+      <div class="sub" style="letter-spacing: .2em;">The law firm<br />system</div>
+    </div>
+  </div>
 <script>
-  window.ready = document.fonts.ready.then(() => Promise.all(['700 40px Geist', '500 20px "Geist Mono"', '700 40px "Chakra Petch"'].map((f) => document.fonts.load(f)))).then(() => Promise.all([...document.images].map((i) => (i.complete ? 0 : new Promise((r) => (i.onload = i.onerror = r))))));
+  window.ready = document.fonts.ready.then(() => Promise.all(['700 40px Geist', '500 20px "Geist Mono"', '700 40px "Chakra Petch"', '400 40px Spectral'].map((f) => document.fonts.load(f)))).then(() => Promise.all([...document.images].map((i) => (i.complete ? 0 : new Promise((r) => (i.onload = i.onerror = r))))));
 </script>
 </body>
 </html>
