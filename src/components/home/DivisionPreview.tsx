@@ -303,7 +303,7 @@ function BuildPreview({ compact }: { compact: boolean }) {
             exit={{ y: 40, opacity: 0 }}
             transition={{ duration: 0.6, ease: EASE }}
           >
-            <Screen src="/work/nova/mobile-home.jpg" alt={t('Nova mobile app', 'تطبيق نوفا')} bar={false} radius={16} className="h-full shadow-[0_20px_50px_rgba(0,0,0,.6)]" />
+            <Screen src="/work/nova/mobile-home.jpg" alt={t('Digitmask mobile app', 'تطبيق ديجت ماسك')} bar={false} radius={16} className="h-full shadow-[0_20px_50px_rgba(0,0,0,.6)]" />
           </motion.div>
         )}
       </AnimatePresence>

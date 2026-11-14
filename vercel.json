@@ -10,6 +10,16 @@
       ],
       "destination": "https://auric404.me/:path",
       "permanent": true
+    },
+    {
+      "source": "/work/nova",
+      "destination": "/work/digitmask-erp",
+      "permanent": true
+    },
+    {
+      "source": "/ar/work/nova",
+      "destination": "/ar/work/digitmask-erp",
+      "permanent": true
     }
   ],
   "rewrites": [
@@ -46,8 +56,8 @@
       "destination": "/work/hotel-os/index.html"
     },
     {
-      "source": "/work/nova",
-      "destination": "/work/nova/index.html"
+      "source": "/work/digitmask-erp",
+      "destination": "/work/digitmask-erp/index.html"
     },
     {
       "source": "/work/ajwadi",
@@ -90,8 +100,16 @@
       "destination": "/work/elk-cafe/index.html"
     },
     {
+      "source": "/work/digitmask",
+      "destination": "/work/digitmask/index.html"
+    },
+    {
       "source": "/work/tcg-reel",
       "destination": "/work/tcg-reel/index.html"
+    },
+    {
+      "source": "/work/green-teaching-kitchen",
+      "destination": "/work/green-teaching-kitchen/index.html"
     },
     {
       "source": "/work/auric-showreel",
@@ -134,8 +152,8 @@
       "destination": "/ar/work/hotel-os/index.html"
     },
     {
-      "source": "/ar/work/nova",
-      "destination": "/ar/work/nova/index.html"
+      "source": "/ar/work/digitmask-erp",
+      "destination": "/ar/work/digitmask-erp/index.html"
     },
     {
       "source": "/ar/work/ajwadi",
@@ -178,8 +196,16 @@
       "destination": "/ar/work/elk-cafe/index.html"
     },
     {
+      "source": "/ar/work/digitmask",
+      "destination": "/ar/work/digitmask/index.html"
+    },
+    {
       "source": "/ar/work/tcg-reel",
       "destination": "/ar/work/tcg-reel/index.html"
+    },
+    {
+      "source": "/ar/work/green-teaching-kitchen",
+      "destination": "/ar/work/green-teaching-kitchen/index.html"
     },
     {
       "source": "/ar/work/auric-showreel",

@@ -21,13 +21,13 @@ export interface CaseStudyProject {
 }
 
 export const NOVA_PROJECT: CaseStudyProject = {
-  title: 'Nova',
+  title: 'Digitmask',
   category: 'Enterprise ERP System with Integrated CRM Modules',
   tagline: 'A comprehensive ERP platform with integrated CRM modules — a React web dashboard for administrators and managers, alongside a React Native mobile app for employee self-service and real-time communication.',
   year: '2025',
   link: 'https://nova-front-me.vercel.app/',
   overview: [
-    "Developed the frontend of a comprehensive Enterprise Resource Planning (ERP) system with integrated Customer Relationship Management (CRM) modules for a UAE-based company. The platform consists of a React web dashboard for administrators and managers, alongside a React Native mobile application that empowers employees with self-service capabilities and real-time communication.",
+    "Developed the frontend of a comprehensive Enterprise Resource Planning (ERP) system with integrated Customer Relationship Management (CRM) modules for Digitmask, a UAE-based company. The platform consists of a React web dashboard for administrators and managers, alongside a React Native mobile application that empowers employees with self-service capabilities and real-time communication.",
     "The ERP platform centralizes business operations across Human Resources, Finance, Legal, Customer Support, and Internal Communications, while the CRM modules streamline customer interactions, support workflows, and team collaboration. Built with scalability and performance in mind, the system supports hundreds of daily business operations through a modern, responsive interface.",
   ],
   modules: [
@@ -58,19 +58,19 @@ export const NOVA_PROJECT: CaseStudyProject = {
   ],
   impact: "Contributed to building a production-ready enterprise platform that digitizes core business operations through a unified ERP ecosystem with CRM capabilities. The project strengthened our team's expertise in architecting scalable frontend applications, implementing complex business workflows, integrating real-time systems, and delivering seamless cross-platform experiences for enterprise users.",
   dashboardImages: [
-    { src: '/work/nova/dashboard-overview.jpg',  alt: 'Nova dashboard overview' },
-    { src: '/work/nova/dashboard-members.jpg',   alt: 'Nova members grid view' },
-    { src: '/work/nova/dashboard-documents.png', alt: 'Nova member documents panel' },
-    { src: '/work/nova/dashboard-attendance.jpg', alt: 'Nova attendance management' },
-    { src: '/work/nova/dashboard-settings.jpg',  alt: 'Nova settings and assets' },
+    { src: '/work/nova/dashboard-overview.jpg',  alt: 'Digitmask dashboard overview' },
+    { src: '/work/nova/dashboard-members.jpg',   alt: 'Digitmask members grid view' },
+    { src: '/work/nova/dashboard-documents.png', alt: 'Digitmask member documents panel' },
+    { src: '/work/nova/dashboard-attendance.jpg', alt: 'Digitmask attendance management' },
+    { src: '/work/nova/dashboard-settings.jpg',  alt: 'Digitmask settings and assets' },
   ],
   mobileImages: [
-    { src: '/work/nova/mobile-home.jpg',              alt: 'Nova mobile app home screen' },
-    { src: '/work/nova/mobile-requests.jpg',          alt: 'Nova mobile requests menu' },
-    { src: '/work/nova/mobile-requests-details.jpg',  alt: 'Nova mobile request details' },
-    { src: '/work/nova/mobile-profile.jpg',           alt: 'Nova mobile profile and attendance' },
-    { src: '/work/nova/mobile-messages.jpg',          alt: 'Nova mobile messages' },
-    { src: '/work/nova/mobile-messages-2.jpg',        alt: 'Nova mobile messages thread' },
+    { src: '/work/nova/mobile-home.jpg',              alt: 'Digitmask mobile app home screen' },
+    { src: '/work/nova/mobile-requests.jpg',          alt: 'Digitmask mobile requests menu' },
+    { src: '/work/nova/mobile-requests-details.jpg',  alt: 'Digitmask mobile request details' },
+    { src: '/work/nova/mobile-profile.jpg',           alt: 'Digitmask mobile profile and attendance' },
+    { src: '/work/nova/mobile-messages.jpg',          alt: 'Digitmask mobile messages' },
+    { src: '/work/nova/mobile-messages-2.jpg',        alt: 'Digitmask mobile messages thread' },
   ],
 };
 

@@ -31,6 +31,8 @@ export type CreativeProject = {
   frames?: Frame[];
   pieces?: Piece[];
   palette?: { hex: string; name: string }[];
+  /** Image shown beside the palette (defaults to a story, then the cover). */
+  look?: string;
   deliverables: string[];
   credits: [string, string][];
   /** SEO, both languages (the build reads these directly). */
@@ -144,6 +146,64 @@ export const CREATIVE_PROJECTS: CreativeProject[] = [
     },
   },
   {
+    slug: 'digitmask',
+    name: 'Digitmask',
+    client: 'Digitmask',
+    cat: t('Software & AI · UAE', 'برمجيات وذكاء اصطناعي · الإمارات'),
+    kind: t('Client work', 'عمل لعميل'),
+    services: t('Visual identity · Brand system', 'هوية بصرية · نظام العلامة'),
+    year: '2025',
+    line: t(
+      'A visual identity for Digitmask, an Emirati platform for software, AI agents and digital marketing.',
+      'هوية بصرية لديجت ماسك، منصة إماراتية للبرمجيات ووكلاء الذكاء الاصطناعي والتسويق الرقمي.',
+    ),
+    group: 'design',
+    type: 'design',
+    cover: '/work/digitmask/cover.jpg',
+    brief: t(
+      'Digitmask works across software development, AI agents and digital marketing. They needed one identity that ties those specialties together and still reads as a modern, digital brand.',
+      'تعمل ديجت ماسك في تطوير البرمجيات ووكلاء الذكاء الاصطناعي والتسويق الرقمي. احتاجت هوية واحدة تربط هذه التخصصات معًا، وتبقى في الوقت نفسه علامة رقمية حديثة.',
+    ),
+    made: t(
+      'A mark built from the letter D and an arrow for moving forward, drawn on a pixel grid so it feels digital at every size. Around it: a purple and orange palette with a signature gradient, a type system, a pattern, app icons, and the brand carried onto screens, stationery, merch, events and signage.',
+      'شعار مبني من حرف D وسهم يرمز إلى التقدم، مرسوم على شبكة بكسلات ليبدو رقميًا في كل المقاسات. وحوله: لوحة ألوان بنفسجية وبرتقالية مع تدرج مميز، ونظام خطوط، ونقش، وأيقونات تطبيق، وتطبيق العلامة على الشاشات والمطبوعات والمنتجات والفعاليات واللافتات.',
+    ),
+    pieces: [
+      { src: '/work/digitmask/logo-idea.jpg', alt: t('Logo idea: the D and the arrow', 'فكرة الشعار: حرف D والسهم'), shape: 'wide' },
+      { src: '/work/digitmask/logo-process.jpg', alt: t('Logo process on a pixel grid', 'بناء الشعار على شبكة بكسلات'), shape: 'wide' },
+      { src: '/work/digitmask/type.jpg', alt: t('Typography', 'الخطوط'), shape: 'wide' },
+      { src: '/work/digitmask/icons.jpg', alt: t('App icons', 'أيقونات التطبيق'), shape: 'wide' },
+      { src: '/work/digitmask/mockups.jpg', alt: t('Website and phone', 'الموقع والهاتف'), shape: 'wide' },
+      { src: '/work/digitmask/stationery.jpg', alt: t('Stationery and ID card', 'المطبوعات وبطاقة التعريف'), shape: 'wide' },
+      { src: '/work/digitmask/merch.jpg', alt: t('Merch', 'منتجات العلامة'), shape: 'wide' },
+      { src: '/work/digitmask/event.jpg', alt: t('AI event stage', 'مسرح فعالية الذكاء الاصطناعي'), shape: 'wide' },
+      { src: '/work/digitmask/billboard.jpg', alt: t('Billboard: From vision to task', 'لوحة إعلانية: من الرؤية إلى المهمة'), shape: 'wide' },
+      { src: '/work/digitmask/office.jpg', alt: t('Meeting room screen', 'شاشة غرفة الاجتماعات'), shape: 'wide' },
+      { src: '/work/digitmask/signage.jpg', alt: t('Office signage', 'لافتة المكتب'), shape: 'wide' },
+      { src: '/work/digitmask/cards.jpg', alt: t('Business cards', 'بطاقات العمل'), shape: 'wide' },
+    ],
+    palette: [
+      { hex: '#6d249e', name: t('Main purple', 'بنفسجي رئيسي') },
+      { hex: '#ff7212', name: t('Signal orange', 'برتقالي') },
+      { hex: '#d000db', name: t('Pink', 'وردي') },
+      { hex: '#efe1ff', name: t('Lavender', 'لافندر') },
+    ],
+    look: '/work/digitmask/palette.jpg',
+    deliverables: t(
+      ['Logo and logo process', 'Colour palette and gradient', 'Typography and pattern', 'App icons', 'Stationery, merch and signage', 'Screens, events and billboards'],
+      ['الشعار وطريقة بنائه', 'لوحة الألوان والتدرج', 'الخطوط والنقش', 'أيقونات التطبيق', 'المطبوعات والمنتجات واللافتات', 'الشاشات والفعاليات واللوحات الإعلانية'],
+    ),
+    credits: [
+      [t('Development', 'التطوير'), t('Mahmoud Nayel', 'محمود نايل')],
+      [t('Design', 'التصميم'), 'Ziad Elrefaey'],
+      [t('Client', 'العميل'), 'Digitmask'],
+    ],
+    meta: {
+      en: { title: 'Digitmask Visual Identity — Case Study | AURIC', description: 'A visual identity for Digitmask, an Emirati software and AI platform: a pixel D-and-arrow mark, purple and orange palette, type, icons and brand applications.' },
+      ar: { title: 'هوية ديجت ماسك البصرية — دراسة حالة | أوريك', description: 'هوية بصرية لديجت ماسك، منصة إماراتية للبرمجيات والذكاء الاصطناعي: شعار بكسلي من حرف D وسهم، وألوان بنفسجية وبرتقالية، وخطوط وأيقونات وتطبيقات العلامة.' },
+    },
+  },
+  {
     slug: 'tcg-reel',
     name: t('TCG reel', 'ريل TCG'),
     client: 'TCG',
@@ -190,6 +250,58 @@ export const CREATIVE_PROJECTS: CreativeProject[] = [
     meta: {
       en: { title: 'TCG Reel — Case Study | AURIC', description: 'A 46-second vertical reel for TCG introducing its founder and its move into the US: fast edit, kinetic captions and motion by AURIC.' },
       ar: { title: 'ريل TCG — دراسة حالة | أوريك', description: 'ريل عمودي مدته 46 ثانية لشركة TCG يقدّم مؤسسها وتوسعها إلى أمريكا: مونتاج سريع وترجمة متحركة وموشن من أوريك.' },
+    },
+  },
+  {
+    slug: 'green-teaching-kitchen',
+    name: t('Green Teaching Kitchen', 'المطبخ التعليمي الأخضر'),
+    client: 'Green Teaching Kitchen',
+    cat: t('Community event · UAE', 'فعالية مجتمعية · الإمارات'),
+    kind: t('Client work', 'عمل لعميل'),
+    services: t('Event filming · Edit', 'تصوير فعاليات · مونتاج'),
+    year: '2026',
+    line: t(
+      'A 46-second recap of a community cooking night: guests in aprons, a chef at the stove, and everyone at one table.',
+      'ملخص مدته 46 ثانية لأمسية طبخ مجتمعية: ضيوف بالمرايل، وطاهية عند الموقد، والجميع على طاولة واحدة.',
+    ),
+    group: 'content',
+    type: 'reel',
+    cover: '/work/green-teaching-kitchen/cover.jpg',
+    film: {
+      src: '/media/event-recap.mp4',
+      teaser: '/media/event-recap.mp4',
+      poster: '/media/event-recap-poster.webp',
+      title: t('Green Teaching Kitchen recap', 'ملخص المطبخ التعليمي الأخضر'),
+      vertical: true,
+      length: '00:46',
+    },
+    brief: t(
+      'Green Teaching Kitchen runs hands-on cooking nights that bring people together. They wanted the feeling of the evening, not a list of what happened, in a vertical recap people would watch to the end and want to join next time.',
+      'ينظم المطبخ التعليمي الأخضر أمسيات طبخ عملية تجمع الناس. أرادوا أن ينقل الفيديو إحساس الأمسية لا قائمة بما حدث، في ملخص عمودي يشاهده الناس حتى النهاية ويرغبون في الانضمام في المرة القادمة.',
+    ),
+    made: t(
+      'We filmed the night in 4K and cut it to follow the evening\'s arc: arriving and gathering, chopping and cooking with the chef, plating, then the table, the laughter and the group at the end. Warm grade, close details, real reactions.',
+      'صوّرنا الأمسية بدقة 4K وقطعناها لتتبع مسارها: الوصول والتجمع، ثم التقطيع والطبخ مع الطاهية، ثم التقديم، ثم الطاولة والضحك والمجموعة في النهاية. تلوين دافئ وتفاصيل قريبة وتفاعلات حقيقية.',
+    ),
+    frames: [
+      f('green-teaching-kitchen', 1, t('00:01 · Gathering with the chef', '00:01 · التجمع مع الطاهية')),
+      f('green-teaching-kitchen', 2, t('00:06 · Prep', '00:06 · التحضير')),
+      f('green-teaching-kitchen', 3, t('00:15 · At the stove', '00:15 · عند الموقد')),
+      f('green-teaching-kitchen', 4, t('00:25 · Plating', '00:25 · التقديم')),
+      f('green-teaching-kitchen', 5, t('00:30 · At the table', '00:30 · على الطاولة')),
+      f('green-teaching-kitchen', 6, t('00:42 · Together', '00:42 · معًا')),
+    ],
+    deliverables: t(
+      ['Event filming in 4K', '46-second vertical recap', 'Colour grade'],
+      ['تصوير الفعالية بدقة 4K', 'ملخص عمودي مدته 46 ثانية', 'تلوين'],
+    ),
+    credits: [
+      [t('Filming & edit', 'التصوير والمونتاج'), 'AURIC Create'],
+      [t('Client', 'العميل'), 'Green Teaching Kitchen'],
+    ],
+    meta: {
+      en: { title: 'Green Teaching Kitchen Event Recap — Case Study | AURIC', description: 'A 46-second vertical recap of a Green Teaching Kitchen community cooking night, filmed in 4K and edited by AURIC.' },
+      ar: { title: 'ملخص فعالية المطبخ التعليمي الأخضر — دراسة حالة | أوريك', description: 'ملخص عمودي مدته 46 ثانية لأمسية طبخ مجتمعية للمطبخ التعليمي الأخضر، صوّرته أوريك بدقة 4K ومنتجته.' },
     },
   },
   {

@@ -58,15 +58,30 @@ function Frames({ p }: { p: CreativeProject }) {
 function Pieces({ p }: { p: CreativeProject }) {
   const posts = p.pieces!.filter((x) => x.shape === 'post');
   const stories = p.pieces!.filter((x) => x.shape === 'story');
+  const wides = p.pieces!.filter((x) => x.shape === 'wide');
   return (
     <section data-stack className="overflow-hidden bg-bg py-20 md:py-[120px]">
       <div className="wrap">
         <Reveal className="mb-10 flex flex-wrap items-end justify-between gap-6">
           <h2 className="h2">{t('The work', 'العمل')}</h2>
           <span className="lab">
-            {posts.length} {t('posts', 'منشورات')} · {stories.length} {t('stories', 'ستوريز')}
+            {wides.length > 0
+              ? `${wides.length} ${t('pieces', 'قطعة')}`
+              : `${posts.length} ${t('posts', 'منشورات')} · ${stories.length} ${t('stories', 'ستوريز')}`}
           </span>
         </Reveal>
+        {wides.length > 0 && (
+          <motion.div className="grid gap-[18px] md:grid-cols-2" initial="hidden" whileInView="visible" viewport={inView} variants={stagger(0.08)}>
+            {wides.map((x, i) => (
+              <motion.figure key={x.src} variants={rise} className={`m-0 flex flex-col gap-[10px] ${i % 5 === 0 ? 'md:col-span-2' : ''}`}>
+                <div className="aspect-video overflow-hidden rounded-xl bg-surface">
+                  <Photo src={x.src} alt={x.alt} sizes={i % 5 === 0 ? '(min-width: 768px) 90vw, 100vw' : '(min-width: 768px) 45vw, 100vw'} className="h-full w-full object-cover" />
+                </div>
+                <figcaption className="lab">{x.alt}</figcaption>
+              </motion.figure>
+            ))}
+          </motion.div>
+        )}
         <motion.div className="grid gap-[18px] md:grid-cols-3" initial="hidden" whileInView="visible" viewport={inView} variants={stagger(0.1)}>
           {posts.map((x) => (
             <motion.figure key={x.src} variants={rise} className="m-0 flex flex-col gap-[10px]">
@@ -94,6 +109,12 @@ function Pieces({ p }: { p: CreativeProject }) {
   );
 }
 
+/** True for pale swatches that need dark text. */
+const isLight = (hex: string) => {
+  const n = parseInt(hex.slice(1), 16);
+  return 0.299 * (n >> 16) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255) > 170;
+};
+
 function Palette({ p }: { p: CreativeProject }) {
   return (
     <section data-expand className="bg-cream py-20 text-[#141414] md:py-[120px]">
@@ -106,19 +127,22 @@ function Palette({ p }: { p: CreativeProject }) {
           <motion.div variants={rise} className="col-span-2 row-span-2 overflow-hidden rounded-[10px] md:col-[1/6] md:row-[1/3]">
             {/* A story (the cover is already shown at the top of the page) */}
             {(() => {
-              const look = p.pieces?.find((x) => x.shape === 'story') ?? { src: p.cover, alt: p.name };
+              const look = p.look ? { src: p.look, alt: t(`${p.name} palette`, `ألوان ${p.name}`) } : (p.pieces?.find((x) => x.shape === 'story') ?? { src: p.cover, alt: p.name });
               return <Photo src={look.src} alt={look.alt} sizes="(min-width: 768px) 40vw, 100vw" className="h-full max-h-[620px] w-full object-cover object-top" />;
             })()}
           </motion.div>
           <div className="col-span-2 grid grid-cols-2 gap-4 md:col-[6/13]">
-            {p.palette!.map((c) => (
-              <motion.div key={c.hex} variants={rise} className="flex aspect-[4/3] flex-col justify-end gap-1 rounded-[10px] p-4" style={{ background: c.hex }}>
-                <span className={`font-display text-[17px] font-bold tracking-[-0.02em] ${c.hex === '#e7ddc8' ? 'text-[#141414]' : 'text-cream'}`}>{c.name}</span>
-                <span className={`lab !text-[11px] ${c.hex === '#e7ddc8' ? '!text-[#4a4740]' : '!text-cream'}`} dir="ltr">
-                  {c.hex.toUpperCase()}
-                </span>
-              </motion.div>
-            ))}
+            {p.palette!.map((c) => {
+              const light = isLight(c.hex);
+              return (
+                <motion.div key={c.hex} variants={rise} className="flex aspect-[4/3] flex-col justify-end gap-1 rounded-[10px] p-4" style={{ background: c.hex }}>
+                  <span className={`font-display text-[17px] font-bold tracking-[-0.02em] ${light ? 'text-[#141414]' : 'text-cream'}`}>{c.name}</span>
+                  <span className={`lab !text-[11px] ${light ? '!text-[#4a4740]' : '!text-cream'}`} dir="ltr">
+                    {c.hex.toUpperCase()}
+                  </span>
+                </motion.div>
+              );
+            })}
           </div>
         </motion.div>
       </div>
@@ -189,7 +213,12 @@ export default function CreativeCaseStudy({ project: p }: { project: CreativePro
               </div>
             </div>
           )}
-          {!p.film && p.pieces && (
+          {!p.film && p.pieces && !p.pieces.some((x) => x.shape === 'post') && (
+            <div className="overflow-hidden rounded-[14px]">
+              <Photo src={p.cover} alt={t(`${p.name} cover`, `غلاف ${p.name}`)} sizes="(min-width: 1500px) 1480px, 100vw" eager className="aspect-video h-auto w-full object-cover" />
+            </div>
+          )}
+          {!p.film && p.pieces && p.pieces.some((x) => x.shape === 'post') && (
             <div className="grid gap-4 md:grid-cols-12">
               <div className="overflow-hidden rounded-[14px] md:col-span-5">
                 <Photo src={p.cover} alt={t(`${p.name} cover`, `غلاف ${p.name}`)} sizes="(min-width: 768px) 40vw, 100vw" eager className="h-full w-full object-cover object-top" />

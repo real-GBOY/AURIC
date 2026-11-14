@@ -56,7 +56,7 @@ Across the whole site:
 | **Atlas** | Real-estate developer operating system: CRM, inventory, sales, payment plans, finance and an AI Copilot | [atlas-web-eight-xi.vercel.app](https://atlas-web-eight-xi.vercel.app) |
 | **Mizan** | Bilingual (English and Arabic, RTL) law-firm management system on web and mobile | [mizan-web-seven.vercel.app](https://mizan-web-seven.vercel.app) |
 | **Ajwadi** | Collaboration and project-management platform with an admin dashboard and mobile app | [ajwadi-front.vercel.app](https://ajwadi-front.vercel.app) |
-| **Nova** | Enterprise ERP with integrated CRM modules, web dashboard and employee mobile app | [nova-front-me.vercel.app](https://nova-front-me.vercel.app) |
+| **Digitmask** (ERP) | Enterprise ERP with integrated CRM modules, web dashboard and employee mobile app | [nova-front-me.vercel.app](https://nova-front-me.vercel.app) |
 | **Clinic OS** | Clinic operating system on Odoo 19 with a workspace for every role and a patient portal | [github.com/real-GBOY/clinicOS](https://github.com/real-GBOY/clinicOS) |
 | **Enactix** | Student-organization management platform with QR attendance and offline sync | [enactix.vercel.app](https://enactix.vercel.app) |
 | **Weavolution** | Sustainability and circular-economy marketing site | [wevo-project-mu.vercel.app](https://wevo-project-mu.vercel.app) |
@@ -72,7 +72,7 @@ multi-tenancy, permissions, file storage, audit and events, so each new product 
 | | |
 |---|---|
 | **Atlas**: executive dashboard ![Atlas](public/work/atlas/dashboard.png) | **Mizan**: firm dashboard ![Mizan](public/work/mizan/dashboard.png) |
-| **Ajwadi**: admin dashboard ![Ajwadi](public/work/ajwadi/dashboard-overview.png) | **Nova**: dashboard overview ![Nova](public/work/nova/dashboard-overview.jpg) |
+| **Ajwadi**: admin dashboard ![Ajwadi](public/work/ajwadi/dashboard-overview.png) | **Digitmask**: ERP dashboard overview ![Digitmask](public/work/nova/dashboard-overview.jpg) |
 | **Clinic OS**: reception dashboard ![Clinic OS](public/work/clinic-os/reception-dashboard.png) | **Hotel OS**: manager dashboard ![Hotel OS](public/work/hotel-os/dashboard.png) |
 | **Enactix**: dashboard overview ![Enactix](public/work/enactix/dashboard-overview.jpg) | **OptiCare**: dashboard overview ![OptiCare](public/work/opticare/dashboard-overview.jpg) |
 

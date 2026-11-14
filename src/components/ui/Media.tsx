@@ -134,6 +134,9 @@ export function LoopVideo({ src, poster, label, className = '' }: { src: string;
   );
 }
 
+/** Light cover for a video: the 800px WebP of a project image (made by `npm run images`), else the image itself. */
+const posterFor = (img: string) => (/^\/work\/.+\.(png|jpe?g)$/i.test(img) ? img.replace(/\.(png|jpe?g)$/i, '-800.webp') : img);
+
 /**
  * A card preview for real work: the image, with a silent teaser looping over it when the
  * work is a film or reel. Safe inside links (no buttons).
@@ -159,10 +162,58 @@ export function WorkPreview({
   play?: boolean;
 }) {
   return (
-    <div className={`relative overflow-hidden bg-surface ${className}`} style={ratio ? { aspectRatio: ratio } : undefined}>
+    // Callers that fill a box pass `absolute inset-0`; only default to `relative` otherwise
+    // (with both, Tailwind's `relative` wins and the preview collapses to zero height).
+    <div className={`${/\babsolute\b/.test(className) ? '' : 'relative'} overflow-hidden bg-surface ${className}`} style={ratio ? { aspectRatio: ratio } : undefined}>
       <Photo src={img} alt={alt} sizes={sizes} className={`absolute inset-0 h-full w-full ${imgClassName}`} />
-      {teaser && <LoopVideo src={teaser} label={alt} />}
+      {/* The card image is also the video's cover, so it never shows a blank box before it plays. */}
+      {teaser && <LoopVideo src={teaser} poster={posterFor(img)} label={alt} />}
       {play && <PlayButton size={52} className="absolute bottom-4 start-4" />}
+    </div>
+  );
+}
+
+/**
+ * A vertical reel in a landscape (or any) slot: the reel keeps its true 9:16 shape inside a
+ * phone frame, over a soft blurred backdrop made from its own frame, instead of being cropped.
+ */
+export function ReelPreview({
+  img,
+  teaser,
+  alt,
+  ratio,
+  className = '',
+  align = 'center',
+  play = true,
+}: {
+  img: string;
+  teaser?: string;
+  alt: string;
+  ratio?: string;
+  className?: string;
+  /**
+   * Where the phone sits: centred; towards the end, vertically centred (clear of a title on the
+   * start side); or in the top end corner, smaller (clear of a title running across the bottom).
+   */
+  align?: 'center' | 'end' | 'top-end';
+  play?: boolean;
+}) {
+  return (
+    <div className={`${/\babsolute\b/.test(className) ? '' : 'relative'} overflow-hidden bg-ink ${className}`} style={ratio ? { aspectRatio: ratio } : undefined}>
+      <Photo src={img} alt="" sizes="400px" className="absolute inset-0 h-full w-full scale-125 object-cover opacity-60 blur-2xl" />
+      <span className="absolute inset-0 bg-[rgba(10,10,11,.35)]" aria-hidden="true" />
+      <div
+        className={`absolute aspect-[9/16] overflow-hidden rounded-[18px] border-[5px] border-surface-2 shadow-[0_30px_60px_rgba(0,0,0,.55)] ${
+          align === 'top-end'
+            ? 'end-[7%] top-[6%] h-[52%]'
+            : align === 'end'
+              ? 'end-[8%] top-1/2 h-[86%] -translate-y-1/2'
+              : 'left-1/2 top-1/2 h-[86%] -translate-x-1/2 -translate-y-1/2'
+        }`}
+      >
+        <WorkPreview img={img} teaser={teaser} alt={alt} sizes="360px" className="absolute inset-0" imgClassName="object-cover" />
+        {play && <PlayButton size={44} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" />}
+      </div>
     </div>
   );
 }

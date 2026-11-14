@@ -110,7 +110,8 @@ export const SOFTWARE: SoftwareProject[] = [
   sw('mizan', MIZAN_PROJECT, { cat: 'Law firm', kind: 'Client project', services: 'Design · Web · Mobile · AI', line: 'Practice management for a law firm, in Arabic and English.', img: '/work/mizan/dashboard.png' }),
   sw('atlas', ATLAS_PROJECT, { cat: 'Real estate', kind: 'AURIC product', services: 'Platform · AI', line: 'A real-estate operating system with an AI copilot.', img: '/work/atlas/dashboard.png' }),
   sw('hotel-os', HOTEL_OS_PROJECT, { cat: 'Hospitality', kind: 'Showcase', services: 'Platform · Website', line: 'Hotel operations and the booking website guests use.', img: '/work/hotel-os/dashboard.png' }),
-  sw('nova', NOVA_PROJECT, { cat: 'Enterprise, UAE', kind: 'Client project', services: 'ERP · Mobile app', line: 'An ERP with CRM modules and an employee mobile app.' }),
+  // Digitmask's ERP (built as "Nova"; old /work/nova links redirect here, see vercel.json).
+  sw('digitmask-erp', NOVA_PROJECT, { cat: 'Enterprise, UAE', kind: 'Client project', services: 'ERP · Mobile app', line: 'An ERP with CRM modules and an employee mobile app.' }),
   sw('ajwadi', AJWADI_PROJECT, { cat: 'Collaboration', kind: 'Project', services: 'Web · Mobile', line: 'Projects, contracts, messaging and payments in one platform.' }),
   sw('raqib', RAQIB_PROJECT, { cat: 'Security & inspection', kind: 'AURIC product', services: 'Platform · Offline app', line: 'Field inspections and quality control that work offline.', img: '/work/raqib/dashboard.png' }),
   sw('admit', ADMIT_PROJECT, { cat: 'Ticketing', kind: 'AURIC product', services: 'Platform', line: 'Event ticketing with manual payment checks.', img: '/work/admit/dashboard.png' }),
@@ -132,7 +133,7 @@ const cr = (p: CreativeProject): Entry => ({
   year: p.year,
   group: p.group,
   type: p.type,
-  img: p.type === 'design' ? (p.pieces?.[0]?.src ?? p.cover) : p.cover,
+  img: p.type === 'design' ? (p.pieces?.find((x) => x.shape === 'post')?.src ?? p.cover) : p.cover,
   teaser: p.film?.teaser,
   vertical: p.film?.vertical,
   href: `/work/${p.slug}`,
@@ -145,7 +146,9 @@ export const CREATIVE = {
   showreel: C['auric-showreel'],
   brandFilm: C['tcg-brand-film'],
   identity: C['elk-cafe'],
+  digitmask: C['digitmask'],
   reel: C['tcg-reel'],
+  eventRecap: C['green-teaching-kitchen'],
 };
 
 const S = Object.fromEntries(SOFTWARE.map((p) => [p.slug, p])) as Record<string, SoftwareProject>;
@@ -157,24 +160,24 @@ export const CREATE_AURIC: Entry = {
 
 /** Work page archive: everything, mixed formats. */
 export const ARCHIVE: Entry[] = [
-  CREATIVE.brandFilm, CREATIVE.identity, S.mizan, CREATIVE.reel, S.atlas, CREATIVE.showreel, S['hotel-os'],
-  S.nova, S.ajwadi, S.raqib, S.admit, S['clinic-os'], S.enactix, S.weavolution, S['build-art'], S.opticare, CREATE_AURIC,
+  CREATIVE.brandFilm, CREATIVE.identity, S.mizan, CREATIVE.digitmask, CREATIVE.reel, S.atlas, CREATIVE.eventRecap, CREATIVE.showreel, S['hotel-os'],
+  S['digitmask-erp'], S.ajwadi, S.raqib, S.admit, S['clinic-os'], S.enactix, S.weavolution, S['build-art'], S.opticare, CREATE_AURIC,
 ];
 
 /** Phone feed order. */
 export const FEED: Entry[] = [
-  CREATIVE.brandFilm, S.mizan, CREATIVE.identity, CREATIVE.reel, S.atlas, CREATIVE.showreel, S['hotel-os'],
-  S.nova, S.ajwadi, S.raqib, S.admit, S['clinic-os'], S.enactix, S.weavolution, S['build-art'], S.opticare, CREATE_AURIC,
+  CREATIVE.brandFilm, S.mizan, CREATIVE.identity, CREATIVE.digitmask, CREATIVE.reel, S.atlas, CREATIVE.eventRecap, CREATIVE.showreel, S['hotel-os'],
+  S['digitmask-erp'], S.ajwadi, S.raqib, S.admit, S['clinic-os'], S.enactix, S.weavolution, S['build-art'], S.opticare, CREATE_AURIC,
 ];
 
 /** Work page index (A2). */
 export const INDEX: Entry[] = [
-  CREATIVE.brandFilm, CREATIVE.identity, S.mizan, CREATIVE.reel, S.atlas, CREATIVE.showreel, S['hotel-os'], S.nova,
+  CREATIVE.brandFilm, CREATIVE.identity, S.mizan, CREATIVE.digitmask, CREATIVE.reel, S.atlas, CREATIVE.showreel, S['hotel-os'],
 ];
 
 /** Case studies page (deep dives). */
 export const CASE_STUDIES: Entry[] = [
-  S.mizan, CREATIVE.brandFilm, CREATIVE.identity, S.atlas, S['hotel-os'], CREATIVE.reel, S.nova, CREATIVE.showreel,
+  S.mizan, CREATIVE.brandFilm, CREATIVE.identity, S.atlas, CREATIVE.digitmask, S['hotel-os'], CREATIVE.reel, S['digitmask-erp'], CREATIVE.eventRecap, CREATIVE.showreel,
   S.raqib, S.admit, S['clinic-os'], S.ajwadi,
 ];
 

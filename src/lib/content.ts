@@ -156,6 +156,14 @@ export const FILMS = {
   },
 };
 
+/** Green Teaching Kitchen event recap (vertical). */
+export const EVENT_RECAP = {
+  src: '/media/event-recap.mp4',
+  teaser: '/media/event-recap.mp4',
+  poster: '/media/event-recap-poster.webp',
+  title: t('Green Teaching Kitchen recap', 'ملخص المطبخ التعليمي الأخضر'),
+};
+
 export const SHOWREEL = {
   src: '/media/showreel.mp4',
   poster: '/media/showreel-poster.webp',

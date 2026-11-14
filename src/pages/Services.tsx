@@ -250,7 +250,7 @@ function Build() {
         <ServiceList
           items={t(['Custom Software', 'Web Development', 'Mobile Apps', 'Digital Platforms', 'Business Systems', 'Internal Tools', 'AI Integration', 'AI Automation', 'Process Automation', 'APIs and Integrations', 'Digital Products'], ['برمجيات مخصصة', 'تطوير المواقع', 'تطبيقات الجوال', 'منصات رقمية', 'أنظمة الأعمال', 'أدوات داخلية', 'دمج الذكاء الاصطناعي', 'أتمتة بالذكاء الاصطناعي', 'أتمتة العمليات', 'واجهات برمجية وتكاملات', 'منتجات رقمية'])}
         />
-        <ChapterFoot note="Mizan · Atlas · HotelOS · Nova · create-auric" noteIsLab cta={t('Discuss a build', 'ناقش مشروعًا تقنيًا')} />
+        <ChapterFoot note="Mizan · Atlas · HotelOS · Digitmask · create-auric" noteIsLab cta={t('Discuss a build', 'ناقش مشروعًا تقنيًا')} />
       </div>
     </section>
   );

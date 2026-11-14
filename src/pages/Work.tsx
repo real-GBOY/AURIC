@@ -4,11 +4,11 @@ import Layout from '../components/layout/Layout';
 import BigCTA from '../components/layout/BigCTA';
 import EntryMedia from '../components/work/EntryMedia';
 import { PlayButton } from '../components/ui/Icons';
-import { LoopVideo, Photo, PlayableVideo, Screen, VideoSlot, WorkPreview } from '../components/ui/Media';
+import { LoopVideo, Photo, PlayableVideo, ReelPreview, Screen, VideoSlot, WorkPreview } from '../components/ui/Media';
 import { Reveal, TitleReveal } from '../components/ui/Reveal';
 import { ARCHIVE, FEED, FILTERS, INDEX, type Entry, type Group } from '../lib/projects';
 import { CREATIVE_PROJECTS, creativeBySlug } from '../lib/creative';
-import { FILMS, SHOWREEL } from '../lib/content';
+import { EVENT_RECAP, FILMS, SHOWREEL } from '../lib/content';
 import { ARROW, t } from '../lib/i18n';
 import { EASE, inView, rise, stagger, useDragScroll } from '../lib/motion';
 import { usePinnedStrip } from '../lib/usePinnedStrip';
@@ -103,7 +103,7 @@ function ProjectIndex() {
             {INDEX.map((e, k) => {
               const on = k === i;
               return (
-                <li key={e.name}>
+                <li key={e.href}>
                   <a
                     href={e.href}
                     onMouseEnter={() => setI(k)}
@@ -124,7 +124,7 @@ function ProjectIndex() {
           </ul>
           <div className="sticky top-24 flex flex-col gap-4" data-tilt>
             <AnimatePresence mode="wait">
-              <motion.div key={cur.name} initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.98 }} transition={{ duration: 0.3 }}>
+              <motion.div key={cur.href} initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.98 }} transition={{ duration: 0.3 }}>
                 <IndexPreview e={cur} />
               </motion.div>
             </AnimatePresence>
@@ -186,7 +186,17 @@ function DesignChapter() {
   return (
     <section data-expand className="hidden bg-cream py-[120px] text-[#141414] md:block">
       <div className="wrap">
-        <ChapterHead n="02" title={t('Design & branding', 'تصميم وهوية')} cream right={<a href="/work/elk-cafe" className="lab tap !text-gold-deep hover:!text-[#141414]">{t('ELK Café case study', 'دراسة حالة مقهى إلك')} {ARROW}</a>} />
+        <ChapterHead
+          n="02"
+          title={t('Design & branding', 'تصميم وهوية')}
+          cream
+          right={
+            <span className="flex flex-wrap gap-x-6">
+              <a href="/work/elk-cafe" className="lab tap !text-gold-deep hover:!text-[#141414]">ELK Café {ARROW}</a>
+              <a href="/work/digitmask" className="lab tap !text-gold-deep hover:!text-[#141414]">Digitmask {ARROW}</a>
+            </span>
+          }
+        />
         <motion.div
           className="grid grid-cols-2 gap-4 [grid-auto-rows:200px] lg:grid-cols-12 lg:[grid-auto-rows:120px]"
           data-parallax="0.05"
@@ -204,17 +214,18 @@ function DesignChapter() {
               <span className="lab !text-gold">{t('Identity · Saudi National Day', 'هوية · اليوم الوطني السعودي')}</span>
             </span>
           </motion.div>
-          <motion.div variants={tile} className="relative overflow-hidden rounded-lg bg-[#40564a] lg:col-[6/9] lg:row-[1/3]">
-            <Photo src="/work/elk/story-1.jpg" alt={t('ELK Café story', 'ستوري لمقهى إلك')} sizes="(min-width: 1024px) 25vw, 50vw" className="h-full w-full object-cover object-[50%_20%]" />
-          </motion.div>
+          <motion.a href="/work/digitmask" variants={tile} className="relative overflow-hidden rounded-lg bg-[#6d249e] lg:col-[6/9] lg:row-[1/3]">
+            <Photo src="/work/digitmask/cover.jpg" alt={t('Digitmask visual identity', 'هوية ديجت ماسك البصرية')} sizes="(min-width: 1024px) 25vw, 50vw" className="h-full w-full object-cover object-[30%_50%]" />
+            <span className="slot bottom-[14px] left-4 rounded bg-[rgba(10,10,11,.75)] px-2 py-1">Digitmask</span>
+          </motion.a>
           <motion.div variants={tile} className="relative overflow-hidden rounded-lg bg-[#40564a] lg:col-[9/13] lg:row-[1/4]">
             <Photo src="/work/elk/post-2.jpg" alt={t('ELK Café National Day post', 'منشور اليوم الوطني لمقهى إلك')} sizes="(min-width: 1024px) 33vw, 50vw" className="h-full w-full object-cover object-top" />
           </motion.div>
-          <motion.div variants={tile} className="relative overflow-hidden rounded-lg bg-[#40564a] lg:col-[6/9] lg:row-[3/5]">
-            <Photo src="/work/elk/story-4.jpg" alt={t('ELK Café story', 'ستوري لمقهى إلك')} sizes="(min-width: 1024px) 25vw, 50vw" className="h-full w-full object-cover object-[50%_30%]" />
-          </motion.div>
-          <motion.div variants={tile} className="flex gap-2 rounded-lg bg-[#141414] p-[14px] lg:col-[9/13] lg:row-[4/5]" role="img" aria-label={t('ELK Café colour palette', 'لوحة ألوان مقهى إلك')}>
-            {['#40564a', '#8b1e5a', '#e7ddc8', '#c8963e'].map((c) => (
+          <motion.a href="/work/digitmask" variants={tile} className="relative overflow-hidden rounded-lg bg-[#6d249e] lg:col-[6/9] lg:row-[3/5]">
+            <Photo src="/work/digitmask/signage.jpg" alt={t('Digitmask office signage: From vision to task', 'لافتة مكتب ديجت ماسك: من الرؤية إلى المهمة')} sizes="(min-width: 1024px) 25vw, 50vw" className="h-full w-full object-cover object-[45%_50%]" />
+          </motion.a>
+          <motion.div variants={tile} className="flex gap-2 rounded-lg bg-[#141414] p-[14px] lg:col-[9/13] lg:row-[4/5]" role="img" aria-label={t('ELK Café and Digitmask colours', 'ألوان مقهى إلك وديجت ماسك')}>
+            {['#40564a', '#8b1e5a', '#6d249e', '#ff7212'].map((c) => (
               <span key={c} className="flex-1 rounded" style={{ background: c }} />
             ))}
           </motion.div>
@@ -229,27 +240,33 @@ function ContentChapter() {
   return (
     <section data-stack className="hidden py-[120px] md:block">
       <div className="wrap">
-        <ChapterHead n="03" title={t('Content & social', 'محتوى وسوشيال')} right={<span className="lab">{t('TCG reel · ELK Café stories', 'ريل TCG · ستوريز مقهى إلك')}</span>} />
+        <ChapterHead n="03" title={t('Content & social', 'محتوى وسوشيال')} right={<span className="lab">{t('Reels · events · stories · brand visuals', 'ريلز · فعاليات · ستوريز · مرئيات العلامة')}</span>} />
         <motion.div className="grid grid-cols-5 gap-3 lg:gap-4" initial="hidden" whileInView="visible" viewport={inView} variants={stagger(0.1)}>
-          {[
-            { key: 'reel', label: t('TCG reel · plays with sound', 'ريل TCG · يعمل بالصوت'), href: '/work/tcg-reel' },
-            ...(creativeBySlug('elk-cafe')?.pieces ?? [])
-              .filter((x) => x.shape === 'story')
-              .slice(0, 4)
-              .map((x) => ({ key: x.src, label: `ELK Café · ${x.alt}`, href: '/work/elk-cafe', story: x })),
-          ].map((it, n) => (
+          {(() => {
+            const elk = (creativeBySlug('elk-cafe')?.pieces ?? []).filter((x) => x.shape === 'story');
+            // A mix of clients and formats: a reel, stories and brand visuals.
+            // Videos (play in place with sound) alternate with stills (open the case study).
+            const row: { key: string; label: string; href: string; film?: typeof FILMS.reel; story?: { src: string; alt: string } }[] = [
+              { key: 'reel', label: t('TCG · reel, plays with sound', 'TCG · ريل يعمل بالصوت'), href: '/work/tcg-reel', film: FILMS.reel },
+              { key: 'elk-1', label: t('ELK Café · National Day story', 'مقهى إلك · ستوري اليوم الوطني'), href: '/work/elk-cafe', story: elk[0] },
+              { key: 'gtk', label: t('Green Teaching Kitchen · event recap', 'المطبخ التعليمي الأخضر · ملخص فعالية'), href: '/work/green-teaching-kitchen', film: EVENT_RECAP },
+              { key: 'dm-1', label: t('Digitmask · app icon', 'ديجت ماسك · أيقونة التطبيق'), href: '/work/digitmask', story: { src: '/work/digitmask/social-2.jpg', alt: t('Digitmask app icon on a phone', 'أيقونة ديجت ماسك على الهاتف') } },
+              { key: 'dm-2', label: t('Digitmask · billboard', 'ديجت ماسك · لوحة إعلانية'), href: '/work/digitmask', story: { src: '/work/digitmask/social-3.jpg', alt: t('Digitmask billboard', 'لوحة ديجت ماسك الإعلانية') } },
+            ];
+            return row.filter((it) => it.film || it.story);
+          })().map((it, n) => (
             <motion.div
               key={it.key}
               variants={{ hidden: { opacity: 0, y: 70 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: EASE } } }}
               className={`flex flex-col gap-3 ${n % 2 === 1 ? 'mt-8 lg:mt-12' : ''}`}
             >
               <motion.div animate={{ y: [0, n % 2 ? 8 : -8, 0] }} transition={{ duration: 5 + n * 0.4, repeat: Infinity, ease: 'easeInOut' }}>
-                {'story' in it && it.story ? (
+                {it.story ? (
                   <a href={it.href} data-cursor="view" className="block">
                     <WorkPreview img={it.story.src} alt={it.story.alt} ratio="9/16" sizes="20vw" className="rounded-[22px] border-[6px] border-surface-2" imgClassName="object-cover" />
                   </a>
                 ) : (
-                  <PlayableVideo film={FILMS.reel} ratio="9/16" vertical radius={22} playSize={48} style={{ border: '6px solid #202023' }} />
+                  <PlayableVideo film={it.film!} ratio="9/16" vertical radius={22} playSize={48} style={{ border: '6px solid #202023' }} />
                 )}
               </motion.div>
               <a href={it.href} className="lab hover:!text-gold">
@@ -277,11 +294,11 @@ function SoftwareChapter() {
           <motion.a href="/work/mizan" className="absolute left-[30%] top-[130px] z-[2] h-[340px] w-[52%] shadow-[0_30px_60px_rgba(0,0,0,.55)] lg:h-[400px]" {...up(0.15)}>
             <div className="h-full" data-parallax="0.14"><Screen src="/work/mizan/dashboard.png" alt="Mizan dashboard" className="h-full" /></div>
           </motion.a>
-          <motion.a href="/work/nova" className="absolute right-0 top-0 z-[3] h-[380px] w-[180px] shadow-[0_30px_60px_rgba(0,0,0,.55)] lg:h-[420px] lg:w-[200px]" {...up(0.3)}>
-            <div className="h-full" data-parallax="0.24"><Screen src="/work/nova/mobile-home.jpg" alt="Nova mobile app" bar={false} radius={28} className="h-full" /></div>
+          <motion.a href="/work/digitmask-erp" className="absolute right-0 top-0 z-[3] h-[380px] w-[180px] shadow-[0_30px_60px_rgba(0,0,0,.55)] lg:h-[420px] lg:w-[200px]" {...up(0.3)}>
+            <div className="h-full" data-parallax="0.24"><Screen src="/work/nova/mobile-home.jpg" alt="Digitmask mobile app" bar={false} radius={28} className="h-full" /></div>
           </motion.a>
           <div className="absolute bottom-0 left-0 z-[4] flex flex-wrap gap-7">
-            {[['Mizan', t('Client project', 'مشروع عميل')], ['Atlas', t('AURIC product', 'منتج أوريك')], ['Nova', t('Client project', 'مشروع عميل')]].map(([n, k]) => (
+            {[['Mizan', t('Client project', 'مشروع عميل')], ['Atlas', t('AURIC product', 'منتج أوريك')], ['Digitmask', t('Client project', 'مشروع عميل')]].map(([n, k]) => (
               <span key={n} className="lab">
                 <span className="text-cream">{n}</span> · {k}
               </span>
@@ -321,7 +338,7 @@ function Archive() {
           <AnimatePresence mode="popLayout">
             {items.map((p) => (
               <motion.a
-                key={p.name}
+                key={p.href}
                 layout
                 href={p.href}
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -363,11 +380,11 @@ function PhoneFeed() {
           {items.map((p) => {
             const wide = p.type === 'img' || p.type === 'video' || p.type === 'term';
             return (
-              <motion.a key={p.name} layout href={p.href} className={`flex flex-col gap-[10px] ${wide ? 'col-span-2' : ''}`} initial="hidden" whileInView="visible" viewport={inView} variants={rise}>
+              <motion.a key={p.href} layout href={p.href} className={`flex flex-col gap-[10px] ${wide ? 'col-span-2' : ''}`} initial="hidden" whileInView="visible" viewport={inView} variants={rise}>
                 {p.type === 'img' && <Screen src={p.img!} alt={`${p.name} screen`} ratio="16/10" />}
                 {p.type === 'video' && <WorkPreview img={p.img!} teaser={p.teaser} alt={`${p.name}, ${p.services}`} ratio="16/10" sizes="100vw" className="rounded-xl" imgClassName="object-cover" play />}
                 {p.type === 'design' && <WorkPreview img={p.img!} alt={`${p.name}, ${p.services}`} ratio="4/5" sizes="50vw" className="rounded-xl" />}
-                {p.type === 'reel' && <WorkPreview img={p.img!} teaser={p.teaser} alt={`${p.name}, ${p.services}`} ratio="4/5" sizes="50vw" className="rounded-[18px] border-[5px] border-surface-2" imgClassName="object-cover" play />}
+                {p.type === 'reel' && <ReelPreview img={p.img!} teaser={p.teaser} alt={`${p.name}, ${p.services}`} ratio="4/5" className="rounded-[18px]" />}
                 {p.type === 'term' && (
                   <div className="rounded-xl border border-[rgba(244,241,232,.14)] bg-[#0f0f10] p-5 font-mono text-[14px] leading-[1.8] text-copy">
                     <span className="text-gold">$</span> npx create-auric my-app

@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Layout from '../components/layout/Layout';
 import BigCTA from '../components/layout/BigCTA';
 import { PlayButton } from '../components/ui/Icons';
-import { Photo, WorkPreview } from '../components/ui/Media';
+import { Photo, ReelPreview, WorkPreview } from '../components/ui/Media';
 import { TitleReveal } from '../components/ui/Reveal';
 import { CASE_STUDIES, FILTERS, type Group } from '../lib/projects';
 import { EASE } from '../lib/motion';
@@ -51,7 +51,7 @@ export default function CaseStudies() {
               const full = cls === 'full';
               return (
                 <motion.a
-                  key={p.name}
+                  key={p.href}
                   layout
                   href={p.href}
                   data-cursor="view"
@@ -70,7 +70,11 @@ export default function CaseStudies() {
                     {p.type === 'img' && (
                       <div className="absolute inset-0" data-scrub-zoom="1.14"><Photo src={p.img!} alt={p.name} sizes="(min-width: 768px) 50vw, 100vw" className="absolute inset-0 h-full w-full object-cover object-left-top transition-transform duration-700 group-hover:scale-[1.03]" /></div>
                     )}
-                    {(p.type === 'video' || p.type === 'reel' || p.type === 'design') && p.img && (
+                    {p.type === 'reel' && p.img && (
+                      // Vertical reel: keeps its 9:16 shape in a phone frame, clear of the title.
+                      <ReelPreview img={p.img} teaser={p.teaser} alt={`${p.name}, ${p.services}`} className="absolute inset-0" align={full ? 'end' : 'top-end'} />
+                    )}
+                    {(p.type === 'video' || p.type === 'design') && p.img && (
                       <div className="absolute inset-0" data-scrub-zoom="1.1">
                         <WorkPreview
                           img={p.img}
