@@ -86,13 +86,15 @@ export const QUOTES = [
 ];
 
 /** Client logos (image paths). Empty entries render as labelled placeholders. */
-// White transparent PNGs. Ajwadi and Atlas are made by `npm run logos` (scripts/logos/logos.html);
-// Digitmask is the supplied artwork turned white. Empty `src` = labelled placeholder.
+// White transparent PNGs, made by `npm run logos` (scripts/logos/logos.html) except Digitmask,
+// which is the supplied artwork turned white. Empty `src` = labelled placeholder.
 export const CLIENT_LOGOS: { name: string; src: string }[] = [
   { name: 'Digitmask', src: '/clients/digitmask.png' },
   { name: 'Ajwadi, a platform for hiring freelancers in KSA', src: '/clients/ajwadi-wordmark.png' },
   { name: 'Atlas, real estate OS', src: '/clients/atlas.png' },
-  ...Array.from({ length: 3 }, () => ({ name: 'Client logo', src: '' })),
+  { name: 'Social Lens, media agency in Dubai', src: '/clients/sociallens.png' },
+  { name: 'SmileSuite, dental clinic management', src: '/clients/smilesuite.png' },
+  ...Array.from({ length: 1 }, () => ({ name: 'Client logo', src: '' })),
 ];
 
 /**

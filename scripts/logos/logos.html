@@ -52,8 +52,27 @@
       <div class="sub">Real estate OS</div>
     </div>
   </div>
+
+  <!-- Social Lens: their camera-eye mark, lifted from the supplied logo and turned white
+       (scripts/logos/sociallens-mark.png), with the name and what they do (from their Instagram). -->
+  <div class="lockup sociallens" id="sociallens">
+    <img src="sociallens-mark.png" alt="" style="height: 178px; width: auto; display: block;" />
+    <div>
+      <div class="name">Social Lens</div>
+      <div class="sub">Media agency<br />Dubai, UAE</div>
+    </div>
+  </div>
+
+  <!-- SmileSuite: the brand's own white tooth mark and wordmark (from the SmileSuite asset kit). -->
+  <div class="lockup smilesuite" id="smilesuite">
+    <img src="smilesuite-tooth.png" alt="" style="height: 170px; width: auto; display: block;" />
+    <div>
+      <img src="smilesuite-wordmark.png" alt="" style="height: 92px; width: auto; display: block;" />
+      <div class="sub">Dental clinic<br />management</div>
+    </div>
+  </div>
 <script>
-  window.ready = document.fonts.ready.then(() => Promise.all(['700 40px Geist', '500 20px "Geist Mono"', '700 40px "Chakra Petch"'].map((f) => document.fonts.load(f))));
+  window.ready = document.fonts.ready.then(() => Promise.all(['700 40px Geist', '500 20px "Geist Mono"', '700 40px "Chakra Petch"'].map((f) => document.fonts.load(f)))).then(() => Promise.all([...document.images].map((i) => (i.complete ? 0 : new Promise((r) => (i.onload = i.onerror = r))))));
 </script>
 </body>
 </html>
