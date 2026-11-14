@@ -555,7 +555,15 @@ function ClientProof() {
                 {q.quote || C.quotes[i]}
               </blockquote>
               <figcaption className="flex items-center gap-[14px]">
-                <span className="h-10 w-10 rounded-full border border-dashed border-[rgba(244,241,232,.3)] bg-surface-2 md:h-12 md:w-12" />
+                {q.quote && q.photo ? (
+                  <img src={q.photo} alt="" width={48} height={48} loading="lazy" decoding="async" className="h-10 w-10 shrink-0 rounded-full object-cover ring-1 ring-[rgba(220,167,51,.7)] ring-offset-2 ring-offset-surface md:h-12 md:w-12" />
+                ) : q.quote ? (
+                  <span aria-hidden="true" className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gold font-display text-[15px] font-bold text-[#141414] md:h-12 md:w-12 md:text-[18px]">
+                    {q.name.charAt(0)}
+                  </span>
+                ) : (
+                  <span className="h-10 w-10 rounded-full border border-dashed border-[rgba(244,241,232,.3)] bg-surface-2 md:h-12 md:w-12" />
+                )}
                 <span className="flex flex-col gap-1">
                   <span className="text-base font-semibold">{q.quote ? q.name : C.clientName}</span>
                   <span className="lab !text-[11px]">{q.quote ? q.role : C.clientRole}</span>

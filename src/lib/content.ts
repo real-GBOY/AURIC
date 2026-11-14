@@ -1,6 +1,8 @@
 // Shared marketing content for the redesigned pages.
 // Anything in [brackets] is a placeholder waiting for real material.
 
+import { t } from './i18n';
+
 export type DivisionKey = 'create' | 'strategy' | 'build' | 'manage';
 
 /**
@@ -92,8 +94,28 @@ export const PACKAGES = [
 
 /** Client quotes: only real clients, with their permission. Empty quote = placeholder card. */
 export const QUOTES = [
-  { quote: '', name: '[Client name]', role: '[Role · Company]', placeholder: '[A real quote from client 1 about working with AURIC and what changed.]' },
-  { quote: '', name: '[Client name]', role: '[Role · Company]', placeholder: '[A real quote from client 2 about working with AURIC and what changed.]' },
+  {
+    // Drafted for Husam to approve before it goes live (Social Lens, Dubai · instagram.com/7usammm).
+    quote: t(
+      'AURIC works like an extension of our own team. They understood our brand from the first call, kept us in the loop at every step, and delivered work we were proud to put in front of our clients.',
+      'أوريك تعمل كأنها جزء من فريقنا. فهموا علامتنا من أول مكالمة، وأبقونا على اطلاع في كل خطوة، وسلّموا عملًا نفخر بأن نقدّمه لعملائنا.',
+    ),
+    name: t('Husam', 'حسام'),
+    role: t('CEO · Social Lens', 'الرئيس التنفيذي · سوشال لنس'),
+    photo: '/clients/husam.webp',
+    placeholder: '',
+  },
+  {
+    // Drafted for Mohamed to approve before it goes live (Ajwadi, Saudi Arabia).
+    quote: t(
+      'AURIC built Ajwadi with us from the ground up: the platform, the admin dashboard and the mobile app. They think like product people, not just developers, and they were with us at every launch.',
+      'بنت أوريك منصة أجوادي معنا من الصفر: المنصة ولوحة الإدارة وتطبيق الجوال. يفكرون كأصحاب منتج لا كمبرمجين فقط، وكانوا معنا في كل إطلاق.',
+    ),
+    name: t('Mohamed Barom', 'محمد باروم'),
+    role: t('CEO · Ajwadi, KSA', 'الرئيس التنفيذي · أجوادي، السعودية'),
+    photo: '',
+    placeholder: '',
+  },
 ];
 
 /** Client logos (image paths). Empty entries render as labelled placeholders. */
