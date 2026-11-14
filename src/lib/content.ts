@@ -3,6 +3,13 @@
 
 export type DivisionKey = 'create' | 'strategy' | 'build' | 'manage';
 
+/**
+ * Your AURIC Workspace (part of Manage). Keep `live: false` until clients can actually sign in:
+ * the site then says it is coming. Set `live: true` and the wording becomes "included with every
+ * engagement" everywhere (Services section, Manage chip, Manage descriptions on Home).
+ */
+export const WORKSPACE = { live: false };
+
 export const DIVISIONS: { key: DivisionKey; name: string; short: string; desc: string; phoneDesc: string }[] = [
   {
     key: 'create',
@@ -29,8 +36,12 @@ export const DIVISIONS: { key: DivisionKey; name: string; short: string; desc: s
     key: 'manage',
     name: 'Manage',
     short: 'One owner',
-    desc: 'One owner coordinating every specialist, deadline and review, start to finish.',
-    phoneDesc: 'One point of contact who keeps the project on time and on brief.',
+    desc: WORKSPACE.live
+      ? 'One owner for every specialist, deadline and review, and a private workspace where you follow it all.'
+      : 'One owner coordinating every specialist, deadline and review, start to finish.',
+    phoneDesc: WORKSPACE.live
+      ? 'One point of contact, and a private workspace to follow every project.'
+      : 'One point of contact who keeps the project on time and on brief.',
   },
 ];
 

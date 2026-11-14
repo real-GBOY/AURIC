@@ -1,7 +1,7 @@
 // Home page copy in English and Arabic. The Arabic is a first draft:
 // have a native copywriter review it before launch.
 
-import type { DivisionKey } from './content';
+import { WORKSPACE, type DivisionKey } from './content';
 import { isAr } from './i18n';
 
 type Copy = {
@@ -62,7 +62,7 @@ const EN: Copy = {
     { key: 'create', name: 'Create', short: 'Video · design · voice', desc: 'Video editing, graphic design, motion graphics, voiceover and content, made to one standard.', phoneDesc: 'Video, design, motion, voiceover and content people remember.', see: 'See Create services' },
     { key: 'strategy', name: 'Strategy', short: 'Marketing · content', desc: 'Marketing and content plans, campaigns and calendars, so every piece has a job.', phoneDesc: 'Brand, marketing and content plans that give every piece a job.', see: 'See Strategy services' },
     { key: 'build', name: 'Build', short: 'Websites · apps · AI', desc: 'Websites, mobile apps, business systems and AI automation, engineered to last.', phoneDesc: 'Websites, apps and systems built around how you work.', see: 'See Build services' },
-    { key: 'manage', name: 'Manage', short: 'One owner', desc: 'One owner coordinating every specialist, deadline and review, start to finish.', phoneDesc: 'One point of contact who keeps the project on time and on brief.', see: 'See Manage services' },
+    { key: 'manage', name: 'Manage', short: 'One owner', desc: WORKSPACE.live ? 'One owner for every specialist, deadline and review, and a private workspace where you follow it all.' : 'One owner coordinating every specialist, deadline and review, start to finish.', phoneDesc: WORKSPACE.live ? 'One point of contact, and a private workspace to follow every project.' : 'One point of contact who keeps the project on time and on brief.', see: 'See Manage services' },
   ],
   selected: ['Selected', 'work'],
   fullPortfolio: 'Full portfolio',
@@ -121,7 +121,7 @@ const AR: Copy = {
     { key: 'create', name: 'إبداع', short: 'فيديو · تصميم · موشن · تعليق صوتي', desc: 'فيديو وتصميم وموشن وتعليق صوتي ومحتوى يبقى في الذاكرة.', phoneDesc: 'فيديو وتصميم وموشن وتعليق صوتي ومحتوى يبقى في الذاكرة.', see: 'خدمات إبداع' },
     { key: 'strategy', name: 'استراتيجية', short: 'هوية · تسويق · خطة محتوى', desc: 'خطط للهوية والتسويق والمحتوى تعطي كل قطعة هدفًا واضحًا.', phoneDesc: 'خطط للهوية والتسويق والمحتوى تعطي كل قطعة هدفًا واضحًا.', see: 'خدمات استراتيجية' },
     { key: 'build', name: 'تطوير', short: 'مواقع · تطبيقات · أنظمة', desc: 'مواقع وتطبيقات وأنظمة مبنية حول طريقة عملك.', phoneDesc: 'مواقع وتطبيقات وأنظمة مبنية حول طريقة عملك.', see: 'خدمات تطوير' },
-    { key: 'manage', name: 'إدارة', short: 'فريق واحد · نقطة تواصل واحدة', desc: 'نقطة تواصل واحدة تحافظ على المشروع في موعده وحسب المطلوب.', phoneDesc: 'نقطة تواصل واحدة تحافظ على المشروع في موعده وحسب المطلوب.', see: 'خدمات إدارة' },
+    { key: 'manage', name: 'إدارة', short: 'فريق واحد · نقطة تواصل واحدة', desc: WORKSPACE.live ? 'مسؤول واحد لكل متخصص وموعد ومراجعة، ومساحة عمل خاصة تتابع منها كل شيء.' : 'نقطة تواصل واحدة تحافظ على المشروع في موعده وحسب المطلوب.', phoneDesc: WORKSPACE.live ? 'نقطة تواصل واحدة، ومساحة عمل خاصة تتابع منها كل مشروع.' : 'نقطة تواصل واحدة تحافظ على المشروع في موعده وحسب المطلوب.', see: 'خدمات إدارة' },
   ],
   selected: ['أعمال', 'مختارة'],
   fullPortfolio: 'كل الأعمال',

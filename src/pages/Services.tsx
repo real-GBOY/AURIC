@@ -10,6 +10,8 @@ import { isAr, t } from '../lib/i18n';
 import { EASE, drop, inView, rise, stagger } from '../lib/motion';
 import { gsap, ScrollTrigger, useGSAP } from '../lib/gsap';
 import { AuricMark } from '../components/Logo';
+import Workspace from '../components/services/Workspace';
+import { WORKSPACE } from '../lib/content';
 
 const pad = (n: number) => String(n).padStart(2, '0');
 
@@ -258,7 +260,10 @@ const MANAGE_STEPS = [
   { t: t('Review', 'المراجعة'), d: t('Checked before you see it', 'مُراجَع قبل أن تراه'), x: t('Quality and brand check by AURIC', 'فحص الجودة والهوية من أوريك') },
   { t: t('Deliver', 'التسليم'), d: t('On time, supported after', 'في الموعد، مع دعم بعده'), x: t('Handover, files and aftercare', 'تسليم الملفات والدعم بعد التسليم') },
 ];
-const MANAGE_SERVICES = t(['Project Management', 'Digital Project Coordination', 'Production Coordination', 'Resource Management', 'Delivery Planning', 'Quality Assurance'], ['إدارة المشاريع', 'تنسيق المشاريع الرقمية', 'تنسيق الإنتاج', 'إدارة الموارد', 'تخطيط التسليم', 'ضمان الجودة']);
+const MANAGE_SERVICES = [
+  ...t(['Project Management', 'Digital Project Coordination', 'Production Coordination', 'Resource Management', 'Delivery Planning', 'Quality Assurance'], ['إدارة المشاريع', 'تنسيق المشاريع الرقمية', 'تنسيق الإنتاج', 'إدارة الموارد', 'تخطيط التسليم', 'ضمان الجودة']),
+  WORKSPACE.live ? t('Your AURIC Workspace', 'مساحة عملك في أوريك') : t('Your AURIC Workspace · soon', 'مساحة عملك في أوريك · قريبًا'),
+];
 const RING = 2 * Math.PI * 120;
 
 function Manage() {
@@ -423,6 +428,7 @@ export default function Services() {
       <Build />
       <Manage />
       <ManageServices />
+      <Workspace />
       <BigCTA dark lines={[t('Not sure?', 'لست متأكدًا؟'), <span className="text-gold">{t("Let's talk.", 'لنتحدث.')}</span>]} size="clamp(52px,10vw,150px)" />
     </Layout>
   );
