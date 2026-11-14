@@ -26,10 +26,6 @@
       "destination": "/case-studies/index.html"
     },
     {
-      "source": "/case-studies/creative",
-      "destination": "/case-studies/creative/index.html"
-    },
-    {
       "source": "/team",
       "destination": "/team/index.html"
     },
@@ -86,6 +82,22 @@
       "destination": "/work/opticare/index.html"
     },
     {
+      "source": "/work/tcg-brand-film",
+      "destination": "/work/tcg-brand-film/index.html"
+    },
+    {
+      "source": "/work/elk-cafe",
+      "destination": "/work/elk-cafe/index.html"
+    },
+    {
+      "source": "/work/tcg-reel",
+      "destination": "/work/tcg-reel/index.html"
+    },
+    {
+      "source": "/work/auric-showreel",
+      "destination": "/work/auric-showreel/index.html"
+    },
+    {
       "source": "/ar",
       "destination": "/ar/index.html"
     },
@@ -100,10 +112,6 @@
     {
       "source": "/ar/case-studies",
       "destination": "/ar/case-studies/index.html"
-    },
-    {
-      "source": "/ar/case-studies/creative",
-      "destination": "/ar/case-studies/creative/index.html"
     },
     {
       "source": "/ar/team",
@@ -160,6 +168,22 @@
     {
       "source": "/ar/work/opticare",
       "destination": "/ar/work/opticare/index.html"
+    },
+    {
+      "source": "/ar/work/tcg-brand-film",
+      "destination": "/ar/work/tcg-brand-film/index.html"
+    },
+    {
+      "source": "/ar/work/elk-cafe",
+      "destination": "/ar/work/elk-cafe/index.html"
+    },
+    {
+      "source": "/ar/work/tcg-reel",
+      "destination": "/ar/work/tcg-reel/index.html"
+    },
+    {
+      "source": "/ar/work/auric-showreel",
+      "destination": "/ar/work/auric-showreel/index.html"
     }
   ],
   "headers": [

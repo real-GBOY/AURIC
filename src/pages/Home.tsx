@@ -1,13 +1,14 @@
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Layout from '../components/layout/Layout';
 import BigCTA from '../components/layout/BigCTA';
 import DivisionPreview from '../components/home/DivisionPreview';
 import { CalendarPill, CodePill, DeliveredPill, TimelinePill } from '../components/home/HeroPills';
 import { AuricMark } from '../components/Logo';
-import { DesignSlot, ReelSlot, Screen, VideoSlot } from '../components/ui/Media';
+import { FilmPlayer, LoopVideo, Photo, Screen, VideoSlot, type Film } from '../components/ui/Media';
+import { PlayButton } from '../components/ui/Icons';
 import { Reveal } from '../components/ui/Reveal';
-import { AUDIENCES, CLIENT_LOGOS, PACKAGES, QUOTES, SHOWREEL, type DivisionKey } from '../lib/content';
+import { AUDIENCES, CLIENT_LOGOS, FILMS, PACKAGES, QUOTES, SHOWREEL, type DivisionKey } from '../lib/content';
 import { HOME as C } from '../lib/home-copy';
 import { ARROW, href, isAr, t } from '../lib/i18n';
 import { CTA_HREF } from '../lib/site';
@@ -355,11 +356,22 @@ function SelectedWork() {
   const section = useRef<HTMLElement>(null);
   usePinnedStrip(section, ref);
   const [page, setPage] = useState(0);
-  const cards = [
-    { title: C.work.brandFilm, tag: C.work.video, href: '/work', w: 'w-[300px] md:w-[640px]', media: <VideoSlot ratio="16/10" label={C.work.yourVideo} radius={10} className="hidden md:flex" />, phone: <VideoSlot ratio="4/5" label={C.work.yourVideo} radius={12} className="md:hidden" /> },
-    { title: C.work.identity, tag: C.work.design, href: '/work', w: 'w-[300px] md:w-[400px]', media: <DesignSlot ratio="4/5" label={C.work.yourDesign} />, phone: null },
+  // Video cards only launch their video; project cards open the project page.
+  const [playing, setPlaying] = useState<{ film: Film; vertical: boolean } | null>(null);
+  const closePlayer = useCallback(() => setPlaying(null), []);
+  const teaser = (film: Film, ratio: string, cls: string, style?: React.CSSProperties, play = 72) => (
+    <span className={`relative block overflow-hidden bg-black ${cls}`} style={{ aspectRatio: ratio, ...style }}>
+      <LoopVideo src={film.teaser} poster={film.poster} label={film.title} className="transition-transform duration-700 group-hover:scale-[1.03]" />
+      <span className="absolute inset-0 grid place-items-center transition-transform duration-300 group-hover:scale-110" aria-hidden="true">
+        <PlayButton size={play} />
+      </span>
+    </span>
+  );
+  const cards: { title: string; tag: string; w: string; media: React.ReactNode; phone: React.ReactNode; href?: string; film?: Film; vertical?: boolean }[] = [
+    { title: C.work.brandFilm, tag: C.work.video, film: FILMS.brandFilm, w: 'w-[300px] md:w-[640px]', media: teaser(FILMS.brandFilm, '16/10', 'hidden rounded-[10px] md:block'), phone: teaser(FILMS.brandFilm, '4/5', 'rounded-[12px] md:hidden', undefined, 56) },
+    { title: C.work.identity, tag: C.work.design, href: '/work/elk-cafe', w: 'w-[300px] md:w-[400px]', media: <div className="aspect-[4/5] overflow-hidden rounded-[10px] bg-[#40564a]"><Photo src="/work/elk/post-1.jpg" alt={t('ELK Café, Saudi National Day post', 'مقهى إلك، منشور اليوم الوطني')} sizes="400px" className="h-full w-full object-cover object-top transition-transform duration-700 hover:scale-[1.03]" /></div>, phone: null },
     { title: C.work.mizan, tag: C.work.mizanTag, href: '/work/mizan', w: 'w-[300px] md:w-[640px]', media: <><Screen src="/work/mizan/dashboard.png" alt="Mizan dashboard" ratio="16/10" sizes="640px" className="hidden md:block" /><Screen src="/work/mizan/dashboard.png" alt="Mizan dashboard" ratio="4/5" sizes="300px" className="md:hidden" /></>, phone: null },
-    { title: C.work.reel, tag: C.work.content, href: '/work', w: 'hidden md:flex md:w-[300px]', media: <ReelSlot />, phone: null },
+    { title: C.work.reel, tag: C.work.content, film: FILMS.reel, vertical: true, w: 'hidden md:flex md:w-[300px]', media: teaser(FILMS.reel, '9/16', 'rounded-[22px]', { border: '6px solid #202023' }, 52), phone: null },
   ];
 
   return (
@@ -392,16 +404,37 @@ function SelectedWork() {
           viewport={inView}
           variants={stagger(0.1)}
         >
-          {cards.map((c) => (
-            <motion.a key={c.title} href={c.href} data-cursor="view" className={`flex flex-col gap-[10px] md:gap-[14px] ${c.w}`} variants={rise}>
-              {c.media}
-              {c.phone}
-              <span className="flex justify-between gap-3">
-                <span className="h3">{c.title}</span>
-                <span className="lab">{c.tag}</span>
-              </span>
-            </motion.a>
-          ))}
+          {cards.map((c) => {
+            const body = (
+              <>
+                {c.media}
+                {c.phone}
+                <span className="flex justify-between gap-3">
+                  <span className="h3">{c.title}</span>
+                  <span className="lab">{c.tag}</span>
+                </span>
+              </>
+            );
+            const cls = `flex flex-col gap-[10px] md:gap-[14px] ${c.w}`;
+            // Project cards open the project; video cards (the whole card) only launch the video.
+            return c.film ? (
+              <motion.button
+                key={c.title}
+                type="button"
+                data-cursor="view"
+                aria-label={`${t('Play', 'شغّل')}: ${c.title}`}
+                onClick={() => setPlaying({ film: c.film!, vertical: !!c.vertical })}
+                className={`group text-start ${cls}`}
+                variants={rise}
+              >
+                {body}
+              </motion.button>
+            ) : (
+              <motion.a key={c.title} href={c.href} data-cursor="view" className={cls} variants={rise}>
+                {body}
+              </motion.a>
+            );
+          })}
         </motion.div>
         <div className="mt-4 flex gap-[6px] md:hidden" aria-hidden="true">
           {[0, 1, 2].map((i) => (
@@ -409,6 +442,7 @@ function SelectedWork() {
           ))}
         </div>
       </div>
+      {playing && <FilmPlayer film={playing.film} vertical={playing.vertical} onClose={closePlayer} />}
     </section>
   );
 }

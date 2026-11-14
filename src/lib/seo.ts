@@ -59,16 +59,6 @@ export const PAGES: Record<string, Pair> = {
       description: 'القصة وراء كل مشروع من أوريك: الهدف، وما صنعناه، وكيف اكتمل.',
     },
   },
-  '/case-studies/creative': {
-    en: {
-      title: 'Creative Case Study Template | AURIC',
-      description: 'The layout AURIC uses for creative case studies: film, concept, frames, brand in use and credits.',
-    },
-    ar: {
-      title: 'قالب دراسة حالة إبداعية | أوريك',
-      description: 'التصميم الذي تستخدمه أوريك لدراسات الحالة الإبداعية: الفيلم والمفهوم واللقطات والعلامة في الاستخدام.',
-    },
-  },
   '/team': {
     en: {
       title: 'Team — The People Behind AURIC',

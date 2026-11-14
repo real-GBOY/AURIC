@@ -1,24 +1,25 @@
 import type { Entry } from '../../lib/projects';
-import { DesignSlot, Screen, VideoSlot } from '../ui/Media';
-import { t } from '../../lib/i18n';
+import { Screen, WorkPreview } from '../ui/Media';
 
-/** Renders the right visual for a portfolio entry (screen, video slot, design tile, reels, terminal). */
-export default function EntryMedia({ e, ratio = '4/3', compact = false }: { e: Entry; ratio?: string; compact?: boolean }) {
+/** Renders the right visual for a portfolio entry (product screen, film or reel teaser, design piece, terminal). */
+export default function EntryMedia({ e, ratio = '4/3' }: { e: Entry; ratio?: string; compact?: boolean }) {
   switch (e.type) {
     case 'img':
       return <Screen src={e.img!} alt={`${e.name} screen`} ratio={ratio} sizes="(min-width: 1024px) 25vw, 50vw" />;
     case 'video':
-      return <VideoSlot ratio={ratio} label={t('Your video', 'فيديو من أعمالك')} playSize={compact ? 44 : 56} radius={8} />;
-    case 'design':
-      return <DesignSlot ratio={ratio} size={compact ? 46 : 48} className="!rounded-lg !p-[18px]" />;
     case 'reel':
+    case 'design':
       return (
-        <div className="ph flex items-center justify-center gap-[10px] rounded-lg" style={{ aspectRatio: ratio }} role="img" aria-label={t('Placeholder: your content', 'مساحة مؤقتة: محتوى من أعمالك')}>
-          {[0, 1, 2].map((i) => (
-            <span key={i} className={`h-[100px] w-14 rounded-[10px] border-4 border-[#2a2a2e] bg-bg ${i === 1 ? 'mt-6' : ''}`} />
-          ))}
-          <span className="slot bottom-3 left-[14px]">{t('Your content', 'محتوى من أعمالك')}</span>
-        </div>
+        <WorkPreview
+          img={e.img!}
+          teaser={e.teaser}
+          alt={`${e.name}, ${e.services}`}
+          ratio={ratio}
+          sizes="(min-width: 1024px) 25vw, 50vw"
+          className="rounded-lg"
+          imgClassName={e.type === 'design' ? 'object-cover object-top' : 'object-cover'}
+          play={e.type !== 'design'}
+        />
       );
     case 'term':
       return (
@@ -35,4 +36,3 @@ export default function EntryMedia({ e, ratio = '4/3', compact = false }: { e: E
       );
   }
 }
-

@@ -137,6 +137,25 @@ export const CLIENT_LOGOS: { name: string; src: string }[] = [
  * Showreel videos, rendered from scripts/reel/reel.html with `npm run reel` (real AURIC work only).
  * Empty `src` = placeholder.
  */
+/**
+ * Real AURIC video work. `teaser` is a short silent clip that loops on the card; clicking
+ * opens `src` (with sound) in the player. Sources: E:\Clients\AURIC\NEW\Data Videos.
+ */
+export const FILMS = {
+  brandFilm: {
+    src: '/media/brand-film.mp4',
+    teaser: '/media/brand-film-teaser.mp4',
+    poster: '/media/brand-film-poster.webp',
+    title: t('TCG brand film', 'فيلم TCG'),
+  },
+  reel: {
+    src: '/media/reel.mp4',
+    teaser: '/media/reel.mp4',
+    poster: '/media/reel-poster.webp',
+    title: t('TCG reel', 'ريل TCG'),
+  },
+};
+
 export const SHOWREEL = {
   src: '/media/showreel.mp4',
   poster: '/media/showreel-poster.webp',

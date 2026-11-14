@@ -35,13 +35,11 @@ const LEAD = {
   ),
 };
 
-/** Only confirmed members. Empty entries render as placeholders. */
-const CORE: { name: string; role: string; photo: string }[] = [
-  { name: t('[Name]', '[الاسم]'), role: t('[Role]', '[الدور]'), photo: '' },
-  { name: t('[Name]', '[الاسم]'), role: t('[Role]', '[الدور]'), photo: '' },
-  { name: t('[Name]', '[الاسم]'), role: t('[Role]', '[الدور]'), photo: '' },
-  { name: t('[Name]', '[الاسم]'), role: t('[Role]', '[الدور]'), photo: '' },
-];
+/**
+ * Only confirmed members, e.g. { name: t('Name', 'الاسم'), role: t('Role', 'الدور'), photo: '/team/name.webp' }.
+ * The "Core team" section is hidden while this is empty.
+ */
+const CORE: { name: string; role: string; photo: string }[] = [];
 
 const NETWORK = [
   ...t(
@@ -160,7 +158,8 @@ export default function Team() {
         </div>
       </section>
 
-      {/* Core team */}
+      {/* Core team (only when there are confirmed members) */}
+      {CORE.length > 0 && (
       <section data-stack className="bg-bg py-20 md:py-[120px]">
         <div className="wrap">
           <Reveal className="mb-10 flex flex-wrap items-end justify-between gap-6">
@@ -181,6 +180,7 @@ export default function Team() {
           </motion.div>
         </div>
       </section>
+      )}
 
       {/* T3 · Extended network: names drift slowly */}
       <section className="overflow-hidden py-20 md:py-[120px]">
@@ -190,7 +190,7 @@ export default function Team() {
               <h2 className="h2">{t('Extended network', 'الشبكة الموسّعة')}</h2>
               <p className="copy max-w-[48ch]">{t('Specialists we brief, review and manage. They work through AURIC, so quality stays ours.', 'متخصصون نوجّههم ونراجع عملهم وندير مشاريعهم. يعملون من خلال أوريك، فتبقى الجودة مسؤوليتنا.')}</p>
             </div>
-            <span className="lab">04</span>
+            <span className="lab">{CORE.length > 0 ? '04' : '03'}</span>
           </Reveal>
           <p className="m-0" data-scrub-x={isRtl() ? '6' : '-6'} data-scrub-words>
             {NETWORK.map((n, i) => (
@@ -217,7 +217,7 @@ export default function Team() {
         <div className="wrap">
           <Reveal className="mb-10 flex flex-wrap items-end justify-between gap-6">
             <h2 className="h2">{t('How we work together', 'كيف نعمل معًا')}</h2>
-            <span className="lab">04</span>
+            <span className="lab">{CORE.length > 0 ? '05' : '04'}</span>
           </Reveal>
           <motion.ol
             className="m-0 grid list-none grid-cols-2 border-t border-[rgba(244,241,232,.14)] p-0 lg:grid-cols-5"

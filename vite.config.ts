@@ -3,19 +3,23 @@ import { dirname, resolve } from 'node:path';
 import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import { SOFTWARE } from './src/lib/projects';
+import { CREATIVE_PROJECTS } from './src/lib/creative';
 import { NOT_FOUND, PAGES, SITE, headTags, projectMeta, urlFor, type Lang, type Meta } from './src/lib/seo';
 
-/** Pages that exist but should stay out of search results (templates with placeholder content). */
-const NOINDEX = new Set(['/case-studies/creative']);
+/** Pages that exist but should stay out of search results (none right now). */
+const NOINDEX = new Set<string>();
 
 const LANGS: Lang[] = ['en', 'ar'];
 const projectByPath = new Map(SOFTWARE.map((p) => [`/work/${p.slug}`, p]));
+const creativeByPath = new Map(CREATIVE_PROJECTS.map((p) => [`/work/${p.slug}`, p]));
 /** Every real page path (without the /ar prefix). */
-const PATHS = [...Object.keys(PAGES), ...projectByPath.keys()];
+const PATHS = [...Object.keys(PAGES), ...projectByPath.keys(), ...creativeByPath.keys()];
 
 const metaOf = (path: string, lang: Lang): Meta => {
   const page = PAGES[path];
   if (page) return page[lang];
+  const creative = creativeByPath.get(path);
+  if (creative) return creative.meta[lang];
   const project = projectByPath.get(path);
   return project ? projectMeta(project.name, project.line, lang) : PAGES['/'][lang];
 };

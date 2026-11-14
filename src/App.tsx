@@ -7,7 +7,6 @@ import Services from './pages/Services';
 import Work from './pages/Work';
 import CaseStudies from './pages/CaseStudies';
 import CaseStudyRoute from './pages/CaseStudyRoute';
-import CreativeCaseStudy from './pages/CreativeCaseStudy';
 import Team from './pages/Team';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
@@ -20,7 +19,6 @@ function Page() {
   if (path === '/services') return <Services />;
   if (path === '/work') return <Work />;
   if (path === '/case-studies') return <CaseStudies />;
-  if (path === '/case-studies/creative') return <CreativeCaseStudy />;
   if (path === '/team') return <Team />;
   if (path === '/contact') return <Contact />;
 

@@ -4,10 +4,11 @@ import Layout from '../components/layout/Layout';
 import BigCTA from '../components/layout/BigCTA';
 import EntryMedia from '../components/work/EntryMedia';
 import { PlayButton } from '../components/ui/Icons';
-import { DesignSlot, LoopVideo, ReelSlot, Screen, VideoSlot } from '../components/ui/Media';
+import { LoopVideo, Photo, PlayableVideo, Screen, VideoSlot, WorkPreview } from '../components/ui/Media';
 import { Reveal, TitleReveal } from '../components/ui/Reveal';
 import { ARCHIVE, FEED, FILTERS, INDEX, type Entry, type Group } from '../lib/projects';
-import { SHOWREEL } from '../lib/content';
+import { CREATIVE_PROJECTS, creativeBySlug } from '../lib/creative';
+import { FILMS, SHOWREEL } from '../lib/content';
 import { ARROW, t } from '../lib/i18n';
 import { EASE, inView, rise, stagger, useDragScroll } from '../lib/motion';
 import { usePinnedStrip } from '../lib/usePinnedStrip';
@@ -78,14 +79,7 @@ function Hero() {
 
 function IndexPreview({ e }: { e: Entry }) {
   if (e.type === 'img') return <Screen src={e.img!} alt={e.name} ratio="4/3" />;
-  if (e.type === 'design')
-    return (
-      <div className="flex aspect-[4/3] flex-col justify-between rounded-lg bg-cream p-[26px] text-[#141414]">
-        <span className="font-display text-[96px] font-extrabold leading-[.9] tracking-[-0.05em]">Aa</span>
-        <span className="lab !text-gold-deep">{t('Design preview · your work', 'معاينة تصميم · من أعمالك')}</span>
-      </div>
-    );
-  return <VideoSlot ratio="4/3" label={t('Video preview · plays on hover', 'معاينة فيديو · تعمل عند المرور')} radius={8} />;
+  return <EntryMedia e={e} ratio="4/3" />;
 }
 
 /* A2 · Interactive index: hover a project, the preview swaps */
@@ -152,30 +146,34 @@ function VideoChapter() {
   const ref = useDragScroll<HTMLUListElement>();
   const section = useRef<HTMLElement>(null);
   usePinnedStrip(section, ref);
-  const items = [
-    [t('[Brand film]', '[فيلم العلامة]'), t('Video edit', 'مونتاج فيديو')],
-    [t('[Motion graphics]', '[موشن جرافيك]'), t('Motion', 'موشن')],
-    [t('[Product video]', '[فيديو منتج]'), t('Video + voiceover', 'فيديو وتعليق صوتي')],
-    [t('[Event recap]', '[ملخص فعالية]'), t('Video edit', 'مونتاج فيديو')],
-  ];
+  // Real video work, each playing in place, with its frames trailing behind it.
+  const films = CREATIVE_PROJECTS.filter((p) => p.type === 'video' && p.film);
   return (
     <section ref={section} className="hidden overflow-hidden bg-bg py-[120px] md:block">
       <div className="wrap">
         <ChapterHead n="01" title={t('Video & motion', 'فيديو وموشن')} right={<span className="lab">{t('Drag or scroll sideways', 'اسحب أو مرّر جانبيًا')} {ARROW}</span>} />
         <ul ref={ref} className="strip m-0 list-none p-0" aria-label={t('Video projects', 'مشاريع الفيديو')}>
-          {items.map(([title, tag]) => (
-            <li key={title} className="w-[560px]">
-              <a href="/case-studies/creative" data-cursor="view" className="group flex flex-col gap-[14px]">
-                <div className="transition-transform duration-500 group-hover:scale-[1.02]">
-                  <VideoSlot ratio="16/9" label={t('Your video', 'فيديو من أعمالك')} radius={8} />
-                </div>
-                <span className="flex justify-between">
-                  <span className="h3 !text-[18px]">{title}</span>
-                  <span className="lab">{tag}</span>
+          {films.flatMap((p) => [
+            <li key={p.slug} className="w-[620px]">
+              <div className="flex flex-col gap-[14px]">
+                <PlayableVideo film={p.film!} ratio="16/9" radius={8} playSize={64} />
+                <span className="flex items-baseline justify-between gap-4">
+                  <a href={`/work/${p.slug}`} className="h3 !text-[18px] hover:text-gold">
+                    {p.name} {ARROW}
+                  </a>
+                  <span className="lab">{p.services}</span>
                 </span>
-              </a>
-            </li>
-          ))}
+              </div>
+            </li>,
+            ...(p.frames ?? []).slice(1, 3).map((fr) => (
+              <li key={fr.src} className="w-[360px]">
+                <a href={`/work/${p.slug}`} data-cursor="view" className="group flex flex-col gap-[14px]">
+                  <WorkPreview img={fr.src} alt={fr.cap} ratio="16/9" sizes="360px" className="rounded-lg transition-transform duration-500 group-hover:scale-[1.02]" imgClassName="object-cover" />
+                  <span className="lab">{fr.cap}</span>
+                </a>
+              </li>
+            )),
+          ])}
         </ul>
       </div>
     </section>
@@ -188,7 +186,7 @@ function DesignChapter() {
   return (
     <section data-expand className="hidden bg-cream py-[120px] text-[#141414] md:block">
       <div className="wrap">
-        <ChapterHead n="02" title={t('Design & branding', 'تصميم وهوية')} cream right={<span className="lab !text-[#4a4740]">{t('Brand identities · posters · social design', 'هويات بصرية · بوسترات · تصاميم سوشيال')}</span>} />
+        <ChapterHead n="02" title={t('Design & branding', 'تصميم وهوية')} cream right={<a href="/work/elk-cafe" className="lab tap !text-gold-deep hover:!text-[#141414]">{t('ELK Café case study', 'دراسة حالة مقهى إلك')} {ARROW}</a>} />
         <motion.div
           className="grid grid-cols-2 gap-4 [grid-auto-rows:200px] lg:grid-cols-12 lg:[grid-auto-rows:120px]"
           data-parallax="0.05"
@@ -197,25 +195,26 @@ function DesignChapter() {
           viewport={inView}
           variants={stagger(0.12)}
         >
-          <motion.div variants={tile} className="relative flex items-end rounded-lg bg-[#141414] p-[22px] lg:col-[1/6] lg:row-[1/5]">
-            <span className="font-display text-[56px] font-extrabold leading-[.9] tracking-[-0.05em] text-cream lg:text-[72px]">
-              Brand
-              <br />
-              identity
+          {/* ELK Café · Saudi National Day identity (real work, public/work/elk) */}
+          <motion.div variants={tile} className="relative col-span-2 row-span-2 overflow-hidden rounded-lg bg-[#40564a] lg:col-[1/6] lg:row-[1/5]">
+            <Photo src="/work/elk/cover.jpg" alt={t('ELK Café identity, the logo and the September plan', 'هوية مقهى إلك، الشعار وخطة سبتمبر')} sizes="(min-width: 1024px) 40vw, 100vw" className="h-full w-full object-cover object-top" />
+            <span className="absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-[rgba(10,10,11,.85)] via-[rgba(10,10,11,.45)] to-transparent" aria-hidden="true" />
+            <span className="absolute bottom-[18px] left-5 flex flex-col gap-1">
+              <span className="font-display text-[26px] font-extrabold leading-none tracking-[-0.04em] text-cream lg:text-[34px]">ELK Café</span>
+              <span className="lab !text-gold">{t('Identity · Saudi National Day', 'هوية · اليوم الوطني السعودي')}</span>
             </span>
-            <span className="slot bottom-[22px] right-[22px]">{t('Your design', 'تصميمك هنا')}</span>
           </motion.div>
-          <motion.div variants={tile} className="relative rounded-lg bg-gold lg:col-[6/9] lg:row-[1/3]">
-            <span className="slot bottom-[14px] left-4 !text-[#141414]">{t('Logo system', 'نظام الشعار')}</span>
+          <motion.div variants={tile} className="relative overflow-hidden rounded-lg bg-[#40564a] lg:col-[6/9] lg:row-[1/3]">
+            <Photo src="/work/elk/story-1.jpg" alt={t('ELK Café story', 'ستوري لمقهى إلك')} sizes="(min-width: 1024px) 25vw, 50vw" className="h-full w-full object-cover object-[50%_20%]" />
           </motion.div>
-          <motion.div variants={tile} className="relative rounded-lg bg-sand lg:col-[9/13] lg:row-[1/4]">
-            <span className="slot bottom-[14px] left-4 !text-[#4a4740]">{t('Poster', 'بوستر')}</span>
+          <motion.div variants={tile} className="relative overflow-hidden rounded-lg bg-[#40564a] lg:col-[9/13] lg:row-[1/4]">
+            <Photo src="/work/elk/post-2.jpg" alt={t('ELK Café National Day post', 'منشور اليوم الوطني لمقهى إلك')} sizes="(min-width: 1024px) 33vw, 50vw" className="h-full w-full object-cover object-top" />
           </motion.div>
-          <motion.div variants={tile} className="relative rounded-lg bg-surface-2 lg:col-[6/9] lg:row-[3/5]">
-            <span className="slot bottom-[14px] left-4">{t('Social post', 'منشور سوشيال')}</span>
+          <motion.div variants={tile} className="relative overflow-hidden rounded-lg bg-[#40564a] lg:col-[6/9] lg:row-[3/5]">
+            <Photo src="/work/elk/story-4.jpg" alt={t('ELK Café story', 'ستوري لمقهى إلك')} sizes="(min-width: 1024px) 25vw, 50vw" className="h-full w-full object-cover object-[50%_30%]" />
           </motion.div>
-          <motion.div variants={tile} className="flex gap-2 rounded-lg bg-[#141414] p-[14px] lg:col-[9/13] lg:row-[4/5]" role="img" aria-label={t('Colour palette', 'لوحة الألوان')}>
-            {['#dca733', '#f4f1e8', '#3c8f6a', '#2f7db7'].map((c) => (
+          <motion.div variants={tile} className="flex gap-2 rounded-lg bg-[#141414] p-[14px] lg:col-[9/13] lg:row-[4/5]" role="img" aria-label={t('ELK Café colour palette', 'لوحة ألوان مقهى إلك')}>
+            {['#40564a', '#8b1e5a', '#e7ddc8', '#c8963e'].map((c) => (
               <span key={c} className="flex-1 rounded" style={{ background: c }} />
             ))}
           </motion.div>
@@ -230,18 +229,32 @@ function ContentChapter() {
   return (
     <section data-stack className="hidden py-[120px] md:block">
       <div className="wrap">
-        <ChapterHead n="03" title={t('Content & social', 'محتوى وسوشيال')} right={<span className="lab">{t('Reels · campaigns · content plans', 'ريلز · حملات · خطط محتوى')}</span>} />
+        <ChapterHead n="03" title={t('Content & social', 'محتوى وسوشيال')} right={<span className="lab">{t('TCG reel · ELK Café stories', 'ريل TCG · ستوريز مقهى إلك')}</span>} />
         <motion.div className="grid grid-cols-5 gap-3 lg:gap-4" initial="hidden" whileInView="visible" viewport={inView} variants={stagger(0.1)}>
-          {[1, 2, 3, 4, 5].map((n) => (
+          {[
+            { key: 'reel', label: t('TCG reel · plays with sound', 'ريل TCG · يعمل بالصوت'), href: '/work/tcg-reel' },
+            ...(creativeBySlug('elk-cafe')?.pieces ?? [])
+              .filter((x) => x.shape === 'story')
+              .slice(0, 4)
+              .map((x) => ({ key: x.src, label: `ELK Café · ${x.alt}`, href: '/work/elk-cafe', story: x })),
+          ].map((it, n) => (
             <motion.div
-              key={n}
+              key={it.key}
               variants={{ hidden: { opacity: 0, y: 70 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: EASE } } }}
-              className={`flex flex-col gap-3 ${n % 2 === 0 ? "mt-8 lg:mt-12" : ""}`}
+              className={`flex flex-col gap-3 ${n % 2 === 1 ? 'mt-8 lg:mt-12' : ''}`}
             >
-              <motion.div animate={{ y: [0, n % 2 ? -8 : 8, 0] }} transition={{ duration: 5 + n * 0.4, repeat: Infinity, ease: 'easeInOut' }}>
-                <ReelSlot label={`Reel ${pad(n)}`} />
+              <motion.div animate={{ y: [0, n % 2 ? 8 : -8, 0] }} transition={{ duration: 5 + n * 0.4, repeat: Infinity, ease: 'easeInOut' }}>
+                {'story' in it && it.story ? (
+                  <a href={it.href} data-cursor="view" className="block">
+                    <WorkPreview img={it.story.src} alt={it.story.alt} ratio="9/16" sizes="20vw" className="rounded-[22px] border-[6px] border-surface-2" imgClassName="object-cover" />
+                  </a>
+                ) : (
+                  <PlayableVideo film={FILMS.reel} ratio="9/16" vertical radius={22} playSize={48} style={{ border: '6px solid #202023' }} />
+                )}
               </motion.div>
-              <span className="lab">[{t('Reel', 'ريل')} {pad(n)}]</span>
+              <a href={it.href} className="lab hover:!text-gold">
+                {it.label}
+              </a>
             </motion.div>
           ))}
         </motion.div>
@@ -352,13 +365,9 @@ function PhoneFeed() {
             return (
               <motion.a key={p.name} layout href={p.href} className={`flex flex-col gap-[10px] ${wide ? 'col-span-2' : ''}`} initial="hidden" whileInView="visible" viewport={inView} variants={rise}>
                 {p.type === 'img' && <Screen src={p.img!} alt={`${p.name} screen`} ratio="16/10" />}
-                {p.type === 'video' && <VideoSlot ratio="16/10" label={t('Your video', 'فيديو من أعمالك')} playSize={50} />}
-                {p.type === 'design' && <DesignSlot ratio="4/5" size={46} className="!rounded-xl !p-[14px]" />}
-                {p.type === 'reel' && (
-                  <div className="ph flex aspect-[4/5] items-center justify-center rounded-[18px] border-[5px] !border-surface-2">
-                    <PlayButton size={40} />
-                  </div>
-                )}
+                {p.type === 'video' && <WorkPreview img={p.img!} teaser={p.teaser} alt={`${p.name}, ${p.services}`} ratio="16/10" sizes="100vw" className="rounded-xl" imgClassName="object-cover" play />}
+                {p.type === 'design' && <WorkPreview img={p.img!} alt={`${p.name}, ${p.services}`} ratio="4/5" sizes="50vw" className="rounded-xl" />}
+                {p.type === 'reel' && <WorkPreview img={p.img!} teaser={p.teaser} alt={`${p.name}, ${p.services}`} ratio="4/5" sizes="50vw" className="rounded-[18px] border-[5px] border-surface-2" imgClassName="object-cover" play />}
                 {p.type === 'term' && (
                   <div className="rounded-xl border border-[rgba(244,241,232,.14)] bg-[#0f0f10] p-5 font-mono text-[14px] leading-[1.8] text-copy">
                     <span className="text-gold">$</span> npx create-auric my-app

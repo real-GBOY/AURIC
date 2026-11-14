@@ -1,7 +1,8 @@
 // Portfolio registry used by Work (showcase), Case studies and the case study pages.
-// Real software projects come from data.ts; creative entries in [brackets] are
-// placeholders for the video, design and content work still to be added.
+// Real software projects come from data.ts; real creative work (films, reels, identities)
+// comes from creative.ts.
 
+import { CREATIVE_PROJECTS, type CreativeProject } from './creative';
 import {
   ADMIT_PROJECT, AJWADI_PROJECT, ATLAS_PROJECT, BUILD_ART_PROJECT, CLINIC_OS_PROJECT, ENACTIX_PROJECT,
   HOTEL_OS_PROJECT, MIZAN_PROJECT, NOVA_PROJECT, OPTICARE_PROJECT, RAQIB_PROJECT, WEAVOLUTION_PROJECT,
@@ -75,6 +76,9 @@ export type Entry = {
   group: Group;
   type: MediaType;
   img?: string;
+  /** Silent clip that loops in previews (video and reel work). */
+  teaser?: string;
+  vertical?: boolean;
   href: string;
   desc: string;
 };
@@ -119,22 +123,29 @@ export const SOFTWARE: SoftwareProject[] = [
 
 export const softwareBySlug = (slug: string) => SOFTWARE.find((p) => p.slug === slug);
 
-const CREATIVE_HREF = '/case-studies/creative';
-const ph = (name: string, cat: string, group: Group, type: MediaType, services: string, desc: string): Entry => ({
-  name: L(name), cat: L(cat), kind: L('Your work'), services: L(services), year: L('[Year]'), group, type, href: CREATIVE_HREF, desc: L(desc),
+/** Real creative work (video, design, content), each with its own case study page (src/lib/creative.ts). */
+const cr = (p: CreativeProject): Entry => ({
+  name: p.name,
+  cat: p.cat,
+  kind: p.kind,
+  services: p.services,
+  year: p.year,
+  group: p.group,
+  type: p.type,
+  img: p.type === 'design' ? (p.pieces?.[0]?.src ?? p.cover) : p.cover,
+  teaser: p.film?.teaser,
+  vertical: p.film?.vertical,
+  href: `/work/${p.slug}`,
+  desc: p.line,
 });
+const C = Object.fromEntries(CREATIVE_PROJECTS.map((p) => [p.slug, cr(p)])) as Record<string, Entry>;
 
-/** Creative placeholders (replace with real projects as they are added). */
+/** Named shortcuts for the pages that place a specific piece. */
 export const CREATIVE = {
-  showreel: ph('[Showreel]', 'Video', 'video', 'video', 'Video · Motion', 'Your strongest video work, cut into one reel.'),
-  brandFilm: ph('[Brand film]', 'Video', 'video', 'video', 'Video · Motion · Voiceover', 'A brand film, directed, edited and voiced.'),
-  identity: ph('[Brand identity]', 'Branding', 'design', 'design', 'Branding · Design', 'A full identity: logo, colors, type and applications.'),
-  reels: ph('[Reels campaign]', 'Content', 'content', 'reel', 'Strategy · Content · Reels', 'A series of reels and posts planned and produced together.'),
-  motion: ph('[Motion piece]', 'Motion', 'video', 'video', 'Motion graphics', 'Motion graphics for a launch or campaign.'),
-  posters: ph('[Poster series]', 'Design', 'design', 'design', 'Print · Social design', 'Posters and print for an event or brand.'),
-  productVideo: ph('[Product video]', 'Video + voiceover', 'video', 'video', 'Video · Voiceover', 'A product video with voiceover.'),
-  social: ph('[Social content]', 'Content', 'content', 'reel', 'Content · Social', 'Social content produced every month.'),
-  campaign: ph('[Content campaign]', 'Content', 'content', 'video', 'Strategy · Content · Reels', 'A series of reels and posts planned and produced together.'),
+  showreel: C['auric-showreel'],
+  brandFilm: C['tcg-brand-film'],
+  identity: C['elk-cafe'],
+  reel: C['tcg-reel'],
 };
 
 const S = Object.fromEntries(SOFTWARE.map((p) => [p.slug, p])) as Record<string, SoftwareProject>;
@@ -146,24 +157,24 @@ export const CREATE_AURIC: Entry = {
 
 /** Work page archive: everything, mixed formats. */
 export const ARCHIVE: Entry[] = [
-  CREATIVE.showreel, CREATIVE.identity, S.mizan, CREATIVE.reels, CREATIVE.motion, S.atlas, CREATIVE.posters, S['hotel-os'],
-  CREATIVE.productVideo, S.nova, CREATIVE.social, S.raqib, S.admit, S['clinic-os'], S.weavolution, CREATE_AURIC,
+  CREATIVE.brandFilm, CREATIVE.identity, S.mizan, CREATIVE.reel, S.atlas, CREATIVE.showreel, S['hotel-os'],
+  S.nova, S.ajwadi, S.raqib, S.admit, S['clinic-os'], S.enactix, S.weavolution, S['build-art'], S.opticare, CREATE_AURIC,
 ];
 
 /** Phone feed order. */
 export const FEED: Entry[] = [
-  CREATIVE.showreel, S.mizan, CREATIVE.identity, CREATIVE.reels, CREATIVE.motion, S.atlas, CREATIVE.posters, S['hotel-os'],
-  CREATIVE.productVideo, S.nova, CREATIVE.social, S.raqib, S.admit, S['clinic-os'], S.weavolution, CREATE_AURIC,
+  CREATIVE.brandFilm, S.mizan, CREATIVE.identity, CREATIVE.reel, S.atlas, CREATIVE.showreel, S['hotel-os'],
+  S.nova, S.ajwadi, S.raqib, S.admit, S['clinic-os'], S.enactix, S.weavolution, S['build-art'], S.opticare, CREATE_AURIC,
 ];
 
 /** Work page index (A2). */
 export const INDEX: Entry[] = [
-  CREATIVE.showreel, CREATIVE.identity, S.mizan, CREATIVE.motion, CREATIVE.campaign, S.atlas, CREATIVE.posters, S['hotel-os'],
+  CREATIVE.brandFilm, CREATIVE.identity, S.mizan, CREATIVE.reel, S.atlas, CREATIVE.showreel, S['hotel-os'], S.nova,
 ];
 
 /** Case studies page (deep dives). */
 export const CASE_STUDIES: Entry[] = [
-  S.mizan, CREATIVE.brandFilm, CREATIVE.identity, S.atlas, S['hotel-os'], CREATIVE.campaign, S.nova, CREATIVE.posters,
+  S.mizan, CREATIVE.brandFilm, CREATIVE.identity, S.atlas, S['hotel-os'], CREATIVE.reel, S.nova, CREATIVE.showreel,
   S.raqib, S.admit, S['clinic-os'], S.ajwadi,
 ];
 

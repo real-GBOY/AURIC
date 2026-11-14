@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Layout from '../components/layout/Layout';
 import BigCTA from '../components/layout/BigCTA';
 import { PlayButton } from '../components/ui/Icons';
-import { Photo } from '../components/ui/Media';
+import { Photo, WorkPreview } from '../components/ui/Media';
 import { TitleReveal } from '../components/ui/Reveal';
 import { CASE_STUDIES, FILTERS, type Group } from '../lib/projects';
 import { EASE } from '../lib/motion';
@@ -70,14 +70,17 @@ export default function CaseStudies() {
                     {p.type === 'img' && (
                       <div className="absolute inset-0" data-scrub-zoom="1.14"><Photo src={p.img!} alt={p.name} sizes="(min-width: 768px) 50vw, 100vw" className="absolute inset-0 h-full w-full object-cover object-left-top transition-transform duration-700 group-hover:scale-[1.03]" /></div>
                     )}
-                    {(p.type === 'video' || p.type === 'reel') && (
-                      <div className="ph absolute inset-0 !border-0">
-                        <PlayButton size={72} className="absolute left-1/2 top-[42%] -translate-x-1/2 -translate-y-1/2" />
-                      </div>
-                    )}
-                    {p.type === 'design' && (
-                      <div className="absolute inset-0 flex items-start justify-end bg-cream p-7">
-                        <span className="font-display text-[80px] font-extrabold leading-[.85] tracking-[-0.06em] text-gold md:text-[120px]">Aa</span>
+                    {(p.type === 'video' || p.type === 'reel' || p.type === 'design') && p.img && (
+                      <div className="absolute inset-0" data-scrub-zoom="1.1">
+                        <WorkPreview
+                          img={p.img}
+                          teaser={p.teaser}
+                          alt={`${p.name}, ${p.services}`}
+                          sizes="(min-width: 768px) 50vw, 100vw"
+                          className="absolute inset-0 transition-transform duration-700 group-hover:scale-[1.03]"
+                          imgClassName={p.type === 'design' ? 'object-cover object-[50%_30%]' : 'object-cover'}
+                        />
+                        {p.type !== 'design' && <PlayButton size={72} className="absolute left-1/2 top-[42%] -translate-x-1/2 -translate-y-1/2" />}
                       </div>
                     )}
                     <div className="absolute inset-x-0 bottom-0 h-[62%] bg-gradient-to-t from-[rgba(10,10,11,.92)] to-transparent" />

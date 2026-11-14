@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import Layout from '../components/layout/Layout';
 import BigCTA from '../components/layout/BigCTA';
 import { PlayButton } from '../components/ui/Icons';
-import { Screen } from '../components/ui/Media';
+import { Photo, Screen, WorkPreview } from '../components/ui/Media';
 import { Reveal, TitleReveal } from '../components/ui/Reveal';
 import { CTA_HREF } from '../lib/site';
 import { isAr, t } from '../lib/i18n';
@@ -11,7 +11,7 @@ import { EASE, drop, inView, rise, stagger } from '../lib/motion';
 import { gsap, ScrollTrigger, useGSAP } from '../lib/gsap';
 import { AuricMark } from '../components/Logo';
 import Workspace from '../components/services/Workspace';
-import { WORKSPACE } from '../lib/content';
+import { FILMS, WORKSPACE } from '../lib/content';
 
 const pad = (n: number) => String(n).padStart(2, '0');
 
@@ -137,20 +137,24 @@ function Create() {
           viewport={inView}
           variants={stagger(0.12)}
         >
-          <motion.div variants={drop} className="relative col-span-2 row-span-2 flex items-center justify-center rounded-[10px] bg-[#141414] md:col-[1/8] md:row-[1/5]">
-            <PlayButton size={80} />
-            <span className="slot bottom-4 left-[18px]">{t('Video edit · your work', 'مونتاج فيديو · من أعمالك')}</span>
-          </motion.div>
-          <motion.div variants={drop} className="relative col-span-2 flex items-end rounded-[10px] bg-gold p-5 md:col-[8/13] md:row-[1/3]">
-            <span className="font-display text-[64px] font-extrabold leading-[.9] tracking-[-0.05em]">Aa</span>
-            <span className="slot bottom-4 right-[18px] !text-[#141414]">{t('Brand identity', 'هوية بصرية')}</span>
-          </motion.div>
-          <motion.div variants={drop} className="relative rounded-[10px] bg-[#141414] md:col-[8/11] md:row-[3/5]">
-            <span className="slot bottom-[14px] left-4">{t('Poster', 'بوستر')}</span>
-          </motion.div>
-          <motion.div variants={drop} className="relative rounded-[10px] bg-sand md:col-[11/13] md:row-[3/5]">
-            <span className="slot bottom-3 left-[14px] !text-[#4a4740]">{t('Motion', 'موشن')}</span>
-          </motion.div>
+          {/* Real Create work: the TCG film, ELK Café's National Day identity and the TCG reel */}
+          <motion.a href="/work/tcg-brand-film" data-cursor="view" variants={drop} className="relative col-span-2 row-span-2 overflow-hidden rounded-[10px] bg-[#141414] md:col-[1/8] md:row-[1/5]">
+            <WorkPreview img="/work/tcg-brand-film/cover.jpg" teaser={FILMS.brandFilm.teaser} alt={t('TCG brand film', 'فيلم TCG')} sizes="(min-width: 768px) 55vw, 100vw" className="absolute inset-0" imgClassName="object-cover" />
+            <PlayButton size={80} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" />
+            <span className="slot bottom-4 left-[18px] rounded bg-[rgba(10,10,11,.75)] px-2 py-1">{t('Brand film · TCG', 'فيلم علامة · TCG')}</span>
+          </motion.a>
+          <motion.a href="/work/elk-cafe" variants={drop} className="relative col-span-2 overflow-hidden rounded-[10px] bg-[#40564a] md:col-[8/13] md:row-[1/3]">
+            <Photo src="/work/elk/cover.jpg" alt={t('ELK Café identity', 'هوية مقهى إلك')} sizes="(min-width: 768px) 40vw, 100vw" className="h-full w-full object-cover object-[50%_18%]" />
+            <span className="slot bottom-4 right-[18px] rounded bg-[rgba(10,10,11,.75)] px-2 py-1">{t('Brand identity · ELK Café', 'هوية بصرية · مقهى إلك')}</span>
+          </motion.a>
+          <motion.a href="/work/elk-cafe" variants={drop} className="relative overflow-hidden rounded-[10px] bg-[#141414] md:col-[8/11] md:row-[3/5]">
+            <Photo src="/work/elk/post-2.jpg" alt={t('ELK Café post', 'منشور مقهى إلك')} sizes="(min-width: 768px) 25vw, 50vw" className="h-full w-full object-cover object-top" />
+            <span className="slot bottom-[14px] left-4 rounded bg-[rgba(10,10,11,.75)] px-2 py-1">{t('Social design', 'تصميم سوشيال')}</span>
+          </motion.a>
+          <motion.a href="/work/tcg-reel" data-cursor="view" variants={drop} className="relative overflow-hidden rounded-[10px] bg-[#141414] md:col-[11/13] md:row-[3/5]">
+            <WorkPreview img="/work/tcg-reel/cover.jpg" teaser={FILMS.reel.teaser} alt={t('TCG reel', 'ريل TCG')} sizes="20vw" className="absolute inset-0" imgClassName="object-cover" />
+            <span className="slot bottom-3 left-[14px] rounded bg-[rgba(10,10,11,.75)] px-2 py-1">{t('Motion · reel', 'موشن · ريل')}</span>
+          </motion.a>
         </motion.div>
         <ServiceList
           cream

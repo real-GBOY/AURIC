@@ -4,7 +4,8 @@ import type { DivisionKey } from '../../lib/content';
 import { t } from '../../lib/i18n';
 import { AuricMark } from '../Logo';
 import { PlayButton } from '../ui/Icons';
-import { Photo, Screen } from '../ui/Media';
+import { Photo, Screen, WorkPreview } from '../ui/Media';
+import { FILMS } from '../../lib/content';
 
 const BARS = [30, 75, 50, 95, 40, 85, 60, 30, 70];
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -29,28 +30,32 @@ export default function DivisionPreview({ k, compact = false }: { k: DivisionKey
   return <ManagePreview compact={compact} />;
 }
 
-/* ─── Create: unchanged ─────────────────────────────────────────────────── */
+/* ─── Create: real work — the TCG film, ELK Café's identity and a story ──── */
 function CreatePreview({ compact }: { compact: boolean }) {
   const box = compact ? 'h-[150px] rounded-[10px]' : 'aspect-[4/5] rounded-[10px]';
   return compact ? (
     <div className={`${box} grid grid-cols-[2fr_1fr] gap-2 bg-cream p-[10px]`}>
-      <div className="flex items-center justify-center rounded-md bg-[#141414]">
-        <PlayButton size={38} />
+      <div className="relative overflow-hidden rounded-md bg-[#141414]">
+        <WorkPreview img="/work/tcg-brand-film/cover.jpg" teaser={FILMS.brandFilm.teaser} alt={t('TCG brand film', 'فيلم TCG')} sizes="300px" className="absolute inset-0" imgClassName="object-cover" />
+        <PlayButton size={38} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" />
       </div>
-      <div className="flex items-end rounded-md bg-gold p-2">
-        <span className="font-display text-[26px] font-extrabold text-[#141414]">Aa</span>
+      <div className="overflow-hidden rounded-md bg-[#40564a]">
+        <Photo src="/work/elk/post-1.jpg" alt={t('ELK Café post', 'منشور مقهى إلك')} sizes="150px" className="h-full w-full object-cover object-top" />
       </div>
     </div>
   ) : (
     <div className={`${box} grid grid-cols-2 grid-rows-[2fr_1fr_1fr] gap-[10px] bg-cream p-4`}>
-      <div className="relative col-span-2 flex items-center justify-center rounded-md bg-[#141414]">
-        <PlayButton size={52} />
-        <span className="slot bottom-[10px] left-3">Video</span>
+      <div className="relative col-span-2 overflow-hidden rounded-md bg-[#141414]">
+        <WorkPreview img="/work/tcg-brand-film/cover.jpg" teaser={FILMS.brandFilm.teaser} alt={t('TCG brand film', 'فيلم TCG')} sizes="480px" className="absolute inset-0" imgClassName="object-cover" />
+        <PlayButton size={52} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" />
+        <span className="slot bottom-[10px] left-3 rounded bg-[rgba(10,10,11,.75)] px-2 py-1">{t('Brand film · TCG', 'فيلم علامة · TCG')}</span>
       </div>
-      <div className="flex items-end rounded-md bg-gold p-[10px]">
-        <span className="font-display text-[32px] font-extrabold text-[#141414]">Aa</span>
+      <div className="overflow-hidden rounded-md bg-[#40564a]">
+        <Photo src="/work/elk/cover.jpg" alt={t('ELK Café identity', 'هوية مقهى إلك')} sizes="240px" className="h-full w-full object-cover object-[50%_18%]" />
       </div>
-      <div className="rounded-md bg-sand" />
+      <div className="overflow-hidden rounded-md bg-[#40564a]">
+        <Photo src="/work/elk/post-3.jpg" alt={t('ELK Café post', 'منشور مقهى إلك')} sizes="240px" className="h-full w-full object-cover object-[50%_25%]" />
+      </div>
       <div className="col-span-2 flex items-center gap-[3px] rounded-md bg-[#141414] px-[14px]" aria-hidden="true">
         {BARS.map((h, i) => (
           <motion.span
