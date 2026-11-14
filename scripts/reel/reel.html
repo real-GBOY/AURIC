@@ -30,7 +30,8 @@
   .gold { color: var(--gold); }
   .disp { font-family: 'Unbounded', sans-serif; font-weight: 800; letter-spacing: -0.055em; line-height: .88; color: var(--cream); }
   /* Room below the baseline so descenders (g, p, y) are never clipped by the reveal mask. */
-  .mask { display: block; overflow: hidden; padding-bottom: .24em; margin-bottom: -.24em; }
+  /* No clipping: titles rise and fade in whole, so no frame ever shows letters cut in half. */
+  .mask { display: block; overflow: visible; padding-bottom: .24em; margin-bottom: -.24em; }
   .mask > span { display: inline-block; }
   .dot { color: var(--gold); }
   .pixel { font-family: 'Press Start 2P', monospace; }
@@ -143,7 +144,7 @@
     const counter = css(el('div', 'abs counter', s, counterText), { left: px(x), top: px(y - 56) });
     const nm = words(s, title, 'abs disp', { left: px(x), top: px(y), width: px(width), fontSize: px(size) });
     tl.fromTo(counter, { opacity: 0, x: -12 }, { opacity: 1, x: 0, duration: 0.4 }, t0 + 0.05);
-    tl.fromTo(nm.spans, { yPercent: 110 }, { yPercent: 0, duration: 0.65, stagger: 0.06 }, t0 + 0.08);
+    tl.fromTo(nm.spans, { yPercent: 40, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.65, stagger: 0.06 }, t0 + 0.08);
     if (meta) {
       // Placed under the title's real height once fonts are loaded (see window.ready).
       const rule = css(el('div', 'rule', s), { left: px(x), top: px(y + size), width: px(Math.min(width, 520)) });
@@ -194,7 +195,7 @@
     tl.fromTo(gold, { yPercent: 0 }, { yPercent: -100, duration: 0.55, ease: 'expo.inOut' }, t0);
     // Sized so all four lines, plus the slow drift, stay inside the frame with room to spare.
     const L = lines(s, TALL ? ['Your', 'idea', 'planned,', 'built,', 'launched.'] : ['Your idea', 'planned,', 'built,', 'launched.'], 'abs disp', { left: px(TALL ? 70 : 120), top: px(TALL ? 330 : 104), fontSize: px(TALL ? 140 : 146) });
-    L.rows.forEach((r, i) => tl.fromTo(r, { yPercent: 110, rotate: 4 }, { yPercent: 0, rotate: 0, duration: 0.6 }, t0 + 0.2 + i * 0.16));
+    L.rows.forEach((r, i) => tl.fromTo(r, { yPercent: 40, rotate: 3, opacity: 0 }, { yPercent: 0, rotate: 0, opacity: 1, duration: 0.6 }, t0 + 0.42 + i * 0.16));
     const lab = css(el('div', 'abs lab', s, 'Video · Design · Strategy · Websites · Apps'), { left: px(TALL ? 74 : 124), bottom: px(TALL ? 90 : 56), fontSize: px(TALL ? 18 : 16), color: '#DCA733' });
     tl.fromTo(lab, { opacity: 0 }, { opacity: 1, duration: 0.5 }, t0 + 1.0);
     tl.to(L.box, { y: TALL ? -28 : -22, duration: 2.4, ease: 'none' }, t0 + 0.2);
@@ -219,7 +220,7 @@
         const w = words(box, 'Every frame', 'abs disp', { left: px(70 * ms), top: px(150 * ms), fontSize: px(118 * ms) });
         const g = words(box, 'on brief.', 'abs disp', { left: px(70 * ms), top: px(270 * ms), fontSize: px(118 * ms), color: '#DCA733' });
         const ul = css(el('div', 'abs', box), { left: px(74 * ms), top: px(430 * ms), width: px(560 * ms), height: px(6 * ms), background: '#DCA733', transformOrigin: 'left center' });
-        tl.fromTo([...w.spans, ...g.spans], { yPercent: 110 }, { yPercent: 0, duration: 0.5, stagger: 0.07 }, a + 0.05);
+        tl.fromTo([...w.spans, ...g.spans], { yPercent: 40, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.5, stagger: 0.07 }, a + 0.05);
         tl.fromTo(ul, { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: 'power3.out' }, a + 0.45);
         tl.to([w.box, g.box], { x: -30 * ms, duration: seg, ease: 'none' }, a);
       },
@@ -237,7 +238,7 @@
       (box, a) => {
         css(box, { background: '#F4F1E8' });
         const tline = lines(box, ['Cut. Grade.', 'Sound. Done.'], 'abs disp', { left: px(70 * ms), top: px(120 * ms), fontSize: px(104 * ms), color: '#0A0A0B' });
-        tl.fromTo(tline.rows, { yPercent: 110 }, { yPercent: 0, duration: 0.55, stagger: 0.12 }, a + 0.05);
+        tl.fromTo(tline.rows, { yPercent: 40, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.55, stagger: 0.12 }, a + 0.05);
         const lower = css(el('div', 'lower', box), { left: px(70 * ms), bottom: px(46 * ms), background: '#0A0A0B' });
         css(el('div', 'disp', lower, 'AURIC Create'), { fontSize: px(26 * ms), letterSpacing: '-0.03em' });
         css(el('div', 'lab', lower, 'Video · Motion · Voiceover'), { fontSize: px(12 * ms), color: '#DCA733' });
@@ -463,7 +464,7 @@
     const dim = css(el('div', 'abs', s), { inset: 0, background: 'radial-gradient(ellipse at center, rgba(10,10,11,.88) 0%, rgba(10,10,11,.6) 55%, rgba(10,10,11,.25) 100%)' });
     tl.fromTo(dim, { opacity: 0 }, { opacity: 1, duration: 0.6 }, t0 + 0.4);
     const L = lines(s, ['Video.', 'Design.', 'Content.', 'Software.'], 'abs disp', { left: 0, width: px(W), textAlign: 'center', top: px(TALL ? 330 : 120), fontSize: px(TALL ? 140 : 132) });
-    L.rows.forEach((r, i) => tl.fromTo(r, { yPercent: 110 }, { yPercent: 0, duration: 0.6 }, t0 + 0.5 + i * 0.22));
+    L.rows.forEach((r, i) => tl.fromTo(r, { yPercent: 40, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.6 }, t0 + 0.5 + i * 0.22));
     const lab = css(el('div', 'abs lab', s, 'One team · one point of contact'), { left: 0, width: px(W), textAlign: 'center', bottom: px(TALL ? 240 : 46), fontSize: px(TALL ? 19 : 16), color: '#DCA733' });
     tl.fromTo(lab, { opacity: 0 }, { opacity: 1, duration: 0.5 }, t0 + 1.5);
     T += d;
@@ -474,7 +475,7 @@
     const t0 = T, d = 4.4;
     const s = scene(t0, t0 + d + 0.01);
     const L = lines(s, TALL ? ['Your idea', 'planned,', 'built,', 'launched.'] : ['Your idea planned,', 'built, launched.'], 'abs disp', { left: px(PAD), top: px(TALL ? 260 : 150), fontSize: px(TALL ? 128 : 140) });
-    L.rows.forEach((r, i) => tl.fromTo(r, { yPercent: 110 }, { yPercent: 0, duration: 0.9 }, t0 + 0.1 + i * 0.16));
+    L.rows.forEach((r, i) => tl.fromTo(r, { yPercent: 40, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.9 }, t0 + 0.1 + i * 0.16));
     const foot = css(el('div', 'abs', s), { left: px(PAD), right: px(PAD), bottom: px(TALL ? 120 : 80), display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: '1px solid rgba(244,241,232,.18)', paddingTop: '26px' });
     const logo = css(el('div', '', foot), { display: 'flex', alignItems: 'center', gap: '16px' });
     el('div', '', logo, markSVG(TALL ? 56 : 52, '#DCA733'));
