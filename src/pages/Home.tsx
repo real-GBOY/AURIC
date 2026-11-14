@@ -564,16 +564,30 @@ function ClientProof() {
             </motion.figure>
           ))}
         </motion.div>
-        <div className="mt-7 grid grid-cols-3 gap-[10px] md:mt-14 md:grid-cols-6 md:gap-[14px]" data-pop>
-          {CLIENT_LOGOS.map((l, i) =>
-            l.src ? (
-              <img key={i} src={l.src} alt={l.name} className="h-16 w-full object-contain md:h-[84px]" />
-            ) : (
-              <div key={i} className="lab flex h-16 items-center justify-center rounded-[10px] border border-dashed border-[rgba(244,241,232,.2)] !text-[11px] !text-dim md:h-[84px] md:!text-[11px]">
-                {C.logo}
-              </div>
-            ),
-          )}
+        {/* Client logos: an endless strip (two copies for a seamless loop). Pauses on hover; still and
+            wrapped for reduced motion. Always runs left to right, also on Arabic pages. */}
+        <div
+          dir="ltr"
+          className="group mt-9 overflow-hidden md:mt-14 motion-safe:[mask-image:linear-gradient(to_right,transparent,#000_8%,#000_92%,transparent)]"
+        >
+          <div
+            className="flex w-max animate-marquee group-hover:[animation-play-state:paused] motion-reduce:w-auto motion-reduce:animate-none motion-reduce:justify-center"
+            style={{ animationDuration: '48s' }}
+          >
+            {[0, 1].map((copy) => (
+              <ul
+                key={copy}
+                aria-hidden={copy === 1 || undefined}
+                className={`flex shrink-0 items-center gap-12 pe-12 md:gap-20 md:pe-20 ${copy === 1 ? 'motion-reduce:hidden' : 'motion-reduce:flex-wrap motion-reduce:justify-center motion-reduce:pe-0'}`}
+              >
+                {CLIENT_LOGOS.filter((l) => l.src).map((l) => (
+                  <li key={l.src} className="shrink-0">
+                    <img src={l.src} alt={copy === 1 ? '' : l.name} className="h-14 w-auto max-w-none md:h-[84px]" />
+                  </li>
+                ))}
+              </ul>
+            ))}
+          </div>
         </div>
       </div>
     </section>

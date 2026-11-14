@@ -86,8 +86,8 @@ export const QUOTES = [
 ];
 
 /** Client logos (image paths). Empty entries render as labelled placeholders. */
-// White transparent PNGs, made by `npm run logos` (scripts/logos/logos.html) except Digitmask,
-// which is the supplied artwork turned white. Empty `src` = labelled placeholder.
+// White transparent PNGs, shown as an endless strip on Home. Made by `npm run logos` (scripts/logos/logos.html)
+// except Digitmask and Carlo Bay, which are the supplied artwork turned white. Empty `src` = labelled placeholder.
 export const CLIENT_LOGOS: { name: string; src: string }[] = [
   { name: 'Digitmask', src: '/clients/digitmask.png' },
   { name: 'Ajwadi, a platform for hiring freelancers in KSA', src: '/clients/ajwadi-wordmark.png' },
@@ -95,6 +95,7 @@ export const CLIENT_LOGOS: { name: string; src: string }[] = [
   { name: 'Social Lens, media agency in Dubai', src: '/clients/sociallens.png' },
   { name: 'SmileSuite, dental clinic management', src: '/clients/smilesuite.png' },
   { name: 'Lumen Labs, dental supplies and lab', src: '/clients/lumenlabs.png' },
+  { name: 'Carlo Bay Accademia', src: '/clients/carlobay.png' },
 ];
 
 /**
