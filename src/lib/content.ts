@@ -91,7 +91,7 @@ export const QUOTES = [
 export const CLIENT_LOGOS: { name: string; src: string }[] = [
   { name: 'Digitmask', src: '/clients/digitmask.png' },
   { name: 'Ajwadi, a platform for hiring freelancers in KSA', src: '/clients/ajwadi-wordmark.png' },
-  { name: 'Mizan, the law firm system', src: '/clients/mizan.png' },
+  { name: 'Mizan, law firm system', src: '/clients/mizan.png' },
   { name: 'Atlas, real estate OS', src: '/clients/atlas.png' },
   { name: 'Social Lens, media agency in Dubai', src: '/clients/sociallens.png' },
   { name: 'SmileSuite, dental clinic management', src: '/clients/smilesuite.png' },
