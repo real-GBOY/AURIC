@@ -71,6 +71,18 @@
       <div class="sub">Dental clinic<br />management</div>
     </div>
   </div>
+
+  <!-- Lumen Labs: the Lumen family mark (two overlapping circles, from the platform's brand code), in white.
+       In one colour the overlap is cut out so the two circles stay readable. -->
+  <div class="lockup lumen" id="lumenlabs">
+    <svg width="176" height="176" viewBox="0 0 64 64" aria-hidden="true">
+      <path fill="#fff" fill-rule="evenodd" d="M9 26a17 17 0 1 0 34 0a17 17 0 1 0 -34 0Z M21 38a17 17 0 1 0 34 0a17 17 0 1 0 -34 0Z" />
+    </svg>
+    <div>
+      <div class="name">Lumen Labs</div>
+      <div class="sub">Dental supplies<br />&amp; lab</div>
+    </div>
+  </div>
 <script>
   window.ready = document.fonts.ready.then(() => Promise.all(['700 40px Geist', '500 20px "Geist Mono"', '700 40px "Chakra Petch"'].map((f) => document.fonts.load(f)))).then(() => Promise.all([...document.images].map((i) => (i.complete ? 0 : new Promise((r) => (i.onload = i.onerror = r))))));
 </script>

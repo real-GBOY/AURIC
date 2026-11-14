@@ -94,7 +94,7 @@ export const CLIENT_LOGOS: { name: string; src: string }[] = [
   { name: 'Atlas, real estate OS', src: '/clients/atlas.png' },
   { name: 'Social Lens, media agency in Dubai', src: '/clients/sociallens.png' },
   { name: 'SmileSuite, dental clinic management', src: '/clients/smilesuite.png' },
-  ...Array.from({ length: 1 }, () => ({ name: 'Client logo', src: '' })),
+  { name: 'Lumen Labs, dental supplies and lab', src: '/clients/lumenlabs.png' },
 ];
 
 /**
