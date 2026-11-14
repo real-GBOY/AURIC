@@ -10,7 +10,8 @@
 
   Honesty rule: nothing here is presented as client work it isn't. Product shots are real
   AURIC software (public/work). The Create / Strategy / Manage scenes show each service as
-  designed motion built from AURIC's own identity and team photos, captioned as services.
+  designed motion built from AURIC's own identity, captioned as services. The editing timeline is a
+  real AURIC Premiere Pro edit and the content phone shows the AURIC website (scripts/reel/assets).
   Brand rules: ink / gold / cream, Unbounded headlines, Geist Mono labels, pixel font only in the logo.
 -->
 <style>
@@ -113,7 +114,9 @@
   };
   const lines = (parent, list, cls, style) => {
     const box = css(el('div', cls, parent), style || {});
-    return { box, rows: list.map((l) => el('span', '', el('span', 'mask', box), dotify(l))) };
+    // Headroom above each line too: with the tight .88 line-height, tall letters (l, b, d, t)
+    // reach above the line box and the reveal mask would shave their tops.
+    return { box, rows: list.map((l) => el('span', '', css(el('span', 'mask', box), { paddingTop: '.14em', marginTop: '-.14em' }), dotify(l))) };
   };
   const markSVG = (size, color) => {
     const rays = Array.from({ length: 12 }, (_, i) => {
@@ -189,11 +192,12 @@
     const s = scene(t0, t0 + d);
     const gold = css(el('div', 'abs', s), { inset: 0, background: '#DCA733' });
     tl.fromTo(gold, { yPercent: 0 }, { yPercent: -100, duration: 0.55, ease: 'expo.inOut' }, t0);
-    const L = lines(s, TALL ? ['Your', 'idea', 'planned,', 'built,', 'launched.'] : ['Your idea', 'planned,', 'built,', 'launched.'], 'abs disp', { left: px(TALL ? 70 : 120), top: px(TALL ? 170 : 70), fontSize: px(TALL ? 150 : 168) });
-    L.rows.forEach((r, i) => tl.fromTo(r, { yPercent: 110, rotate: 4 }, { yPercent: 0, rotate: 0, duration: 0.7 }, t0 + 0.22 + i * 0.22));
+    // Sized so all four lines, plus the slow drift, stay inside the frame with room to spare.
+    const L = lines(s, TALL ? ['Your', 'idea', 'planned,', 'built,', 'launched.'] : ['Your idea', 'planned,', 'built,', 'launched.'], 'abs disp', { left: px(TALL ? 70 : 120), top: px(TALL ? 330 : 104), fontSize: px(TALL ? 140 : 146) });
+    L.rows.forEach((r, i) => tl.fromTo(r, { yPercent: 110, rotate: 4 }, { yPercent: 0, rotate: 0, duration: 0.6 }, t0 + 0.2 + i * 0.16));
     const lab = css(el('div', 'abs lab', s, 'Video · Design · Strategy · Websites · Apps'), { left: px(TALL ? 74 : 124), bottom: px(TALL ? 90 : 56), fontSize: px(TALL ? 18 : 16), color: '#DCA733' });
     tl.fromTo(lab, { opacity: 0 }, { opacity: 1, duration: 0.5 }, t0 + 1.0);
-    tl.to(L.box, { yPercent: TALL ? -6 : -8, duration: 2.4, ease: 'none' }, t0 + 0.2);
+    tl.to(L.box, { y: TALL ? -28 : -22, duration: 2.4, ease: 'none' }, t0 + 0.2);
     T += d;
   }
 
@@ -205,73 +209,69 @@
     const mw = TALL ? 952 : 1000, mh = Math.round(mw * 9 / 16);
     const mx = TALL ? 64 : W - mw - 110, my = TALL ? 330 : 56;
     const mon = css(el('div', 'panel', s), { left: px(mx), top: px(my), width: px(mw), height: px(mh), background: '#000' });
+    // The monitor plays AURIC motion graphics, built here from the identity: kinetic type, the mark,
+    // a title card. No people and no websites (those belong to other scenes).
+    const ms = mh / 562; // type scales with the monitor
     const shots = [
-      { src: TEAM('sherif-ashraf.webp'), pos: '50% 30%', name: 'Sherif Ashraf', role: 'Chief Creative & Media Officer' },
-      { src: IMG('build-art/hero.png'), pos: '50% 0%' },
-      { src: TEAM('mahmoud-nayel.webp'), pos: '50% 25%', name: 'Mahmoud Nayel', role: 'Founder & CEO', grade: true },
+      // 1 · kinetic type on ink
+      (box, a, seg) => {
+        css(box, { background: '#0A0A0B' });
+        const w = words(box, 'Every frame', 'abs disp', { left: px(70 * ms), top: px(150 * ms), fontSize: px(118 * ms) });
+        const g = words(box, 'on brief.', 'abs disp', { left: px(70 * ms), top: px(270 * ms), fontSize: px(118 * ms), color: '#DCA733' });
+        const ul = css(el('div', 'abs', box), { left: px(74 * ms), top: px(430 * ms), width: px(560 * ms), height: px(6 * ms), background: '#DCA733', transformOrigin: 'left center' });
+        tl.fromTo([...w.spans, ...g.spans], { yPercent: 110 }, { yPercent: 0, duration: 0.5, stagger: 0.07 }, a + 0.05);
+        tl.fromTo(ul, { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: 'power3.out' }, a + 0.45);
+        tl.to([w.box, g.box], { x: -30 * ms, duration: seg, ease: 'none' }, a);
+      },
+      // 2 · the mark on gold, rays turning
+      (box, a, seg) => {
+        css(box, { background: '#DCA733' });
+        const size = 300 * ms;
+        const mk = css(el('div', 'abs', box, markSVG(size, '#0A0A0B')), { left: px(mw / 2 - size / 2), top: px(mh / 2 - size / 2) });
+        tl.fromTo(mk, { scale: 0.2, rotate: -90 }, { scale: 1, rotate: 0, duration: 0.7, ease: 'back.out(1.6)' }, a);
+        tl.to(mk, { rotate: 60, duration: seg, ease: 'none' }, a + 0.3);
+        const lab = css(el('div', 'abs lab', box, 'Motion · logo animation'), { left: 0, width: px(mw), textAlign: 'center', bottom: px(40 * ms), fontSize: px(14 * ms), color: '#0A0A0B' });
+        tl.fromTo(lab, { opacity: 0 }, { opacity: 1, duration: 0.4 }, a + 0.3);
+      },
+      // 3 · title card on cream with a lower third
+      (box, a) => {
+        css(box, { background: '#F4F1E8' });
+        const tline = lines(box, ['Cut. Grade.', 'Sound. Done.'], 'abs disp', { left: px(70 * ms), top: px(120 * ms), fontSize: px(104 * ms), color: '#0A0A0B' });
+        tl.fromTo(tline.rows, { yPercent: 110 }, { yPercent: 0, duration: 0.55, stagger: 0.12 }, a + 0.05);
+        const lower = css(el('div', 'lower', box), { left: px(70 * ms), bottom: px(46 * ms), background: '#0A0A0B' });
+        css(el('div', 'disp', lower, 'AURIC Create'), { fontSize: px(26 * ms), letterSpacing: '-0.03em' });
+        css(el('div', 'lab', lower, 'Video · Motion · Voiceover'), { fontSize: px(12 * ms), color: '#DCA733' });
+        tl.fromTo(lower, { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45 }, a + 0.35);
+      },
     ];
     const seg = (d - 0.4) / shots.length;
-    shots.forEach((sh, i) => {
+    shots.forEach((draw, i) => {
       const box = css(el('div', 'full', mon), { opacity: 0 });
-      const im = img(box, sh.src); im.style.objectPosition = sh.pos;
       const a = t0 + 0.25 + i * seg;
       tl.set(box, { opacity: 1 }, a);
       if (i < shots.length - 1) tl.set(box, { opacity: 0 }, a + seg);
-      tl.fromTo(im, { scale: 1.16 }, { scale: 1.02, duration: seg + 0.2, ease: 'power2.out' }, a);
-      if (sh.grade) {
-        // colour grade: a black-and-white "before" wipes away to the graded "after"
-        const before = css(el('div', 'full', box), {});
-        const bi = img(before, sh.src); bi.style.objectPosition = sh.pos; bi.style.filter = 'grayscale(1) contrast(1.1) brightness(.9)';
-        const line = css(el('div', 'abs', box), { top: 0, bottom: 0, width: '3px', background: '#DCA733' });
-        tl.fromTo(before, { clipPath: 'inset(0% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 100%)', duration: seg * 0.8, ease: 'power2.inOut' }, a + 0.15);
-        tl.fromTo(line, { left: '0%' }, { left: '100%', duration: seg * 0.8, ease: 'power2.inOut' }, a + 0.15);
-        css(el('div', 'abs lab', box, 'Grade · before / after'), { right: '18px', top: '16px', fontSize: '12px', color: '#DCA733' });
-      }
-      if (sh.name) {
-        const lower = css(el('div', 'lower', box), { left: '28px', bottom: '28px' });
-        css(el('div', 'disp', lower, sh.name), { fontSize: px(TALL ? 30 : 30), letterSpacing: '-0.03em' });
-        css(el('div', 'lab', lower, sh.role), { fontSize: '12px', color: '#DCA733' });
-        tl.fromTo(lower, { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45 }, a + 0.2);
-      }
+      draw(box, a, seg);
     });
-    // letterbox + rec dot
-    css(el('div', 'abs lab', mon, '● Rec · 4K'), { left: '18px', top: '16px', fontSize: '12px', color: '#F4F1E8', zIndex: 2 });
+    css(el('div', 'abs lab', mon, '● Preview · 4K'), { left: '18px', top: '16px', fontSize: '12px', color: '#F4F1E8', zIndex: 2, mixBlendMode: 'difference' });
     tl.fromTo(mon, { clipPath: 'inset(50% 0% 50% 0% round 14px)' }, { clipPath: 'inset(0% 0% 0% 0% round 14px)', duration: 0.6, ease: 'expo.out' }, t0);
 
-    // timeline panel
+    // Timeline panel: two real AURIC edits in Premiere Pro (scripts/reel/assets), crossfading,
+    // with a playhead running across them.
     const px0 = TALL ? 64 : 110, pw = W - px0 * 2;
-    const ph = TALL ? 250 : 200, py = TALL ? my + mh + 40 : my + mh + 26;
-    const panel = css(el('div', 'panel', s), { left: px(px0), top: px(py), width: px(pw), height: px(Math.min(ph, H - py - 30)) });
-    const tracks = [['V1', 12], ['V2', 64], ['A1', 116]];
-    tracks.forEach(([n, y]) => { css(el('div', 'tname', panel, n), { top: px(y + 16) }); css(el('div', 'track', panel), { top: px(y) }); });
-    const v1 = panel.children[1], v2 = panel.children[3], a1 = panel.children[5];
-    const clipSrc = [TEAM('sherif-ashraf.webp'), IMG('build-art/hero.png'), TEAM('mahmoud-nayel.webp'), IMG('admit/customer-event.png'), IMG('atlas/dashboard.png')];
-    const tw = pw - 110;
-    let cx = 0;
-    clipSrc.forEach((src, i) => {
-      const w = tw * [0.22, 0.2, 0.24, 0.17, 0.17][i];
-      const c = css(el('div', 'clip', v1), { left: px(cx), width: px(w - 4), background: '#DCA733' });
-      img(c, src);
-      tl.fromTo(c, { scaleX: 0, transformOrigin: 'left center' }, { scaleX: 1, duration: 0.5 }, t0 + 0.15 + i * 0.07);
-      cx += w;
+    const py = TALL ? my + mh + 40 : my + mh + 26;
+    const ph = Math.min(TALL ? 330 : 200, H - py - 30);
+    const panel = css(el('div', 'panel', s), { left: px(px0), top: px(py), width: px(pw), height: px(ph), background: '#1d1d1d' });
+    const edits = ['assets/timeline-1.jpg', 'assets/timeline-2.jpg'].map((src, i) => {
+      const box = css(el('div', 'full', panel), { opacity: i ? 0 : 1 });
+      const im = img(box, src); im.style.objectPosition = '50% 62%';
+      return { box, im };
     });
-    [[0.12, 0.18, 'Title'], [0.46, 0.14, 'Lower third'], [0.72, 0.16, 'Logo']].forEach(([l, w, t], i) => {
-      const c = css(el('div', 'clip', v2), { left: px(tw * l), width: px(tw * w), background: 'rgba(220,167,51,.25)', borderColor: 'rgba(220,167,51,.7)' });
-      css(el('div', 'lab', c, t), { position: 'absolute', left: '8px', top: '9px', fontSize: '11px', color: '#F4F1E8' });
-      tl.fromTo(c, { opacity: 0 }, { opacity: 1, duration: 0.3 }, t0 + 0.4 + i * 0.08);
-    });
-    // voiceover waveform
-    const bars = Math.floor(tw / 9);
-    for (let i = 0; i < bars; i++) {
-      const h = 6 + Math.pow(rnd(), 1.6) * 30;
-      const b = css(el('div', 'bar-w', a1), { left: px(i * 9), height: px(h), marginBottom: px(-h / 2) });
-      tl.fromTo(b, { scaleY: 0.15 }, { scaleY: 1, duration: 0.35, ease: 'power2.out' }, t0 + 0.3 + i * 0.004);
-      tl.to(b, { scaleY: 0.35 + rnd() * 0.65, duration: 0.3, ease: 'sine.inOut', repeat: Math.floor((d - 0.8) / 0.3), yoyo: true }, t0 + 0.7 + (i % 5) * 0.02);
-    }
-    css(el('div', 'abs lab', a1, 'Voiceover'), { right: '10px', top: '-20px', fontSize: '11px', color: '#DCA733' });
-    // playhead
-    const head = css(el('div', 'abs', panel), { top: '6px', bottom: '6px', width: '2px', background: '#DCA733', left: '92px', boxShadow: '0 0 12px rgba(220,167,51,.8)' });
-    tl.fromTo(head, { x: 0 }, { x: tw, duration: d - 0.3, ease: 'none' }, t0 + 0.2);
+    tl.fromTo(edits[0].im, { objectPosition: '50% 70%' }, { objectPosition: '50% 52%', duration: d / 2 + 0.3, ease: 'none' }, t0);
+    tl.to(edits[1].box, { opacity: 1, duration: 0.35, ease: 'power1.inOut' }, t0 + d / 2);
+    tl.fromTo(edits[1].im, { objectPosition: '50% 45%' }, { objectPosition: '50% 62%', duration: d / 2, ease: 'none' }, t0 + d / 2);
+    css(el('div', 'abs lab', panel, 'Premiere Pro · real AURIC edits'), { right: '14px', top: '10px', fontSize: '11px', color: '#DCA733', background: 'rgba(10,10,11,.85)', padding: '5px 8px', borderRadius: '4px', zIndex: 2 });
+    const head = css(el('div', 'abs', panel), { top: 0, bottom: 0, width: '2px', background: '#DCA733', left: '8%', boxShadow: '0 0 14px rgba(220,167,51,.9)', zIndex: 2 });
+    tl.fromTo(head, { x: 0 }, { x: pw * 0.84, duration: d - 0.3, ease: 'none' }, t0 + 0.2);
     tl.fromTo(panel, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, t0 + 0.05);
 
     if (TALL) heading(s, t0, 'Create · 01', 'Video & motion.', 'Editing · motion · voiceover', PAD, 120, 92, W - PAD * 2);
@@ -358,20 +358,16 @@
     const pw = TALL ? 330 : 300, ph = Math.round(pw * 2.05);
     const fx = TALL ? W - pw - 70 : W - pw - 150, fy = TALL ? 700 : (H - ph) / 2 + 20;
     const phone = css(el('div', 'phone', s), { left: px(fx), top: px(fy), width: px(pw), height: px(ph), zIndex: 5 });
+    // The screen is the AURIC website itself (auric404.me at phone width, assets/site-mobile.jpg),
+    // scrolling from the hero down through "What we do".
     const scr = css(el('div', 'scr', phone), { background: '#0A0A0B' });
-    const feed = css(el('div', 'abs', scr), { left: 0, right: 0, top: 0 });
-    const pH = pw - 22; // square posts
-    const posts = [
-      (b) => { css(b, { background: '#DCA733' }); css(el('div', 'disp', b, 'Your idea,<br>launched<span style="color:#0A0A0B">.</span>'), { position: 'absolute', left: '22px', bottom: '22px', fontSize: '30px', color: '#0A0A0B' }); },
-      (b) => { const i = img(b, TEAM('sherif-ashraf.webp')); i.style.objectPosition = '50% 30%'; css(el('div', 'lab', b, 'Meet the team'), { position: 'absolute', left: '16px', bottom: '16px', fontSize: '11px', color: '#DCA733', background: 'rgba(10,10,11,.8)', padding: '6px 8px' }); },
-      (b) => { css(b, { background: '#19191B' }); css(el('div', 'disp', b, '04'), { position: 'absolute', left: '20px', top: '18px', fontSize: '70px', color: 'transparent', WebkitTextStroke: '1.5px #DCA733' }); css(el('div', 'disp', b, 'Manage<span class="dot">.</span>'), { position: 'absolute', left: '20px', bottom: '22px', fontSize: '36px' }); },
-      (b) => { const i = img(b, IMG('atlas/dashboard.png')); css(el('div', 'lab', b, 'New launch'), { position: 'absolute', left: '16px', bottom: '16px', fontSize: '11px', color: '#0A0A0B', background: '#DCA733', padding: '6px 8px' }); },
-      (b) => { css(b, { background: '#F4F1E8' }); css(el('div', '', b, markSVG(90, '#DCA733')), { position: 'absolute', left: '20px', top: '20px' }); css(el('div', 'disp', b, 'One team<span class="dot">.</span>'), { position: 'absolute', left: '20px', bottom: '22px', fontSize: '32px', color: '#0A0A0B' }); },
-    ];
-    css(el('div', 'lab', feed, 'auric404'), { height: '58px', padding: '30px 0 0 18px', fontSize: '12px', color: '#F4F1E8' });
-    posts.forEach((fn, i) => { const b = css(el('div', 'post', feed), { position: 'relative', height: px(pH), margin: '0 0 8px 0' }); fn(b); });
+    const sw2 = pw - 22, siteH = sw2 * (4882 / 560), scrH = ph - 22;
+    const site = css(img(scr, 'assets/site-mobile.jpg', ''), { position: 'absolute', left: 0, top: 0, width: px(sw2), height: px(siteH) });
     tl.fromTo(phone, { y: H, rotate: 6 }, { y: 0, rotate: TALL ? -3 : -4, duration: 0.9 }, t0 + 0.15);
-    tl.fromTo(feed, { y: 0 }, { y: -(pH + 8) * 3.2, duration: d - 0.6, ease: 'power1.inOut' }, t0 + 0.6);
+    // Each stop leaves room under the notch so the section heading it lands on reads in full.
+    const stop = (f) => -Math.max(0, siteH * f - 78);
+    tl.fromTo(site, { y: 0 }, { y: stop(0.168), duration: 0.9, ease: 'power2.inOut' }, t0 + 1.0); // mobile apps
+    tl.to(site, { y: stop(0.335), duration: 0.9, ease: 'power2.inOut' }, t0 + 2.2); // what we do
 
     if (TALL) heading(s, t0, 'Strategy · 03', 'Content & social.', 'Plans · calendars · posts · reels', PAD, 120, 84, W - PAD * 2);
     else heading(s, t0, 'Strategy · 03', 'Content plans.', 'Marketing · calendars · posts · reels', PAD, 96, 96, 900);

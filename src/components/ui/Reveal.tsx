@@ -57,7 +57,9 @@ export function TitleReveal({
       {lines.map((line, i) => (
         // The mask only clips vertically (for the slide-up); lines never wrap and
         // the whole title shrinks to fit its column instead of being cut off.
-        <span key={i} className="-mb-[0.08em] block pb-[0.14em] [overflow-x:visible] [overflow-y:clip]">
+        // Headroom above and below (cancelled by negative margins, so the layout is unchanged):
+        // with tight line-heights, tall letters, accents and Arabic marks reach past the line box.
+        <span key={i} className="-mb-[0.26em] -mt-[0.32em] block pb-[0.32em] pt-[0.32em] [overflow-x:visible] [overflow-y:clip]">
           <motion.span data-fit-line className="inline-block whitespace-nowrap" variants={lineUp}>
             {line}
           </motion.span>

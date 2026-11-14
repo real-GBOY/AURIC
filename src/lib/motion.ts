@@ -9,9 +9,10 @@ export const rise: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } },
 };
 
-/** A headline line sliding up from behind a mask (wrap the line in overflow-hidden). */
+/** A headline line sliding up from behind a mask (wrap the line in overflow-hidden).
+ *  Starts far enough down to stay hidden under the mask's extra bottom headroom. */
 export const lineUp: Variants = {
-  hidden: { y: '105%' },
+  hidden: { y: '150%' },
   visible: { y: '0%', transition: { duration: 0.9, ease: EASE } },
 };
 
