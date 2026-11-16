@@ -5,38 +5,30 @@
 <title>AURIC 01 — Story and LinkedIn</title>
 <link rel="stylesheet" href="../../assets/brand.css">
 <style>
-  .hero .ln { display: flex; align-items: center; gap: 24px; white-space: nowrap; }
-  .story .hero { font-size: 116px; margin-top: 110px; }
-  .story .hero .ln { height: 122px; } .story .hero .ln + .ln { margin-top: 16px; }
-  .li .hero { font-size: 78px; margin-top: 74px; }
-  .li .hero .ln { height: 88px; } .li .hero .ln + .ln { margin-top: 14px; }
+  .halo { position: absolute; left: 50%; width: 2600px; height: 2600px; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(220,167,51,.34) 0%, rgba(220,167,51,.10) 30%, transparent 55%); }
+  /* story: same sunrise, taller sky */
+  .story .rise { position: absolute; width: 2300px; height: 2300px; left: -610px; top: 980px; transform: rotate(15deg); }
+  .story .halo { top: 2130px; }
+  /* linkedin: the sun rises on the right */
+  .li .rise { position: absolute; width: 1300px; height: 1300px; left: 420px; top: -20px; transform: rotate(15deg); }
+  .li .halo { left: 1070px; top: 630px; width: 1600px; height: 1600px; }
 </style>
 </head>
 <body>
 
-<!-- Instagram Story 1080x1920 (top 250 / bottom 300 kept clear for the app UI) -->
 <section class="slide story" data-name="story">
-  <div class="grid-bg"></div><div class="glow"></div>
+  <div class="halo"></div>
+  <div class="rise" data-sun></div>
   <div class="top-bar layer"><span data-logo></span><span class="lab g">New on the feed</span></div>
-  <h1 class="mega hero layer">
-    <span class="ln">Your idea <span data-pill="timeline" data-h="96" data-w="190" data-at="30"></span></span>
-    <span class="ln"><span data-pill="calendar" data-h="96" data-w="200"></span> planned,</span>
-    <span class="ln">built, <span data-pill="code" data-h="96" data-w="200"></span></span>
-    <span class="ln"><span data-pill="done" data-h="96" data-w="180"></span> <span>launched<i class="dot">.</i></span></span>
-  </h1>
-  <p class="copy layer" style="margin-top:90px;font-size:42px;max-width:24ch">Video, design, strategy, websites, apps and systems. One team, one point of contact.</p>
-  <div class="foot layer"><span class="btn btn-gold">Meet the new AURIC ↗</span></div>
+  <h1 class="mega layer" style="font-size:190px;margin-top:110px;line-height:.86">Rise<br><span class="stroke-cream" style="letter-spacing:-0.02em">&amp;</span> build<i class="dot">.</i></h1>
 </section>
 
-<!-- LinkedIn link/feed image 1200x627 -->
 <section class="slide li" data-name="linkedin">
-  <div class="grid-bg"></div><div class="glow"></div>
-  <div class="top-bar layer"><span data-logo></span><span class="lab g" style="font-size:18px">Your digital partner</span></div>
-  <h1 class="mega hero layer">
-    <span class="ln">Your idea <span data-pill="timeline" data-h="70" data-w="140" data-at="30"></span> planned,</span>
-    <span class="ln">built, <span data-pill="code" data-h="70" data-w="140"></span> <span>launched<i class="dot">.</i></span></span>
-  </h1>
-  <div class="foot layer"><span class="lab" style="font-size:18px">Creative · Strategy · Technology · Delivery</span><span class="handle" style="font-size:18px">auric404.me</span></div>
+  <div class="halo"></div>
+  <div class="rise" data-sun></div>
+  <div class="top-bar layer" style="width:520px"><span data-logo></span></div>
+  <h1 class="mega layer" style="font-size:132px;margin-top:70px;line-height:.86">Rise<br><span class="stroke-cream" style="letter-spacing:-0.02em">&amp;</span> build<i class="dot">.</i></h1>
+  <div class="foot layer"><span class="lab g" style="font-size:18px">Your digital partner · auric404.me</span></div>
 </section>
 
 <script src="../../assets/brand.js"></script>

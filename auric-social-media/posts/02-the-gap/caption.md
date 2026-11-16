@@ -11,9 +11,9 @@
 
 ## B. Copy
 
-**Headline:** Projects rarely break at the idea. They break in between.
+**Headline:** Mind the gap. / We close it.
 
-**Supporting copy:** One project. Five people. Every handoff loses something. And you become the project manager.
+**Supporting copy:** none
 
 **Caption:**
 
@@ -37,20 +37,15 @@ If your project is split across too many people, tell us about it.
 
 ## C. Design direction
 
-- **Slide 1 (cream):** mega headline, with "They break in between." in gold-deep. Below it, a chain of five outlined pills (Design, Web, Video, Ads, You) joined by broken dashed lines. "You" is the gold one: the person stuck in the middle.
-- **Slide 2 (ink):** "One project. Five people." with numbered hairline rows; mono notes on the right ("the look", "the website", … "usually you").
-- **Slide 3 (bg):** "Every handoff loses something." Four rows fade from 100% to 30% opacity: the brief, the tone, the deadline, the reason it started.
-- **Slide 4 (cream):** "You become the project manager." Big type, short copy.
-- **Slide 5 (ink + glow):** the sun mark beside "One team. One owner.", with chips for the five pillars and Manage highlighted.
-- **Slide 6 (gold):** "One partner." (the website's Services headline) and a dark button.
-- **Labels:** Geist Mono, with an "01 / 06" counter top right.
+- **Slide 1:** five tall blocks (Design, Website, Video, Ads, You), tilted and scattered, with gold dashed cracks between them. "You" is the gold block. Headline: "Mind the gap."
+- **Slide 2:** the same blocks snapped flush into one solid bar, with the AURIC sun above it. Headline: "We close it."
+- Before and after in two swipes, with no copy needed.
 
 ## D. Execution
 
-- Carousel, 6 slides at 1080 × 1350. LinkedIn: `export/carousel.pdf`.
-- **Motion option:** slide 3 as a 6 s Reel, where each row appears and then dims as the next one arrives.
+- Carousel, 2 slides. **Motion (Reel, 5 s):** the scattered blocks slide together and lock with a click, then the sun rises above them.
 
 ## Files
 
 - `post.html`: the editable source. Open it in a browser to preview every slide; `?s=N` shows slide N on its own.
-- `export/`: carousel.pdf, slide-01.png, slide-02.png, slide-03.png, slide-04.png, slide-05.png, slide-06.png
+- `export/`: carousel.pdf, slide-01.png, slide-02.png

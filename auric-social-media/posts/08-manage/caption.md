@@ -11,9 +11,9 @@
 
 ## B. Copy
 
-**Headline:** One owner. Every deadline.
+**Headline:** Right on time.
 
-**Supporting copy:** One person coordinates every specialist, review and date. You always know who to call, and where the project stands.
+**Supporting copy:** none
 
 **Caption:**
 
@@ -33,14 +33,11 @@ It's not an extra. It's how we work.
 
 ## C. Design direction
 
-- **Canvas:** gold. It is the feed's second gold post, set between darker ones.
-- **Composition:** the mega headline in #141414 and the copy, then a project timeline drawn in the brand's pill shapes. It shows rows for Strategy, Identity, Website, Launch film and Launch across eight weeks, labelled "Example". The launch-film bar is outlined, so the chart reads as overlapping work held on one plan.
-- **Footer:** "One timeline · one point of contact".
+- **Concept:** the 12 rays of the sun become 12 hours. The mark turns into a clock with its hands at twelve, the deadline met. Ink on gold.
 
 ## D. Execution
 
-- Single image, 1080 × 1350.
-- **Motion option:** the bars grow from the left in sequence (0.15 s apart, 0.8 s each), like the "delivered" pill bar on the site.
+- Single. **Motion (Reel, 5 s):** the hands sweep round and stop at twelve with a tick.
 
 ## Files
 

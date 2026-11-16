@@ -30,30 +30,28 @@ The 12 posts run in four acts:
 
 The capabilities are deliberately not posted as five ads in a row. Each one does a different job: proof, teaching, concept or statement.
 
-## Deliverables
+## Deliverables (v2: visual posters)
 
-| Post | Slides | Exports |
-|---|---|---|
-| 01 Introducing | 1 | `slide-01.png`, `story.png`, `linkedin.png` |
-| 02 The gap | 6 | `slide-01…06.png`, `carousel.pdf` |
-| 03 Twelve rays | 1 | `slide-01.png`, `linkedin.png` |
-| 04 Build | 6 | `slide-01…06.png`, `carousel.pdf` |
-| 05 Create | 6 | `slide-01…06.png`, `carousel.pdf` |
-| 06 Four questions | 6 | `slide-01…06.png`, `carousel.pdf` |
-| 07 Experience | 1 | `slide-01.png` *(blocked until VR capability is confirmed)* |
-| 08 Manage | 1 | `slide-01.png` |
-| 09 One project | 7 | `slide-01…07.png`, `carousel.pdf` |
-| 10 Sound familiar? | 6 | `slide-01…06.png`, `carousel.pdf` |
-| 11 How we work | 6 | `slide-01…06.png`, `carousel.pdf` |
-| 12 Let's make it real | 1 | `slide-01.png`, `story.png` |
+The posters carry the idea in one image and a few words. The message lives in the captions (`caption.md`).
 
-Totals:
+| Post | Poster | Slides | Exports |
+|---|---|---|---|
+| 01 | **Rise & build.** A giant AURIC sun rising from the bottom edge | 1 | `slide-01.png`, `story.png`, `linkedin.png` |
+| 02 | **Mind the gap. / We close it.** Scattered blocks, then snapped into one bar | 2 | `slide-01…02.png`, `carousel.pdf` |
+| 03 | **12 skills. 1 core.** One word on each ray of the sun | 1 | `slide-01.png`, `linkedin.png` |
+| 04 | **Build.** Real screens floating in 3D, each project's name in giant outline | 4 | `slide-01…04.png`, `carousel.pdf` |
+| 05 | **Create.** A film strip of real client work, plus a play button | 4 | `slide-01…04.png`, `carousel.pdf` |
+| 06 | **Aim first.** A dartboard with a bullseye | 1 | `slide-01.png` |
+| 07 | **Step inside.** A grid floor with the sun on the horizon *(blocked until VR is confirmed)* | 1 | `slide-01.png` |
+| 08 | **Right on time.** The 12 rays as a clock face | 1 | `slide-01.png` |
+| 09 | **Watch it light up.** Five suns lighting up along an arc | 1 | `slide-01.png` |
+| 10 | **Sound familiar?** The chaotic launch group chat, 99+ | 1 | `slide-01.png` |
+| 11 | **Four steps up.** The process as a staircase, with the sun on top | 1 | `slide-01.png` |
+| 12 | **PRESS START.** An arcade button with the sun on it | 1 | `slide-01.png`, `story.png` |
 
-- 48 feed slides at 1080 × 1350
-- 2 Stories at 1080 × 1920
-- 2 LinkedIn images at 1200 × 627
-- 7 LinkedIn carousel PDFs
-- Logo exports in `assets/logo/`
+Totals: 19 feed images at 1080 × 1350, 2 Stories, 2 LinkedIn images, and 3 carousel PDFs. Ready-to-post copies are in
+`final-posts/` (one folder per post, with images and caption). The first, text-heavy version (v1) is in the git history
+(commit `4d5c8f5`).
 
 ## Structure
 
@@ -114,7 +112,8 @@ Every slide was rendered, looked at, and revised where it failed. What was check
 |---|---|
 | **Matches the website** | Same tokens, fonts (the site's own font files), logo geometry, gold full stop, mono labels, pills, frames, calendar grid, numerals and grid texture. Post 01 is the site hero itself. |
 | **Logo** | Rendered from the `Logo.tsx` geometry. It is never redrawn or distorted, and the wordmark is always Press Start 2P with the gold U. |
-| **Readability** | Body copy at 32px or more, labels at 18px or more on a 1080 canvas. Text over photos sits on a solid gradient. Fixed during review: a burned-in film subtitle that showed through on 05/2. |
+| **Text load (v2)** | Each poster has one headline of five words at most, plus at most one short label. Everything else moved into the caption. |
+| **Readability** | Labels are 20px or more on a 1080 canvas. Text over photos sits on a solid gradient (this also hides the TCG still's burned-in subtitle). |
 | **Composition** | Fixed during review: |
 | | an overflowing pill on 01 |
 | | a split full stop on 01 |

@@ -13,7 +13,7 @@
 
 **Headline:** Create.
 
-**Supporting copy:** Video, design, motion, voiceover and content, made to one standard.
+**Supporting copy:** none — one label per project
 
 **Caption:**
 
@@ -37,19 +37,14 @@ All client work, with full case studies on our website.
 
 ## C. Design direction
 
-- **Cover (cream):** "AURIC Create", "Create." at 196px, the editing-timeline pill, and the copy.
-- **Slide 2:** a full-bleed still from the TCG film, with a dark gradient to ink at the bottom carrying the title, brief and mono deliverables.
-- **Slide 3:** the ELK Café post and story as rounded tiles on the brand's deep green (#23302A, taken from the work so black doesn't overpower it).
-- **Slide 4 (bg):** two vertical tiles (TCG reel, Green Teaching Kitchen) with mono captions.
-- **Slide 5:** the Digitmask identity image, with the title and description on ink below.
-- **Slide 6 (cream):** "One standard. Every format." ("Every format" in ink outline) and "See the work →".
+- **Cover:** a strip of film running diagonally across a cream poster, its frames made from AURIC's real client work, with a giant gold play button.
+- **Slides:** the TCG film still with the play button; ELK Café posts and story fanned out like cards on the brand's green; two reels tilted in phones ("Made to stop the scroll.").
 
 ## D. Execution
 
-- Carousel, 6 slides at 1080 × 1350. LinkedIn: `export/carousel.pdf`.
-- **Best paired with a Reel:** a 20 s cut of the real films (`public/media/brand-film-teaser.mp4`, `reel.mp4`, `event-recap.mp4`) with mono slot labels, ending on the "Create." card.
+- Carousel, 4 slides. **Best as a Reel:** the film strip scrolls and each frame cuts to the real footage.
 
 ## Files
 
 - `post.html`: the editable source. Open it in a browser to preview every slide; `?s=N` shows slide N on its own.
-- `export/`: carousel.pdf, slide-01.png, slide-02.png, slide-03.png, slide-04.png, slide-05.png, slide-06.png
+- `export/`: carousel.pdf, slide-01.png, slide-02.png, slide-03.png, slide-04.png

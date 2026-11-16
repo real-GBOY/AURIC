@@ -11,9 +11,9 @@
 
 ## B. Copy
 
-**Headline:** Some ideas are better stepped into.
+**Headline:** Step inside.
 
-**Supporting copy:** VR and interactive experiences for launches, showrooms, training and events, from the team behind your brand and your software.
+**Supporting copy:** none
 
 **Caption:**
 
@@ -33,14 +33,12 @@ Got an idea people should step into? Tell us about it.
 
 ## C. Design direction
 
-- **BLOCKING:** publish only after AURIC confirms it delivers VR and interactive work. No portfolio is shown or implied. If it can't be confirmed, use the backup post "Built in two languages": Mizan's real Arabic and English screens side by side, as a Knowledge post.
-- **Concept:** the site's grid texture laid down as a floor in perspective, with the AURIC sun rising on the horizon. It is a space you could walk into, built only from brand elements.
-- **Composition:** the headline at the top ("stepped into." in gold outline) and the copy below. The horizon sits at 63% of the height, with the sun half-risen in a soft glow above the gold grid floor.
+- **Concept:** the site's grid laid down as a floor in perspective, with the AURIC sun rising on the horizon: a space to walk into. "inside." is set in gold outline.
+- **Blocking:** publish only once the VR capability is confirmed.
 
 ## D. Execution
 
-- Single image, 1080 × 1350.
-- **Motion version (Reel, 8 s):** a slow camera push forward over the grid floor (the lines scroll towards the viewer). The sun rises 40px and the glow breathes once, while the headline fades and rises in.
+- Single. **Motion (Reel, 8 s):** the camera pushes forward over the grid while the sun rises.
 
 ## Files
 

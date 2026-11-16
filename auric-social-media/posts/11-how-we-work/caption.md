@@ -11,9 +11,9 @@
 
 ## B. Copy
 
-**Headline:** How we work.
+**Headline:** Four steps up.
 
-**Supporting copy:** 01 Plan · 02 Create · 03 Build · 04 Deliver. It starts with a short call.
+**Supporting copy:** none — four step labels
 
 **Caption:**
 
@@ -36,17 +36,13 @@ Every project is priced after a short call. Book one → link in bio
 
 ## C. Design direction
 
-- **Mirrors the website's "How we work" section:** solid and outlined gold numerals 01–04.
-- **Cover (ink):** the headline, "One partner, start to finish.", and a 2 × 2 grid of numerals with the step names (01 and 04 solid gold, 02 and 03 gold outline).
-- **Steps:** Plan on cream (solid gold numeral), Create on ink (outline), Build on bg (outline), Deliver on gold (#141414 numeral). Each has a 420px numeral, a mega step name, the copy, and a "You get" row at the bottom.
-- **Slide 6 (ink + grid + glow):** "It starts with a short call." and a gold button.
+- **Concept:** the process as a staircase. 01 Plan, 02 Create, 03 Build and 04 Deliver rise from charcoal to cream to gold, with the AURIC sun waiting on the top step.
 
 ## D. Execution
 
-- Carousel, 6 slides at 1080 × 1350. LinkedIn: `export/carousel.pdf`.
-- **Motion option:** a 6 s Reel where the numerals count up 01 → 04 alongside the step names.
+- Single. **Motion (Reel, 5 s):** the steps build up one by one and the sun lands on top.
 
 ## Files
 
 - `post.html`: the editable source. Open it in a browser to preview every slide; `?s=N` shows slide N on its own.
-- `export/`: carousel.pdf, slide-01.png, slide-02.png, slide-03.png, slide-04.png, slide-05.png, slide-06.png
+- `export/`: slide-01.png

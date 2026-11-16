@@ -2,88 +2,30 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>AURIC 09 — One project, start to finish</title>
+<title>AURIC 09 — Watch it light up</title>
 <link rel="stylesheet" href="../../assets/brand.css">
 <style>
-  /* The sun lights up as the project moves forward, the way the AURIC Workspace shows progress. */
-  .prog { display: flex; align-items: center; gap: 34px; }
-  .prog [data-sun] { width: 150px; height: 150px; flex-shrink: 0; }
-  .prog .pct { font-family: 'Geist Mono', monospace; font-size: 22px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); line-height: 1.6; }
-  .prog .pct b { color: var(--gold); font-weight: 500; }
-  .step { font-family: 'Unbounded', sans-serif; font-weight: 800; font-size: 200px; line-height: .85; letter-spacing: -0.05em; margin-top: 80px; }
-  .st-h { font-size: 94px; margin-top: 90px; }
-  .st-p { margin-top: 44px; font-size: 40px; max-width: 28ch; }
-  .tags { display: flex; gap: 12px; flex-wrap: wrap; margin-top: auto; }
-  .tags .chip { height: 56px; font-size: 22px; padding: 0 24px; }
+  /* One project, five stages: the sun lights up ray by ray along a rising arc, like the AURIC Workspace progress. */
+  .ph { position: absolute; display: flex; flex-direction: column; align-items: center; gap: 18px; }
+  .ph .lab { font-size: 20px; }
+  .arc { position: absolute; inset: 0; }
+  .h { font-size: 128px; margin-top: 70px; }
 </style>
 </head>
 <body>
-
-<!-- 1 · cover -->
 <section class="slide">
   <div class="glow"></div>
-  <div class="top-bar layer"><span data-logo></span><span class="count"><b>01</b> / 07</span></div>
-  <span class="lab g layer" style="margin-top:150px">Illustrative example · a new clinic</span>
-  <h1 class="mega layer" style="font-size:118px;margin-top:40px">One project, start to finish<i class="dot">.</i></h1>
-  <p class="copy layer" style="margin-top:50px;font-size:40px;max-width:27ch">What working with one partner looks like, step by step. Watch the sun.</p>
-  <div class="prog layer end"><div data-sun data-lit="0" data-core="off"></div><span class="pct">Not started<br><b>0 / 12</b></span></div>
+  <svg class="arc" viewBox="0 0 1080 1350" aria-hidden="true">
+    <path d="M 160 1230 C 330 1150, 600 1000, 900 560" fill="none" stroke="rgba(220,167,51,.35)" stroke-width="2.5" stroke-dasharray="10 12"/>
+  </svg>
+  <div class="ph" style="left:90px;top:1060px"><div data-sun data-lit="0" data-core="off" style="width:140px;height:140px"></div><span class="lab">Plan</span></div>
+  <div class="ph" style="left:270px;top:900px"><div data-sun data-lit="3" style="width:170px;height:170px"></div><span class="lab">Design</span></div>
+  <div class="ph" style="left:470px;top:720px"><div data-sun data-lit="6" style="width:200px;height:200px"></div><span class="lab">Build</span></div>
+  <div class="ph" style="left:640px;top:500px"><div data-sun data-lit="9" style="width:240px;height:240px"></div><span class="lab">Create</span></div>
+  <div class="ph" style="left:760px;top:180px"><div data-sun data-lit="12" style="width:270px;height:270px"></div><span class="lab g">Launch</span></div>
+  <div class="top-bar layer"><span data-logo></span></div>
+  <h1 class="mega h layer">Watch<br>it light<br>up<i class="dot">.</i></h1>
 </section>
-
-<!-- 2 · strategy -->
-<section class="slide bg">
-  <div class="top-bar"><span class="lab g">Step 1 · Strategy</span><span class="count"><b>02</b> / 07</span></div>
-  <div class="prog" style="margin-top:70px"><div data-sun data-lit="2"></div><span class="pct">Project started<br><b>2 / 12</b></span></div>
-  <h2 class="h2 st-h">Who it's for, and what launch should achieve<i class="dot">.</i></h2>
-  <p class="copy st-p">The patients, what makes this clinic different, the message, and the numbers we'll judge the launch by.</p>
-  <div class="tags"><span class="chip on">Strategy</span><span class="chip">Content plan</span></div>
-</section>
-
-<!-- 3 · identity -->
-<section class="slide cream">
-  <div class="top-bar"><span class="lab g">Step 2 · Identity</span><span class="count"><b>03</b> / 07</span></div>
-  <div class="prog" style="margin-top:70px"><div data-sun data-lit="5" data-dim="#d9d4c7"></div><span class="pct" style="color:var(--copy-dark)">Brand ready<br><b style="color:var(--gold-deep)">5 / 12</b></span></div>
-  <h2 class="h2 st-h">A look people trust before they walk in<i class="dot">.</i></h2>
-  <p class="copy st-p">Logo, colours, type, signage and social templates, designed from the strategy, not from a mood board.</p>
-  <div class="tags"><span class="chip on">Design</span><span class="chip">Brand identity</span></div>
-</section>
-
-<!-- 4 · build -->
-<section class="slide bg">
-  <div class="top-bar"><span class="lab g">Step 3 · Build</span><span class="count"><b>04</b> / 07</span></div>
-  <div class="prog" style="margin-top:70px"><div data-sun data-lit="8"></div><span class="pct">Website live<br><b>8 / 12</b></span></div>
-  <h2 class="h2 st-h">A website that books appointments<i class="dot">.</i></h2>
-  <p class="copy st-p">The site and the booking system behind it, in the same brand, connected to how the front desk already works.</p>
-  <div class="tags"><span class="chip on">Website</span><span class="chip">Booking system</span><span class="chip">Automation</span></div>
-</section>
-
-<!-- 5 · create -->
-<section class="slide bg">
-  <div class="top-bar"><span class="lab g">Step 4 · Create</span><span class="count"><b>05</b> / 07</span></div>
-  <div class="prog" style="margin-top:70px"><div data-sun data-lit="11"></div><span class="pct">Launch content<br><b>11 / 12</b></span></div>
-  <h2 class="h2 st-h">An opening people hear about<i class="dot">.</i></h2>
-  <p class="copy st-p">A launch film, reels and the first month of posts, briefed by the strategy and pointing at the booking page.</p>
-  <div class="tags"><span class="chip on">Video</span><span class="chip">Motion</span><span class="chip">Content</span></div>
-</section>
-
-<!-- 6 · manage -->
-<section class="slide gold">
-  <div class="top-bar"><span class="lab">Step 5 · Launch</span><span class="count"><b>06</b> / 07</span></div>
-  <div class="prog" style="margin-top:70px"><div data-sun data-lit="12" style="color:var(--text-dark)"></div><span class="pct" style="color:rgba(20,20,20,.62)">Delivered<br><b style="color:var(--text-dark)">12 / 12</b></span></div>
-  <h2 class="h2 st-h">One timeline. One owner the whole way<i class="dot">.</i></h2>
-  <p class="copy st-p">Every step briefed by the one before it, so nothing gets explained twice and nothing falls between people.</p>
-  <div class="foot"><span class="lab">One partner, start to finish</span><span class="handle">auric404.me</span></div>
-</section>
-
-<!-- 7 · CTA -->
-<section class="slide">
-  <div class="grid-bg"></div>
-  <div class="top-bar layer"><span data-logo></span><span class="count"><b>07</b> / 07</span></div>
-  <div data-sun class="layer" style="width:260px;height:260px;margin-top:120px"></div>
-  <h2 class="mega layer" style="font-size:112px;margin-top:70px">What would your sun look like<i class="dot">?</i></h2>
-  <p class="copy layer" style="margin-top:44px;font-size:38px;max-width:28ch">Tell us what you're starting. We'll map the steps it actually needs.</p>
-  <div class="foot layer"><span class="btn btn-gold">Start a project →</span><span class="handle">auric404.me</span></div>
-</section>
-
 <script src="../../assets/brand.js"></script>
 </body>
 </html>

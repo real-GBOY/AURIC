@@ -11,9 +11,9 @@
 
 ## B. Copy
 
-**Headline:** Let's make it real.
+**Headline:** PRESS START
 
-**Supporting copy:** Tell us the idea. We'll tell you honestly what it needs, who'll work on it and what it costs.
+**Supporting copy:** auric404.me/contact · DM · WhatsApp
 
 **Caption:**
 
@@ -35,13 +35,11 @@ If you have one, this is the easiest part. Tell us what you're trying to do. We'
 
 ## C. Design direction
 
-- **Canvas:** gold, the campaign's closing post. It echoes the website's closing CTA, "Let's make it real".
-- **Composition:** the mega headline at 168px in #141414, the copy, and three contact rows (website, WhatsApp, DM) set as hairline rows in Unbounded 600. The sun mark is a 10% watermark, cropped off the right edge.
+- **Concept:** an arcade START button with the AURIC sun on its face. "PRESS START" is set in Press Start 2P, the wordmark's own font. This is the one deliberate exception to "wordmark only", because the pun is the post.
 
 ## D. Execution
 
-- Single image, 1080 × 1350; Story 1080 × 1920 (`export/story.png`), used with a link sticker to auric404.me/contact or wa.me.
-- **Motion option:** the headline lines rise in while the watermark sun slowly turns 30° (one ray step) over 6 s.
+- Single + Story. **Motion (Reel, 4 s):** the button presses down, the sun flashes, and the poster cuts to the contact details.
 
 ## Files
 

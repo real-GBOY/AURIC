@@ -4,7 +4,7 @@
 // Each posts/<NN-name>/post.html holds 1080x1350 slides; extras.html (optional) holds stories and LinkedIn sizes.
 // Output: posts/<NN-name>/export/slide-01.png …, carousel.pdf, and extras by their data-name.
 import { spawnSync } from 'node:child_process';
-import { existsSync, mkdirSync, readdirSync, readFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, unlinkSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
@@ -52,6 +52,8 @@ for (const dir of readdirSync(postsDir).sort()) {
   const folder = join(postsDir, dir);
   const out = join(folder, 'export');
   mkdirSync(out, { recursive: true });
+  // Clear this post's previous slide exports so a post that lost slides leaves no stale files behind.
+  for (const f of readdirSync(out)) if (/^slide-\d+\.png$|^carousel\.pdf$/.test(f)) unlinkSync(join(out, f));
   for (const name of ['post.html', 'extras.html']) {
     const file = join(folder, name);
     if (!existsSync(file)) continue;

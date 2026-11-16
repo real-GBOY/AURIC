@@ -5,83 +5,60 @@
 <title>AURIC 05 — Create</title>
 <link rel="stylesheet" href="../../assets/brand.css">
 <style>
-  .name { font-size: 196px; margin-top: 160px; }
-  .cap { position: absolute; left: var(--m); right: var(--m); bottom: var(--m); z-index: 2; }
-  .cap .h2 { font-size: 72px; }
-  .shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,11,.8) 0%, rgba(10,10,11,0) 18%, rgba(10,10,11,0) 42%, rgba(10,10,11,.94) 68%, #0a0a0b 82%); z-index: 1; }
+  /* A strip of film running across the poster, made from AURIC's own client work. */
+  .strip { position: absolute; left: -260px; width: 1700px; height: 430px; background: #050506; display: flex; align-items: center; gap: 18px; padding: 0 30px; box-shadow: 0 40px 90px rgba(0,0,0,.45); }
+  .strip::before, .strip::after { content: ''; position: absolute; left: 0; right: 0; height: 16px;
+    background: repeating-linear-gradient(90deg, transparent 0 18px, rgba(244,241,232,.85) 18px 40px, transparent 40px 58px); }
+  .strip::before { top: 14px; } .strip::after { bottom: 14px; }
+  .strip img { height: 320px; width: auto; flex-shrink: 0; border-radius: 6px; object-fit: cover; }
+  .s1 { top: 600px; transform: rotate(-9deg); }
+  .play { position: absolute; width: 230px; height: 230px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; box-shadow: 0 30px 70px rgba(0,0,0,.45); z-index: 3; }
+  .play::after { content: ''; margin-left: 18px; border-left: 70px solid var(--text-dark); border-top: 44px solid transparent; border-bottom: 44px solid transparent; }
   .full { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,11,.85), rgba(10,10,11,0) 20%, rgba(10,10,11,0) 52%, rgba(10,10,11,.97) 76%, #0a0a0b 86%); }
+  .card { position: absolute; border-radius: 22px; overflow: hidden; box-shadow: 0 40px 90px rgba(0,0,0,.55); }
+  .card img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .label { position: absolute; left: var(--m); bottom: var(--m); z-index: 3; }
 </style>
 </head>
 <body>
 
 <!-- 1 · cover -->
 <section class="slide cream">
-  <div class="grid-bg"></div>
-  <div class="top-bar layer"><span data-logo></span><span class="count"><b>01</b> / 06</span></div>
-  <span class="lab g layer" style="margin-top:150px">AURIC Create</span>
-  <h1 class="mega name layer">Create<i class="dot">.</i></h1>
-  <div class="layer" style="margin-top:44px"><span data-pill="timeline" data-h="120" data-w="320" data-at="62"></span></div>
-  <p class="copy layer" style="margin-top:70px;font-size:42px;max-width:24ch">Video, design, motion, voiceover and content, made to one standard.</p>
-  <div class="foot layer"><span class="handle">auric404.me</span><span class="swipe">Real work →</span></div>
+  <div class="top-bar layer" style="z-index:4"><span data-logo></span><span class="count"><b>01</b> / 04</span></div>
+  <h1 class="mega layer" style="font-size:216px;margin-top:70px">Create<i class="dot">.</i></h1>
+  <div class="strip s1">
+    <img src="../../assets/work/tcg-film-cover.jpg" alt=""><img src="../../assets/work/elk-post-2.jpg" alt=""><img src="../../assets/work/tcg-reel-cover.jpg" alt="">
+    <img src="../../assets/work/digitmask-cover.jpg" alt=""><img src="../../assets/work/gtk-frame-3.jpg" alt=""><img src="../../assets/work/tcg-film-frame-2.jpg" alt="">
+  </div>
+  <div class="play" style="right:110px;bottom:110px"></div>
+  <span class="lab label" style="color:var(--copy-dark)">Video · Design · Motion · Voice</span>
 </section>
 
 <!-- 2 · TCG brand film -->
 <section class="slide">
-  <img class="full" src="../../assets/work/tcg-film-frame-4.jpg" alt="Still from the TCG brand film" style="object-position:58% 50%">
+  <img class="full" src="../../assets/work/tcg-film-frame-4.jpg" alt="Still from the TCG brand film" style="object-position:60% 50%">
   <div class="shade"></div>
-  <div class="top-bar layer" style="z-index:2"><span class="lab g">Client work · Video</span><span class="count"><b>02</b> / 06</span></div>
-  <div class="cap">
-    <h2 class="h2">TCG brand film<i class="dot">.</i></h2>
-    <p class="copy" style="margin-top:22px;font-size:34px;color:var(--cream);max-width:30ch">A six-minute, documentary-style film for a recruitment firm going from Dubai to New York. Told by their own people.</p>
-    <p class="lab" style="margin-top:28px">Interview edit · Motion graphics · Finish</p>
-  </div>
+  <div class="top-bar layer" style="z-index:3"><span class="lab g">Client work · Brand film</span><span class="count"><b>02</b> / 04</span></div>
+  <div class="play" style="left:50%;top:44%;transform:translate(-50%,-50%)"></div>
+  <div class="label"><p class="h2" style="font-size:76px">TCG<i class="dot">.</i></p><p class="lab" style="margin-top:16px;color:var(--cream)">6 min · Dubai → New York</p></div>
 </section>
 
 <!-- 3 · ELK Café -->
 <section class="slide" style="background:#23302a">
-  <div class="top-bar"><span class="lab g">Client work · Design</span><span class="count"><b>03</b> / 06</span></div>
-  <div class="row" style="gap:24px;margin-top:56px;align-items:flex-start">
-    <div class="tile" style="width:560px;height:800px"><img src="../../assets/work/elk-post-1.jpg" alt="ELK Café National Day post"></div>
-    <div class="tile" style="width:336px;height:600px;margin-top:200px"><img src="../../assets/work/elk-story-1.jpg" alt="ELK Café National Day story"></div>
-  </div>
-  <div class="end">
-    <h2 class="h2" style="font-size:66px">ELK Café<i class="dot">.</i></h2>
-    <p class="copy" style="margin-top:18px;font-size:32px;color:#cfd6cf">A Saudi National Day look for a coffee brand: posts, stories and a September content plan.</p>
-  </div>
+  <div class="top-bar layer" style="z-index:3"><span class="lab g">Client work · Identity + content</span><span class="count"><b>03</b> / 04</span></div>
+  <div class="card" style="left:70px;top:230px;width:520px;height:650px;transform:rotate(-7deg)"><img src="../../assets/work/elk-post-2.jpg" alt="ELK post"></div>
+  <div class="card" style="left:470px;top:300px;width:330px;height:590px;transform:rotate(5deg);z-index:2"><img src="../../assets/work/elk-story-1.jpg" alt="ELK story"></div>
+  <div class="card" style="left:690px;top:200px;width:320px;height:400px;transform:rotate(10deg)"><img src="../../assets/work/elk-post-1.jpg" alt="ELK post"></div>
+  <div class="label"><p class="h2" style="font-size:76px">ELK Café<i class="dot">.</i></p><p class="lab" style="margin-top:16px;color:#cfd6cf">Saudi National Day</p></div>
 </section>
 
 <!-- 4 · reels -->
 <section class="slide bg">
-  <div class="top-bar"><span class="lab g">Client work · Motion</span><span class="count"><b>04</b> / 06</span></div>
-  <h2 class="h2" style="font-size:72px;margin-top:56px">Made for the feed<i class="dot">.</i></h2>
-  <div class="row" style="gap:28px;margin-top:auto;align-items:flex-end">
-    <div class="col" style="gap:18px;width:446px">
-      <div class="tile" style="height:700px;border-radius:28px"><img src="../../assets/work/tcg-reel-cover.jpg" alt="TCG reel cover"></div>
-      <span class="lab">TCG reel · 46 s vertical</span>
-    </div>
-    <div class="col" style="gap:18px;width:446px">
-      <div class="tile" style="height:700px;border-radius:28px"><img src="../../assets/work/gtk-frame-3.jpg" alt="Green Teaching Kitchen recap frame"></div>
-      <span class="lab">Green Teaching Kitchen · event recap</span>
-    </div>
-  </div>
-</section>
-
-<!-- 5 · Digitmask -->
-<section class="slide">
-  <img class="full" src="../../assets/work/digitmask-cover.jpg" alt="Digitmask identity" style="height:62%;object-position:50% 50%">
-  <div class="top-bar layer" style="z-index:2"><span class="lab g" style="background:rgba(10,10,11,.7);padding:6px 12px;border-radius:6px">Client work · Identity</span><span class="count" style="background:rgba(10,10,11,.7);padding:6px 12px;border-radius:6px"><b>05</b> / 06</span></div>
-  <div class="end layer">
-    <h2 class="h2" style="font-size:72px">Digitmask<i class="dot">.</i></h2>
-    <p class="copy" style="margin-top:20px;font-size:34px;max-width:30ch">A visual identity for an Emirati software and AI platform: mark, palette, type, icons and applications.</p>
-  </div>
-</section>
-
-<!-- 6 · CTA -->
-<section class="slide cream">
-  <div class="top-bar"><span data-logo></span><span class="count"><b>06</b> / 06</span></div>
-  <h2 class="mega" style="font-size:118px;margin-top:190px">One standard<i class="dot">.</i><br><span class="stroke-ink" style="letter-spacing:-0.015em">Every format</span><i class="dot">.</i></h2>
-  <p class="copy" style="margin-top:64px;font-size:40px;max-width:27ch">Film, feed, story, print and screen, from one team that knows your brand.</p>
-  <div class="foot"><span class="btn btn-dark">See the work →</span><span class="handle">auric404.me/work</span></div>
+  <div class="top-bar layer" style="z-index:3"><span class="lab g">Client work · Reels</span><span class="count"><b>04</b> / 04</span></div>
+  <div class="card" style="left:110px;top:190px;width:410px;height:730px;border-radius:44px;border:8px solid #26262a;transform:rotate(-6deg)"><img src="../../assets/work/tcg-reel-cover.jpg" alt="TCG reel"></div>
+  <div class="card" style="left:560px;top:240px;width:410px;height:730px;border-radius:44px;border:8px solid #26262a;transform:rotate(6deg)"><img src="../../assets/work/gtk-frame-3.jpg" alt="Green Teaching Kitchen recap"></div>
+  <div class="label"><p class="h2" style="font-size:72px">Made to stop<br>the scroll<i class="dot">.</i></p></div>
 </section>
 
 <script src="../../assets/brand.js"></script>

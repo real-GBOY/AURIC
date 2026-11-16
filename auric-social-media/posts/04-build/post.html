@@ -5,77 +5,56 @@
 <title>AURIC 04 — Build</title>
 <link rel="stylesheet" href="../../assets/brand.css">
 <style>
-  .name { font-size: 220px; margin-top: 150px; display: flex; align-items: center; gap: 30px; }
-  .work-h { font-size: 76px; margin-top: 64px; }
-  .meta { display: flex; gap: 14px; margin-top: 26px; flex-wrap: wrap; }
-  .meta .chip { height: 54px; font-size: 22px; padding: 0 24px; }
-  .shot { margin-top: auto; }
-  .bleed { margin: 0 calc(var(--m) * -1) calc(var(--m) * -1); }
+  .giant { position: absolute; left: 80px; top: 160px; font-size: 266px; z-index: 0; }
+  .scene { position: absolute; inset: 0; perspective: 1800px; z-index: 1; }
+  .tilt { position: absolute; transform-style: preserve-3d; }
+  .laptop { left: 120px; top: 560px; width: 980px; transform: rotateY(-24deg) rotateX(12deg) rotateZ(3deg); }
+  .phone-t { left: 690px; top: 470px; width: 300px; transform: rotateY(-24deg) rotateX(12deg) rotateZ(3deg) translateZ(160px); }
+  .shot .frame { box-shadow: 0 60px 120px rgba(0,0,0,.7), 0 0 0 1px rgba(220,167,51,.15); }
+  .ghost { position: absolute; left: 50%; top: 130px; transform: translateX(-50%); font-size: 228px; white-space: nowrap; z-index: 0; }
+  .label { position: absolute; left: var(--m); bottom: var(--m); z-index: 3; }
+  .floor-glow { position: absolute; left: 50%; bottom: -300px; width: 1400px; height: 700px; transform: translateX(-50%); background: radial-gradient(ellipse, rgba(220,167,51,.22), transparent 62%); }
 </style>
 </head>
 <body>
 
-<!-- 1 · cover -->
+<!-- 1 · cover: the word, with real product screens floating in front of it -->
 <section class="slide">
-  <div class="grid-bg"></div>
-  <div class="top-bar layer"><span data-logo></span><span class="count"><b>01</b> / 06</span></div>
-  <span class="lab g layer" style="margin-top:150px">AURIC Build</span>
-  <h1 class="mega name layer">Build<i class="dot">.</i></h1>
-  <div class="layer" style="margin-top:40px"><span data-pill="code" data-h="120" data-w="290"></span></div>
-  <p class="copy layer" style="margin-top:70px;font-size:42px;max-width:24ch">Websites, apps, business systems and AI automation, built around how you actually work.</p>
-  <div class="foot layer"><span class="handle">auric404.me</span><span class="swipe">Real work →</span></div>
+  <div class="floor-glow"></div>
+  <div class="top-bar layer" style="z-index:3"><span data-logo></span><span class="count"><b>01</b> / 04</span></div>
+  <h1 class="mega giant">Build<i class="dot">.</i></h1>
+  <div class="scene">
+    <div class="tilt laptop shot"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i></div><img src="../../assets/work/atlas-dashboard.png" alt="Atlas dashboard"></div></div>
+    <div class="tilt phone-t"><div class="phone"><img src="../../assets/work/ajwadi-mobile.png" alt="Ajwadi app"></div></div>
+  </div>
+  <div class="label"><span data-pill="code" data-h="84" data-w="200"></span></div>
 </section>
 
 <!-- 2 · Mizan -->
 <section class="slide bg">
-  <div class="top-bar"><span class="lab g">Client project · Law firm</span><span class="count"><b>02</b> / 06</span></div>
-  <h2 class="h2 work-h">Mizan<i class="dot">.</i></h2>
-  <p class="copy" style="margin-top:22px;font-size:36px;max-width:28ch">Practice management for a law firm, in Arabic and English, on web and mobile.</p>
-  <div class="meta"><span class="chip">Design</span><span class="chip">Web</span><span class="chip">Mobile</span><span class="chip">AI</span></div>
-  <div class="frame shot"><div class="frame-bar"><i></i><i></i><i></i><span class="url">mizan · arabic dashboard</span></div><img src="../../assets/work/mizan-dashboard-arabic.png" alt="Mizan dashboard in Arabic"></div>
+  <div class="floor-glow"></div>
+  <div class="top-bar layer" style="z-index:3"><span class="lab g">Client project · Law firm</span><span class="count"><b>02</b> / 04</span></div>
+  <h2 class="mega ghost stroke-gold" style="letter-spacing:-0.02em">Mizan</h2>
+  <div class="scene"><div class="tilt shot" style="left:60px;top:480px;width:960px;transform:rotateY(18deg) rotateX(10deg) rotateZ(-2deg)"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i></div><img src="../../assets/work/mizan-dashboard-arabic.png" alt="Mizan Arabic dashboard"></div></div></div>
+  <span class="lab label">Arabic + English · web + mobile</span>
 </section>
 
 <!-- 3 · Atlas -->
 <section class="slide bg">
-  <div class="top-bar"><span class="lab g">AURIC product · Real estate</span><span class="count"><b>03</b> / 06</span></div>
-  <h2 class="h2 work-h">Atlas<i class="dot">.</i></h2>
-  <p class="copy" style="margin-top:22px;font-size:36px;max-width:28ch">A real-estate operating system: CRM, inventory, sales, payment plans and finance, with an AI copilot.</p>
-  <div class="meta"><span class="chip">Platform</span><span class="chip">AI</span></div>
-  <div class="frame shot"><div class="frame-bar"><i></i><i></i><i></i><span class="url">atlas · executive dashboard</span></div><img src="../../assets/work/atlas-dashboard.png" alt="Atlas executive dashboard"></div>
+  <div class="floor-glow"></div>
+  <div class="top-bar layer" style="z-index:3"><span class="lab g">AURIC product · Real estate</span><span class="count"><b>03</b> / 04</span></div>
+  <h2 class="mega ghost stroke-gold" style="letter-spacing:-0.02em">Atlas</h2>
+  <div class="scene"><div class="tilt shot" style="left:60px;top:480px;width:960px;transform:rotateY(-18deg) rotateX(10deg) rotateZ(2deg)"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i></div><img src="../../assets/work/atlas-pipeline.png" alt="Atlas sales pipeline"></div></div></div>
+  <span class="lab label">Real-estate OS · AI copilot</span>
 </section>
 
-<!-- 4 · Hotel OS + Ajwadi -->
+<!-- 4 · Hotel OS -->
 <section class="slide bg">
-  <div class="top-bar"><span class="lab g">Web and mobile</span><span class="count"><b>04</b> / 06</span></div>
-  <h2 class="h2 work-h" style="font-size:68px">The screen your customer sees<i class="dot">.</i></h2>
-  <div style="position:relative;margin-top:auto;height:760px">
-    <div class="frame" style="position:absolute;left:0;top:40px;width:720px"><div class="frame-bar"><i></i><i></i><i></i><span class="url">hotel os · booking website</span></div><img src="../../assets/work/hotel-os-booking.png" alt="Hotel OS booking website"></div>
-    <div class="phone" style="position:absolute;right:0;top:0;width:300px"><img src="../../assets/work/ajwadi-mobile.png" alt="Ajwadi mobile app"></div>
-    <span class="slot" style="left:0;bottom:118px;position:absolute">Hotel OS · showcase build</span>
-    <span class="slot" style="right:0;bottom:44px;position:absolute">Ajwadi · mobile app</span>
-  </div>
-</section>
-
-<!-- 5 · what we build -->
-<section class="slide">
-  <div class="top-bar"><span class="lab g">What Build covers</span><span class="count"><b>05</b> / 06</span></div>
-  <h2 class="h2" style="font-size:80px;margin-top:90px">Built around how you work<i class="dot">.</i></h2>
-  <ul class="rows" style="margin-top:80px">
-    <li><span class="n">01</span><span class="t">Websites</span><span class="d lab">fast · bilingual</span></li>
-    <li><span class="n">02</span><span class="t">Web and mobile apps</span><span class="d lab">web · mobile</span></li>
-    <li><span class="n">03</span><span class="t">Business systems</span><span class="d lab">ERP · CRM · ops</span></li>
-    <li><span class="n">04</span><span class="t">AI and automation</span><span class="d lab">less manual work</span></li>
-    <li><span class="n">05</span><span class="t">Integrations</span><span class="d lab">your tools, connected</span></li>
-  </ul>
-</section>
-
-<!-- 6 · CTA -->
-<section class="slide cream">
-  <div class="top-bar"><span data-logo></span><span class="count"><b>06</b> / 06</span></div>
-  <p class="lab g" style="margin-top:170px">A good place to start</p>
-  <h2 class="mega" style="font-size:96px;margin-top:30px">Running the business on spreadsheets and WhatsApp<i class="dot">?</i></h2>
-  <p class="copy" style="margin-top:60px;font-size:40px;max-width:26ch">That's usually where a system starts. Tell us how you work today, and we'll show you what to build first.</p>
-  <div class="foot"><span class="btn btn-gold">Start a project →</span><span class="handle">auric404.me</span></div>
+  <div class="floor-glow"></div>
+  <div class="top-bar layer" style="z-index:3"><span class="lab g">Showcase build · Hospitality</span><span class="count"><b>04</b> / 04</span></div>
+  <h2 class="mega ghost stroke-gold" style="letter-spacing:-0.02em;font-size:168px">Hotel OS</h2>
+  <div class="scene"><div class="tilt shot" style="left:60px;top:480px;width:960px;transform:rotateY(18deg) rotateX(10deg) rotateZ(-2deg)"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i></div><img src="../../assets/work/hotel-os-booking.png" alt="Hotel OS booking website"></div></div></div>
+  <span class="lab label">Operations + booking website</span>
 </section>
 
 <script src="../../assets/brand.js"></script>

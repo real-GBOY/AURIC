@@ -6,15 +6,15 @@
 <link rel="stylesheet" href="../../assets/brand.css">
 <style>
   /* The site's 60px grid, laid down as a floor in perspective, with the AURIC sun on the horizon. */
-  .world { position: absolute; left: 0; right: 0; bottom: 0; height: 470px; overflow: hidden; perspective: 520px; perspective-origin: 50% 0%; }
+  .world { position: absolute; left: 0; right: 0; bottom: 0; height: 560px; overflow: hidden; perspective: 520px; perspective-origin: 50% 0%; }
   .floor { position: absolute; left: -80%; width: 260%; top: 0; height: 1400px; transform-origin: 50% 0; transform: rotateX(70deg);
     background-image: linear-gradient(rgba(220,167,51,.55) 2px, transparent 2px), linear-gradient(90deg, rgba(220,167,51,.55) 2px, transparent 2px);
     background-size: 90px 90px; background-position: center top;
     -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 100%); }
   .horizon { position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, rgba(220,167,51,.9), transparent); }
-  .sky { position: absolute; left: 0; right: 0; bottom: 470px; height: 250px; overflow: hidden; }
+  .sky { position: absolute; left: 0; right: 0; bottom: 560px; height: 290px; overflow: hidden; }
   .sky::after { content: ''; position: absolute; left: 50%; bottom: -260px; width: 760px; height: 520px; transform: translateX(-50%); background: radial-gradient(ellipse at 50% 50%, rgba(220,167,51,.30), transparent 62%); }
-  .rise { position: absolute; left: 50%; top: 40px; width: 330px; height: 330px; transform: translateX(-50%); z-index: 1; }
+  .rise { position: absolute; left: 50%; top: 30px; width: 440px; height: 440px; transform: translateX(-50%); z-index: 1; }
   .cut { position: absolute; left: 0; right: 0; bottom: 640px; height: 160px; background: var(--ink); z-index: 1; display: none; }
 </style>
 </head>
@@ -23,10 +23,9 @@
 <section class="slide">
   <div class="world"><div class="floor"></div><div class="horizon"></div></div>
   <div class="sky"><div class="rise" data-sun></div></div>
-  <div class="top-bar layer"><span data-logo></span><span class="lab g">AURIC Experience</span></div>
-  <h1 class="mega layer" style="font-size:92px;margin-top:70px">Some ideas are<br>better<br><span class="stroke-gold" style="letter-spacing:-0.015em;white-space:nowrap">stepped into</span><i class="dot">.</i></h1>
-  <p class="copy layer" style="margin-top:36px;font-size:33px;max-width:34ch">VR and interactive experiences for launches, showrooms, training and events, from the team behind your brand and your software.</p>
-  <div class="foot layer" style="z-index:2"><span class="lab" style="color:var(--cream)">VR · Interactive · Immersive</span><span class="handle" style="color:var(--cream)">auric404.me</span></div>
+  <div class="top-bar layer"><span data-logo></span><span class="lab g">New</span></div>
+  <h1 class="mega layer" style="font-size:176px;margin-top:70px">Step<br><span class="stroke-gold" style="letter-spacing:-0.015em">inside</span><i class="dot">.</i></h1>
+  <div class="foot layer" style="z-index:2"><span class="lab" style="color:var(--cream)">VR · Interactive</span><span class="handle" style="color:var(--cream)">AURIC Experience</span></div>
 </section>
 
 <script src="../../assets/brand.js"></script>

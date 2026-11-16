@@ -5,25 +5,26 @@
 <title>AURIC 12 — Story</title>
 <link rel="stylesheet" href="../../assets/brand.css">
 <style>
-  .stamp { position: absolute; right: -260px; bottom: 360px; width: 640px; height: 640px; color: rgba(20,20,20,.1); }
-  .contact { list-style: none; margin-top: auto; border-top: 2px solid rgba(20,20,20,.85); }
-  .contact li { display: flex; justify-content: space-between; align-items: baseline; padding: 28px 0; border-bottom: 1px solid rgba(20,20,20,.18); }
-  .contact .v { font-family: 'Unbounded', sans-serif; font-weight: 600; font-size: 38px; letter-spacing: -0.02em; }
+  .pixel { font-family: 'Press Start 2P', monospace; line-height: 1.15; color: var(--cream); }
+  .pixel b { font-weight: 400; color: var(--gold); }
+  .btnw { position: absolute; left: 50%; top: 860px; width: 820px; height: 640px; transform: translateX(-50%); }
+  .housing { position: absolute; left: 0; right: 0; top: 170px; height: 460px; border-radius: 50%; background: radial-gradient(ellipse at 50% 35%, #2a2a2e, #101012 70%); box-shadow: 0 50px 90px rgba(0,0,0,.6); }
+  .base { position: absolute; left: 80px; right: 80px; top: 140px; height: 380px; border-radius: 50%; background: var(--gold-deep); }
+  .side { position: absolute; left: 80px; right: 80px; top: 140px; height: 190px; background: var(--gold-deep); }
+  .face { position: absolute; left: 80px; right: 80px; top: 24px; height: 380px; border-radius: 50%; background: radial-gradient(ellipse at 40% 35%, #f0c45a, #dca733 55%, #b88a22); box-shadow: inset 0 -10px 24px rgba(0,0,0,.18); display: flex; align-items: center; justify-content: center; }
+  .face .sun { width: 260px; height: 260px; color: var(--text-dark); transform: scaleY(.6); }
+  .glowb { position: absolute; left: 50%; top: 1180px; width: 1200px; height: 800px; transform: translate(-50%,-50%); background: radial-gradient(ellipse, rgba(220,167,51,.25), transparent 62%); }
 </style>
 </head>
 <body>
-
-<section class="slide story gold" data-name="story">
-  <div data-sun class="stamp"></div>
-  <div class="top-bar layer"><span data-logo></span><span class="lab">Start a project</span></div>
-  <h1 class="mega layer" style="font-size:176px;margin-top:150px">Let's make it real<i class="dot">.</i></h1>
-  <p class="copy layer" style="margin-top:60px;font-size:44px;max-width:22ch">Tell us the idea. We'll tell you honestly what it needs.</p>
-  <ul class="contact layer">
-    <li><span class="lab">Website</span><span class="v">auric404.me/contact</span></li>
-    <li><span class="lab">WhatsApp</span><span class="v">+20 102 659 7474</span></li>
-  </ul>
+<section class="slide story" data-name="story">
+  <div class="grid-bg"></div>
+  <div class="glowb"></div>
+  <div class="top-bar layer"><span data-logo></span><span class="lab g">Let's make it real</span></div>
+  <h1 class="pixel layer" style="font-size:120px;margin-top:120px">PRESS<br><b>START</b></h1>
+  <div class="btnw"><div class="housing"></div><div class="base"></div><div class="side"></div><div class="face"><div data-sun></div></div></div>
+  <div class="foot layer"><span class="btn btn-gold">auric404.me/contact ↗</span></div>
 </section>
-
 <script src="../../assets/brand.js"></script>
 </body>
 </html>

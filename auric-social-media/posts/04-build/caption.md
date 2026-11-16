@@ -13,7 +13,7 @@
 
 **Headline:** Build.
 
-**Supporting copy:** Websites, apps, business systems and AI automation, built around how you actually work.
+**Supporting copy:** none — one mono label per project
 
 **Caption:**
 
@@ -39,18 +39,14 @@ If the business runs on spreadsheets and WhatsApp, that's usually where a system
 
 ## C. Design direction
 
-- **Cover (ink):** "AURIC Build" label, "Build." at 220px, the `</>` code pill from the hero, short copy, and "Real work →".
-- **Slides 2–3 (bg):** the project name as an h2 with the gold full stop, a one-sentence description and service chips. The real screenshot sits in the site's browser frame at the bottom. Labels give the project type exactly as the site does: "Client project · Law firm", "AURIC product · Real estate".
-- **Slide 4:** the Hotel OS booking site in a frame, overlapped by the Ajwadi phone, with slot labels "Hotel OS · showcase build" and "Ajwadi · mobile app".
-- **Slide 5 (ink):** "Built around how you work." with hairline rows: websites, web and mobile apps, business systems, AI and automation, integrations.
-- **Slide 6 (cream):** the question "Running the business on spreadsheets and WhatsApp?" and a gold button.
+- **Cover:** a giant "Build." with the real Atlas dashboard and Ajwadi app floating in front of it in 3D perspective, and the `</>` pill.
+- **Slides 2–4:** the project name huge in gold outline behind a tilted, real screenshot (Mizan, Atlas, Hotel OS), with one label giving the type exactly as the site does (client project / AURIC product / showcase build).
 
 ## D. Execution
 
-- Carousel, 6 slides at 1080 × 1350. LinkedIn: `export/carousel.pdf`.
-- **Motion option:** the screen slides as 6 s Reels: the frame rises 28px while the screenshot scrolls slowly inside it.
+- Carousel, 4 slides. **Motion:** the screens float in and tilt as the camera drifts.
 
 ## Files
 
 - `post.html`: the editable source. Open it in a browser to preview every slide; `?s=N` shows slide N on its own.
-- `export/`: carousel.pdf, slide-01.png, slide-02.png, slide-03.png, slide-04.png, slide-05.png, slide-06.png
+- `export/`: carousel.pdf, slide-01.png, slide-02.png, slide-03.png, slide-04.png

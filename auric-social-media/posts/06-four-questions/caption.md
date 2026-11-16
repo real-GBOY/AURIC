@@ -11,9 +11,9 @@
 
 ## B. Copy
 
-**Headline:** Four questions before we make anything.
+**Headline:** Aim first.
 
-**Supporting copy:** Who is it for? What should they do next? Where will they meet it? How will we know it worked?
+**Supporting copy:** Then create.
 
 **Caption:**
 
@@ -36,16 +36,14 @@ Answer these four and most creative arguments disappear. Save this for your next
 
 ## C. Design direction
 
-- **Cover (ink):** "AURIC Strategy · Save this", the headline, and the content-calendar pill.
-- **Slides 2–5:** alternate cream and ink. Each has a giant outlined numeral (300px, like the site's How we work numerals: ink outline on cream, gold outline on ink), the question as an h2 with a gold "?", and a two-line answer.
-- **Slide 6 (bg):** "That's strategy." with the content calendar panel from the Services page (gold, cream and charcoal cells, labelled "Example layout").
+- **Concept:** strategy as a dartboard. Ink and cream rings with a gold bullseye, and a dart flying in from the headline. The four questions move into the caption.
+- **Canvas:** cream, with the board cropped off the bottom-right corner so the poster feels large.
 
 ## D. Execution
 
-- Carousel, 6 slides at 1080 × 1350. LinkedIn: `export/carousel.pdf`.
-- **Motion option:** each numeral draws its outline (stroke-dashoffset, 0.9 s), then the question fades and rises in.
+- Single. **Motion (Reel, 4 s):** the dart flies in and hits the bullseye; the board shakes once.
 
 ## Files
 
 - `post.html`: the editable source. Open it in a browser to preview every slide; `?s=N` shows slide N on its own.
-- `export/`: carousel.pdf, slide-01.png, slide-02.png, slide-03.png, slide-04.png, slide-05.png, slide-06.png
+- `export/`: slide-01.png

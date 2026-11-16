@@ -2,37 +2,32 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>AURIC 08 — Manage</title>
+<title>AURIC 08 — Right on time</title>
 <link rel="stylesheet" href="../../assets/brand.css">
 <style>
-  .plan { margin-top: auto; border-top: 2px solid rgba(20,20,20,.85); }
-  .plan .wk { display: grid; grid-template-columns: 210px repeat(8, 1fr); font-family: 'Geist Mono', monospace; font-size: 18px; letter-spacing: .1em; color: rgba(20,20,20,.6); padding: 14px 0; }
-  .plan .ln { display: grid; grid-template-columns: 210px 1fr; align-items: center; height: 74px; border-top: 1px solid rgba(20,20,20,.16); }
-  .plan .ln .k { font-size: 26px; font-weight: 500; }
-  .track { position: relative; height: 100%; }
-  .bar { position: absolute; top: 18px; height: 38px; border-radius: 999px; background: var(--text-dark); }
-  .bar.o { background: transparent; border: 3px solid var(--text-dark); }
-  .owner { position: absolute; top: -8px; bottom: -8px; width: 3px; background: var(--text-dark); }
-  .owner::before { content: ''; position: absolute; left: -9px; top: -10px; width: 21px; height: 21px; border-radius: 50%; background: var(--text-dark); }
+  /* The 12 rays of the AURIC sun are 12 hours: the mark becomes a clock. */
+  .clock { position: absolute; left: 115px; top: 190px; width: 850px; height: 850px; }
+  .h { position: absolute; left: var(--m); right: var(--m); bottom: 90px; font-size: 124px; }
 </style>
 </head>
 <body>
-
 <section class="slide gold">
-  <div class="top-bar"><span data-logo></span><span class="lab">AURIC Manage</span></div>
-  <h1 class="mega" style="font-size:104px;margin-top:120px">One owner<i class="dot">.</i><br>Every deadline<i class="dot">.</i></h1>
-  <p class="copy" style="margin-top:48px;font-size:38px;max-width:30ch">One person coordinates every specialist, review and date. You always know who to call, and where the project stands.</p>
-  <div class="plan">
-    <div class="wk"><span>Example</span><span>W1</span><span>W2</span><span>W3</span><span>W4</span><span>W5</span><span>W6</span><span>W7</span><span>W8</span></div>
-    <div class="ln"><span class="k">Strategy</span><div class="track"><span class="bar" style="left:0;width:22%"></span></div></div>
-    <div class="ln"><span class="k">Identity</span><div class="track"><span class="bar" style="left:14%;width:30%"></span></div></div>
-    <div class="ln"><span class="k">Website</span><div class="track"><span class="bar" style="left:30%;width:52%"></span></div></div>
-    <div class="ln"><span class="k">Launch film</span><div class="track"><span class="bar o" style="left:50%;width:30%"></span></div></div>
-    <div class="ln"><span class="k">Launch</span><div class="track"><span class="bar" style="left:84%;width:16%"></span></div></div>
-  </div>
-  <div class="row between" style="margin-top:30px"><span class="lab">One timeline · one point of contact</span><span class="handle">auric404.me</span></div>
+  <svg class="clock" viewBox="0 0 64 64" aria-hidden="true" id="c"></svg>
+  <div class="top-bar layer"><span data-logo></span><span class="lab">AURIC Manage</span></div>
+  <h1 class="mega h layer">Right on time<i class="dot">.</i></h1>
 </section>
-
+<script>
+  // Rays (Logo.tsx geometry) as hour marks, then hands pointing at 12:00 — the deadline, met.
+  const c = document.getElementById('c'); let g = '';
+  for (let i = 0; i < 12; i++) {
+    const short = i % 2 === 1, w = short ? 4.5 : 5.8, h = short ? 9 : 14, y = short ? 5.1 : 1.3;
+    g += `<rect x="${32 - w / 2}" y="${y}" width="${w}" height="${h}" rx="1.2" transform="rotate(${i * 30} 32 32)" fill="#141414"/>`;
+  }
+  g += '<rect x="31.1" y="17" width="1.8" height="16" rx=".9" fill="#141414" transform="rotate(0 32 32)"/>';      // minute hand → 12
+  g += '<rect x="30.5" y="21.5" width="3" height="11.5" rx="1.5" fill="#141414" transform="rotate(-4 32 32)"/>'; // hour hand, a breath before 12
+  g += '<circle cx="32" cy="32" r="3" fill="#141414"/><circle cx="32" cy="32" r="1.2" fill="#dca733"/>';
+  c.innerHTML = g;
+</script>
 <script src="../../assets/brand.js"></script>
 </body>
 </html>

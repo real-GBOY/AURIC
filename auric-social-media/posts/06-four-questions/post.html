@@ -2,77 +2,36 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>AURIC 06 — Four questions</title>
+<title>AURIC 06 — Aim first</title>
 <link rel="stylesheet" href="../../assets/brand.css">
 <style>
-  .q-num { font-family: 'Unbounded', sans-serif; font-weight: 800; font-size: 300px; line-height: .85; letter-spacing: -0.05em; margin-top: 90px; }
-  .q { font-size: 92px; margin-top: 70px; }
-  .a { margin-top: 50px; font-size: 40px; max-width: 26ch; }
-  .cal { display: grid; grid-template-columns: repeat(7, 1fr); gap: 14px; }
-  .cal span { height: 78px; border-radius: 8px; background: var(--surface-2); }
-  .cal .g { background: var(--gold); } .cal .c { background: var(--cream); }
+  .board { position: absolute; left: 230px; top: 470px; width: 1100px; height: 1100px; }
+  .h { font-size: 196px; margin-top: 70px; }
 </style>
 </head>
 <body>
-
-<!-- 1 · cover -->
-<section class="slide">
-  <div class="grid-bg"></div>
-  <div class="top-bar layer"><span data-logo></span><span class="count"><b>01</b> / 06</span></div>
-  <span class="lab g layer" style="margin-top:150px">AURIC Strategy · Save this</span>
-  <h1 class="mega layer" style="font-size:112px;margin-top:40px">Four questions before we make anything<i class="dot">.</i></h1>
-  <div class="layer" style="margin-top:70px"><span data-pill="calendar" data-h="120" data-w="300"></span></div>
-  <div class="foot layer"><span class="handle">auric404.me</span><span class="swipe">Swipe →</span></div>
-</section>
-
-<!-- 2 -->
 <section class="slide cream">
-  <div class="top-bar"><span class="lab g">Question one</span><span class="count"><b>02</b> / 06</span></div>
-  <div class="q-num stroke-ink">01</div>
-  <h2 class="h2 q">Who is it for<i class="dot">?</i></h2>
-  <p class="copy a">"Everyone" is not an audience. Pick one clear group, and every decision after it gets easier: the words, the look, the channel.</p>
+  <!-- target: alternating ink / cream rings with a gold bullseye, one dart in the centre -->
+  <svg class="board" viewBox="0 0 1100 1100" aria-hidden="true">
+    <circle cx="550" cy="550" r="540" fill="#141414"/>
+    <circle cx="550" cy="550" r="450" fill="#f4f1e8"/>
+    <circle cx="550" cy="550" r="360" fill="#141414"/>
+    <circle cx="550" cy="550" r="270" fill="#f4f1e8"/>
+    <circle cx="550" cy="550" r="180" fill="#141414"/>
+    <circle cx="550" cy="550" r="92" fill="#dca733"/>
+    <!-- dart, flying in from the upper left -->
+    <g transform="translate(550 550) rotate(-32)">
+      <rect x="-6" y="-430" width="12" height="340" rx="6" fill="#141414"/>
+      <rect x="-14" y="-140" width="28" height="140" rx="8" fill="#141414"/>
+      <polygon points="0,-430 -64,-560 -6,-505" fill="#dca733"/>
+      <polygon points="0,-430 64,-560 6,-505" fill="#dca733"/>
+      <polygon points="0,10 -14,-20 14,-20" fill="#141414"/>
+    </g>
+  </svg>
+  <div class="top-bar layer"><span data-logo></span><span class="lab g">AURIC Strategy</span></div>
+  <h1 class="mega h layer">Aim<br>first<i class="dot">.</i></h1>
+  <p class="lab g layer" style="margin-top:36px;font-size:26px">Then create.</p>
 </section>
-
-<!-- 3 -->
-<section class="slide">
-  <div class="top-bar"><span class="lab g">Question two</span><span class="count"><b>03</b> / 06</span></div>
-  <div class="q-num stroke-gold">02</div>
-  <h2 class="h2 q">What should they do next<i class="dot">?</i></h2>
-  <p class="copy a">Call, book, buy, visit, remember. Give every piece one job. A post that tries to do four things usually does none.</p>
-</section>
-
-<!-- 4 -->
-<section class="slide cream">
-  <div class="top-bar"><span class="lab g">Question three</span><span class="count"><b>04</b> / 06</span></div>
-  <div class="q-num stroke-ink">03</div>
-  <h2 class="h2 q">Where will they meet it<i class="dot">?</i></h2>
-  <p class="copy a">A reel, a website, a billboard and a sales deck are four different conversations. Same message, made for each place.</p>
-</section>
-
-<!-- 5 -->
-<section class="slide">
-  <div class="top-bar"><span class="lab g">Question four</span><span class="count"><b>05</b> / 06</span></div>
-  <div class="q-num stroke-gold">04</div>
-  <h2 class="h2 q">How will we know it worked<i class="dot">?</i></h2>
-  <p class="copy a">Choose the number before launch, not after: enquiries, bookings, sign-ups, sales. Then look at it every month.</p>
-</section>
-
-<!-- 6 -->
-<section class="slide bg">
-  <div class="top-bar"><span data-logo></span><span class="count"><b>06</b> / 06</span></div>
-  <h2 class="h2" style="font-size:84px;margin-top:110px">That's strategy<i class="dot">.</i></h2>
-  <p class="copy" style="margin-top:40px;font-size:40px;max-width:26ch">A plan that gives every piece a job, before anyone opens a design file.</p>
-  <div class="col" style="margin-top:auto;gap:22px;padding:34px;border-radius:18px;background:var(--surface)">
-    <div class="row between"><span class="h3" style="font-size:30px">Content calendar</span><span class="lab g" style="font-size:18px">Example layout</span></div>
-    <div class="cal">
-      <span class="g"></span><span></span><span class="c"></span><span></span><span class="g"></span><span></span><span></span>
-      <span></span><span class="c"></span><span></span><span class="g"></span><span></span><span class="c"></span><span></span>
-      <span class="g"></span><span></span><span></span><span class="c"></span><span></span><span class="g"></span><span></span>
-    </div>
-  </div>
-  <div class="row between" style="margin-top:40px"><span class="lab">Save it for your next brief</span><span class="handle">auric404.me</span></div>
-</section>
-
 <script src="../../assets/brand.js"></script>
 </body>
 </html>

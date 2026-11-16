@@ -101,24 +101,25 @@ Each act gets a week, publishing Sunday, Tuesday and Thursday (see the [calendar
 
 See [`feed-preview.png`](feed-preview.png) for the rendered grid at the 3:4 tile crop.
 
-### The 12 posts at a glance
+### The 12 posts at a glance (v2: visual posters)
 
-The full brief for each post (objective, audience, message, headline, copy, caption, CTA, hashtags, design, execution, motion) is in its folder: `posts/<NN>/caption.md`.
+The posters use as few words as possible: one visual idea, one headline. The full message is in each caption.
+The full brief for each post is in `posts/<NN>/caption.md`.
 
-| # | Post | Pillar | Format | Slides | Core message |
-|---|---|---|---|---|---|
-| 01 | Your idea, planned, built, launched. | Brand | Brand statement | 1 (+ Story, LinkedIn) | AURIC is one partner for the whole idea |
-| 02 | Projects rarely break at the idea. | Brand / Perspective | Storytelling carousel | 6 | Projects fail between vendors; AURIC closes the gaps |
-| 03 | Twelve rays. One core. | Brand | Creative conceptual | 1 (+ LinkedIn) | 12 disciplines, one team that holds them |
-| 04 | Build. | Capabilities / Proof | Service showcase | 6 | Software built around how you work: Mizan, Atlas, Hotel OS, Ajwadi |
-| 05 | Create. | Capabilities / Proof | Service showcase | 6 | Video, design, motion and content to one standard: TCG, ELK, Digitmask |
-| 06 | Four questions before we make anything. | Knowledge | Educational carousel | 6 | Strategy is giving every piece a job |
-| 07 | Some ideas are better stepped into. | Capabilities | Technology concept | 1 | VR and interactive work from the same team |
-| 08 | One owner. Every deadline. | Capabilities | Brand statement + diagram | 1 | Management is a service, not an afterthought |
-| 09 | One project, start to finish. | Proof of model | Storytelling carousel | 7 | How the pillars connect (illustrative example) |
-| 10 | Sound familiar? | Conversion / Knowledge | Problem / solution | 6 | Four real problems and what AURIC would do |
-| 11 | How we work. | Brand / Conversion | Process carousel | 6 | Plan, Create, Build, Deliver, and what you get at each step |
-| 12 | Let's make it real. | Conversion | Campaign announcement | 1 (+ Story) | Start a conversation |
+| # | Headline | Visual idea | Pillar | Slides |
+|---|---|---|---|---|
+| 01 | Rise & build. | The AURIC sun rising from the bottom edge | Brand | 1 (+ Story, LinkedIn) |
+| 02 | Mind the gap. / We close it. | Five scattered blocks → one solid bar | Brand / Perspective | 2 |
+| 03 | 12 skills. 1 core. | A discipline on every ray of the mark | Brand | 1 (+ LinkedIn) |
+| 04 | Build. | Real product screens floating in 3D | Capabilities / Proof | 4 |
+| 05 | Create. | A film strip of real client work + a play button | Capabilities / Proof | 4 |
+| 06 | Aim first. | A dartboard with a bullseye; the four questions are in the caption | Knowledge | 1 |
+| 07 | Step inside. | The site's grid as a floor, the sun on the horizon | Capabilities | 1 |
+| 08 | Right on time. | The 12 rays as a clock at twelve | Capabilities | 1 |
+| 09 | Watch it light up. | Five suns lighting up along an arc (Plan → Launch) | Proof of model | 1 |
+| 10 | Sound familiar? | The chaotic launch group chat, 99+ unread | Conversion | 1 |
+| 11 | Four steps up. | The process as a staircase with the sun on top | Brand / Conversion | 1 |
+| 12 | PRESS START | An arcade button with the sun on it | Conversion | 1 (+ Story) |
 
 ### Before publishing (blocking)
 

@@ -11,9 +11,9 @@
 
 ## B. Copy
 
-**Headline:** Your idea, planned, built, launched.
+**Headline:** Rise & build.
 
-**Supporting copy:** Video, design, strategy, websites, apps and systems. One team, and one point of contact.
+**Supporting copy:** none on the poster (the caption carries the message)
 
 **Caption:**
 
@@ -37,17 +37,14 @@ Start a project → link in bio
 
 ## C. Design direction
 
-- **Concept:** the website hero transposed to 4:5. Anyone who has seen auric404.me recognises it at once; anyone who hasn't gets the whole offer in four words.
-- **Composition:** top bar (logo / "Your digital partner"), a four-line mega headline with one media pill per line (timeline = video, calendar = strategy, `</>` = build, check = delivered), copy, mono footer.
-- **Background:** `#0A0A0B`, 72px grid texture under a radial mask, gold glow top right (from `og.html`).
-- **Type:** Unbounded 800 at 120px, tracking −0.055em; Geist 40px copy in `#B3AFA6`; Geist Mono labels.
-- **Colours:** ink and cream, with gold as the only accent.
-- **Logo:** top left, 40px mark.
+- **Concept:** a sunrise. The AURIC sun, scaled to about 2,000px, rises from the bottom edge with its rays fanning out like beams. It announces a new day for AURIC without saying "new".
+- **Type:** "Rise & build." in Unbounded 800 at 176px, with the & in cream outline. A play on "rise and shine".
+- **Colour:** ink, a gold sun, and a soft gold halo rising from below.
 
 ## D. Execution
 
-- Single image, 1080 × 1350 (4:5). Extras: Story 1080 × 1920 (`export/story.png`) and LinkedIn 1200 × 627 (`export/linkedin.png`).
-- **Motion version (Reel, 8–10 s):** each line fades and rises 28px into place (0.7 s, ease 0.22,1,0.36,1), 0.12 s apart. Each pill grows from 20% width as its line lands: the timeline playhead sweeps, the code cursor blinks and the check bar draws left to right. The gold full stop drops in last. Hold for 3 s, with a soft low pulse for sound.
+- Single 1080 × 1350; Story and LinkedIn versions of the same sunrise.
+- **Motion (Reel, 6 s):** the sun rises 300px from below the frame and the rays fan out, then the headline lands with a 28px fade-rise.
 
 ## Files
 

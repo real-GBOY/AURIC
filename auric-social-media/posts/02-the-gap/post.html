@@ -2,90 +2,55 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>AURIC 02 — The gap</title>
+<title>AURIC 02 — Mind the gap</title>
 <link rel="stylesheet" href="../../assets/brand.css">
 <style>
-  .t1 { font-size: 116px; margin-top: 130px; }
-  /* five separate pills with broken links between them */
-  .chain { display: flex; align-items: center; margin-top: 150px; }
-  .chain .p { height: 86px; flex: 1; border-radius: 999px; border: 3px solid rgba(20,20,20,.85); display: flex; align-items: center; justify-content: center;
-    font-family: 'Geist Mono', monospace; font-size: 19px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-dark); }
-  .chain .p.g { background: var(--gold); border-color: var(--gold); }
-  .chain .gap { width: 44px; height: 3px; background: repeating-linear-gradient(90deg, rgba(20,20,20,.5) 0 6px, transparent 6px 12px); }
-  .need .rows .t { font-size: 46px; }
-  .fade li { display: flex; justify-content: space-between; align-items: baseline; padding: 30px 0; border-bottom: 1px solid var(--line); }
-  .fade .t { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 58px; letter-spacing: -0.035em; }
-  .fade .n { font-family: 'Geist Mono', monospace; font-size: 22px; letter-spacing: .12em; color: var(--muted); text-transform: uppercase; }
+  .blocks { position: absolute; left: 80px; right: 80px; top: 560px; height: 640px; }
+  .b { position: absolute; top: 0; width: 160px; height: 560px; border-radius: 24px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 30px;
+    font-family: 'Geist Mono', monospace; font-size: 22px; letter-spacing: .14em; text-transform: uppercase; }
+  .b span { writing-mode: vertical-rl; transform: rotate(180deg); }
+  .b1 { background: var(--cream); color: var(--text-dark); }
+  .b2 { background: var(--surface-2); color: var(--cream); border: 2px solid var(--line-strong); }
+  .b3 { background: var(--sand); color: var(--text-dark); }
+  .b4 { background: transparent; color: var(--cream); border: 3px solid var(--cream); }
+  .b5 { background: var(--gold); color: var(--text-dark); }
+  /* scattered: slide 1 */
+  .apart .b1 { left: 0;    transform: translateY(40px)  rotate(-7deg); }
+  .apart .b2 { left: 190px; transform: translateY(-30px) rotate(5deg); }
+  .apart .b3 { left: 380px; transform: translateY(70px)  rotate(-3deg); }
+  .apart .b4 { left: 570px; transform: translateY(-10px) rotate(8deg); }
+  .apart .b5 { left: 760px; transform: translateY(90px)  rotate(-11deg); }
+  .crack { position: absolute; top: -40px; height: 700px; width: 3px; background: repeating-linear-gradient(180deg, rgba(220,167,51,.7) 0 14px, transparent 14px 28px); }
+  /* together: slide 2 */
+  .together .b { width: 184px; border-radius: 0; top: 40px; }
+  .together .b1 { left: 0; border-radius: 24px 0 0 24px; }
+  .together .b2 { left: 184px; border: 0; }
+  .together .b3 { left: 368px; }
+  .together .b4 { left: 552px; border: 0; background: var(--charcoal); }
+  .together .b5 { left: 736px; border-radius: 0 24px 24px 0; }
+  .together .sun { position: absolute; left: 50%; top: -270px; width: 210px; height: 210px; transform: translateX(-50%); }
+  .h { font-size: 150px; margin-top: 100px; }
 </style>
 </head>
 <body>
 
-<!-- 1 · cover -->
-<section class="slide cream">
-  <div class="grid-bg"></div>
-  <div class="top-bar layer"><span data-logo></span><span class="count"><b>01</b> / 06</span></div>
-  <span class="lab g layer" style="margin-top:120px">Why AURIC exists</span>
-  <h1 class="mega t1 layer balance">Projects rarely break at the idea<i class="dot">.</i></h1>
-  <p class="h2 layer" style="font-size:64px;margin-top:44px;color:var(--gold-deep)">They break in between.</p>
-  <div class="chain layer">
-    <span class="p">Design</span><span class="gap"></span><span class="p">Web</span><span class="gap"></span><span class="p">Video</span><span class="gap"></span><span class="p">Ads</span><span class="gap"></span><span class="p g">You</span>
+<section class="slide">
+  <div class="top-bar layer"><span data-logo></span><span class="count"><b>01</b> / 02</span></div>
+  <h1 class="mega h layer">Mind<br>the gap<i class="dot">.</i></h1>
+  <div class="blocks apart">
+    <i class="crack" style="left:177px"></i><i class="crack" style="left:367px"></i><i class="crack" style="left:557px"></i><i class="crack" style="left:747px"></i>
+    <div class="b b1"><span>Design</span></div><div class="b b2"><span>Website</span></div><div class="b b3"><span>Video</span></div><div class="b b4"><span>Ads</span></div><div class="b b5"><span>You</span></div>
   </div>
-  <div class="foot layer"><span class="handle">auric404.me</span><span class="swipe">Swipe →</span></div>
 </section>
 
-<!-- 2 · the typical setup -->
-<section class="slide need">
-  <div class="top-bar"><span class="lab g">A typical launch</span><span class="count"><b>02</b> / 06</span></div>
-  <h2 class="h2" style="font-size:80px;margin-top:90px">One project.<br>Five people<i class="dot">.</i></h2>
-  <ul class="rows" style="margin-top:80px">
-    <li><span class="n">01</span><span class="t">A designer</span><span class="d lab">the look</span></li>
-    <li><span class="n">02</span><span class="t">A developer</span><span class="d lab">the website</span></li>
-    <li><span class="n">03</span><span class="t">A video editor</span><span class="d lab">the launch film</span></li>
-    <li><span class="n">04</span><span class="t">A marketer</span><span class="d lab">the plan</span></li>
-    <li><span class="n">05</span><span class="t">Someone in charge</span><span class="d lab">usually you</span></li>
-  </ul>
-  <div class="foot"><span class="lab">Five briefs · five timelines · five invoices</span></div>
-</section>
-
-<!-- 3 · handoffs lose things -->
-<section class="slide bg">
-  <div class="top-bar"><span class="lab g">Every handoff</span><span class="count"><b>03</b> / 06</span></div>
-  <h2 class="h2" style="font-size:80px;margin-top:90px">Every handoff loses something<i class="dot">.</i></h2>
-  <ul class="fade" style="list-style:none;margin-top:90px;border-top:1px solid var(--line)">
-    <li style="opacity:1"><span class="t">The brief</span><span class="n">Handoff 1</span></li>
-    <li style="opacity:.72"><span class="t">The tone</span><span class="n">Handoff 2</span></li>
-    <li style="opacity:.5"><span class="t">The deadline</span><span class="n">Handoff 3</span></li>
-    <li style="opacity:.3"><span class="t">The reason it started</span><span class="n">Handoff 4</span></li>
-  </ul>
-</section>
-
-<!-- 4 · you become the PM -->
-<section class="slide cream">
-  <div class="top-bar"><span class="lab g">And then</span><span class="count"><b>04</b> / 06</span></div>
-  <h2 class="mega" style="font-size:112px;margin-top:150px">You become the project manager<i class="dot">.</i></h2>
-  <p class="copy" style="margin-top:70px;max-width:28ch;font-size:40px">Chasing files, translating feedback between people who never meet, and holding the vision together. On top of running the business.</p>
-</section>
-
-<!-- 5 · one roof -->
 <section class="slide">
   <div class="glow"></div>
-  <div class="top-bar layer"><span class="lab g">So we built AURIC around it</span><span class="count"><b>05</b> / 06</span></div>
-  <div class="row layer" style="margin-top:110px;gap:60px;align-items:flex-start">
-    <div data-sun style="width:240px;height:240px;flex-shrink:0"></div>
-    <h2 class="h2" style="font-size:84px">One team<i class="dot">.</i><br>One owner<i class="dot">.</i></h2>
+  <div class="top-bar layer"><span data-logo></span><span class="count"><b>02</b> / 02</span></div>
+  <h1 class="mega h layer" style="font-size:124px">We close it<i class="dot">.</i></h1>
+  <div class="blocks together" style="top:690px">
+    <div data-sun class="sun"></div>
+    <div class="b b1"><span>Design</span></div><div class="b b2"><span>Website</span></div><div class="b b3"><span>Video</span></div><div class="b b4"><span>Ads</span></div><div class="b b5"><span>You</span></div>
   </div>
-  <p class="copy layer" style="margin-top:90px;font-size:40px;max-width:30ch">Strategy, creative, technology and delivery in one team, with one person who owns your project from the first call to launch day.</p>
-  <div class="row layer end" style="gap:14px;flex-wrap:wrap">
-    <span class="chip">Strategy</span><span class="chip">Create</span><span class="chip">Build</span><span class="chip">Experience</span><span class="chip on">Manage</span>
-  </div>
-</section>
-
-<!-- 6 · CTA -->
-<section class="slide gold">
-  <div class="top-bar"><span data-logo></span><span class="count"><b>06</b> / 06</span></div>
-  <h2 class="mega" style="font-size:150px;margin-top:200px">One partner<i class="dot">.</i></h2>
-  <p class="copy" style="margin-top:60px;font-size:42px;max-width:26ch">If your project is spread across too many people, tell us about it. We'll show you what it looks like in one place.</p>
-  <div class="foot"><span class="btn btn-dark">Start a project →</span><span class="handle">auric404.me</span></div>
 </section>
 
 <script src="../../assets/brand.js"></script>

@@ -26,3 +26,6 @@ dist-ssr
 
 # Design canvas export (reference only, not part of the site)
 AURIC-Website/
+
+# Ready-to-post copies of the social exports (rebuilt from auric-social-media/posts)
+auric-social-media/final-posts/

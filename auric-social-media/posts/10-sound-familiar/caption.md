@@ -13,7 +13,7 @@
 
 **Headline:** Sound familiar?
 
-**Supporting copy:** "Our website doesn't look like us anymore." "We post every week. Nobody gets what we actually do." "The whole business runs on Excel and WhatsApp." "We have four freelancers and nobody in charge."
+**Supporting copy:** none — the chat tells the story
 
 **Caption:**
 
@@ -36,17 +36,13 @@ Which one is yours? Reply with the number.
 
 ## C. Design direction
 
-- **Note:** the quotes are paraphrased situations, not testimonials. They carry no names or attribution.
-- **Cover (cream):** "Sound familiar?" with four chat bubbles alternating ink and gold.
-- **Slides 2–5:** alternate ink and cream. The problem appears as a large quote (h2 94px, gold curly quotes hanging in the margin). A gold rule and "What we'd do" with a two-line answer sit at the bottom, and the top label names the pillars involved ("Build + Create").
-- **Slide 6 (gold):** "Which one is yours?" and a dark button.
+- **Concept:** a phone showing the group chat everyone running a launch has been in ("v7_FINAL_final.mp4 ?", "Launch is TOMORROW"), with a red 99+ badge. The messages are short and invented to depict a common situation, not quotes.
 
 ## D. Execution
 
-- Carousel, 6 slides at 1080 × 1350. LinkedIn: `export/carousel.pdf`.
-- **Story:** a poll with the four problems.
+- Single. **Motion (Reel, 6 s):** messages pop in faster and faster, then the badge counts up to 99+.
 
 ## Files
 
 - `post.html`: the editable source. Open it in a browser to preview every slide; `?s=N` shows slide N on its own.
-- `export/`: carousel.pdf, slide-01.png, slide-02.png, slide-03.png, slide-04.png, slide-05.png, slide-06.png
+- `export/`: slide-01.png

@@ -27,33 +27,33 @@
 
 | Date | Post | Format | Story that day |
 |---|---|---|---|
-| Sun 22 Nov | **01 · Introducing**: Your idea, planned, built, launched. | Single 4:5 | `01/export/story.png` + link sticker → auric404.me |
-| Tue 24 Nov | **02 · The gap**: Projects rarely break at the idea. | Carousel ×6 | Repost slide 3 with a poll: "Ever lost something in a handoff? Yes / Every time" |
-| Thu 26 Nov | **03 · Twelve rays. One core.** | Single 4:5 (+ LinkedIn 1200×627) | Question sticker: "Which ray do you need first?" |
+| Sun 22 Nov | **01 · Rise & build.** | Single 4:5 | `01/export/story.png` + link sticker → auric404.me |
+| Tue 24 Nov | **02 · Mind the gap.** | Carousel ×2 | Slide 1 with a poll: "Ever lost something in a handoff? Yes / Every time" |
+| Thu 26 Nov | **03 · 12 skills. 1 core.** | Single 4:5 (+ LinkedIn 1200×627) | Question sticker: "Which ray do you need first?" |
 
 ## Week 2 · Act II, the capabilities
 
 | Date | Post | Format | Story that day |
 |---|---|---|---|
-| Sun 29 Nov | **04 · Build** | Carousel ×6 | One screen per Story frame, with a "See the case study" link to auric404.me/work |
-| Tue 1 Dec | **05 · Create** | Carousel ×6 | 10–15 s cut of the TCG reel (real file: `public/media/reel.mp4`) |
-| Thu 3 Dec | **06 · Four questions** | Carousel ×6 | Slide 1 + "Save the post for your next brief" |
+| Sun 29 Nov | **04 · Build.** | Carousel ×4 | One screen per Story frame, with a "See the case study" link to auric404.me/work |
+| Tue 1 Dec | **05 · Create.** | Carousel ×4 | 10–15 s cut of the TCG reel (real file: `public/media/reel.mp4`) |
+| Thu 3 Dec | **06 · Aim first.** | Single 4:5 | The four questions as a 4-frame Story |
 
 ## Week 3 · Act III, the rest of the sun
 
 | Date | Post | Format | Story that day |
 |---|---|---|---|
-| Sun 6 Dec | **07 · Experience** (or the backup, *Built in two languages*) | Single 4:5 | "What would you want people to step into?" question sticker |
-| Tue 8 Dec | **08 · Manage**: One owner. Every deadline. | Single 4:5 | Quiz: "How many people does a typical launch need?" |
-| Thu 10 Dec | **09 · One project, start to finish** | Carousel ×7 | Slides 1 → 6 as a sequence, showing the sun filling up |
+| Sun 6 Dec | **07 · Step inside.** (or the backup, *Built in two languages*) | Single 4:5 | "What would you want people to step into?" question sticker |
+| Tue 8 Dec | **08 · Right on time.** | Single 4:5 | Quiz: "How many people does a typical launch need?" |
+| Thu 10 Dec | **09 · Watch it light up.** | Single 4:5 | The five stages as a Story sequence |
 
 ## Week 4 · Act IV, working together
 
 | Date | Post | Format | Story that day |
 |---|---|---|---|
-| Sun 13 Dec | **10 · Sound familiar?** | Carousel ×6 | Poll with the four problems |
-| Tue 15 Dec | **11 · How we work** | Carousel ×6 | "Book a short call" link sticker → auric404.me/contact |
-| Thu 17 Dec | **12 · Let's make it real.** | Single 4:5 | `12/export/story.png` + WhatsApp link (wa.me/201026597474) |
+| Sun 13 Dec | **10 · Sound familiar?** | Single 4:5 | Poll with the four problems |
+| Tue 15 Dec | **11 · Four steps up.** | Single 4:5 | "Book a short call" link sticker → auric404.me/contact |
+| Thu 17 Dec | **12 · PRESS START** | Single 4:5 | `12/export/story.png` + WhatsApp link (wa.me/201026597474) |
 
 ## LinkedIn (same week, next working day)
 
@@ -62,9 +62,9 @@
 | 01 | Mon 23 Nov | `01/export/linkedin.png` |
 | 02 | Wed 25 Nov | `02/export/carousel.pdf` (document post) |
 | 03 | Fri 27 Nov | `03/export/linkedin.png` |
-| 04, 05, 06 | Mon 30 Nov, Wed 2 Dec, Fri 4 Dec | `carousel.pdf` each |
-| 07, 08, 09 | Mon 7, Wed 9, Fri 11 Dec | 4:5 PNG, 4:5 PNG, `carousel.pdf` |
-| 10, 11, 12 | Mon 14, Wed 16, Fri 18 Dec | `carousel.pdf`, `carousel.pdf`, 4:5 PNG |
+| 04, 05, 06 | Mon 30 Nov, Wed 2 Dec, Fri 4 Dec | `carousel.pdf`, `carousel.pdf`, 4:5 PNG |
+| 07, 08, 09 | Mon 7, Wed 9, Fri 11 Dec | 4:5 PNG each |
+| 10, 11, 12 | Mon 14, Wed 16, Fri 18 Dec | 4:5 PNG each |
 
 ## Every day of the campaign
 

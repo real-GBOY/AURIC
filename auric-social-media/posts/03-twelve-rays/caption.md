@@ -11,9 +11,9 @@
 
 ## B. Copy
 
-**Headline:** Twelve rays. One core.
+**Headline:** 12 skills. 1 core.
 
-**Supporting copy:** The core: one team. One person who owns your project.
+**Supporting copy:** none
 
 **Caption:**
 
@@ -35,15 +35,12 @@ Most projects need four or five of the rays. You only ever deal with the core.
 
 ## C. Design direction
 
-- **Concept:** the logo becomes the diagram. Each ray is labelled with a discipline: a leader line runs from the ray to a mono number (01–12) and a Geist label. The left column holds Build, Experience and Manage; the right column holds Create and Strategy.
-- **Composition:** mega headline at the top ("Twelve rays." solid, "One core." in gold outline). The sun sits at 300px in the lower centre, with the labels in two columns at the margins and the caption "THE CORE" beneath it.
-- **Background:** ink, with the grid texture and glow.
-- **Note:** the post says "how we work", not "what the logo means". Confirm the founder is comfortable with this reading.
+- **Concept:** the logo is the diagram. Each ray carries one word at its tip, set radially in mono (Strategy, Content, Design, Motion, Video, Voice, Web, Apps, Systems, AI, VR, Delivery).
+- **Headline:** "12 skills." above the sun and "1 core." in gold below it.
 
 ## D. Execution
 
-- Single image, 1080 × 1350; LinkedIn 1200 × 627 (`export/linkedin.png`).
-- **Motion version (Reel, 12 s):** start on the bare mark. The rays draw one by one, clockwise and 0.15 s apart, each with its leader line and label sliding out. At the end the core pulses once as "One core." appears.
+- Single + LinkedIn. **Motion (Reel, 8 s):** the words spin in along the rays one by one, then the core pulses.
 
 ## Files
 
