@@ -1,6 +1,6 @@
 # 04 · Build.: social copy
 
-Post on: Sun 29 Nov 2026 · DM keyword: SYSTEM
+Post on: Thu 19 Nov 2026 · 8:00 PM Cairo · DM keyword: SYSTEM
 
 ## Instagram caption
 

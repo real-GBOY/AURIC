@@ -1,6 +1,6 @@
 # 08 · Right on time.: social copy
 
-Post on: Tue 8 Dec 2026 · DM keyword: ON TIME
+Post on: Sun 22 Nov 2026 · 8:00 PM Cairo · DM keyword: ON TIME
 
 ## Instagram caption
 

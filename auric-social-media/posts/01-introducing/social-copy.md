@@ -1,6 +1,6 @@
 # 01 · Rise & build.: social copy
 
-Post on: Sun 22 Nov 2026 · DM keyword: LAUNCH
+Post on: Mon 16 Nov 2026, published now · DM keyword: LAUNCH
 
 ## Instagram caption
 
@@ -11,7 +11,7 @@ Strategy. Design. Video. Websites. Apps. Business systems.
 
 One team does all of it, with one person who owns your project from the first call to launch day.
 
-Over the next four weeks we'll show you how that works, using real projects we've delivered.
+Over the next ten days we'll show you how that works, one post a day, using real projects we've delivered.
 
 Follow along so you don't miss it.
 Got something to launch? DM us the word LAUNCH.
@@ -30,7 +30,7 @@ AURIC started as a software team. Today we take an idea all the way to launch.
 
 Strategy, design, video, websites, apps and business systems, in one team, with one person who owns the project from the first call to launch day.
 
-Over the next four weeks we'll share how that works, using real projects we've delivered.
+Over the next ten days we'll share how that works, using real projects we've delivered.
 
 What's the hardest part of launching something new in your business?
 

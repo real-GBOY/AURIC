@@ -1,11 +1,11 @@
 # 12 · PRESS START: social copy
 
-Post on: Thu 17 Dec 2026 · DM keyword: START
+Post on: Thu 26 Nov 2026 · 8:00 PM Cairo · DM keyword: START
 
 ## Instagram caption
 
 ```
-Four weeks ago we said: rise & build. Now it's your move.
+Ten days ago we said: rise & build. Now it's your move.
 
 Tell us the idea. We'll come back with what it actually needs (and what it doesn't), who would work on it, and what it costs.
 
@@ -24,7 +24,7 @@ Press start:
 ## LinkedIn
 
 ```
-Four weeks ago we introduced the new AURIC. Here's the simplest way to work with us:
+Ten days ago we introduced the new AURIC. Here's the simplest way to work with us:
 
 Tell us the idea. We'll come back with what it actually needs (and what it doesn't), who would work on it, and what it costs.
 

@@ -1,6 +1,6 @@
 # 02 · Mind the gap. / We close it.: social copy
 
-Post on: Tue 24 Nov 2026 · DM keyword: —
+Post on: Tue 17 Nov 2026 · 8:00 PM Cairo · DM keyword: —
 
 ## Instagram caption
 

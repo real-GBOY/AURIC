@@ -1,6 +1,6 @@
 # 06 · Aim first.: social copy
 
-Post on: Thu 3 Dec 2026 · DM keyword: —
+Post on: Sat 21 Nov 2026 · 8:00 PM Cairo · DM keyword: —
 
 ## Instagram caption
 

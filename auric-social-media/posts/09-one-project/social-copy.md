@@ -1,6 +1,6 @@
 # 09 · Watch it light up.: social copy
 
-Post on: Thu 10 Dec 2026 · DM keyword: —
+Post on: Mon 23 Nov 2026 · 8:00 PM Cairo · DM keyword: —
 
 ## Instagram caption
 

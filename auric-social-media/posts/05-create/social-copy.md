@@ -1,6 +1,6 @@
 # 05 · Create.: social copy
 
-Post on: Tue 1 Dec 2026 · DM keyword: FILM
+Post on: Fri 20 Nov 2026 · 8:00 PM Cairo · DM keyword: FILM
 
 ## Instagram caption
 

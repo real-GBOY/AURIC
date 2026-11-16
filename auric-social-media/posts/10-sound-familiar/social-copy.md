@@ -1,6 +1,6 @@
 # 10 · Sound familiar?: social copy
 
-Post on: Sun 13 Dec 2026 · DM keyword: —
+Post on: Tue 24 Nov 2026 · 8:00 PM Cairo · DM keyword: —
 
 ## Instagram caption
 

@@ -1,6 +1,6 @@
 # 07 · Step inside.: social copy
 
-Post on: Sun 6 Dec 2026 (only once the VR capability is confirmed) · DM keyword: VR
+Post on: Not scheduled: AURIC does not offer VR · DM keyword: VR
 
 ## Instagram caption
 

@@ -19,30 +19,30 @@ Plain-text copies of each are in every `final-posts/<post>/` folder.
 | **Honest** | Real projects with their real status (client project / AURIC product / showcase build). The illustrative example is labelled as one. No numbers or quotes that aren't verified. |
 | **Answer fast** | Reply to every comment and DM in the first hour after posting. That's when the algorithm decides how widely to show the post. |
 
-**Before posting:** Post 07 goes out only once the VR capability is confirmed. Arabic versions of the captions should come from a native writer.
+**Post 07 is retired:** AURIC does not offer VR, so it is not scheduled. Post 03 lists Data in place of VR. Arabic versions of the captions should come from a native writer.
 
 ## Overview
 
 | # | Post | Date | CTA | DM keyword | Hook length |
 |---|---|---|---|---|---|
-| 01 | Rise & build. | Sun 22 Nov 2026 | **DM:** DM us LAUNCH | LAUNCH | 80 chars |
-| 02 | Mind the gap. / We close it. | Tue 24 Nov 2026 | **Share:** Send this to someone managing too many freelancers | — | 80 chars |
-| 03 | 12 skills. 1 core. | Thu 26 Nov 2026 | **Comment:** Tell us which ray you need first | — | 46 chars |
-| 04 | Build. | Sun 29 Nov 2026 | **DM:** DM us SYSTEM with how your team works today | SYSTEM | 63 chars |
-| 05 | Create. | Tue 1 Dec 2026 | **DM:** DM us FILM | FILM | 74 chars |
-| 06 | Aim first. | Thu 3 Dec 2026 | **Save:** Save it and send it to whoever writes your briefs | — | 80 chars |
-| 07 | Step inside. | Sun 6 Dec 2026 (only once the VR capability is confirmed) | **DM:** DM us VR | VR | 75 chars |
-| 08 | Right on time. | Tue 8 Dec 2026 | **DM:** DM us ON TIME | ON TIME | 57 chars |
-| 09 | Watch it light up. | Thu 10 Dec 2026 | **Comment:** Tell us what you are starting | — | 59 chars |
-| 10 | Sound familiar? | Sun 13 Dec 2026 | **Share:** Tag the person in this group chat with you | — | 61 chars |
-| 11 | Four steps up. | Tue 15 Dec 2026 | **Book:** Book a short call: link in bio, or DM us CALL | CALL | 64 chars |
-| 12 | PRESS START | Thu 17 Dec 2026 | **DM:** DM START · WhatsApp · auric404.me/contact | START | 57 chars |
+| 01 | Rise & build. | Mon 16 Nov 2026, published now | **DM:** DM us LAUNCH | LAUNCH | 80 chars |
+| 02 | Mind the gap. / We close it. | Tue 17 Nov 2026 · 8:00 PM Cairo | **Share:** Send this to someone managing too many freelancers | — | 80 chars |
+| 03 | 12 skills. 1 core. | Wed 18 Nov 2026 · 8:00 PM Cairo | **Comment:** Tell us which ray you need first | — | 46 chars |
+| 04 | Build. | Thu 19 Nov 2026 · 8:00 PM Cairo | **DM:** DM us SYSTEM with how your team works today | SYSTEM | 63 chars |
+| 05 | Create. | Fri 20 Nov 2026 · 8:00 PM Cairo | **DM:** DM us FILM | FILM | 74 chars |
+| 06 | Aim first. | Sat 21 Nov 2026 · 8:00 PM Cairo | **Save:** Save it and send it to whoever writes your briefs | — | 80 chars |
+| 07 | Step inside. | Not scheduled: AURIC does not offer VR | **DM:** DM us VR | VR | 75 chars |
+| 08 | Right on time. | Sun 22 Nov 2026 · 8:00 PM Cairo | **DM:** DM us ON TIME | ON TIME | 57 chars |
+| 09 | Watch it light up. | Mon 23 Nov 2026 · 8:00 PM Cairo | **Comment:** Tell us what you are starting | — | 59 chars |
+| 10 | Sound familiar? | Tue 24 Nov 2026 · 8:00 PM Cairo | **Share:** Tag the person in this group chat with you | — | 61 chars |
+| 11 | Four steps up. | Wed 25 Nov 2026 · 8:00 PM Cairo | **Book:** Book a short call: link in bio, or DM us CALL | CALL | 64 chars |
+| 12 | PRESS START | Thu 26 Nov 2026 · 8:00 PM Cairo | **DM:** DM START · WhatsApp · auric404.me/contact | START | 55 chars |
 
 ---
 
 ## 01 · Rise & build.
 
-**Post on:** Sun 22 Nov 2026 · **DM keyword:** LAUNCH
+**Post on:** Mon 16 Nov 2026, published now · **DM keyword:** LAUNCH
 
 ### Instagram caption
 
@@ -53,7 +53,7 @@ Strategy. Design. Video. Websites. Apps. Business systems.
 
 One team does all of it, with one person who owns your project from the first call to launch day.
 
-Over the next four weeks we'll show you how that works, using real projects we've delivered.
+Over the next ten days we'll show you how that works, one post a day, using real projects we've delivered.
 
 Follow along so you don't miss it.
 Got something to launch? DM us the word LAUNCH.
@@ -72,7 +72,7 @@ AURIC started as a software team. Today we take an idea all the way to launch.
 
 Strategy, design, video, websites, apps and business systems, in one team, with one person who owns the project from the first call to launch day.
 
-Over the next four weeks we'll share how that works, using real projects we've delivered.
+Over the next ten days we'll share how that works, using real projects we've delivered.
 
 What's the hardest part of launching something new in your business?
 
@@ -85,7 +85,7 @@ What's the hardest part of launching something new in your business?
 
 ## 02 · Mind the gap. / We close it.
 
-**Post on:** Tue 24 Nov 2026 · **DM keyword:** —
+**Post on:** Tue 17 Nov 2026 · 8:00 PM Cairo · **DM keyword:** —
 
 ### Instagram caption
 
@@ -130,7 +130,7 @@ How many providers did your last launch involve?
 
 ## 03 · 12 skills. 1 core.
 
-**Post on:** Thu 26 Nov 2026 · **DM keyword:** —
+**Post on:** Wed 18 Nov 2026 · 8:00 PM Cairo · **DM keyword:** —
 
 ### Instagram caption
 
@@ -138,7 +138,7 @@ How many providers did your last launch involve?
 12 rays on our logo. 12 skills under one roof.
 
 Strategy · Content · Design · Motion · Video · Voiceover
-Websites · Apps · Business systems · AI · VR · Delivery
+Websites · Apps · Business systems · AI · Data · Delivery
 
 Most projects need four or five of them. You only ever talk to one person: the core, who knows your brand and owns your project.
 
@@ -147,7 +147,7 @@ Which ray does your business need first? Tell us in the comments.
 #BrandIdentity #CreativeAgency #WebDesign #AIautomation #DigitalPartner
 ```
 
-**Alt text:** The gold AURIC sun on black, with one word at the tip of each of its 12 rays: Strategy, Content, Design, Motion, Video, Voice, Web, Apps, Systems, AI, VR, Delivery. Headline: 12 skills. 1 core.
+**Alt text:** The gold AURIC sun on black, with one word at the tip of each of its 12 rays: Strategy, Content, Design, Motion, Video, Voice, Web, Apps, Systems, AI, Data, Delivery. Headline: 12 skills. 1 core.
 
 **Story the same day:** Question sticker: 'Which ray do you need first?'
 
@@ -156,7 +156,7 @@ Which ray does your business need first? Tell us in the comments.
 ```
 12 rays on our logo. 12 disciplines a project can need.
 
-Strategy, content, design, motion, video, voiceover, websites, apps, business systems, AI, VR and delivery.
+Strategy, content, design, motion, video, voiceover, websites, apps, business systems, AI, data dashboards and delivery.
 
 Most projects need four or five of them. Our clients only ever deal with one person: the core, who knows the brand and owns the project.
 
@@ -171,7 +171,7 @@ Which one does your business need most this year?
 
 ## 04 · Build.
 
-**Post on:** Sun 29 Nov 2026 · **DM keyword:** SYSTEM
+**Post on:** Thu 19 Nov 2026 · 8:00 PM Cairo · **DM keyword:** SYSTEM
 
 ### Instagram caption
 
@@ -217,7 +217,7 @@ What's the one manual process you'd automate tomorrow?
 
 ## 05 · Create.
 
-**Post on:** Tue 1 Dec 2026 · **DM keyword:** FILM
+**Post on:** Fri 20 Nov 2026 · 8:00 PM Cairo · **DM keyword:** FILM
 
 ### Instagram caption
 
@@ -260,7 +260,7 @@ Is video part of your 2027 marketing plan yet?
 
 ## 06 · Aim first.
 
-**Post on:** Thu 3 Dec 2026 · **DM keyword:** —
+**Post on:** Sat 21 Nov 2026 · 8:00 PM Cairo · **DM keyword:** —
 
 ### Instagram caption
 
@@ -313,7 +313,7 @@ Which of the four does your team usually skip?
 
 ## 07 · Step inside.
 
-**Post on:** Sun 6 Dec 2026 (only once the VR capability is confirmed) · **DM keyword:** VR
+**Post on:** Not scheduled: AURIC does not offer VR · **DM keyword:** VR
 
 ### Instagram caption
 
@@ -353,7 +353,7 @@ Where would an immersive experience help your customers decide faster?
 
 ## 08 · Right on time.
 
-**Post on:** Tue 8 Dec 2026 · **DM keyword:** ON TIME
+**Post on:** Sun 22 Nov 2026 · 8:00 PM Cairo · **DM keyword:** ON TIME
 
 ### Instagram caption
 
@@ -391,7 +391,7 @@ Who owns the deadlines on your current projects?
 
 ## 09 · Watch it light up.
 
-**Post on:** Thu 10 Dec 2026 · **DM keyword:** —
+**Post on:** Mon 23 Nov 2026 · 8:00 PM Cairo · **DM keyword:** —
 
 ### Instagram caption
 
@@ -443,7 +443,7 @@ Each step is briefed by the one before it, so nothing is explained twice.
 
 ## 10 · Sound familiar?
 
-**Post on:** Sun 13 Dec 2026 · **DM keyword:** —
+**Post on:** Tue 24 Nov 2026 · 8:00 PM Cairo · **DM keyword:** —
 
 ### Instagram caption
 
@@ -486,7 +486,7 @@ What's the worst file name you've seen on a "final" deliverable?
 
 ## 11 · Four steps up.
 
-**Post on:** Tue 15 Dec 2026 · **DM keyword:** CALL
+**Post on:** Wed 25 Nov 2026 · 8:00 PM Cairo · **DM keyword:** CALL
 
 ### Instagram caption
 
@@ -529,12 +529,12 @@ Every project is priced after a short call.
 
 ## 12 · PRESS START
 
-**Post on:** Thu 17 Dec 2026 · **DM keyword:** START
+**Post on:** Thu 26 Nov 2026 · 8:00 PM Cairo · **DM keyword:** START
 
 ### Instagram caption
 
 ```
-Four weeks ago we said: rise & build. Now it's your move.
+Ten days ago we said: rise & build. Now it's your move.
 
 Tell us the idea. We'll come back with what it actually needs (and what it doesn't), who would work on it, and what it costs.
 
@@ -553,7 +553,7 @@ Press start:
 ### LinkedIn (next working day)
 
 ```
-Four weeks ago we introduced the new AURIC. Here's the simplest way to work with us:
+Ten days ago we introduced the new AURIC. Here's the simplest way to work with us:
 
 Tell us the idea. We'll come back with what it actually needs (and what it doesn't), who would work on it, and what it costs.
 

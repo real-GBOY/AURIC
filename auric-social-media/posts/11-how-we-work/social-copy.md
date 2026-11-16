@@ -1,6 +1,6 @@
 # 11 · Four steps up.: social copy
 
-Post on: Tue 15 Dec 2026 · DM keyword: CALL
+Post on: Wed 25 Nov 2026 · 8:00 PM Cairo · DM keyword: CALL
 
 ## Instagram caption
 
