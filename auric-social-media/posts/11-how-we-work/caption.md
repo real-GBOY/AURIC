@@ -15,22 +15,23 @@
 
 **Supporting copy:** none — four step labels
 
-**Caption:**
+**Caption:** (final version, with hashtags, alt text and LinkedIn copy: `social-copy.md`)
 
 ```
-How a project with AURIC runs:
+Four steps from idea to launch. Here's what happens at each one.
 
-01 Plan: goals, audience and the plan to reach them. Scope and price agreed after a short call, before anything is made.
-02 Create: video, design and content made to the plan, reviewed with you along the way.
-03 Build: websites, apps and systems when the project needs them. If it doesn't, we'll say so.
+01 Plan: goals, audience and scope. You get a clear plan and a price before anything is made.
+02 Create: video, design and content, reviewed with you along the way.
+03 Build: websites, apps and systems, only if the project needs them.
 04 Deliver: on time, handed over properly, supported after launch.
 
-Every project is priced after a short call. Book one → link in bio
+Every project is priced after a short call.
+Book yours: link in bio, or DM us CALL.
 ```
 
-**CTA:** Book the call → auric404.me/contact
+**CTA:** Book: Book a short call: link in bio, or DM us CALL
 
-**Hashtags (optional, post them in the first comment):** #AURIC #Process #Agency #DigitalPartner
+**Hashtags:** #HowWeWork #CreativeProcess #WebDevelopment #MarketingAgency #DigitalPartner
 
 **Arabic note:** كيف نعمل: نخطط · نبدع · نبني · نسلّم. (from the website's Arabic)
 

@@ -15,23 +15,23 @@
 
 **Supporting copy:** none — one label per project
 
-**Caption:**
+**Caption:** (final version, with hashtags, alt text and LinkedIn copy: `social-copy.md`)
 
 ```
-Create is the half of AURIC people don't expect from a team that also writes code.
+The same team that writes the code also shoots, edits and designs. Swipe →
 
-On the slides:
-→ TCG brand film: six minutes, documentary style, for a recruitment firm going from Dubai to New York. Interview edit, motion graphics and finish.
-→ ELK Café: a Saudi National Day look, with posts, stories and a September content plan.
-→ TCG reel (46 s) and a Green Teaching Kitchen event recap, made for the feed.
-→ Digitmask: a visual identity for an Emirati software and AI platform.
+TCG: a six-minute, documentary-style brand film for a recruitment firm going from Dubai to New York.
+ELK Café: a Saudi National Day look, with posts, stories and a September content plan.
+Reels: TCG's 46-second founder reel and a Green Teaching Kitchen event recap.
 
-All client work, with full case studies on our website.
+All client work. Full case studies are on our website (link in bio).
+
+Need a film, a look or a month of content? DM us FILM.
 ```
 
-**CTA:** See the work → auric404.me/work
+**CTA:** DM: DM us FILM
 
-**Hashtags (optional, post them in the first comment):** #VideoProduction #BrandIdentity #MotionGraphics #ContentCreation #Cairo #Dubai
+**Hashtags:** #VideoProduction #BrandFilm #ContentCreation #MotionDesign #SocialMediaDesign
 
 **Arabic note:** نُبدع. فيديو وتصميم وموشن وتعليق صوتي ومحتوى، بمعيار واحد. (draft)
 

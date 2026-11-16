@@ -15,23 +15,26 @@
 
 **Supporting copy:** none
 
-**Caption:**
+**Caption:** (final version, with hashtags, alt text and LinkedIn copy: `social-copy.md`)
 
 ```
-Most projects don't fail because the idea was bad.
+Five people, five briefs, one launch. Guess who ends up holding it all together?
 
-They fail between the designer and the developer. Between the video editor and the marketer. Between the brief you wrote and the version that reached the fourth person.
+The designer waits on the copy.
+The developer waits on the designer.
+The video editor is on version seven.
+And you're the one connecting all of them, on top of running the business.
 
-Every handoff loses a little: the tone, the deadline, the reason you started. And the person holding it all together ends up being you, on top of running the business.
+Every handoff loses something: the tone, the deadline, sometimes the reason you started.
 
-That gap is why AURIC is built the way it is: strategy, creative, technology and delivery in one team, with one owner for your project.
+Swipe to see how we close that gap: strategy, creative, technology and delivery in one team, with one owner.
 
-If your project is split across too many people, tell us about it.
+Send this to someone who's managing too many freelancers right now.
 ```
 
-**CTA:** Start a project, or reply with the slide that felt familiar.
+**CTA:** Share: Send this to someone managing too many freelancers
 
-**Hashtags (optional, post them in the first comment):** #AURIC #ProjectManagement #Marketing #WebDesign #SmallBusiness
+**Hashtags:** #ProjectManagement #SmallBusinessEgypt #MarketingAgency #Freelancers #DigitalPartner
 
 **Arabic note:** المشاريع نادرًا ما تفشل في الفكرة. تفشل في المسافة بين الناس. (draft line for the native writer)
 

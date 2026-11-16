@@ -15,19 +15,23 @@
 
 **Supporting copy:** none
 
-**Caption:**
+**Caption:** (final version, with hashtags, alt text and LinkedIn copy: `social-copy.md`)
 
 ```
-Some ideas are hard to explain on a screen. A unit that isn't built yet. A showroom someone can't visit. A procedure that's better practised than read.
+Some ideas are hard to explain on a screen. So let people step inside them.
 
-That's where Experience comes in: VR and interactive work, made by the same team that knows your brand and builds your software, so it actually connects to the rest of what you do.
+A unit that isn't built yet.
+A showroom someone can't visit.
+A procedure that's better practised than read.
 
-Got an idea people should step into? Tell us about it.
+VR and interactive experiences, from the team that already knows your brand and builds your software.
+
+Got an idea people should walk into? DM us VR.
 ```
 
-**CTA:** Message us with the idea.
+**CTA:** DM: DM us VR
 
-**Hashtags (optional, post them in the first comment):** #VR #VirtualReality #InteractiveDesign #RealEstateMarketing #Events
+**Hashtags:** #VirtualReality #VRexperience #RealEstateMarketing #InteractiveDesign #EventTech
 
 **Arabic note:** بعض الأفكار من الأفضل أن تدخلها بنفسك. (draft)
 

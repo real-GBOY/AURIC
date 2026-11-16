@@ -15,21 +15,22 @@
 
 **Supporting copy:** auric404.me/contact · DM · WhatsApp
 
-**Caption:**
+**Caption:** (final version, with hashtags, alt text and LinkedIn copy: `social-copy.md`)
 
 ```
-Four weeks ago we said: your idea, planned, built, launched.
+Four weeks ago we said: rise & build. Now it's your move.
 
-If you have one, this is the easiest part. Tell us what you're trying to do. We'll come back with what it actually needs (and what it doesn't), who would work on it, and what it costs.
+Tell us the idea. We'll come back with what it actually needs (and what it doesn't), who would work on it, and what it costs.
 
-→ auric404.me/contact
+Press start:
+→ DM us START
 → WhatsApp +20 102 659 7474
-→ or just send us a DM
+→ auric404.me/contact (link in bio)
 ```
 
-**CTA:** auric404.me/contact · WhatsApp · DM
+**CTA:** DM: DM START · WhatsApp · auric404.me/contact
 
-**Hashtags (optional, post them in the first comment):** #AURIC #StartAProject #DigitalPartner #Cairo
+**Hashtags:** #StartAProject #DigitalPartner #CairoBusiness #WebDevelopment #BrandStrategy
 
 **Arabic note:** لنجعلها حقيقة. (the website's own Arabic CTA)
 

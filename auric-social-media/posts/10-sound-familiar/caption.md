@@ -15,22 +15,24 @@
 
 **Supporting copy:** none — the chat tells the story
 
-**Caption:**
+**Caption:** (final version, with hashtags, alt text and LinkedIn copy: `social-copy.md`)
 
 ```
-Four situations we hear about from business owners, and what we'd do about each:
+If this group chat gave you flashbacks, this post is for you.
 
-1. "Our website doesn't look like us anymore." → Rebuild it around the brand you have today, easy for your team to update.
-2. "We post every week. Nobody gets what we do." → A content plan with three clear messages and real work as proof.
-3. "The business runs on Excel and WhatsApp." → A system built around your workflow, with the repetitive parts automated.
-4. "Four freelancers. Nobody in charge." → One team, one timeline, one owner.
+Three versions of the logo.
+A developer still waiting for the copy.
+A video called v7_FINAL_final.
+A launch tomorrow, and you in the middle.
 
-Which one is yours? Reply with the number.
+It doesn't have to work like this. One team, one plan, one person in charge.
+
+Tag the person who's in this group chat with you.
 ```
 
-**CTA:** Reply with the number; we'll tell you honestly what it needs.
+**CTA:** Share: Tag the person in this group chat with you
 
-**Hashtags (optional, post them in the first comment):** #SmallBusiness #Marketing #WebDesign #Automation #Egypt
+**Hashtags:** #AgencyLife #SmallBusinessProblems #MarketingHumor #Freelancers #ProjectManagement
 
 **Arabic note:** مألوف؟ (draft; a native writer should rephrase the four problems in natural Egyptian and Gulf Arabic)
 

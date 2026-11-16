@@ -9,8 +9,9 @@ The social presence for the evolved AURIC: an integrated digital partner. It is 
 1. [AURIC_BRAND_ANALYSIS.md](AURIC_BRAND_ANALYSIS.md): what was inspected, the positioning, the gaps (including Experience/VR), and which assets can and cannot be used.
 2. [AURIC_SOCIAL_VISUAL_GUIDELINES.md](AURIC_SOCIAL_VISUAL_GUIDELINES.md): colour, type, logo, layout, the visual system, image and motion direction, and do/avoid. Every value is cited from the site source.
 3. [AURIC_SOCIAL_STRATEGY.md](AURIC_SOCIAL_STRATEGY.md): the central idea, voice, the six pillars, the 12 formats, the campaign logic, checks to clear before publishing, and measurement.
-4. [AURIC_CONTENT_CALENDAR.md](AURIC_CONTENT_CALENDAR.md): four weeks, 22 Nov – 17 Dec 2026, Instagram and LinkedIn.
-5. `posts/<NN>/caption.md`: the full brief and copy for each post.
+4. [AURIC_CAPTIONS.md](AURIC_CAPTIONS.md): every caption, CTA, alt text and LinkedIn post, ready to paste.
+5. [AURIC_CONTENT_CALENDAR.md](AURIC_CONTENT_CALENDAR.md): four weeks, 22 Nov – 17 Dec 2026, Instagram and LinkedIn.
+6. `posts/<NN>/caption.md`: the full brief and copy for each post.
 
 ## Campaign overview: "One partner."
 

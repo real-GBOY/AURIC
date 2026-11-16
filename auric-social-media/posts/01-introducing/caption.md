@@ -15,23 +15,24 @@
 
 **Supporting copy:** none on the poster (the caption carries the message)
 
-**Caption:**
+**Caption:** (final version, with hashtags, alt text and LinkedIn copy: `social-copy.md`)
 
 ```
-Same AURIC. A wider sun.
+AURIC started as a software team. Today we take your idea all the way to launch.
 
-We started by building software. Today the work around an idea rarely stops at code: it needs a plan, a look, a film, a website, a system behind it, and someone keeping all of it on schedule.
+Strategy. Design. Video. Websites. Apps. Business systems.
 
-So that's what we do now. Strategy, creative, technology and delivery in one team, with one person who owns your project from the first call to launch.
+One team does all of it, with one person who owns your project from the first call to launch day.
 
-Over the next four weeks we'll show you how it works, with real work.
+Over the next four weeks we'll show you how that works, using real projects we've delivered.
 
-Start a project → link in bio
+Follow along so you don't miss it.
+Got something to launch? DM us the word START.
 ```
 
-**CTA:** Start a project (link in bio).
+**CTA:** DM: DM us LAUNCH
 
-**Hashtags (optional, post them in the first comment):** #AURIC #DigitalPartner #Cairo #BrandStrategy #WebDevelopment #VideoProduction
+**Hashtags:** #DigitalPartner #WebDevelopment #VideoProduction #BrandStrategy #CairoBusiness
 
 **Arabic note:** فكرتك، نخطط لها ونبنيها ونطلقها. فيديو وتصميم واستراتيجية ومواقع وتطبيقات وأنظمة، بفريق واحد ونقطة تواصل واحدة. (the website's own Arabic hero; a native writer should finish the caption)
 

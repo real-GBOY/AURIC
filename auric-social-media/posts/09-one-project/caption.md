@@ -15,25 +15,29 @@
 
 **Supporting copy:** none — five stage labels
 
-**Caption:**
+**Caption:** (final version, with hashtags, alt text and LinkedIn copy: `social-copy.md`)
 
 ```
-What does "one partner" actually look like? Here's an illustrative example: a new clinic opening.
+How a project comes together with AURIC, one ray at a time.
 
-1. Strategy: who the patients are, what makes the clinic different, what launch should achieve.
-2. Identity: logo, colours, signage and templates, designed from that strategy.
-3. Build: a website that books appointments, connected to the front desk.
-4. Create: a launch film, reels and the first month of posts, all pointing at the booking page.
-5. One timeline and one owner the whole way.
+Take an illustrative example: a new clinic opening.
 
-Watch the sun on each slide: it lights up as the project moves forward.
+Plan: who the patients are and what launch should achieve.
+Design: logo, colours, signage, templates.
+Build: a website that books appointments.
+Create: a launch film and the first month of posts.
+Launch: one timeline and one owner the whole way.
 
-(An example for illustration, not a client case study.)
+Each step is briefed by the one before it, so nothing gets explained twice.
+
+What are you starting? Tell us in the comments and we'll tell you which steps it needs.
+
+(An illustrative example, not a client case study.)
 ```
 
-**CTA:** Tell us what you're starting. We'll map the steps it needs.
+**CTA:** Comment: Tell us what you are starting
 
-**Hashtags (optional, post them in the first comment):** #AURIC #Branding #WebDevelopment #HealthcareMarketing #ProjectManagement
+**Hashtags:** #BrandLaunch #HealthcareMarketing #WebDevelopment #BusinessLaunch #DigitalPartner
 
 **Arabic note:** مشروع واحد، من البداية إلى النهاية. (draft)
 

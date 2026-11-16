@@ -15,19 +15,21 @@
 
 **Supporting copy:** none
 
-**Caption:**
+**Caption:** (final version, with hashtags, alt text and LinkedIn copy: `social-copy.md`)
 
 ```
-The quiet part of every good project is someone owning it.
+12 rays. 12 hours. One person watching the clock for you.
 
-At AURIC, every project has one person who coordinates the specialists, books the reviews, holds the dates and answers your messages. You never have to chase five people to find out where things are.
+Every AURIC project has one owner. They coordinate the specialists, book the reviews, hold the dates and answer your messages.
 
-It's not an extra. It's how we work.
+You never chase five people to find out where things stand.
+
+Tired of chasing updates? DM us ON TIME.
 ```
 
-**CTA:** Start a project → auric404.me
+**CTA:** DM: DM us ON TIME
 
-**Hashtags (optional, post them in the first comment):** #ProjectManagement #AURIC #Agency
+**Hashtags:** #ProjectManagement #Deadlines #AgencyLife #BusinessOwners #DigitalPartner
 
 **Arabic note:** مسؤول واحد. كل موعد. (draft)
 

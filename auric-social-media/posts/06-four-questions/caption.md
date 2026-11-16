@@ -15,22 +15,31 @@
 
 **Supporting copy:** Then create.
 
-**Caption:**
+**Caption:** (final version, with hashtags, alt text and LinkedIn copy: `social-copy.md`)
 
 ```
-Before we design a logo, cut a video or write a line of code, we ask four questions:
+Before we design anything, we ask four questions. Save this for your next brief.
 
-1. Who is it for? One clear audience, not "everyone".
-2. What should they do next? Call, book, buy, visit. One job per piece.
-3. Where will they meet it? A reel and a sales deck are different conversations.
-4. How will we know it worked? Pick the number before launch.
+1. Who is it for?
+One clear audience. "Everyone" is not an audience.
 
-Answer these four and most creative arguments disappear. Save this for your next brief.
+2. What should they do next?
+Call, book, buy, visit. Give each piece one job.
+
+3. Where will they see it?
+A reel and a sales deck are different conversations.
+
+4. How will we know it worked?
+Pick the number before launch, not after.
+
+Answer these four and most creative arguments disappear.
+
+Save it, and send it to whoever writes your briefs.
 ```
 
-**CTA:** Save this for your next brief.
+**CTA:** Save: Save it and send it to whoever writes your briefs
 
-**Hashtags (optional, post them in the first comment):** #MarketingStrategy #ContentStrategy #Branding #SmallBusinessTips
+**Hashtags:** #MarketingStrategy #ContentStrategy #MarketingTips #SmallBusinessTips #BrandStrategy
 
 **Arabic note:** أربعة أسئلة قبل أن نصنع أي شيء. (draft)
 

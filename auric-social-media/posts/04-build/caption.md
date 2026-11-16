@@ -15,25 +15,25 @@
 
 **Supporting copy:** none — one mono label per project
 
-**Caption:**
+**Caption:** (final version, with hashtags, alt text and LinkedIn copy: `social-copy.md`)
 
 ```
-Build is where AURIC started, and it's still the part most agencies hand to someone else.
+Real software, built and shipped. Swipe through three of them →
 
-On the slides, real work:
-→ Mizan: practice management for a law firm, in Arabic and English, on web and mobile (client project)
-→ Atlas: a real-estate operating system with CRM, inventory, payment plans, finance and an AI copilot (AURIC product)
-→ Hotel OS: hotel operations and the booking website guests use (showcase build)
-→ Ajwadi: projects, contracts, messaging and payments, with a mobile app
+Mizan: practice management for a law firm, in Arabic and English, on web and mobile. (Client project)
+Atlas: a real-estate operating system with CRM, payment plans, finance and an AI copilot. (AURIC product)
+Hotel OS: hotel operations plus the booking website guests use. (Showcase build)
 
 All screens show demo data.
 
-If the business runs on spreadsheets and WhatsApp, that's usually where a system starts. Tell us how you work today.
+If your business runs on spreadsheets and WhatsApp, that's usually where a system starts.
+
+DM us SYSTEM and tell us how your team works today.
 ```
 
-**CTA:** Start a project → auric404.me
+**CTA:** DM: DM us SYSTEM with how your team works today
 
-**Hashtags (optional, post them in the first comment):** #WebDevelopment #AppDevelopment #ERP #Automation #AI #Egypt #KSA
+**Hashtags:** #SoftwareDevelopment #ERP #WebApp #BusinessAutomation #EgyptTech
 
 **Arabic note:** نبني. مواقع وتطبيقات وأنظمة أعمال وأتمتة بالذكاء الاصطناعي، مبنية حول طريقة عملك. (draft)
 

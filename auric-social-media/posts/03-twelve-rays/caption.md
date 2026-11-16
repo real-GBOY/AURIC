@@ -15,21 +15,22 @@
 
 **Supporting copy:** none
 
-**Caption:**
+**Caption:** (final version, with hashtags, alt text and LinkedIn copy: `social-copy.md`)
 
 ```
-Our mark has twelve rays and one core. It's also the simplest way to explain how we work.
+12 rays on our logo. 12 skills under one roof.
 
-The rays are the disciplines a project can need: strategy, content, design, motion, video, voiceover, websites, mobile apps, business systems, AI and automation, VR and interactive, and project management.
+Strategy · Content · Design · Motion · Video · Voiceover
+Websites · Apps · Business systems · AI · VR · Delivery
 
-The core is what makes them useful: one team that knows your brand, and one person who owns your project and answers for it.
+Most projects need four or five of them. You only ever talk to one person: the core, who knows your brand and owns your project.
 
-Most projects need four or five of the rays. You only ever deal with the core.
+Which ray does your business need first? Tell us in the comments.
 ```
 
-**CTA:** Save it, or send it to whoever manages your vendors.
+**CTA:** Comment: Tell us which ray you need first
 
-**Hashtags (optional, post them in the first comment):** #AURIC #DigitalAgency #Branding #Technology
+**Hashtags:** #BrandIdentity #CreativeAgency #WebDesign #AIautomation #DigitalPartner
 
 **Arabic note:** اثنا عشر شعاعًا. نواة واحدة. (draft)
 
