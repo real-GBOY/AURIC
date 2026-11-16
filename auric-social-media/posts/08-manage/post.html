@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AURIC 08 — Manage</title>
+<link rel="stylesheet" href="../../assets/brand.css">
+<style>
+  .plan { margin-top: auto; border-top: 2px solid rgba(20,20,20,.85); }
+  .plan .wk { display: grid; grid-template-columns: 210px repeat(8, 1fr); font-family: 'Geist Mono', monospace; font-size: 18px; letter-spacing: .1em; color: rgba(20,20,20,.6); padding: 14px 0; }
+  .plan .ln { display: grid; grid-template-columns: 210px 1fr; align-items: center; height: 74px; border-top: 1px solid rgba(20,20,20,.16); }
+  .plan .ln .k { font-size: 26px; font-weight: 500; }
+  .track { position: relative; height: 100%; }
+  .bar { position: absolute; top: 18px; height: 38px; border-radius: 999px; background: var(--text-dark); }
+  .bar.o { background: transparent; border: 3px solid var(--text-dark); }
+  .owner { position: absolute; top: -8px; bottom: -8px; width: 3px; background: var(--text-dark); }
+  .owner::before { content: ''; position: absolute; left: -9px; top: -10px; width: 21px; height: 21px; border-radius: 50%; background: var(--text-dark); }
+</style>
+</head>
+<body>
+
+<section class="slide gold">
+  <div class="top-bar"><span data-logo></span><span class="lab">AURIC Manage</span></div>
+  <h1 class="mega" style="font-size:104px;margin-top:120px">One owner<i class="dot">.</i><br>Every deadline<i class="dot">.</i></h1>
+  <p class="copy" style="margin-top:48px;font-size:38px;max-width:30ch">One person coordinates every specialist, review and date. You always know who to call, and where the project stands.</p>
+  <div class="plan">
+    <div class="wk"><span>Example</span><span>W1</span><span>W2</span><span>W3</span><span>W4</span><span>W5</span><span>W6</span><span>W7</span><span>W8</span></div>
+    <div class="ln"><span class="k">Strategy</span><div class="track"><span class="bar" style="left:0;width:22%"></span></div></div>
+    <div class="ln"><span class="k">Identity</span><div class="track"><span class="bar" style="left:14%;width:30%"></span></div></div>
+    <div class="ln"><span class="k">Website</span><div class="track"><span class="bar" style="left:30%;width:52%"></span></div></div>
+    <div class="ln"><span class="k">Launch film</span><div class="track"><span class="bar o" style="left:50%;width:30%"></span></div></div>
+    <div class="ln"><span class="k">Launch</span><div class="track"><span class="bar" style="left:84%;width:16%"></span></div></div>
+  </div>
+  <div class="row between" style="margin-top:30px"><span class="lab">One timeline · one point of contact</span><span class="handle">auric404.me</span></div>
+</section>
+
+<script src="../../assets/brand.js"></script>
+</body>
+</html>

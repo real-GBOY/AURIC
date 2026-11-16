@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AURIC 03 — Twelve rays, one core</title>
+<link rel="stylesheet" href="../../assets/brand.css">
+<style>
+  .head { font-size: 100px; margin-top: 64px; }
+  .diagram { position: absolute; left: 0; top: 0; width: 1080px; height: 1350px; }
+  .diagram svg.lines { position: absolute; inset: 0; }
+  .lbl { position: absolute; width: 250px; display: flex; flex-direction: column; gap: 4px; transform: translateY(-50%); }
+  .lbl.r { left: 772px; text-align: left; }
+  .lbl.l { left: 58px; text-align: right; align-items: flex-end; }
+  .lbl .n { font-family: 'Geist Mono', monospace; font-size: 18px; letter-spacing: .12em; color: var(--gold); }
+  .lbl .t { font-size: 29px; font-weight: 500; line-height: 1.12; color: var(--cream); }
+  .colhead { position: absolute; top: 452px; white-space: nowrap; font-family: 'Geist Mono', monospace; font-size: 18px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+  .core-lbl { position: absolute; left: 0; right: 0; top: 1132px; text-align: center; }
+</style>
+</head>
+<body>
+
+<section class="slide">
+  <div class="grid-bg"></div><div class="glow"></div>
+  <div class="top-bar layer"><span data-logo></span><span class="lab g">How AURIC works</span></div>
+  <h1 class="mega head layer">Twelve rays<i class="dot">.</i><br><span class="stroke-gold" style="letter-spacing:-0.012em">One core</span><i class="dot">.</i></h1>
+
+  <div class="diagram" id="d">
+    <svg class="lines" viewBox="0 0 1080 1350"></svg>
+    <span class="colhead" style="right:772px;top:428px;text-align:right">Build · Experience<br>Manage</span>
+    <span class="colhead" style="left:772px">Create · Strategy</span>
+    <div data-sun id="sun" style="position:absolute;width:300px;height:300px;left:390px;top:640px"></div>
+    <div class="core-lbl">
+      <div class="lab g" style="font-size:20px">The core</div>
+      <div class="h3" style="font-size:30px;margin-top:10px">One team. One person who owns your project.</div>
+    </div>
+  </div>
+
+  <div class="foot layer"><span class="handle">auric404.me</span><span class="lab">01 → 12</span></div>
+</section>
+
+<script>
+  // Annotate each ray of the mark (clockwise from the top) with one discipline.
+  const NAMES = ['Strategy', 'Content', 'Design', 'Motion', 'Video', 'Voiceover',
+    'Websites', 'Mobile apps', 'Business systems', 'AI & automation', 'VR & interactive', 'Project management'];
+  const cx = 540, cy = 790, scale = 300 / 64, d = document.getElementById('d'), svg = d.querySelector('svg.lines');
+  const rowY = (k) => 545 + k * 102;           // six label rows per side
+  let html = '';
+  NAMES.forEach((name, i) => {
+    const a = (i * 30) * Math.PI / 180;
+    const tip = (i % 2 ? 26.9 : 30.7) * scale + 10;
+    const tx = cx + Math.sin(a) * tip, ty = cy - Math.cos(a) * tip;
+    const right = i <= 5;
+    const k = right ? i : 11 - i;              // left column runs 330° → 180° from the top
+    const y = rowY(k);
+    const ex = right ? 744 : 336;              // label edge
+    const elbow = right ? Math.max(tx + 30, 690) : Math.min(tx - 30, 390);
+    svg.insertAdjacentHTML('beforeend',
+      `<polyline points="${tx},${ty} ${elbow},${y} ${ex},${y}" fill="none" stroke="rgba(244,241,232,.28)" stroke-width="1.6"/>` +
+      `<circle cx="${tx}" cy="${ty}" r="4.5" fill="#dca733"/><circle cx="${ex}" cy="${y}" r="3" fill="rgba(244,241,232,.5)"/>`);
+    html += `<div class="lbl ${right ? 'r' : 'l'}" style="top:${y}px"><span class="n">${String(i + 1).padStart(2, '0')}</span><span class="t">${name}</span></div>`;
+  });
+  d.insertAdjacentHTML('beforeend', html);
+</script>
+<script src="../../assets/brand.js"></script>
+</body>
+</html>
