@@ -5,8 +5,8 @@
 <title>AURIC 02 — Mind the gap</title>
 <link rel="stylesheet" href="../../assets/brand.css">
 <style>
-  .blocks { position: absolute; left: 80px; right: 80px; top: 560px; height: 640px; }
-  .b { position: absolute; top: 0; width: 160px; height: 560px; border-radius: 24px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 30px;
+  .blocks { position: absolute; left: 108px; right: 108px; top: 610px; height: 600px; }
+  .b { position: absolute; top: 0; width: 150px; height: 520px; border-radius: 24px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 40px;
     font-family: 'Geist Mono', monospace; font-size: 22px; letter-spacing: .14em; text-transform: uppercase; }
   .b span { writing-mode: vertical-rl; transform: rotate(180deg); }
   .b1 { background: var(--cream); color: var(--text-dark); }
@@ -15,21 +15,33 @@
   .b4 { background: transparent; color: var(--cream); border: 3px solid var(--cream); }
   .b5 { background: var(--gold); color: var(--text-dark); }
   /* scattered: slide 1 */
-  .apart .b1 { left: 0;    transform: translateY(40px)  rotate(-7deg); }
-  .apart .b2 { left: 190px; transform: translateY(-30px) rotate(5deg); }
-  .apart .b3 { left: 380px; transform: translateY(70px)  rotate(-3deg); }
-  .apart .b4 { left: 570px; transform: translateY(-10px) rotate(8deg); }
-  .apart .b5 { left: 760px; transform: translateY(90px)  rotate(-11deg); }
+  .apart .b1 { left: 4px;  transform: translateY(40px)  rotate(-7deg); }
+  .apart .b2 { left: 178px; transform: translateY(-30px) rotate(5deg); }
+  .apart .b3 { left: 356px; transform: translateY(70px)  rotate(-3deg); }
+  .apart .b4 { left: 534px; transform: translateY(-10px) rotate(8deg); }
+  .apart .b5 { left: 700px; transform: translateY(40px)  rotate(-9deg); }
   .crack { position: absolute; top: -40px; height: 700px; width: 3px; background: repeating-linear-gradient(180deg, rgba(220,167,51,.7) 0 14px, transparent 14px 28px); }
   /* together: slide 2 */
-  .together .b { width: 184px; border-radius: 0; top: 40px; }
+  .together .b { width: 172.8px; border-radius: 0; top: 0; }
   .together .b1 { left: 0; border-radius: 24px 0 0 24px; }
-  .together .b2 { left: 184px; border: 0; }
-  .together .b3 { left: 368px; }
-  .together .b4 { left: 552px; border: 0; background: var(--charcoal); }
-  .together .b5 { left: 736px; border-radius: 0 24px 24px 0; }
+  .together .b2 { left: 172.8px; border: 0; }
+  .together .b3 { left: 345.6px; }
+  .together .b4 { left: 518.4px; border: 0; background: var(--charcoal); }
+  .together .b5 { left: 691.2px; border-radius: 0 24px 24px 0; }
+  .c1 { left: 165px; } .c2 { left: 343px; } .c3 { left: 521px; } .c4 { left: 690px; }
+  .sq .c1 { left: 202px; } .sq .c2 { left: 392px; } .sq .c3 { left: 582px; } .sq .c4 { left: 760px; }
+  .together { top: 660px; }
+  .sq .together { top: 640px; }
   .together .sun { position: absolute; left: 50%; top: -270px; width: 210px; height: 210px; transform: translateX(-50%); }
   .h { font-size: 150px; margin-top: 100px; }
+  /* LinkedIn square */
+  .sq .blocks { top: 500px; height: 500px; left: 80px; right: 80px; }
+  .sq .b { height: 400px; }
+  .sq .h { font-size: 124px; margin-top: 50px; }
+  .sq .apart .b1 { left: 30px; } .sq .apart .b2 { left: 220px; } .sq .apart .b3 { left: 410px; } .sq .apart .b4 { left: 600px; } .sq .apart .b5 { left: 770px; transform: translateY(20px) rotate(-8deg); }
+  .sq .together .b { width: 184px; } .sq .together .b2 { left: 184px; } .sq .together .b3 { left: 368px; } .sq .together .b4 { left: 552px; } .sq .together .b5 { left: 736px; }
+  .sq .together .sun { top: -200px; width: 150px; height: 150px; }
+  .sq .crack { height: 560px; }
 </style>
 </head>
 <body>
@@ -38,7 +50,7 @@
   <div class="top-bar layer"><span data-logo></span><span class="count"><b>01</b> / 02</span></div>
   <h1 class="mega h layer">Mind<br>the gap<i class="dot">.</i></h1>
   <div class="blocks apart">
-    <i class="crack" style="left:177px"></i><i class="crack" style="left:367px"></i><i class="crack" style="left:557px"></i><i class="crack" style="left:747px"></i>
+    <i class="crack c1"></i><i class="crack c2"></i><i class="crack c3"></i><i class="crack c4"></i>
     <div class="b b1"><span>Design</span></div><div class="b b2"><span>Website</span></div><div class="b b3"><span>Video</span></div><div class="b b4"><span>Ads</span></div><div class="b b5"><span>You</span></div>
   </div>
 </section>
@@ -47,7 +59,7 @@
   <div class="glow"></div>
   <div class="top-bar layer"><span data-logo></span><span class="count"><b>02</b> / 02</span></div>
   <h1 class="mega h layer" style="font-size:124px">We close it<i class="dot">.</i></h1>
-  <div class="blocks together" style="top:690px">
+  <div class="blocks together">
     <div data-sun class="sun"></div>
     <div class="b b1"><span>Design</span></div><div class="b b2"><span>Website</span></div><div class="b b3"><span>Video</span></div><div class="b b4"><span>Ads</span></div><div class="b b5"><span>You</span></div>
   </div>

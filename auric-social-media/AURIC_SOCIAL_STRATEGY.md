@@ -152,7 +152,7 @@ Twelve posts a month, 3 per week, plus Stories 4–5 days a week.
 **LinkedIn:** same posts and order.
 
 - Carousels upload as PDF documents (`export/carousel.pdf`).
-- Singles use the 4:5 image, or the 1200 × 627 version where provided.
+- Every post has its own square 1080 × 1080 LinkedIn layout (`export/linkedin/`). Carousels go up as square PDF documents.
 - The captions are longer, with more context and fewer hashtags (3 at most).
 
 ## 7. Measuring it

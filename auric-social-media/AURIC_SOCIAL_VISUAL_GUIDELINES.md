@@ -111,10 +111,12 @@ Files:
 - **Canvases:**
   - 1080 × 1350 (feed, 4:5)
   - 1080 × 1920 (Story)
-  - 1200 × 627 (LinkedIn)
+  - 1080 × 1080 (LinkedIn, its own layout for every post)
   - 1080 × 1080 (square, if needed)
-- **Margin: 80px all round** on feed posts. This is the safe area.
-  - The Instagram profile grid crops 4:5 posts to 3:4, which takes about 34px off each side. Nothing important sits in the outer 80px.
+- **Safe zones** (enforced by `tools/check.mjs`):
+  - **Instagram feed:** text and the logo stay inside x 108–972 and y 100–1250. This covers the profile grid's 3:4 crop (about 34px off each side) and keeps clear of the app's carousel counter.
+  - **LinkedIn:** 1080 × 1080, with 80px clear on every side.
+  - **Visuals that bleed:** the sun, the film strip and the grid floor may run off the edge on purpose. Type never does.
 - **Stories:** keep the top 250px and bottom 300px clear of text (the app UI covers them).
 - **Structure, which mirrors the site sections:**
   - top bar: logo or label left, counter right

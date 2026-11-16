@@ -18,7 +18,17 @@
   .shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,11,.85), rgba(10,10,11,0) 20%, rgba(10,10,11,0) 52%, rgba(10,10,11,.97) 76%, #0a0a0b 86%); }
   .card { position: absolute; border-radius: 22px; overflow: hidden; box-shadow: 0 40px 90px rgba(0,0,0,.55); }
   .card img { display: block; width: 100%; height: 100%; object-fit: cover; }
-  .label { position: absolute; left: var(--m); bottom: var(--m); z-index: 3; }
+  .label { position: absolute; left: var(--m); bottom: 130px; z-index: 3; }
+  .cr { font-size: 186px; }
+  /* LinkedIn square */
+  .sq .cr { font-size: 160px; }
+  .sq .full.tcg { object-position: 75% 50% !important; }
+  .sq .s1 { top: 470px; }
+  .sq .strip img { height: 280px; }
+  .sq .strip { height: 380px; }
+  .sq .label { bottom: 90px; }
+  .sq .card.e { zoom: .8; margin-left: 140px; }
+  .sq .card.r { zoom: .78; margin-left: 140px; margin-top: -40px; }
 </style>
 </head>
 <body>
@@ -26,7 +36,7 @@
 <!-- 1 · cover -->
 <section class="slide cream">
   <div class="top-bar layer" style="z-index:4"><span data-logo></span><span class="count"><b>01</b> / 04</span></div>
-  <h1 class="mega layer" style="font-size:216px;margin-top:70px">Create<i class="dot">.</i></h1>
+  <h1 class="mega layer cr" style="margin-top:70px">Create<i class="dot">.</i></h1>
   <div class="strip s1">
     <img src="../../assets/work/tcg-film-cover.jpg" alt=""><img src="../../assets/work/elk-post-2.jpg" alt=""><img src="../../assets/work/tcg-reel-cover.jpg" alt="">
     <img src="../../assets/work/digitmask-cover.jpg" alt=""><img src="../../assets/work/gtk-frame-3.jpg" alt=""><img src="../../assets/work/tcg-film-frame-2.jpg" alt="">
@@ -37,7 +47,7 @@
 
 <!-- 2 · TCG brand film -->
 <section class="slide">
-  <img class="full" src="../../assets/work/tcg-film-frame-4.jpg" alt="Still from the TCG brand film" style="object-position:60% 50%">
+  <img class="full tcg" src="../../assets/work/tcg-film-frame-4.jpg" alt="Still from the TCG brand film" style="object-position:60% 50%">
   <div class="shade"></div>
   <div class="top-bar layer" style="z-index:3"><span class="lab g">Client work · Brand film</span><span class="count"><b>02</b> / 04</span></div>
   <div class="play" style="left:50%;top:44%;transform:translate(-50%,-50%)"></div>
@@ -47,17 +57,17 @@
 <!-- 3 · ELK Café -->
 <section class="slide" style="background:#23302a">
   <div class="top-bar layer" style="z-index:3"><span class="lab g">Client work · Identity + content</span><span class="count"><b>03</b> / 04</span></div>
-  <div class="card" style="left:70px;top:230px;width:520px;height:650px;transform:rotate(-7deg)"><img src="../../assets/work/elk-post-2.jpg" alt="ELK post"></div>
-  <div class="card" style="left:470px;top:300px;width:330px;height:590px;transform:rotate(5deg);z-index:2"><img src="../../assets/work/elk-story-1.jpg" alt="ELK story"></div>
-  <div class="card" style="left:690px;top:200px;width:320px;height:400px;transform:rotate(10deg)"><img src="../../assets/work/elk-post-1.jpg" alt="ELK post"></div>
+  <div class="card e" style="left:70px;top:230px;width:520px;height:650px;transform:rotate(-7deg)"><img src="../../assets/work/elk-post-2.jpg" alt="ELK post"></div>
+  <div class="card e" style="left:470px;top:300px;width:330px;height:590px;transform:rotate(5deg);z-index:2"><img src="../../assets/work/elk-story-1.jpg" alt="ELK story"></div>
+  <div class="card e" style="left:690px;top:200px;width:320px;height:400px;transform:rotate(10deg)"><img src="../../assets/work/elk-post-1.jpg" alt="ELK post"></div>
   <div class="label"><p class="h2" style="font-size:76px">ELK Café<i class="dot">.</i></p><p class="lab" style="margin-top:16px;color:#cfd6cf">Saudi National Day</p></div>
 </section>
 
 <!-- 4 · reels -->
 <section class="slide bg">
   <div class="top-bar layer" style="z-index:3"><span class="lab g">Client work · Reels</span><span class="count"><b>04</b> / 04</span></div>
-  <div class="card" style="left:110px;top:190px;width:410px;height:730px;border-radius:44px;border:8px solid #26262a;transform:rotate(-6deg)"><img src="../../assets/work/tcg-reel-cover.jpg" alt="TCG reel"></div>
-  <div class="card" style="left:560px;top:240px;width:410px;height:730px;border-radius:44px;border:8px solid #26262a;transform:rotate(6deg)"><img src="../../assets/work/gtk-frame-3.jpg" alt="Green Teaching Kitchen recap"></div>
+  <div class="card r" style="left:110px;top:190px;width:410px;height:730px;border-radius:44px;border:8px solid #26262a;transform:rotate(-6deg)"><img src="../../assets/work/tcg-reel-cover.jpg" alt="TCG reel"></div>
+  <div class="card r" style="left:560px;top:240px;width:410px;height:730px;border-radius:44px;border:8px solid #26262a;transform:rotate(6deg)"><img src="../../assets/work/gtk-frame-3.jpg" alt="Green Teaching Kitchen recap"></div>
   <div class="label"><p class="h2" style="font-size:72px">Made to stop<br>the scroll<i class="dot">.</i></p></div>
 </section>
 

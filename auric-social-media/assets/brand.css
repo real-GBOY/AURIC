@@ -29,7 +29,7 @@
   --line-strong: rgba(244, 241, 232, 0.24);
   --line-dark: rgba(20, 20, 20, 0.14);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --m: 80px;                /* outer margin = safe area */
+  --m: 108px;               /* outer margin = Instagram safe zone (see .guides below) */
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -49,6 +49,22 @@ body { font-family: 'Geist', system-ui, sans-serif; -webkit-font-smoothing: anti
 .slide.gold { background: var(--gold); color: var(--text-dark); }
 .slide.bg { background: var(--bg); }
 .slide.surface { background: var(--surface); }
+
+/* Safe zones.
+   Instagram 1080x1350: the profile grid crops 4:5 posts to 3:4 (34px off each side) and the app draws its own
+   carousel counter at the top right. All text and the logo stay inside x 108–972, y 100–1250.
+   Instagram Story 1080x1920: keep text inside y 250–1620 (app UI above and below).
+   LinkedIn square 1080x1080: text inside 80px of each edge.
+   ?guides=1 draws the zone; ?check=1 lists anything outside it (used by tools/render.mjs --check). */
+.slide .count { display: none; }   /* Instagram and LinkedIn show their own slide counter */
+.guides .slide::after { content: ''; position: absolute; z-index: 99; pointer-events: none; border: 2px dashed #ff3b6b;
+  left: 108px; right: 108px; top: 100px; bottom: 100px; }
+.guides .slide.story::after { left: 80px; right: 80px; top: 250px; bottom: 300px; }
+.guides .slide.sq::after { left: 80px; right: 80px; top: 80px; bottom: 80px; }
+
+/* LinkedIn square versions: the same post.html with ?fmt=li adds .sq to every slide (1080x1080). */
+.slide.sq { --m: 80px; page: sq; }
+@page sq { size: 1080px 1080px; margin: 0; }
 
 /* Preview mode (open the file in a browser): slides side by side, scaled. Export mode: ?s=N shows one. */
 body.preview { padding: 40px; display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start; }

@@ -67,8 +67,56 @@
     }
   });
 
-  const s = new URLSearchParams(location.search).get('s');
+  const q = new URLSearchParams(location.search);
+  const s = q.get('s');
   const slides = document.querySelectorAll('.slide');
+  if (q.get('fmt') === 'li') slides.forEach((el) => el.classList.add('sq'));
+  if (q.get('guides')) document.body.classList.add('guides');
+
+  // ?check=1 — list every text element or logo that falls outside the safe zone of its slide.
+  if (q.get('check')) {
+    document.fonts.ready.then(() => {
+      const out = [];
+      slides.forEach((sl, k) => {
+        if (s && k !== Number(s) - 1) return;
+        const r0 = sl.getBoundingClientRect();
+        const story = sl.classList.contains('story'), sq = sl.classList.contains('sq');
+        const z = story ? [80, 250, 1000, 1620] : sq ? [80, 80, 1000, 1000] : [108, 100, 972, 1250];
+        const els = [...sl.querySelectorAll('*')].filter((e) => {
+          if (e.closest('[data-nocheck]')) return false;
+          if (e.matches('.logo, .btn, .chip')) return true;
+          return [...e.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim());
+        });
+        els.forEach((e) => {
+          const st = getComputedStyle(e);
+          if (st.display === 'none' || st.visibility === 'hidden' || e.closest('.count')) return;
+          // Measure the glyphs themselves (a Range over the text), not the element's box, so a centred
+          // full-width heading or a tall italic line box doesn't count as overflow.
+          let r;
+          if (e.matches('.logo, .btn, .chip')) r = e.getBoundingClientRect();
+          else {
+            const rects = [];
+            e.childNodes.forEach((n) => {
+              if (n.nodeType !== 3 || !n.textContent.trim()) return;
+              const rg = document.createRange(); rg.selectNodeContents(n);
+              rects.push(...[...rg.getClientRects()].filter((x) => x.width));
+            });
+            if (!rects.length) return;
+            r = { left: Math.min(...rects.map((x) => x.left)), top: Math.min(...rects.map((x) => x.top)),
+              right: Math.max(...rects.map((x) => x.right)), bottom: Math.max(...rects.map((x) => x.bottom)), width: 1 };
+          }
+          if (!r.width) return;
+          const x0 = r.left - r0.left, y0 = r.top - r0.top, x1 = r.right - r0.left, y1 = r.bottom - r0.top;
+          if (x0 < z[0] - 1 || y0 < z[1] - 1 || x1 > z[2] + 1 || y1 > z[3] + 1)
+            out.push(`slide ${k + 1}: "${(e.textContent || e.className).trim().slice(0, 28)}" [${Math.round(x0)},${Math.round(y0)} → ${Math.round(x1)},${Math.round(y1)}]`);
+        });
+      });
+      const pre = document.createElement('pre');
+      pre.id = 'safe-report';
+      pre.textContent = out.length ? out.join('\n') : 'OK';
+      document.body.appendChild(pre);
+    });
+  }
   if (s) {
     document.body.classList.add('single');
     const el = slides[Number(s) - 1];

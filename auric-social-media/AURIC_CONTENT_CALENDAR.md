@@ -57,14 +57,10 @@
 
 ## LinkedIn (same week, next working day)
 
-| Instagram | LinkedIn | Asset |
+| Instagram | LinkedIn | Asset (square 1080 × 1080, in `posts/<NN>/export/linkedin/`) |
 |---|---|---|
-| 01 | Mon 23 Nov | `01/export/linkedin.png` |
-| 02 | Wed 25 Nov | `02/export/carousel.pdf` (document post) |
-| 03 | Fri 27 Nov | `03/export/linkedin.png` |
-| 04, 05, 06 | Mon 30 Nov, Wed 2 Dec, Fri 4 Dec | `carousel.pdf`, `carousel.pdf`, 4:5 PNG |
-| 07, 08, 09 | Mon 7, Wed 9, Fri 11 Dec | 4:5 PNG each |
-| 10, 11, 12 | Mon 14, Wed 16, Fri 18 Dec | 4:5 PNG each |
+| 01, 03, 06–12 | the next working day after each | `slide-01.png` |
+| 02, 04, 05 | the next working day after each | `carousel.pdf` (document post) |
 
 ## Every day of the campaign
 

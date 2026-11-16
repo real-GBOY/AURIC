@@ -71,5 +71,23 @@ for (const dir of readdirSync(postsDir).sort()) {
       spawnSync(chrome, [...base, '--no-pdf-header-footer', `--print-to-pdf=${pdf}`, pathToFileURL(file).href], { stdio: 'pipe', timeout: 60000 });
       console.log(`${dir} → carousel.pdf`);
     }
+    // LinkedIn: the same slides in their square layout (?fmt=li → .sq), 1080x1080, plus a square PDF for carousels.
+    if (name === 'post.html') {
+      const li = join(out, 'linkedin');
+      mkdirSync(li, { recursive: true });
+      for (const f of readdirSync(li)) if (/^slide-\d+\.png$|^carousel\.pdf$/.test(f)) unlinkSync(join(li, f));
+      slides.forEach((m, k) => {
+        const png = join(li, `slide-${String(k + 1).padStart(2, '0')}.png`);
+        const url = `${pathToFileURL(file).href}?s=${k + 1}&fmt=li`;
+        const r = spawnSync(chrome, [...base, '--window-size=1080,1080', `--screenshot=${png}`, url], { stdio: 'pipe', timeout: 60000 });
+        if (r.status !== 0 || !existsSync(png)) throw new Error(`render failed: ${png}`);
+        console.log(`${dir}/${name} #${k + 1} → ${png.slice(root.length)}`);
+      });
+      if (slides.length > 1) {
+        const pdf = join(li, 'carousel.pdf');
+        spawnSync(chrome, [...base, '--no-pdf-header-footer', `--print-to-pdf=${pdf}`, `${pathToFileURL(file).href}?fmt=li`], { stdio: 'pipe', timeout: 60000 });
+        console.log(`${dir} → linkedin/carousel.pdf`);
+      }
+    }
   }
 }

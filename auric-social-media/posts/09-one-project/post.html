@@ -10,6 +10,11 @@
   .ph .lab { font-size: 20px; }
   .arc { position: absolute; inset: 0; }
   .h { font-size: 128px; margin-top: 70px; }
+  /* LinkedIn square: the same arc, scaled */
+  .sq .ph { zoom: .78; }
+  .sq .ph.p1 { margin-left: 30px; }
+  .sq .arc { inset: auto; left: 0; top: 0; width: 1080px; height: 1350px; transform: scale(.78); transform-origin: 0 0; }
+  .sq .h { font-size: 104px; margin-top: 50px; }
 </style>
 </head>
 <body>
@@ -18,7 +23,7 @@
   <svg class="arc" viewBox="0 0 1080 1350" aria-hidden="true">
     <path d="M 160 1230 C 330 1150, 600 1000, 900 560" fill="none" stroke="rgba(220,167,51,.35)" stroke-width="2.5" stroke-dasharray="10 12"/>
   </svg>
-  <div class="ph" style="left:90px;top:1060px"><div data-sun data-lit="0" data-core="off" style="width:140px;height:140px"></div><span class="lab">Plan</span></div>
+  <div class="ph p1" style="left:90px;top:1060px"><div data-sun data-lit="0" data-core="off" style="width:140px;height:140px"></div><span class="lab">Plan</span></div>
   <div class="ph" style="left:270px;top:900px"><div data-sun data-lit="3" style="width:170px;height:170px"></div><span class="lab">Design</span></div>
   <div class="ph" style="left:470px;top:720px"><div data-sun data-lit="6" style="width:200px;height:200px"></div><span class="lab">Build</span></div>
   <div class="ph" style="left:640px;top:500px"><div data-sun data-lit="9" style="width:240px;height:240px"></div><span class="lab">Create</span></div>

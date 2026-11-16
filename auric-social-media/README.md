@@ -37,9 +37,9 @@ The posters carry the idea in one image and a few words. The message lives in th
 
 | Post | Poster | Slides | Exports |
 |---|---|---|---|
-| 01 | **Rise & build.** A giant AURIC sun rising from the bottom edge | 1 | `slide-01.png`, `story.png`, `linkedin.png` |
+| 01 | **Rise & build.** A giant AURIC sun rising from the bottom edge | 1 | `slide-01.png`, `story.png` |
 | 02 | **Mind the gap. / We close it.** Scattered blocks, then snapped into one bar | 2 | `slide-01…02.png`, `carousel.pdf` |
-| 03 | **12 skills. 1 core.** One word on each ray of the sun | 1 | `slide-01.png`, `linkedin.png` |
+| 03 | **12 skills. 1 core.** One word on each ray of the sun | 1 | `slide-01.png` |
 | 04 | **Build.** Real screens floating in 3D, each project's name in giant outline | 4 | `slide-01…04.png`, `carousel.pdf` |
 | 05 | **Create.** A film strip of real client work, plus a play button | 4 | `slide-01…04.png`, `carousel.pdf` |
 | 06 | **Aim first.** A dartboard with a bullseye | 1 | `slide-01.png` |
@@ -50,8 +50,23 @@ The posters carry the idea in one image and a few words. The message lives in th
 | 11 | **Four steps up.** The process as a staircase, with the sun on top | 1 | `slide-01.png` |
 | 12 | **PRESS START.** An arcade button with the sun on it | 1 | `slide-01.png`, `story.png` |
 
-Totals: 19 feed images at 1080 × 1350, 2 Stories, 2 LinkedIn images, and 3 carousel PDFs. Ready-to-post copies are in
-`final-posts/` (one folder per post, with images and caption). The first, text-heavy version (v1) is in the git history
+Totals:
+
+- **Instagram:** 19 feed images at 1080 × 1350 and 2 Stories at 1080 × 1920.
+- **LinkedIn:** 19 square images at 1080 × 1080 (`export/linkedin/`), plus 3 square carousel PDFs for document posts.
+
+**Safe zones:** every slide is checked automatically with `node auric-social-media/tools/check.mjs`.
+
+| Format | Size | Where text and the logo must stay |
+|---|---|---|
+| Instagram feed | 1080 × 1350 | x 108–972, y 100–1250 |
+| Instagram Story | 1080 × 1920 | x 80–1000, y 250–1620 |
+| LinkedIn | 1080 × 1080 | 80px in from every edge |
+
+The Instagram zone covers the profile grid's 3:4 crop (34px off each side) and keeps clear of the app's own carousel
+counter. The slides no longer carry their own counters. Add `?guides=1` to any `post.html` to see the zone, or `?fmt=li` to see the LinkedIn layout. Ready-to-post copies are in
+`final-posts/`, one folder per post. Each folder has an `instagram/` subfolder (images, caption, alt text) and a
+`linkedin/` subfolder (square images, PDF, post text). The first, text-heavy version (v1) is in the git history
 (commit `4d5c8f5`).
 
 ## Structure

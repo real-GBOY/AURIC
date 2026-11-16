@@ -5,14 +5,22 @@
 <title>AURIC 04 — Build</title>
 <link rel="stylesheet" href="../../assets/brand.css">
 <style>
-  .giant { position: absolute; left: 80px; top: 160px; font-size: 266px; z-index: 0; }
+  .giant { position: absolute; left: 108px; top: 170px; font-size: 250px; z-index: 0; }
   .scene { position: absolute; inset: 0; perspective: 1800px; z-index: 1; }
   .tilt { position: absolute; transform-style: preserve-3d; }
   .laptop { left: 120px; top: 560px; width: 980px; transform: rotateY(-24deg) rotateX(12deg) rotateZ(3deg); }
   .phone-t { left: 690px; top: 470px; width: 300px; transform: rotateY(-24deg) rotateX(12deg) rotateZ(3deg) translateZ(160px); }
   .shot .frame { box-shadow: 0 60px 120px rgba(0,0,0,.7), 0 0 0 1px rgba(220,167,51,.15); }
-  .ghost { position: absolute; left: 50%; top: 130px; transform: translateX(-50%); font-size: 228px; white-space: nowrap; z-index: 0; }
+  .ghost { position: absolute; left: 50%; top: 130px; transform: translateX(-50%); font-size: 200px; white-space: nowrap; z-index: 0; top: 160px; }
   .label { position: absolute; left: var(--m); bottom: var(--m); z-index: 3; }
+  /* LinkedIn square */
+  .sq .giant { font-size: 210px; top: 140px; left: 80px; }
+  .sq .laptop { left: 150px; top: 420px; width: 840px; }
+  .sq .phone-t { left: 690px; top: 360px; width: 240px; }
+  .sq .ghost { font-size: 170px; top: 130px; }
+  .ghost.hotel { font-size: 146px; }
+  .sq .ghost.hotel { font-size: 124px; }
+  .sq .scene .shot:not(.laptop) { top: 370px !important; left: 160px !important; width: 760px !important; }
   .floor-glow { position: absolute; left: 50%; bottom: -300px; width: 1400px; height: 700px; transform: translateX(-50%); background: radial-gradient(ellipse, rgba(220,167,51,.22), transparent 62%); }
 </style>
 </head>
@@ -52,7 +60,7 @@
 <section class="slide bg">
   <div class="floor-glow"></div>
   <div class="top-bar layer" style="z-index:3"><span class="lab g">Showcase build · Hospitality</span><span class="count"><b>04</b> / 04</span></div>
-  <h2 class="mega ghost stroke-gold" style="letter-spacing:-0.02em;font-size:168px">Hotel OS</h2>
+  <h2 class="mega ghost hotel stroke-gold" style="letter-spacing:-0.02em">Hotel OS</h2>
   <div class="scene"><div class="tilt shot" style="left:60px;top:480px;width:960px;transform:rotateY(18deg) rotateX(10deg) rotateZ(-2deg)"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i></div><img src="../../assets/work/hotel-os-booking.png" alt="Hotel OS booking website"></div></div></div>
   <span class="lab label">Operations + booking website</span>
 </section>
